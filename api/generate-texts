@@ -1,1 +1,49 @@
+module.exports = async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Solo POST permitido' });
+  }
+
+  try {
+    const { default: Anthropic } = await import('@anthropic-ai/sdk');
+    const { nicho, publico, beneficio } = req.body;
+
+    if (!nicho || !publico || !beneficio) {
+      return res.status(400).json({ error: 'Faltan datos requeridos' });
+    }
+
+    if (!process.env.ANTHROPIC_API_KEY) {
+      return res.status(500).json({ error: 'API key no configurada' });
+    }
+
+    const anthropic = new Anthropic({
+      apiKey: process.env.ANTHROPIC_API_KEY,
+    });
+
+    const message = await anthropic.messages.create({
+      model: 'claude-haiku-4-20251001',
+      max_tokens: 2000,
+      temperature: 1,
+      messages: [{
+        role: 'user',
+        content: `Genera textos de marketing para: Nicho: ${nicho}, Público: ${publico}, Beneficio: ${beneficio}. Responde SOLO con JSON: {"titulos":["t1","t2","t3","t4"],"subtitulos":["s1","s2","s3","s4"],"descripciones":["d1","d2","d3","d4"],"ctas":["c1","c2","c3","c4"]}`
+      }]
+    });
+
+    const text = message.content[0].text.replace(/```json/g, '').replace(/```/g, '').trim();
+    const outputs = JSON.parse(text);
+
+    return res.status(200).json({ success: true, outputs });
+  } catch (error) {
+    console.error('ERROR:', error);
+    return res.status(500).json({ error: error.message });
+  }
+};
 
