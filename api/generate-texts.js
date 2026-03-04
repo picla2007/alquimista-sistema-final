@@ -1,4 +1,4 @@
-// api/generate-texts.js  (o .ts si usas TypeScript)
+// api/generate-texts.js
 
 export default async function handler(req, res) {
   // IMPORTANTE: Permitir solo POST
@@ -10,14 +10,35 @@ export default async function handler(req, res) {
     const { nicho, publico, beneficio, modoIA, configAgencia } = req.body;
 
     // Aquí va tu lógica para llamar a Claude AI o generar textos
-    
+    // Por ahora devolvemos mock data:
+
     return res.status(200).json({
       success: true,
       outputs: {
-        titulos: ["Título 1", "Título 2", "Título 3", "Título 4"],
-        subtitulos: ["Subtítulo 1", "Subtítulo 2", "Subtítulo 3", "Subtítulo 4"],
-        descripciones: ["Desc 1", "Desc 2", "Desc 3", "Desc 4"],
-        ctas: ["CTA 1", "CTA 2", "CTA 3", "CTA 4"]
+        titulos: [
+          `Transforma tu consulta dental con ${beneficio}`,
+          `La solución que los ${nicho} estaban esperando`,
+          `Descubre cómo atraer más ${publico} hoy`,
+          `El secreto de los ${nicho} exitosos`
+        ],
+        subtitulos: [
+          "Tecnología de punta al alcance de tu mano",
+          "Resultados garantizados en 30 días",
+          "Más de 500 profesionales ya lo usan",
+          "La inversión que tu práctica necesita"
+        ],
+        descripciones: [
+          `Especializado para ${nicho} que buscan conectar con ${publico} de manera efectiva.`,
+          `La herramienta definitiva para profesionales del sector ${nicho}.`,
+          `Diseñado específicamente para captar la atención de ${publico}.`,
+          `La estrategia de ${beneficio} que está revolucionando el sector.`
+        ],
+        ctas: [
+          "Quiero mi consulta gratuita",
+          "Descubrir cómo funciona",
+          "Empezar ahora",
+          "Sí, quiero más información"
+        ]
       }
     });
 
