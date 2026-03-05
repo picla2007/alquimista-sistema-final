@@ -147,94 +147,125 @@
             </div>
         </div>
     </div>
+<script>
+    // Variables de Estado Global
+    const STORAGE_KEY = 'alquimista_pro_data';
+    const fields = ['nicho', 'publico', 'beneficio'];
+    let modoActual = 'agencia'; // Por defecto
 
-    <script>
-        // Lógica de Persistencia (Local Storage)
-        const STORAGE_KEY = 'alquimista_pro_data';
-        const fields = ['nicho', 'publico', 'beneficio'];
+    // 1. Lógica de los Botones de Modo (¡LA PARTE QUE FALTABA!)
+    function cambiarModo(modo) {
+        modoActual = modo;
+        const btnCliente = document.getElementById('btn-cliente');
+        const btnAgencia = document.getElementById('btn-agencia');
+        const labelModo = document.getElementById('label-modo-ia');
 
-        document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('input', () => {
-                const data = {};
-                fields.forEach(f => data[f] = document.getElementById(f).value);
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-            });
+        if (modo === 'cliente') {
+            // Estilo Cliente
+            btnCliente.className = "flex items-center justify-center gap-2 py-2.5 rounded-lg text-xs font-semibold bg-slate-700 text-white border border-slate-500 shadow-inner";
+            btnAgencia.className = "flex items-center justify-center gap-2 py-2.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition";
+            labelModo.innerText = "IA: Modo Cliente";
+        } else {
+            // Estilo Agencia
+            btnAgencia.className = "flex items-center justify-center gap-2 py-2.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white shadow-lg shadow-indigo-500/20 border border-indigo-400/30";
+            btnCliente.className = "flex items-center justify-center gap-2 py-2.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition";
+            labelModo.innerText = "IA: Modo Agencia";
+        }
+        
+        // Guardar preferencia de modo
+        localStorage.setItem('alquimista_modo', modo);
+    }
+
+    // 2. Persistencia (Guardado Automático)
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', () => {
+            const data = {};
+            fields.forEach(f => data[f] = document.getElementById(f).value);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
         });
+    });
 
-        window.onload = () => {
-            const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-            if (saved) fields.forEach(f => document.getElementById(f).value = saved[f] || '');
+    window.onload = () => {
+        // Cargar datos del formulario
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        if (saved) fields.forEach(f => document.getElementById(f).value = saved[f] || '');
+        
+        // Cargar modo preferido
+        const modoGuardado = localStorage.getItem('alquimista_modo');
+        if (modoGuardado) cambiarModo(modoGuardado);
+    };
+
+    // 3. Generación (Enviando el modo a la API)
+    async function generarTextos() {
+        const btn = document.getElementById('btnGenerar');
+        const data = {
+            nicho: document.getElementById('nicho').value,
+            publico: document.getElementById('publico').value,
+            beneficio: document.getElementById('beneficio').value,
+            modo: modoActual // Enviamos si es cliente o agencia
         };
 
-        // Generación mediante API
-        async function generarTextos() {
-            const btn = document.getElementById('btnGenerar');
-            const data = {
-                nicho: document.getElementById('nicho').value,
-                publico: document.getElementById('publico').value,
-                beneficio: document.getElementById('beneficio').value
-            };
+        if (!data.nicho || !data.beneficio) return alert("Faltan datos clave");
 
-            if (!data.nicho || !data.beneficio) return alert("Faltan datos clave");
+        btn.disabled = true;
+        btn.innerHTML = `<span class="animate-spin text-xl">🌀</span> Procesando...`;
 
-            btn.disabled = true;
-            btn.innerHTML = `<span class="animate-spin">⏳</span> Generando Magia...`;
-
-            try {
-                const response = await fetch('/api/generate-texts', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
-
-                const res = await response.json();
-                if (res.success) render(res.outputs);
-                else alert("Error de la IA: " + res.error);
-            } catch (e) {
-                alert("Error de conexión");
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = `<span class="text-xl">✨</span> Generar Textos`;
-            }
-        }
-
-        function render(outputs) {
-            const mappings = {
-                titulos: { id: 'titulos', color: 'indigo' },
-                subtitulos: { id: 'subtitulos', color: 'sky' },
-                descripciones: { id: 'descripciones', color: 'orange' },
-                ctas: { id: 'ctas', color: 'violet' }
-            };
-
-            Object.entries(mappings).forEach(([key, cfg]) => {
-                const container = document.getElementById(cfg.id);
-                container.innerHTML = outputs[key].map((txt, i) => `
-                    <div class="bg-slate-900/40 border border-white/5 p-4 rounded-2xl flex gap-3 group hover:border-${cfg.color}-500/30 transition shadow-sm">
-                        <span class="flex-shrink-0 w-6 h-6 rounded-lg bg-${cfg.color}-500/20 text-${cfg.color}-400 flex items-center justify-center text-[10px] font-bold border border-${cfg.color}-500/20">#${i+1}</span>
-                        <p class="text-xs leading-relaxed text-slate-300">${txt}</p>
-                    </div>
-                `).join('');
-            });
-        }
-
-        // Exportar a TXT Profesional
-        function exportarTextos() {
-            const nicho = document.getElementById('nicho').value || 'campaña';
-            let content = `ALQUIMISTA IA - COPIES PARA: ${nicho.toUpperCase()}\n\n`;
-            
-            ['titulos', 'subtitulos', 'descripciones', 'ctas'].forEach(id => {
-                content += `--- ${id.toUpperCase()} ---\n`;
-                const items = document.getElementById(id).innerText.split('\n');
-                items.forEach((txt, i) => { if(txt.trim() && !txt.includes('#')) content += `${txt}\n`; });
-                content += `\n`;
+        try {
+            const response = await fetch('/api/generate-texts', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
             });
 
-            const blob = new Blob([content], { type: 'text/plain' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = `Alquimista_${nicho}.txt`;
-            a.click();
+            const res = await response.json();
+            if (res.success) render(res.outputs);
+            else alert("Error: " + res.error);
+        } catch (e) {
+            alert("Error de conexión");
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = `<span class="text-xl">✨</span> Generar Textos`;
         }
-    </script>
-</body>
-</html>
+    }
+
+    // Función Render (Visualización de resultados)
+    function render(outputs) {
+        const mappings = {
+            titulos: { id: 'titulos', color: 'indigo' },
+            subtitulos: { id: 'subtitulos', color: 'sky' },
+            descripciones: { id: 'descripciones', color: 'orange' },
+            ctas: { id: 'ctas', color: 'violet' }
+        };
+
+        Object.entries(mappings).forEach(([key, cfg]) => {
+            const container = document.getElementById(cfg.id);
+            container.innerHTML = outputs[key].map((txt, i) => `
+                <div class="bg-slate-900/40 border border-white/5 p-4 rounded-2xl flex gap-3 group hover:border-${cfg.color}-500/30 transition shadow-sm">
+                    <span class="flex-shrink-0 w-6 h-6 rounded-lg bg-${cfg.color}-500/20 text-${cfg.color}-400 flex items-center justify-center text-[10px] font-bold border border-${cfg.color}-500/20">#${i+1}</span>
+                    <p class="text-xs leading-relaxed text-slate-300">${txt}</p>
+                </div>
+            `).join('');
+        });
+    }
+
+    // Exportar TXT
+    function exportarTextos() {
+        const nicho = document.getElementById('nicho').value || 'campaña';
+        let content = `ALQUIMISTA IA - MODO: ${modoActual.toUpperCase()}\n`;
+        content += `COPIES PARA: ${nicho.toUpperCase()}\n\n`;
+        
+        ['titulos', 'subtitulos', 'descripciones', 'ctas'].forEach(id => {
+            content += `--- ${id.toUpperCase()} ---\n`;
+            const items = document.getElementById(id).innerText.split('\n');
+            items.forEach(txt => { if(txt.trim() && !txt.includes('#')) content += `${txt}\n`; });
+            content += `\n`;
+        });
+
+        const blob = new Blob([content], { type: 'text/plain' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `Alquimista_${nicho}.txt`;
+        a.click();
+    }
+</script>
+   
