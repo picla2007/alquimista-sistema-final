@@ -152,7 +152,32 @@
             a.href = url;
             a.download = `copy-${nicho}.txt`;
             a.click();
-        }
+        }// ... (aquí estarían tus otras funciones como generarTextos)
+
+        // 1. Guardar automáticamente al escribir
+        document.querySelectorAll('input, select').forEach(el => {
+            el.addEventListener('input', () => {
+                const datos = {
+                    nicho: document.getElementById('nicho').value,
+                    publico: document.getElementById('publico').value,
+                    beneficio: document.getElementById('beneficio').value
+                };
+                localStorage.setItem('datosAlquimista', JSON.stringify(datos));
+            });
+        });
+
+        // 2. Cargar al abrir la página
+        window.onload = () => {
+            const guardado = JSON.parse(localStorage.getItem('datosAlquimista'));
+            if (guardado) {
+                document.getElementById('nicho').value = guardado.nicho || '';
+                document.getElementById('publico').value = guardado.publico || '';
+                document.getElementById('beneficio').value = guardado.beneficio || '';
+            }
+        };
+
+    </script> </body>
+</html>
     </script>
 </body>
 </html>
