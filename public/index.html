@@ -3,1056 +3,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sistema inteligente de generación de landing pages con IA - Modo Agencia y Cliente">
-    <title>Generador de Landing Pages con IA - Claude</title>
+    <title>Alquimista Sistema - Generación Inteligente</title>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #8b5cf6;
-            --accent: #06b6d4;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --navy: #1e293b;
-            --navy-dark: #0f172a;
-            --navy-light: #334155;
-            --gray-50: #f8fafc;
-            --gray-100: #f1f5f9;
-            --gray-200: #e2e8f0;
-            --gray-300: #cbd5e1;
-            --gray-400: #94a3b8;
-            --gray-500: #64748b;
-            --gray-600: #475569;
-            --gray-700: #334155;
-            --gray-800: #1e293b;
-            --gray-900: #0f172a;
+            --bg-main: #2d3359;
+            --bg-sidebar: #1e2243;
+            --primary: #9d50f3;
+            --primary-light: #a855f7;
+            --accent: #00f2fe;
+            --text-light: #ffffff;
+            --card-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: var(--gray-800);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: white;
             margin: 0;
             padding: 20px;
-        }
-
-        /* Header Superior Mejorado */
-        .app-header {
-            background: linear-gradient(135deg, var(--navy-dark) 0%, #1a1f3a 50%, var(--navy) 100%);
-            padding: 20px 40px;
-            border-radius: 20px;
-            box-shadow: 
-                0 20px 60px rgba(0,0,0,0.3),
-                inset 0 1px 0 rgba(255,255,255,0.1);
-            margin-bottom: 24px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .app-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.2), transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(139, 92, 246, 0.2), transparent 50%);
-            pointer-events: none;
-        }
-
-        .header-content {
-            max-width: 100%;
-            position: relative;
-            z-index: 1;
             display: flex;
-            align-items: center;
             justify-content: center;
         }
 
-        .title-container {
-            display: inline-flex;
+        .app-wrapper {
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        /* HEADER PREMIUM */
+        .main-header {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
             align-items: center;
-            gap: 16px;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
-            padding: 16px 32px;
-            border-radius: 16px;
-            border: 2px solid rgba(99, 102, 241, 0.4);
-            box-shadow: 
-                0 8px 32px rgba(0,0,0,0.3),
-                inset 0 1px 0 rgba(255,255,255,0.15);
+            justify-content: center;
+            margin-bottom: 25px;
+            box-shadow: var(--card-shadow);
         }
 
-        .title-icon {
-            font-size: 36px;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-        }
-
-        .title-text {
-            font-size: 22px;
+        .header-title {
+            font-size: 28px;
             font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        .title-badge {
-            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 10px;
+        .badge-claude {
+            background: #10b981;
             font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
-        }
-
-        .app-container {
-            display: flex;
-            gap: 24px;
-            max-width: 1800px;
-            margin: 0 auto;
-            min-height: calc(100vh - 140px);
-        }
-
-        /* Panel Lateral Izquierdo */
-        .sidebar {
-            width: 420px;
-            background: linear-gradient(180deg, var(--navy) 0%, var(--navy-dark) 100%);
-            padding: 32px;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            position: relative;
-            border-radius: 20px;
-        }
-
-        .sidebar::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 1px;
-            height: 100%;
-            background: linear-gradient(180deg, transparent, rgba(255,255,255,0.1), transparent);
-        }
-
-        .sidebar::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .sidebar::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.05);
-        }
-
-        .sidebar::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.2);
-            border-radius: 3px;
-        }
-
-        .sidebar::-webkit-scrollbar-thumb:hover {
-            background: rgba(255,255,255,0.3);
-        }
-
-        /* Sección del Modo IA */
-        .ia-mode-section {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 24px;
-            border: 1px solid rgba(99, 102, 241, 0.2);
-        }
-
-        .ia-mode-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .ia-mode-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-        }
-
-        .ia-mode-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: white;
-            letter-spacing: -0.3px;
-        }
-
-        .ia-mode-badge {
-            background: white;
-            color: var(--primary);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-left: auto;
-        }
-
-        .mode-selector {
-            display: flex;
-            gap: 8px;
-        }
-
-        .mode-btn {
-            flex: 1;
-            padding: 12px 16px;
-            border: none;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            position: relative;
-        }
-
-        .mode-btn.cliente {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
-            color: white;
-            border: 1px solid rgba(99, 102, 241, 0.3);
-        }
-
-        .mode-btn.cliente.active {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
-            border-color: transparent;
-        }
-
-        .mode-btn.agencia {
-            background: linear-gradient(135deg, rgba(147, 51, 234, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
-            color: white;
-            border: 1px solid rgba(147, 51, 234, 0.3);
-        }
-
-        .mode-btn.agencia.active {
-            background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%);
-            box-shadow: 0 4px 16px rgba(147, 51, 234, 0.4);
-            border-color: transparent;
-        }
-
-        .mode-btn:hover:not(.active) {
-            transform: translateY(-2px);
-        }
-
-        /* Configuración Agencia */
-        .config-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            padding: 16px;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 12px;
-            border: 1px solid rgba(99, 102, 241, 0.2);
-        }
-
-        .config-header-icon {
-            font-size: 20px;
-        }
-
-        .config-header-title {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--gray-300);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .config-section {
-            margin-bottom: 24px;
-        }
-
-        .config-title {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--gray-400);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .config-title-icon {
-            font-size: 14px;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--gray-300);
-            margin-bottom: 8px;
-        }
-
-        .form-input,
-        .form-select {
-            width: 100%;
-            padding: 12px 16px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 10px;
-            color: white;
-            font-size: 14px;
-            font-family: inherit;
-            transition: all 0.2s;
-        }
-
-        .form-input:focus,
-        .form-select:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: rgba(255,255,255,0.08);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-        }
-
-        .form-input::placeholder {
-            color: var(--gray-500);
-        }
-
-        .form-select option {
-            background: var(--navy-dark);
-            color: white;
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .checkbox-group:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: var(--primary);
-        }
-
-        .checkbox-group input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            accent-color: var(--primary);
-        }
-
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            color: white;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .beneficio-item {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-
-        .beneficio-input {
-            flex: 1;
-            padding: 10px 14px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            color: white;
-            font-size: 13px;
-            font-family: inherit;
-        }
-
-        .beneficio-input:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .btn-remove {
-            width: 36px;
-            height: 36px;
-            background: rgba(239, 68, 68, 0.2);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            border-radius: 8px;
-            color: #fca5a5;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 14px;
-        }
-
-        .btn-remove:hover {
-            background: rgba(239, 68, 68, 0.3);
-            transform: scale(1.05);
-        }
-
-        .btn-add {
-            width: 100%;
-            padding: 10px;
-            background: rgba(16, 185, 129, 0.15);
-            border: 1px dashed rgba(16, 185, 129, 0.4);
-            border-radius: 8px;
-            color: #6ee7b7;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-
-        .btn-add:hover {
-            background: rgba(16, 185, 129, 0.25);
-            border-color: rgba(16, 185, 129, 0.6);
-        }
-
-        .form-question {
-            background: rgba(255,255,255,0.05);
-            padding: 16px;
-            border-radius: 10px;
-            margin-bottom: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .form-question-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .form-question-title {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--gray-400);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .btn-remove-question {
             padding: 6px 12px;
-            background: rgba(239, 68, 68, 0.2);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            border-radius: 6px;
-            color: #fca5a5;
-            font-size: 11px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
+            border-radius: 20px;
+            text-transform: uppercase;
         }
 
-        .btn-remove-question:hover {
-            background: rgba(239, 68, 68, 0.3);
+        .layout {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 25px;
+        }
+
+        /* SIDEBAR (Configuración) */
+        .sidebar {
+            background: var(--bg-sidebar);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .section-tag {
+            color: #94a3b8;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* Botones de Modo */
+        .mode-container {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 18px;
+            margin-bottom: 25px;
+        }
+
+        .mode-switch {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-mode {
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #94a3b8;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+
+        .btn-mode.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 0 15px rgba(157, 80, 243, 0.5);
+        }
+
+        /* Inputs Estilizados */
+        .form-group { margin-bottom: 20px; }
+        .form-label { display: block; margin-bottom: 8px; font-size: 13px; font-weight: 600; color: #cbd5e1; }
+        .input-dark {
+            width: 100%;
+            background: #252a4a;
+            border: 1px solid #3b426e;
+            padding: 14px;
+            border-radius: 10px;
+            color: white;
+            box-sizing: border-box;
         }
 
         .btn-generate {
             width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 18px;
+            background: linear-gradient(90deg, #8e2de2, #4a00e0);
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             color: white;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: all 0.3s;
-            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
-            margin-top: 24px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-generate:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(99, 102, 241, 0.5);
-        }
-
-        .btn-generate:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .btn-generate::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .btn-generate:hover:not(:disabled)::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .btn-generate .btn-text {
-            position: relative;
-            z-index: 1;
-        }
-
-        .loading-text {
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--gray-400);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-align: center;
-            margin-top: 12px;
-        }
-
-        /* Contenido Principal */
-        .main-content {
-            flex: 1;
-            background: white;
-            padding: 32px;
-            overflow-y: auto;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .main-content::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .main-content::-webkit-scrollbar-track {
-            background: var(--gray-100);
-        }
-
-        .main-content::-webkit-scrollbar-thumb {
-            background: var(--gray-300);
-            border-radius: 4px;
-        }
-
-        .main-content::-webkit-scrollbar-thumb:hover {
-            background: var(--gray-400);
-        }
-
-        .content-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 32px;
-        }
-
-        .content-title {
-            font-size: 24px;
             font-weight: 800;
-            color: var(--gray-900);
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(74, 0, 224, 0.3);
+            margin-top: 10px;
         }
 
-        .optimization-badge {
-            background: linear-gradient(135deg, var(--success) 0%, #34d399 100%);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 700;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        /* CONTENIDO (RESULTADOS) */
+        .results-container {
+            background: #f1f5f9;
+            border-radius: 30px;
+            padding: 40px;
+            min-height: 800px;
+            color: #1e293b;
         }
 
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        .content-section {
-            background: white;
-            padding: 24px;
-            border-radius: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            border: 1px solid var(--gray-200);
-        }
-
-        .section-header {
+        .results-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 16px;
-            border-bottom: 2px solid var(--gray-100);
+            margin-bottom: 30px;
         }
 
-        .section-title-wrapper {
+        .grid-outputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .card-output {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .card-title {
+            font-weight: 800;
+            font-size: 18px;
             display: flex;
             align-items: center;
             gap: 10px;
+            margin-bottom: 20px;
         }
 
-        .section-icon {
-            font-size: 20px;
-        }
-
-        .section-title-text {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--gray-900);
-        }
-
-        .section-count {
-            background: var(--primary);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .variant-item {
-            background: var(--gray-50);
-            padding: 16px;
-            border-radius: 10px;
+        .variant-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px;
             margin-bottom: 12px;
-            border: 1px solid var(--gray-200);
-            font-size: 14px;
-            line-height: 1.6;
-            color: var(--gray-800);
-            transition: all 0.2s;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
             position: relative;
+            display: flex;
+            gap: 15px;
         }
 
-        .variant-item:hover {
-            border-color: var(--primary);
-            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.1);
-        }
-
-        .variant-number {
-            display: inline-flex;
+        .variant-num {
+            background: #6366f1;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            min-width: 28px;
-            height: 28px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            border-radius: 6px;
             font-size: 11px;
             font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .variant-text {
-            flex: 1;
-        }
-
-        .variant-copy-btn {
-            padding: 6px 12px;
-            background: white;
-            border: 1px solid var(--gray-200);
-            border-radius: 6px;
-            color: var(--gray-600);
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            opacity: 0;
-            position: absolute;
-            right: 12px;
-            top: 12px;
-        }
-
-        .variant-item:hover .variant-copy-btn {
-            opacity: 1;
-        }
-
-        .variant-copy-btn:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .variant-copy-btn.copied {
-            background: var(--success);
-            color: white;
-            border-color: var(--success);
         }
 
         .empty-state {
             text-align: center;
-            padding: 60px 20px;
+            margin-top: 100px;
         }
-
-        .empty-icon {
-            font-size: 64px;
-            margin-bottom: 16px;
-        }
-
-        .empty-text {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--gray-700);
-            margin-bottom: 8px;
-        }
-
-        .empty-subtext {
-            font-size: 14px;
-            color: var(--gray-500);
-        }
-
-        /* Botones de acción después de generar */
-        .action-buttons {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-        }
-
-        .action-btn {
-            padding: 12px 20px;
-            border: none;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .action-btn.primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-        }
-
-        .action-btn.primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
-        }
-
-        .action-btn.secondary {
-            background: white;
-            color: var(--gray-700);
-            border: 2px solid var(--gray-200);
-        }
-
-        .action-btn.secondary:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .action-btn.success {
-            background: linear-gradient(135deg, var(--success) 0%, #34d399 100%);
-            color: white;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-        }
-
-        .action-btn.success:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
-        }
-
-        .action-btn.danger {
-            background: white;
-            color: var(--danger);
-            border: 2px solid var(--danger);
-        }
-
-        .action-btn.danger:hover {
-            background: var(--danger);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Toast de notificación */
-        .toast {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            background: white;
-            padding: 16px 24px;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 1000;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .toast-icon {
-            font-size: 20px;
-        }
-
-        .toast-message {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--gray-800);
-        }
-
-        @media (max-width: 1200px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .app-container {
-                flex-direction: column;
-            }
-
-            .sidebar {
-                width: 100%;
-            }
-        }
+        
+        .empty-icon { font-size: 80px; margin-bottom: 20px; }
     </style>
 </head>
 <body>
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect, useRef } = React;
+        const { useState } = React;
 
         function App() {
-            // ESTADOS ORIGINALES
-            const [modoIA, setModoIA] = useState('cliente');
-            const [nicho, setNicho] = useState('');
-            const [publico, setPublico] = useState('');
-            const [beneficio, setBeneficio] = useState('');
-            
-            // Campos modo agencia
-            const [nombreInterno, setNombreInterno] = useState('');
-            const [cliente, setCliente] = useState('agencia');
-            const [marcaBlanca, setMarcaBlanca] = useState(false);
-            const [estado, setEstado] = useState('activa');
-            const [dominio, setDominio] = useState('');
-            const [slug, setSlug] = useState('');
-            
-            const [beneficios, setBeneficios] = useState([]);
-            const [preguntas, setPreguntas] = useState([]);
-            const [generando, setGenerando] = useState(false);
-            const [filtroAntiCuriosos, setFiltroAntiCuriosos] = useState(false);
-            const [outputs, setOutputs] = useState({
-                titulos: [],
-                subtitulos: [],
-                descripciones: [],
-                ctas: []
-            });
-            const [toast, setToast] = useState(null);
+            const [modo, setModo] = useState('agencia');
+            const [generado, setGenerado] = useState(false);
+            const [loading, setLoading] = useState(false);
 
-            // FUNCIÓN DE GENERACIÓN (AHORA CONECTADA)
-            const generarTextos = async () => {
-                if (!nicho || !publico || !beneficio) {
-                    mostrarToast('⚠️ Completa los campos obligatorios', 'warning');
-                    return;
-                }
-
-                setGenerando(true);
-                try {
-                    const response = await fetch('/api/generate-texts', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            nicho, publico, beneficio, modoIA,
-                            configAgencia: modoIA === 'agencia' ? { nombreInterno, dominio, slug, marcaBlanca } : null
-                        })
-                    });
-
-                    const data = await response.json();
-                    if (data.success) {
-                        setOutputs(data.outputs);
-                        setFiltroAntiCuriosos(true);
-                        mostrarToast('✨ Textos generados correctamente', 'success');
-                    } else {
-                        throw new Error(data.error);
-                    }
-                } catch (error) {
-                    mostrarToast('❌ Error: ' + error.message, 'error');
-                } finally {
-                    setGenerando(false);
-                }
-            };
-
-            const mostrarToast = (mensaje, tipo) => {
-                const iconos = { success: '✅', warning: '⚠️', error: '❌' };
-                setToast({ mensaje, icono: iconos[tipo] || '📢' });
-                setTimeout(() => setToast(null), 3000);
-            };
-
-            const copiarTexto = async (texto) => {
-                await navigator.clipboard.writeText(texto);
-                mostrarToast('📋 Copiado!', 'success');
+            const handleGenerar = () => {
+                setLoading(true);
+                // Simulamos la generación para ver la UI
+                setTimeout(() => {
+                    setGenerado(true);
+                    setLoading(false);
+                }, 1000);
             };
 
             return (
-                <>
-                {toast && (
-                    <div className="toast">
-                        <span className="toast-icon">{toast.icono}</span>
-                        <span className="toast-message">{toast.mensaje}</span>
-                    </div>
-                )}
-
-                <div className="app-header">
-                    <div className="header-content">
-                        <div className="title-container">
-                            <span className="title-icon">🚀</span>
-                            <span className="title-text">Sistema Inteligente de Generación de Landing Pages con IA</span>
-                            <span className="title-badge">CLAUDE AI</span>
+                <div className="app-wrapper">
+                    {/* HEADER */}
+                    <header className="main-header">
+                        <div className="header-title">
+                            🚀 Alquimista Sistema <span className="badge-claude">Claude AI</span>
                         </div>
-                    </div>
-                </div>
+                    </header>
 
-                <div className="app-container">
-                    <div className="sidebar">
-                        {/* SELECTOR DE MODO (¡YA FUNCIONA!) */}
-                        <div className="ia-mode-section">
-                            <div className="ia-mode-header">
-                                <div className="ia-mode-icon">🤖</div>
-                                <div className="ia-mode-title">MODO DE GENERACIÓN</div>
-                                <div className="ia-mode-badge">{modoIA}</div>
-                            </div>
-                            <div className="mode-selector">
-                                <button 
-                                    onClick={() => setModoIA('cliente')}
-                                    className={`mode-btn cliente ${modoIA === 'cliente' ? 'active' : ''}`}
-                                >
-                                    👤 Cliente
-                                </button>
-                                <button 
-                                    onClick={() => setModoIA('agencia')}
-                                    className={`mode-btn agencia ${modoIA === 'agencia' ? 'active' : ''}`}
-                                >
-                                    🎆 Agencia
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* FORMULARIO */}
-                        <div className="config-section">
-                            <div className="form-group">
-                                <label className="form-label">Nicho / Producto</label>
-                                <input className="form-input" value={nicho} onChange={(e) => setNicho(e.target.value)} placeholder="Ej: Curso de Inversiones" />
-                            </div>
-                            <div className="form-group">
-                                <label className="form-label">Público Objetivo</label>
-                                <input className="form-input" value={publico} onChange={(e) => setPublico(e.target.value)} placeholder="Ej: Emprendedores" />
-                            </div>
-                            <div className="form-group">
-                                <label className="form-label">Beneficio Principal</label>
-                                <textarea className="form-input" value={beneficio} onChange={(e) => setBeneficio(e.target.value)} placeholder="¿Qué ganan?" rows="3" />
-                            </div>
-                        </div>
-
-                        {modoIA === 'agencia' && (
-                            <div className="config-section" style={{borderTop: '1px solid rgba(255,255,255,0.1)', pt: 20}}>
-                                <label className="form-label">Configuración Pro (Agencia)</label>
-                                <input className="form-input" style={{marginBottom: 10}} value={nombreInterno} onChange={(e) => setNombreInterno(e.target.value)} placeholder="Nombre del Cliente" />
-                                <input className="form-input" value={dominio} onChange={(e) => setDominio(e.target.value)} placeholder="Dominio Destino" />
-                            </div>
-                        )}
-
-                        <button className="btn-generate" onClick={generarTextos} disabled={generando}>
-                            <span className="btn-text">{generando ? '⌛ PROCESANDO...' : '✨ GENERAR TEXTOS'}</span>
-                        </button>
-                    </div>
-
-                    <div className="main-content">
-                        {outputs.titulos.length === 0 ? (
-                            <div className="empty-state">
-                                <div className="empty-icon">🎨</div>
-                                <div className="empty-text">Listo para crear tu Landing</div>
-                                <div className="empty-subtext">Completa los datos y pulsa generar para ver la magia.</div>
-                            </div>
-                        ) : (
-                            <div>
-                                <div className="content-header">
-                                    <h2 className="content-title">Resultados de IA</h2>
-                                    <span className="optimization-badge">OPTIMIZADO PARA CONVERSIÓN</span>
-                                </div>
-                                <div className="content-grid">
-                                    <Section title="H1 Títulos" icon="🎯" items={outputs.titulos} onCopy={copiarTexto} />
-                                    <Section title="H2 Subtítulos" icon="📜" items={outputs.subtitulos} onCopy={copiarTexto} />
-                                    <Section title="Descripciones" icon="✍️" items={outputs.descripciones} onCopy={copiarTexto} />
-                                    <Section title="CTAs" icon="🔥" items={outputs.ctas} onCopy={copiarTexto} />
+                    <div className="layout">
+                        {/* SIDEBAR CONFIG */}
+                        <aside className="sidebar">
+                            <div className="mode-container">
+                                <span className="section-tag">IA: Modo {modo === 'agencia' ? 'Agencia' : 'Cliente'}</span>
+                                <div className="mode-switch">
+                                    <button className={`btn-mode ${modo === 'cliente' ? 'active' : ''}`} onClick={() => setModo('cliente')}>👤 Modo Cliente</button>
+                                    <button className={`btn-mode ${modo === 'agencia' ? 'active' : ''}`} onClick={() => setModo('agencia')}>🎆 Modo Agencia</button>
                                 </div>
                             </div>
-                        )}
+
+                            <div className="form-group">
+                                <label className="form-label">🎯 NICHO</label>
+                                <input className="input-dark" placeholder="odontologos" />
+                            </div>
+
+                            <div className="form-group">
+                                <label className="form-label">👤 PÚBLICO</label>
+                                <input className="input-dark" placeholder="pacientes con trasplantes" />
+                            </div>
+
+                            <div className="form-group">
+                                <label className="form-label">⭐ BENEFICIO PRINCIPAL</label>
+                                <input className="input-dark" placeholder="60 clientes en 30 dias" />
+                            </div>
+
+                            {modo === 'agencia' && (
+                                <div style={{marginTop: '30px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px'}}>
+                                    <span className="section-tag">⚙️ CONFIGURACIÓN PRO</span>
+                                    <div className="form-group">
+                                        <label className="form-label">Nombre interno</label>
+                                        <input className="input-dark" placeholder="Campaña #606" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label className="form-label">Dominio</label>
+                                        <input className="input-dark" placeholder="Seleccionar dominio..." />
+                                    </div>
+                                </div>
+                            )}
+
+                            <button className="btn-generate" onClick={handleGenerar}>
+                                {loading ? 'PROCESANDO...' : '✨ Generar Textos'}
+                            </button>
+                        </aside>
+
+                        {/* MAIN RESULTS */}
+                        <main className="results-container">
+                            {!generado ? (
+                                <div className="empty-state">
+                                    <div className="empty-icon">🎨</div>
+                                    <h2>Listo para crear tu Landing</h2>
+                                    <p>Completa los datos y pulsa generar para ver la magia.</p>
+                                </div>
+                            ) : (
+                                <>
+                                    <div className="results-header">
+                                        <h2 style={{fontWeight: 800}}>Copies variables (A/B)</h2>
+                                        <div style={{background: '#10b981', color: 'white', padding: '8px 15px', borderRadius: '8px', fontSize: '12px', fontWeight: 'bold'}}>
+                                            ✓ Optimización ON
+                                        </div>
+                                    </div>
+
+                                    <div className="grid-outputs">
+                                        <Section title="H1 Títulos" icon="💜" items={[
+                                            "Transforma tu consulta dental con 60 clientes en 30 días",
+                                            "La solución que los odontólogos estaban esperando"
+                                        ]} />
+                                        <Section title="H2 Subtítulos" icon="💙" items={[
+                                            "Tecnología de punta al alcance de tu mano",
+                                            "Resultados garantizados en 30 días"
+                                        ]} />
+                                        <Section title="Descripción" icon="🧡" items={[
+                                            "Especializado para odontólogos que buscan conectar con pacientes...",
+                                            "La herramienta definitiva para el sector."
+                                        ]} />
+                                        <Section title="Call to Action" icon="🚀" items={[
+                                            "Quiero mi consulta gratuita",
+                                            "Descubrir cómo funciona"
+                                        ]} />
+                                    </div>
+                                </>
+                            )}
+                        </main>
                     </div>
                 </div>
-                </>
             );
         }
 
-        function Section({ title, icon, items, onCopy }) {
+        function Section({ title, icon, items }) {
             return (
-                <div className="content-section">
-                    <div className="section-header">
-                        <div className="section-title-wrapper">
-                            <span className="section-icon">{icon}</span>
-                            <span className="section-title-text">{title}</span>
-                        </div>
-                        <span className="section-count">{items.length}</span>
+                <div className="card-output">
+                    <div className="card-title">
+                        <span>{icon}</span> {title}
+                        <span style={{marginLeft: 'auto', background: '#6366f1', color: 'white', fontSize: '10px', padding: '2px 8px', borderRadius: '4px'}}>4</span>
                     </div>
-                    {items.map((txt, i) => (
-                        <div key={i} className="variant-item">
-                            <span className="variant-number">{i+1}</span>
-                            <span className="variant-text">{txt}</span>
-                            <button className="variant-copy-btn" onClick={() => onCopy(txt)}>Copiar</button>
+                    {items.map((text, i) => (
+                        <div key={i} className="variant-box">
+                            <div className="variant-num">#{i+1}</div>
+                            <div style={{fontSize: '14px', lineHeight: '1.5', color: '#475569'}}>{text}</div>
                         </div>
                     ))}
                 </div>
