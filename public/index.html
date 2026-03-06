@@ -10,1618 +10,849 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #8b5cf6;
-            --accent: #06b6d4;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --navy: #1e293b;
-            --navy-dark: #0f172a;
-            --navy-light: #334155;
-            --gray-50: #f8fafc;
-            --gray-100: #f1f5f9;
-            --gray-200: #e2e8f0;
-            --gray-300: #cbd5e1;
-            --gray-400: #94a3b8;
-            --gray-500: #64748b;
-            --gray-600: #475569;
-            --gray-700: #334155;
-            --gray-800: #1e293b;
-            --gray-900: #0f172a;
+            --primary: #6366f1; --primary-dark: #4f46e5; --secondary: #8b5cf6;
+            --accent: #06b6d4; --success: #10b981; --warning: #f59e0b; --danger: #ef4444;
+            --navy: #1e293b; --navy-dark: #0f172a; --navy-light: #334155;
+            --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1; --gray-400: #94a3b8; --gray-500: #64748b;
+            --gray-600: #475569; --gray-700: #334155; --gray-800: #1e293b; --gray-900: #0f172a;
         }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: var(--gray-800);
-            margin: 0;
-            padding: 20px;
+            min-height: 100vh; color: var(--gray-800); margin: 0; padding: 20px;
         }
 
-        /* Header Superior Mejorado */
         .app-header {
             background: linear-gradient(135deg, var(--navy-dark) 0%, #1a1f3a 50%, var(--navy) 100%);
-            padding: 20px 40px;
-            border-radius: 20px;
-            box-shadow: 
-                0 20px 60px rgba(0,0,0,0.3),
-                inset 0 1px 0 rgba(255,255,255,0.1);
-            margin-bottom: 24px;
-            position: relative;
-            overflow: hidden;
+            padding: 20px 40px; border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+            margin-bottom: 24px; position: relative; overflow: hidden;
         }
-
         .app-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.2), transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(139, 92, 246, 0.2), transparent 50%);
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(99,102,241,0.2), transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(139,92,246,0.2), transparent 50%);
             pointer-events: none;
         }
-
         .header-content {
-            max-width: 100%;
-            position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            max-width: 100%; position: relative; z-index: 1;
+            display: flex; align-items: center; justify-content: space-between;
         }
-
         .title-container {
-            display: inline-flex;
-            align-items: center;
-            gap: 16px;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
-            padding: 16px 32px;
-            border-radius: 16px;
-            border: 2px solid rgba(99, 102, 241, 0.4);
-            box-shadow: 
-                0 8px 32px rgba(0,0,0,0.3),
-                inset 0 1px 0 rgba(255,255,255,0.15);
+            display: inline-flex; align-items: center; gap: 16px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.25) 0%, rgba(139,92,246,0.25) 100%);
+            padding: 16px 32px; border-radius: 16px; border: 2px solid rgba(99,102,241,0.4);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15);
         }
-
-        .title-icon {
-            font-size: 36px;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-        }
-
+        .title-icon { font-size: 36px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
         .title-text {
-            font-size: 22px;
-            font-weight: 800;
+            font-size: 22px; font-weight: 800;
             background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.3px;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; letter-spacing: -0.3px;
         }
-
         .title-badge {
             background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 10px;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+            color: white; padding: 8px 16px; border-radius: 10px;
+            font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(16,185,129,0.4);
         }
 
-        /* ── AUTOSAVE INDICATOR ── */
+        /* AUTOSAVE */
         .autosave-indicator {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 10px;
-            font-size: 12px;
-            font-weight: 600;
-            color: rgba(255,255,255,0.5);
-            transition: all 0.4s ease;
+            display: flex; align-items: center; gap: 8px; padding: 8px 16px;
+            background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px; font-size: 12px; font-weight: 600;
+            color: rgba(255,255,255,0.5); transition: all 0.4s ease;
         }
-        .autosave-indicator.saved {
-            color: #6ee7b7;
-            border-color: rgba(16,185,129,0.35);
-            background: rgba(16,185,129,0.1);
-        }
-        .autosave-indicator.saving {
-            color: #fbbf24;
-            border-color: rgba(251,191,36,0.35);
-            background: rgba(251,191,36,0.08);
-        }
-        .autosave-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: currentColor;
-            flex-shrink: 0;
-        }
-        .autosave-indicator.saving .autosave-dot {
-            animation: blink 1s infinite;
-        }
+        .autosave-indicator.saved { color: #6ee7b7; border-color: rgba(16,185,129,0.35); background: rgba(16,185,129,0.1); }
+        .autosave-indicator.saving { color: #fbbf24; border-color: rgba(251,191,36,0.35); background: rgba(251,191,36,0.08); }
+        .autosave-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+        .autosave-indicator.saving .autosave-dot { animation: blink 1s infinite; }
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
 
-        /* ── SESSION BANNER ── */
+        /* SESSION BANNER */
         .session-banner {
             background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(52,211,153,0.08));
-            border: 1px solid rgba(16,185,129,0.3);
-            border-radius: 12px;
-            padding: 14px 18px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
+            border: 1px solid rgba(16,185,129,0.3); border-radius: 12px;
+            padding: 14px 18px; margin-bottom: 20px;
+            display: flex; align-items: center; justify-content: space-between; gap: 12px;
         }
         .session-banner-left { display: flex; align-items: center; gap: 10px; }
         .session-banner-text { font-size: 13px; font-weight: 700; color: #065f46; }
         .session-banner-time { font-size: 11px; color: #047857; margin-top: 2px; }
         .btn-restore {
-            padding: 8px 16px;
-            background: white;
-            border: 1px solid rgba(16,185,129,0.4);
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 700;
-            color: #065f46;
-            cursor: pointer;
-            transition: all 0.2s;
-            white-space: nowrap;
+            padding: 8px 16px; background: white; border: 1px solid rgba(16,185,129,0.4);
+            border-radius: 8px; font-size: 12px; font-weight: 700; color: #065f46;
+            cursor: pointer; transition: all 0.2s; white-space: nowrap;
         }
         .btn-restore:hover { background: rgba(16,185,129,0.08); }
         .btn-dismiss {
-            background: none;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            color: #047857;
-            opacity: 0.6;
-            padding: 4px;
-            transition: opacity 0.2s;
+            background: none; border: none; font-size: 16px; cursor: pointer;
+            color: #047857; opacity: 0.6; padding: 4px; transition: opacity 0.2s;
         }
         .btn-dismiss:hover { opacity: 1; }
 
         .app-container {
-            display: flex;
-            gap: 24px;
-            max-width: 1800px;
-            margin: 0 auto;
+            display: flex; gap: 24px; max-width: 1800px; margin: 0 auto;
             min-height: calc(100vh - 140px);
         }
 
-        /* Panel Lateral Izquierdo */
         .sidebar {
             width: 420px;
             background: linear-gradient(180deg, var(--navy) 0%, var(--navy-dark) 100%);
-            padding: 32px;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            position: relative;
-            border-radius: 20px;
+            padding: 32px; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative; border-radius: 20px;
         }
-
         .sidebar::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 1px;
-            height: 100%;
+            content: ''; position: absolute; top: 0; right: 0; width: 1px; height: 100%;
             background: linear-gradient(180deg, transparent, rgba(255,255,255,0.1), transparent);
         }
+        .sidebar::-webkit-scrollbar { width: 6px; }
+        .sidebar::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+        .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
+        .sidebar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
 
-        .sidebar::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .sidebar::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.05);
-        }
-
-        .sidebar::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.2);
-            border-radius: 3px;
-        }
-
-        .sidebar::-webkit-scrollbar-thumb:hover {
-            background: rgba(255,255,255,0.3);
-        }
-
-        /* Sección del Modo IA */
         .ia-mode-section {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 24px;
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            background: linear-gradient(135deg, rgba(99,102,241,0.15) 0%, rgba(139,92,246,0.15) 100%);
+            border-radius: 16px; padding: 24px; margin-bottom: 24px;
+            border: 1px solid rgba(99,102,241,0.2);
         }
-
-        .ia-mode-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
+        .ia-mode-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
         .ia-mode-icon {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 20px; box-shadow: 0 4px 12px rgba(99,102,241,0.3);
         }
-
-        .ia-mode-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: white;
-            letter-spacing: -0.3px;
-        }
-
+        .ia-mode-title { font-size: 15px; font-weight: 700; color: white; letter-spacing: -0.3px; }
         .ia-mode-badge {
-            background: white;
-            color: var(--primary);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-left: auto;
+            background: white; color: var(--primary); padding: 4px 10px; border-radius: 6px;
+            font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-left: auto;
         }
-
-        .mode-selector {
-            display: flex;
-            gap: 8px;
-        }
-
+        .mode-selector { display: flex; gap: 8px; }
         .mode-btn {
-            flex: 1;
-            padding: 12px 16px;
-            border: none;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            position: relative;
+            flex: 1; padding: 12px 16px; border: none; border-radius: 10px;
+            font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
         }
+        .mode-btn.cliente { background: linear-gradient(135deg, rgba(99,102,241,0.2) 0%, rgba(139,92,246,0.2) 100%); color: white; border: 1px solid rgba(99,102,241,0.3); }
+        .mode-btn.cliente.active { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); box-shadow: 0 4px 16px rgba(99,102,241,0.4); border-color: transparent; }
+        .mode-btn.agencia { background: linear-gradient(135deg, rgba(147,51,234,0.2) 0%, rgba(168,85,247,0.2) 100%); color: white; border: 1px solid rgba(147,51,234,0.3); }
+        .mode-btn.agencia.active { background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%); box-shadow: 0 4px 16px rgba(147,51,234,0.4); border-color: transparent; }
+        .mode-btn:hover:not(.active) { transform: translateY(-2px); }
 
-        .mode-btn.cliente {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
-            color: white;
-            border: 1px solid rgba(99, 102, 241, 0.3);
-        }
-
-        .mode-btn.cliente.active {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
-            border-color: transparent;
-        }
-
-        .mode-btn.agencia {
-            background: linear-gradient(135deg, rgba(147, 51, 234, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
-            color: white;
-            border: 1px solid rgba(147, 51, 234, 0.3);
-        }
-
-        .mode-btn.agencia.active {
-            background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%);
-            box-shadow: 0 4px 16px rgba(147, 51, 234, 0.4);
-            border-color: transparent;
-        }
-
-        .mode-btn:hover:not(.active) {
-            transform: translateY(-2px);
-        }
-
-        /* Configuración Agencia */
         .config-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            padding: 16px;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 12px;
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            display: flex; align-items: center; gap: 10px; margin-bottom: 20px; padding: 16px;
+            background: rgba(99,102,241,0.1); border-radius: 12px; border: 1px solid rgba(99,102,241,0.2);
         }
-
-        .config-header-icon {
-            font-size: 20px;
-        }
-
-        .config-header-title {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--gray-300);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .config-section {
-            margin-bottom: 24px;
-        }
-
+        .config-header-icon { font-size: 20px; }
+        .config-header-title { font-size: 13px; font-weight: 700; color: var(--gray-300); text-transform: uppercase; letter-spacing: 1px; }
+        .config-section { margin-bottom: 24px; }
         .config-title {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--gray-400);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-size: 12px; font-weight: 700; color: var(--gray-400);
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;
+            display: flex; align-items: center; gap: 8px;
         }
-
-        .config-title-icon {
-            font-size: 14px;
+        .config-title-icon { font-size: 14px; }
+        .form-group { margin-bottom: 16px; }
+        .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--gray-300); margin-bottom: 8px; }
+        .form-input, .form-select {
+            width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 10px;
+            color: white; font-size: 14px; font-family: inherit; transition: all 0.2s;
         }
-
-        .form-group {
-            margin-bottom: 16px;
+        .form-input:focus, .form-select:focus {
+            outline: none; border-color: var(--primary); background: rgba(255,255,255,0.08);
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
         }
-
-        .form-label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--gray-300);
-            margin-bottom: 8px;
-        }
-
-        .form-input,
-        .form-select {
-            width: 100%;
-            padding: 12px 16px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 10px;
-            color: white;
-            font-size: 14px;
-            font-family: inherit;
-            transition: all 0.2s;
-        }
-
-        .form-input:focus,
-        .form-select:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: rgba(255,255,255,0.08);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-        }
-
-        .form-input::placeholder {
-            color: var(--gray-500);
-        }
-
-        .form-select option {
-            background: var(--navy-dark);
-            color: white;
-        }
+        .form-input::placeholder { color: var(--gray-500); }
+        .form-select option { background: var(--navy-dark); color: white; }
 
         .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.2s;
+            display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px; cursor: pointer; transition: all 0.2s;
         }
+        .checkbox-group:hover { background: rgba(255,255,255,0.08); border-color: var(--primary); }
+        .checkbox-group input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; accent-color: var(--primary); }
+        .checkbox-label { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: white; cursor: pointer; user-select: none; }
 
-        .checkbox-group:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: var(--primary);
-        }
-
-        .checkbox-group input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            accent-color: var(--primary);
-        }
-
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            color: white;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .beneficio-item {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-
+        .beneficio-item { display: flex; gap: 8px; margin-bottom: 8px; }
         .beneficio-input {
-            flex: 1;
-            padding: 10px 14px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            color: white;
-            font-size: 13px;
-            font-family: inherit;
+            flex: 1; padding: 10px 14px; background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;
+            color: white; font-size: 13px; font-family: inherit;
         }
-
-        .beneficio-input:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
+        .beneficio-input:focus { outline: none; border-color: var(--primary); }
 
         .btn-remove {
-            width: 36px;
-            height: 36px;
-            background: rgba(239, 68, 68, 0.2);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            border-radius: 8px;
-            color: #fca5a5;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 14px;
+            width: 36px; height: 36px; background: rgba(239,68,68,0.2);
+            border: 1px solid rgba(239,68,68,0.3); border-radius: 8px;
+            color: #fca5a5; cursor: pointer; transition: all 0.2s; font-size: 14px;
         }
-
-        .btn-remove:hover {
-            background: rgba(239, 68, 68, 0.3);
-            transform: scale(1.05);
-        }
+        .btn-remove:hover { background: rgba(239,68,68,0.3); transform: scale(1.05); }
 
         .btn-add {
-            width: 100%;
-            padding: 10px;
-            background: rgba(16, 185, 129, 0.15);
-            border: 1px dashed rgba(16, 185, 129, 0.4);
-            border-radius: 8px;
-            color: #6ee7b7;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            transition: all 0.2s;
+            width: 100%; padding: 10px; background: rgba(16,185,129,0.15);
+            border: 1px dashed rgba(16,185,129,0.4); border-radius: 8px;
+            color: #6ee7b7; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.2s;
         }
+        .btn-add:hover { background: rgba(16,185,129,0.25); border-color: rgba(16,185,129,0.6); }
 
-        .btn-add:hover {
-            background: rgba(16, 185, 129, 0.25);
-            border-color: rgba(16, 185, 129, 0.6);
+        /* ── FORMULARIO AVANZADO ── */
+        .form-section-header {
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;
         }
+        .form-question-card {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px; padding: 16px; margin-bottom: 12px; transition: border-color 0.2s;
+        }
+        .form-question-card:hover { border-color: rgba(99,102,241,0.4); }
+        .fq-top {
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
+        }
+        .fq-num {
+            font-size: 11px; font-weight: 700; color: var(--gray-400);
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .fq-delete {
+            padding: 4px 10px; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3);
+            border-radius: 6px; color: #fca5a5; font-size: 11px; font-weight: 600;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .fq-delete:hover { background: rgba(239,68,68,0.3); }
+        .fq-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+        .fq-input {
+            width: 100%; padding: 10px 12px; background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;
+            color: white; font-size: 13px; font-family: inherit; transition: all 0.2s;
+        }
+        .fq-input:focus { outline: none; border-color: var(--primary); background: rgba(255,255,255,0.08); }
+        .fq-input::placeholder { color: var(--gray-500); }
+        .fq-select {
+            width: 100%; padding: 10px 12px; background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;
+            color: white; font-size: 13px; font-family: inherit; transition: all 0.2s; cursor: pointer;
+        }
+        .fq-select:focus { outline: none; border-color: var(--primary); }
+        .fq-select option { background: var(--navy-dark); color: white; }
+        .fq-opciones-label {
+            font-size: 11px; font-weight: 600; color: var(--gray-400);
+            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px;
+        }
+        .fq-opciones-input {
+            width: 100%; padding: 8px 12px; background: rgba(255,255,255,0.04);
+            border: 1px dashed rgba(99,102,241,0.35); border-radius: 8px;
+            color: white; font-size: 12px; font-family: inherit; transition: all 0.2s;
+        }
+        .fq-opciones-input:focus { outline: none; border-color: var(--primary); background: rgba(255,255,255,0.07); }
+        .fq-opciones-input::placeholder { color: var(--gray-500); }
 
-        .form-question {
-            background: rgba(255,255,255,0.05);
-            padding: 16px;
-            border-radius: 10px;
-            margin-bottom: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
+        /* Botones tipo de campo */
+        .fq-type-btns { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+        .fq-type-btn {
+            padding: 5px 11px; border-radius: 6px; font-size: 11px; font-weight: 700;
+            cursor: pointer; transition: all 0.2s; border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.05); color: var(--gray-300);
         }
+        .fq-type-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-color: transparent; color: white;
+            box-shadow: 0 2px 8px rgba(99,102,241,0.35);
+        }
+        .fq-type-btn:hover:not(.active) { background: rgba(255,255,255,0.1); color: white; }
 
-        .form-question-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
+        /* Toggle "Hacer todas obligatorias" */
+        .toggle-row {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 14px; background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; margin-top: 12px;
         }
+        .toggle-label { font-size: 13px; font-weight: 600; color: var(--gray-300); }
+        .toggle-sub { font-size: 11px; color: var(--gray-500); margin-top: 2px; }
+        .toggle-switch {
+            position: relative; width: 42px; height: 24px; cursor: pointer; flex-shrink: 0;
+        }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-track {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255,255,255,0.15); border-radius: 24px; transition: background 0.3s;
+        }
+        .toggle-track.on { background: var(--success); }
+        .toggle-thumb {
+            position: absolute; top: 3px; left: 3px; width: 18px; height: 18px;
+            background: white; border-radius: 50%; transition: transform 0.3s;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+        }
+        .toggle-thumb.on { transform: translateX(18px); }
 
-        .form-question-title {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--gray-400);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        /* Add question buttons */
+        .fq-add-btns { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+        .fq-add-btn {
+            padding: 7px 13px; background: rgba(16,185,129,0.12);
+            border: 1px dashed rgba(16,185,129,0.35); border-radius: 8px;
+            color: #6ee7b7; cursor: pointer; font-size: 12px; font-weight: 600; transition: all 0.2s;
         }
-
-        .btn-remove-question {
-            padding: 6px 12px;
-            background: rgba(239, 68, 68, 0.2);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            border-radius: 6px;
-            color: #fca5a5;
-            font-size: 11px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-remove-question:hover {
-            background: rgba(239, 68, 68, 0.3);
-        }
+        .fq-add-btn:hover { background: rgba(16,185,129,0.22); border-color: rgba(16,185,129,0.6); }
 
         .btn-generate {
-            width: 100%;
-            padding: 16px;
+            width: 100%; padding: 16px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border: none;
-            border-radius: 12px;
-            color: white;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: all 0.3s;
-            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
-            margin-top: 24px;
-            position: relative;
-            overflow: hidden;
+            border: none; border-radius: 12px; color: white; font-size: 15px; font-weight: 700;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+            transition: all 0.3s; box-shadow: 0 8px 24px rgba(99,102,241,0.4); margin-top: 24px;
+            position: relative; overflow: hidden;
         }
-
-        .btn-generate:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(99, 102, 241, 0.5);
-        }
-
-        .btn-generate:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
+        .btn-generate:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(99,102,241,0.5); }
+        .btn-generate:disabled { opacity: 0.6; cursor: not-allowed; }
         .btn-generate::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
+            content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0;
+            background: rgba(255,255,255,0.2); border-radius: 50%;
+            transform: translate(-50%, -50%); transition: width 0.6s, height 0.6s;
         }
-
-        .btn-generate:hover:not(:disabled)::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .btn-generate .btn-text {
-            position: relative;
-            z-index: 1;
-        }
+        .btn-generate:hover:not(:disabled)::before { width: 300px; height: 300px; }
+        .btn-generate .btn-text { position: relative; z-index: 1; }
 
         .loading-text {
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--gray-400);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-align: center;
-            margin-top: 12px;
+            font-size: 12px; font-weight: 500; color: var(--gray-400);
+            text-transform: uppercase; letter-spacing: 1px; text-align: center; margin-top: 12px;
         }
 
-        /* Contenido Principal */
+        /* MAIN CONTENT */
         .main-content {
-            flex: 1;
-            background: white;
-            padding: 32px;
-            overflow-y: auto;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            flex: 1; background: white; padding: 32px; overflow-y: auto;
+            border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
+        .main-content::-webkit-scrollbar { width: 8px; }
+        .main-content::-webkit-scrollbar-track { background: var(--gray-100); }
+        .main-content::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: 4px; }
+        .main-content::-webkit-scrollbar-thumb:hover { background: var(--gray-400); }
 
-        .main-content::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .main-content::-webkit-scrollbar-track {
-            background: var(--gray-100);
-        }
-
-        .main-content::-webkit-scrollbar-thumb {
-            background: var(--gray-300);
-            border-radius: 4px;
-        }
-
-        .main-content::-webkit-scrollbar-thumb:hover {
-            background: var(--gray-400);
-        }
-
-        .content-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 32px;
-        }
-
-        .content-title {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--gray-900);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
+        .content-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+        .content-title { font-size: 24px; font-weight: 800; color: var(--gray-900); display: flex; align-items: center; gap: 12px; }
         .optimization-badge {
             background: linear-gradient(135deg, var(--success) 0%, #34d399 100%);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 700;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            color: white; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 700;
+            box-shadow: 0 4px 12px rgba(16,185,129,0.3);
         }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
+        .content-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
         .content-section {
-            background: white;
-            padding: 24px;
-            border-radius: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            border: 1px solid var(--gray-200);
+            background: white; padding: 24px; border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid var(--gray-200);
         }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 16px;
-            border-bottom: 2px solid var(--gray-100);
-        }
-
-        .section-title-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .section-icon {
-            font-size: 20px;
-        }
-
-        .section-title-text {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--gray-900);
-        }
-
-        .section-count {
-            background: var(--primary);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 700;
-        }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 2px solid var(--gray-100); }
+        .section-title-wrapper { display: flex; align-items: center; gap: 10px; }
+        .section-icon { font-size: 20px; }
+        .section-title-text { font-size: 16px; font-weight: 700; color: var(--gray-900); }
+        .section-count { background: var(--primary); color: white; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; }
 
         .variant-item {
-            background: var(--gray-50);
-            padding: 16px;
-            border-radius: 10px;
-            margin-bottom: 12px;
-            border: 1px solid var(--gray-200);
-            font-size: 14px;
-            line-height: 1.6;
-            color: var(--gray-800);
-            transition: all 0.2s;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            position: relative;
+            background: var(--gray-50); padding: 16px; border-radius: 10px; margin-bottom: 12px;
+            border: 1px solid var(--gray-200); font-size: 14px; line-height: 1.6; color: var(--gray-800);
+            transition: all 0.2s; display: flex; align-items: flex-start; gap: 12px; position: relative;
         }
-
-        .variant-item:hover {
-            border-color: var(--primary);
-            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.1);
-        }
-
+        .variant-item:hover { border-color: var(--primary); box-shadow: 0 2px 8px rgba(99,102,241,0.1); }
         .variant-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 28px;
-            height: 28px;
+            display: inline-flex; align-items: center; justify-content: center;
+            min-width: 28px; height: 28px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 700;
-            flex-shrink: 0;
+            color: white; border-radius: 6px; font-size: 11px; font-weight: 700; flex-shrink: 0;
         }
-
-        .variant-text {
-            flex: 1;
-        }
-
+        .variant-text { flex: 1; }
         .variant-copy-btn {
-            padding: 6px 12px;
-            background: white;
-            border: 1px solid var(--gray-200);
-            border-radius: 6px;
-            color: var(--gray-600);
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            opacity: 0;
-            position: absolute;
-            right: 12px;
-            top: 12px;
+            padding: 6px 12px; background: white; border: 1px solid var(--gray-200);
+            border-radius: 6px; color: var(--gray-600); font-size: 12px; font-weight: 600;
+            cursor: pointer; transition: all 0.2s; opacity: 0; position: absolute; right: 12px; top: 12px;
         }
+        .variant-item:hover .variant-copy-btn { opacity: 1; }
+        .variant-copy-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
 
-        .variant-item:hover .variant-copy-btn {
-            opacity: 1;
-        }
+        .empty-state { text-align: center; padding: 60px 20px; }
+        .empty-icon { font-size: 64px; margin-bottom: 16px; }
+        .empty-text { font-size: 18px; font-weight: 600; color: var(--gray-700); margin-bottom: 8px; }
+        .empty-subtext { font-size: 14px; color: var(--gray-500); }
 
-        .variant-copy-btn:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .variant-copy-btn.copied {
-            background: var(--success);
-            color: white;
-            border-color: var(--success);
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        .empty-icon {
-            font-size: 64px;
-            margin-bottom: 16px;
-        }
-
-        .empty-text {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--gray-700);
-            margin-bottom: 8px;
-        }
-
-        .empty-subtext {
-            font-size: 14px;
-            color: var(--gray-500);
-        }
-
-        /* Botones de acción después de generar */
-        .action-buttons {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-        }
-
+        .action-buttons { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
         .action-btn {
-            padding: 12px 20px;
-            border: none;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            padding: 12px 20px; border: none; border-radius: 10px; font-size: 14px; font-weight: 600;
+            cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 8px;
         }
+        .action-btn.primary { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; box-shadow: 0 4px 12px rgba(99,102,241,0.3); }
+        .action-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(99,102,241,0.4); }
+        .action-btn.secondary { background: white; color: var(--gray-700); border: 2px solid var(--gray-200); }
+        .action-btn.secondary:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); }
+        .action-btn.success { background: linear-gradient(135deg, var(--success) 0%, #34d399 100%); color: white; box-shadow: 0 4px 12px rgba(16,185,129,0.3); }
+        .action-btn.success:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(16,185,129,0.4); }
+        .action-btn.danger { background: white; color: var(--danger); border: 2px solid var(--danger); }
+        .action-btn.danger:hover { background: var(--danger); color: white; transform: translateY(-2px); }
 
-        .action-btn.primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-        }
-
-        .action-btn.primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
-        }
-
-        .action-btn.secondary {
-            background: white;
-            color: var(--gray-700);
-            border: 2px solid var(--gray-200);
-        }
-
-        .action-btn.secondary:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .action-btn.success {
-            background: linear-gradient(135deg, var(--success) 0%, #34d399 100%);
-            color: white;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-        }
-
-        .action-btn.success:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
-        }
-
-        .action-btn.danger {
-            background: white;
-            color: var(--danger);
-            border: 2px solid var(--danger);
-        }
-
-        .action-btn.danger:hover {
-            background: var(--danger);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Toast de notificación */
         .toast {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            background: white;
-            padding: 16px 24px;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 1000;
-            animation: slideIn 0.3s ease;
+            position: fixed; bottom: 24px; right: 24px; background: white; padding: 16px 24px;
+            border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            display: flex; align-items: center; gap: 12px; z-index: 1000; animation: slideIn 0.3s ease;
         }
+        @keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        .toast-icon { font-size: 20px; }
+        .toast-message { font-size: 14px; font-weight: 600; color: var(--gray-800); }
 
-        @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .toast-icon {
-            font-size: 20px;
-        }
-
-        .toast-message {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--gray-800);
-        }
-
-        @media (max-width: 1200px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .app-container {
-                flex-direction: column;
-            }
-
-            .sidebar {
-                width: 100%;
-            }
-        }
+        @media (max-width: 1200px) { .content-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .app-container { flex-direction: column; } .sidebar { width: 100%; } }
     </style>
 </head>
 <body>
-    <div id="root"></div>
+<div id="root"></div>
+<script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+    const STORAGE_KEY = 'landing_gen_v1';
 
-    <script type="text/babel">
-        const { useState, useEffect, useRef } = React;
+    const TIPOS_CAMPO = [
+        { value: 'texto',     label: '+ Texto',     icon: '📝' },
+        { value: 'parrafo',   label: '+ Párrafo',   icon: '📄' },
+        { value: 'opciones',  label: '+ Opciones',  icon: '🔘' },
+        { value: 'multiple',  label: '+ Múltiple',  icon: '☑️' },
+        { value: 'select',    label: '+ Select',    icon: '▾'  },
+    ];
 
-        // ── CLAVE DE GUARDADO ──
-        const STORAGE_KEY = 'landing_gen_v1';
+    function formatFecha(iso) {
+        if (!iso) return '';
+        return new Date(iso).toLocaleString('es-AR', {
+            day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit'
+        });
+    }
 
-        function formatFecha(iso) {
-            if (!iso) return '';
-            return new Date(iso).toLocaleString('es-AR', {
-                day: '2-digit', month: '2-digit', year: 'numeric',
-                hour: '2-digit', minute: '2-digit'
-            });
-        }
+    function Toggle({ value, onChange, label, sub }) {
+        return (
+            <div className="toggle-row">
+                <div>
+                    <div className="toggle-label">{label}</div>
+                    {sub && <div className="toggle-sub">{sub}</div>}
+                </div>
+                <label className="toggle-switch" onClick={() => onChange(!value)}>
+                    <div className={`toggle-track ${value ? 'on' : ''}`}></div>
+                    <div className={`toggle-thumb ${value ? 'on' : ''}`}></div>
+                </label>
+            </div>
+        );
+    }
 
-        function App() {
-            const [modoIA, setModoIA] = useState('cliente');
-            const [nicho, setNicho] = useState('');
-            const [publico, setPublico] = useState('');
-            const [beneficio, setBeneficio] = useState('');
-            
-            // Campos modo agencia
-            const [nombreInterno, setNombreInterno] = useState('');
-            const [cliente, setCliente] = useState('agencia');
-            const [marcaBlanca, setMarcaBlanca] = useState(false);
-            const [estado, setEstado] = useState('activa');
-            const [dominio, setDominio] = useState('');
-            const [slug, setSlug] = useState('');
-            
-            const [beneficios, setBeneficios] = useState([]);
-            const [preguntas, setPreguntas] = useState([]);
-            const [generando, setGenerando] = useState(false);
-            const [filtroAntiCuriosos, setFiltroAntiCuriosos] = useState(false);
-            const [outputs, setOutputs] = useState({
-                titulos: [],
-                subtitulos: [],
-                descripciones: [],
-                ctas: []
-            });
-            const [toast, setToast] = useState(null);
-
-            // ── NUEVOS ESTADOS PARA AUTOSAVE ──
-            const [saveStatus, setSaveStatus] = useState('idle'); // idle | saving | saved
-            const [sessionGuardada, setSessionGuardada] = useState(null);
-            const [mostrarBanner, setMostrarBanner] = useState(false);
-            const timerGuardado = useRef(null);
-
-            // Al iniciar: chequear si hay sesión guardada
-            useEffect(() => {
-                try {
-                    const raw = localStorage.getItem(STORAGE_KEY);
-                    if (raw) {
-                        const s = JSON.parse(raw);
-                        setSessionGuardada(s);
-                        setMostrarBanner(true);
-                    }
-                } catch(e) {}
-            }, []);
-
-            // Autosave: cada vez que cambia cualquier campo (con debounce de 800ms)
-            useEffect(() => {
-                if (!nicho && !publico && !beneficio) return;
-                if (timerGuardado.current) clearTimeout(timerGuardado.current);
-                setSaveStatus('saving');
-                timerGuardado.current = setTimeout(() => {
-                    try {
-                        const payload = {
-                            modoIA, nicho, publico, beneficio,
-                            nombreInterno, cliente, marcaBlanca, estado, dominio, slug,
-                            beneficios, preguntas, outputs,
-                            savedAt: new Date().toISOString()
-                        };
-                        localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-                        setSaveStatus('saved');
-                        setTimeout(() => setSaveStatus('idle'), 3000);
-                    } catch(e) { setSaveStatus('idle'); }
-                }, 800);
-                return () => clearTimeout(timerGuardado.current);
-            }, [modoIA, nicho, publico, beneficio, nombreInterno, cliente, marcaBlanca,
-                estado, dominio, slug, JSON.stringify(beneficios), JSON.stringify(preguntas), JSON.stringify(outputs)]);
-
-            // Restaurar sesión guardada
-            const restaurarSesion = () => {
-                const s = sessionGuardada;
-                if (!s) return;
-                setModoIA(s.modoIA || 'cliente');
-                setNicho(s.nicho || '');
-                setPublico(s.publico || '');
-                setBeneficio(s.beneficio || '');
-                setNombreInterno(s.nombreInterno || '');
-                setCliente(s.cliente || 'agencia');
-                setMarcaBlanca(s.marcaBlanca || false);
-                setEstado(s.estado || 'activa');
-                setDominio(s.dominio || '');
-                setSlug(s.slug || '');
-                setBeneficios(s.beneficios || []);
-                setPreguntas(s.preguntas || []);
-                if (s.outputs && s.outputs.titulos && s.outputs.titulos.length > 0) {
-                    setOutputs(s.outputs);
-                    setFiltroAntiCuriosos(true);
-                }
-                setMostrarBanner(false);
-                mostrarToast('✅ Sesión restaurada', 'success');
-            };
-
-            const generarTextos = async () => {
-                if (!nicho || !publico || !beneficio) {
-                    mostrarToast('⚠️ Completa todos los campos requeridos', 'warning');
-                    return;
-                }
-
-                setGenerando(true);
-
-                try {
-                    const response = await fetch('/api/generate-texts', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            nicho,
-                            publico,
-                            beneficio,
-                            modoIA,
-                            nombreInterno
-                        })
-                    });
-
-                    const data = await response.json();
-
-                    if (!response.ok) {
-                        throw new Error(data.message || 'Error al generar textos');
-                    }
-
-                    if (data.success && data.outputs) {
-                        setOutputs(data.outputs);
-                        setFiltroAntiCuriosos(true);
-                        mostrarToast('✨ Textos generados exitosamente con IA', 'success');
-                    } else {
-                        throw new Error('Estructura de respuesta inválida');
-                    }
-
-                } catch (error) {
-                    console.error('Error generando textos:', error);
-                    mostrarToast(`❌ Error: ${error.message}`, 'error');
-                } finally {
-                    setGenerando(false);
-                }
-            };
-
-            const agregarBeneficio = () => {
-                setBeneficios([...beneficios, '']);
-            };
-
-            const actualizarBeneficio = (index, valor) => {
-                const nuevos = [...beneficios];
-                nuevos[index] = valor;
-                setBeneficios(nuevos);
-            };
-
-            const eliminarBeneficio = (index) => {
-                setBeneficios(beneficios.filter((_, i) => i !== index));
-            };
-
-            const agregarPregunta = () => {
-                setPreguntas([...preguntas, { pregunta: '', tipo: 'texto' }]);
-            };
-
-            const actualizarPregunta = (index, campo, valor) => {
-                const nuevas = [...preguntas];
-                nuevas[index][campo] = valor;
-                setPreguntas(nuevas);
-            };
-
-            const eliminarPregunta = (index) => {
-                setPreguntas(preguntas.filter((_, i) => i !== index));
-            };
-
-            const copiarTexto = async (texto, index) => {
-                try {
-                    await navigator.clipboard.writeText(texto);
-                    mostrarToast('📋 Texto copiado al portapapeles', 'success');
-                } catch (err) {
-                    mostrarToast('❌ Error al copiar', 'error');
-                }
-            };
-
-            const exportarTextos = () => {
-                const contenido = `
-TEXTOS GENERADOS - ${new Date().toLocaleDateString()}
-
-NICHO: ${nicho}
-PÚBLICO: ${publico}
-BENEFICIO PRINCIPAL: ${beneficio}
-${modoIA === 'agencia' ? `
-CONFIGURACIÓN AGENCIA:
-- Nombre interno: ${nombreInterno}
-- Cliente: ${cliente}
-- Marca Blanca: ${marcaBlanca ? 'Sí' : 'No'}
-- Estado: ${estado}
-- Dominio: ${dominio}
-- Slug: ${slug}
-` : ''}
-
-=== H1 TÍTULOS ===
-${outputs.titulos.map((t, i) => `${i + 1}. ${t}`).join('\n')}
-
-=== H2 SUBTÍTULOS ===
-${outputs.subtitulos.map((s, i) => `${i + 1}. ${s}`).join('\n')}
-
-=== DESCRIPCIONES ===
-${outputs.descripciones.map((d, i) => `${i + 1}. ${d}`).join('\n')}
-
-=== CALL TO ACTION ===
-${outputs.ctas.map((c, i) => `${i + 1}. ${c}`).join('\n')}
-                `;
-
-                const blob = new Blob([contenido], { type: 'text/plain' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `textos-landing-${nicho || 'sin-nombre'}-${Date.now()}.txt`;
-                a.click();
-                URL.revokeObjectURL(url);
-                
-                mostrarToast('💾 Textos exportados exitosamente', 'success');
-            };
-
-            const regenerarTextos = () => {
-                generarTextos();
-            };
-
-            const resetear = () => {
-                if (confirm('¿Estás seguro de que quieres resetear? Se perderán los textos generados.')) {
-                    setOutputs({
-                        titulos: [],
-                        subtitulos: [],
-                        descripciones: [],
-                        ctas: []
-                    });
-                    setFiltroAntiCuriosos(false);
-                    localStorage.removeItem(STORAGE_KEY);
-                    mostrarToast('🔄 Aplicación reseteada', 'success');
-                }
-            };
-
-            const mostrarToast = (mensaje, tipo) => {
-                const iconos = {
-                    success: '✅',
-                    warning: '⚠️',
-                    error: '❌'
-                };
-                
-                setToast({ mensaje, icono: iconos[tipo] || '📢' });
-                setTimeout(() => setToast(null), 3000);
-            };
-
-            return (
-                <>
-                <div className="app-header">
-                    <div className="header-content">
-                        <div className="title-container">
-                            <span className="title-icon">🚀</span>
-                            <span className="title-text">Sistema Inteligente de Generación de Landing Pages con IA</span>
-                            <span className="title-badge">CLAUDE AI</span>
-                        </div>
-
-                        {/* INDICADOR AUTOSAVE */}
-                        <div className={`autosave-indicator ${saveStatus}`}>
-                            <div className="autosave-dot"></div>
-                            {saveStatus === 'saving' && 'Guardando...'}
-                            {saveStatus === 'saved'  && '✓ Guardado'}
-                            {saveStatus === 'idle'   && 'Guardado automático'}
-                        </div>
+    function PreguntaCard({ pregunta, index, onUpdate, onDelete }) {
+        const necesitaOpciones = ['opciones', 'multiple', 'select'].includes(pregunta.tipo);
+        return (
+            <div className="form-question-card">
+                <div className="fq-top">
+                    <span className="fq-num">Pregunta {index + 1}</span>
+                    <button className="fq-delete" onClick={onDelete}>Eliminar</button>
+                </div>
+                <input
+                    className="fq-input"
+                    style={{width:'100%', marginBottom:'10px'}}
+                    placeholder="Escribí la pregunta aquí..."
+                    value={pregunta.pregunta}
+                    onChange={e => onUpdate('pregunta', e.target.value)}
+                />
+                <div style={{marginBottom: necesitaOpciones ? '10px' : '0'}}>
+                    <div className="fq-opciones-label" style={{marginBottom:'6px'}}>TIPO DE CAMPO</div>
+                    <div className="fq-type-btns">
+                        {TIPOS_CAMPO.map(t => (
+                            <button
+                                key={t.value}
+                                className={`fq-type-btn ${pregunta.tipo === t.value ? 'active' : ''}`}
+                                onClick={() => onUpdate('tipo', t.value)}
+                            >
+                                {t.icon} {t.label.replace('+ ','')}
+                            </button>
+                        ))}
                     </div>
                 </div>
-
-                <div className="app-container">
-                    <div className="sidebar">
-                        <div className="ia-mode-section">
-                            <div className="ia-mode-header">
-                                <div className="ia-mode-icon">🤖</div>
-                                <div>
-                                    <div className="ia-mode-title">IA: Modo {modoIA === 'cliente' ? 'Cliente' : 'Agencia'}</div>
-                                </div>
-                                <div className="ia-mode-badge">4 VARIANTES</div>
-                            </div>
-
-                            <div className="mode-selector">
-                                <button
-                                    className={`mode-btn cliente ${modoIA === 'cliente' ? 'active' : ''}`}
-                                    onClick={() => setModoIA('cliente')}
-                                >
-                                    <span>👤</span>
-                                    Modo Cliente
-                                </button>
-                                <button
-                                    className={`mode-btn agencia ${modoIA === 'agencia' ? 'active' : ''}`}
-                                    onClick={() => setModoIA('agencia')}
-                                >
-                                    <span>🏢</span>
-                                    Modo Agencia
-                                </button>
-                            </div>
-                        </div>
-
-                        <div className="config-section">
-                            <div className="config-title">
-                                <span className="config-title-icon">🎯</span>
-                                NICHO
-                            </div>
-                            <input
-                                type="text"
-                                className="form-input"
-                                placeholder="odontologo"
-                                value={nicho}
-                                onChange={(e) => setNicho(e.target.value)}
-                            />
-                        </div>
-
-                        <div className="config-section">
-                            <div className="config-title">
-                                <span className="config-title-icon">👥</span>
-                                PÚBLICO
-                            </div>
-                            <input
-                                type="text"
-                                className="form-input"
-                                placeholder="pacientes para transplante"
-                                value={publico}
-                                onChange={(e) => setPublico(e.target.value)}
-                            />
-                        </div>
-
-                        <div className="config-section">
-                            <div className="config-title">
-                                <span className="config-title-icon">⭐</span>
-                                BENEFICIO PRINCIPAL
-                            </div>
-                            <input
-                                type="text"
-                                className="form-input"
-                                placeholder="Promocion verano"
-                                value={beneficio}
-                                onChange={(e) => setBeneficio(e.target.value)}
-                            />
-                        </div>
-
-                        {modoIA === 'agencia' && (
-                            <>
-                                <div className="config-header">
-                                    <span className="config-header-icon">⚙️</span>
-                                    <span className="config-header-title">Configuración</span>
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Nombre interno</label>
-                                    <input
-                                        type="text"
-                                        className="form-input"
-                                        placeholder="Campaña #606"
-                                        value={nombreInterno}
-                                        onChange={(e) => setNombreInterno(e.target.value)}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Asignar a Cliente</label>
-                                    <select
-                                        className="form-select"
-                                        value={cliente}
-                                        onChange={(e) => setCliente(e.target.value)}
-                                    >
-                                        <option value="agencia">Es para mi (Agencia)</option>
-                                        <option value="cliente1">Cliente 1</option>
-                                        <option value="cliente2">Cliente 2</option>
-                                    </select>
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="checkbox-group">
-                                        <input
-                                            type="checkbox"
-                                            checked={marcaBlanca}
-                                            onChange={(e) => setMarcaBlanca(e.target.checked)}
-                                        />
-                                        <span className="checkbox-label">
-                                            <span>⚡</span>
-                                            Vender como Marca Blanca
-                                        </span>
-                                    </label>
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Estado</label>
-                                    <select
-                                        className="form-select"
-                                        value={estado}
-                                        onChange={(e) => setEstado(e.target.value)}
-                                    >
-                                        <option value="activa">Activa</option>
-                                        <option value="borrador">Borrador</option>
-                                        <option value="pausada">Pausada</option>
-                                        <option value="archivada">Archivada</option>
-                                    </select>
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Dominio</label>
-                                    <select
-                                        className="form-select"
-                                        value={dominio}
-                                        onChange={(e) => setDominio(e.target.value)}
-                                    >
-                                        <option value="">Seleccionar dominio...</option>
-                                        <option value="expertoenmetaads.com">expertoenmetaads.com</option>
-                                        <option value="midominio.com">midominio.com</option>
-                                        <option value="otro.com">otro.com</option>
-                                    </select>
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Slug (URL)</label>
-                                    <input
-                                        type="text"
-                                        className="form-input"
-                                        placeholder="mi-landing"
-                                        value={slug}
-                                        onChange={(e) => setSlug(e.target.value)}
-                                    />
-                                </div>
-                            </>
-                        )}
-
-                        <button
-                            className="btn-generate"
-                            onClick={generarTextos}
-                            disabled={generando}
-                        >
-                            <span className="btn-text">
-                                {generando ? '⏳ Generando...' : '✨ Generar Textos'}
-                            </span>
-                        </button>
-
-                        {generando && (
-                            <div className="loading-text">
-                                PROCESANDO CON CLAUDE SONNET 4
-                            </div>
-                        )}
-
-                        <div className="config-section" style={{marginTop: '24px'}}>
-                            <div className="config-title">
-                                <span className="config-title-icon">💎</span>
-                                Beneficios Adicionales
-                            </div>
-
-                            {beneficios.map((beneficio, index) => (
-                                <div key={index} className="beneficio-item">
-                                    <input
-                                        type="text"
-                                        className="beneficio-input"
-                                        placeholder={`Beneficio ${index + 1}`}
-                                        value={beneficio}
-                                        onChange={(e) => actualizarBeneficio(index, e.target.value)}
-                                    />
-                                    <button
-                                        className="btn-remove"
-                                        onClick={() => eliminarBeneficio(index)}
-                                    >
-                                        ✕
-                                    </button>
-                                </div>
-                            ))}
-
-                            <button className="btn-add" onClick={agregarBeneficio}>
-                                + Agregar Beneficio
-                            </button>
-                        </div>
-
-                        <div className="config-section" style={{marginTop: '24px'}}>
-                            <div className="config-title">
-                                <span className="config-title-icon">📋</span>
-                                Formulario
-                            </div>
-
-                            {preguntas.map((pregunta, index) => (
-                                <div key={index} className="form-question">
-                                    <div className="form-question-header">
-                                        <span className="form-question-title">Pregunta {index + 1}</span>
-                                        <button
-                                            className="btn-remove-question"
-                                            onClick={() => eliminarPregunta(index)}
-                                        >
-                                            Eliminar
-                                        </button>
-                                    </div>
-                                    <input
-                                        type="text"
-                                        className="form-input"
-                                        placeholder="¿Cuál es tu pregunta?"
-                                        value={pregunta.pregunta}
-                                        onChange={(e) => actualizarPregunta(index, 'pregunta', e.target.value)}
-                                        style={{marginBottom: '10px'}}
-                                    />
-                                    <select
-                                        className="form-select"
-                                        value={pregunta.tipo}
-                                        onChange={(e) => actualizarPregunta(index, 'tipo', e.target.value)}
-                                    >
-                                        <option value="texto">Texto Largo</option>
-                                        <option value="seleccion">Selección Única</option>
-                                        <option value="multiple">Selección Múltiple</option>
-                                    </select>
-                                </div>
-                            ))}
-
-                            <button className="btn-add" onClick={agregarPregunta}>
-                                + Agregar Pregunta
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="main-content">
-
-                        {/* BANNER SESIÓN GUARDADA */}
-                        {mostrarBanner && sessionGuardada && (
-                            <div className="session-banner">
-                                <div className="session-banner-left">
-                                    <span>💾</span>
-                                    <div>
-                                        <div className="session-banner-text">Tenés una sesión guardada</div>
-                                        <div className="session-banner-time">Guardada el {formatFecha(sessionGuardada.savedAt)}</div>
-                                    </div>
-                                </div>
-                                <div style={{display:'flex', gap:'8px', alignItems:'center'}}>
-                                    <button className="btn-restore" onClick={restaurarSesion}>Restaurar</button>
-                                    <button className="btn-dismiss" onClick={() => setMostrarBanner(false)}>✕</button>
-                                </div>
-                            </div>
-                        )}
-
-                        <div className="content-header">
-                            <div className="content-title">
-                                <span>📝</span>
-                                Copies variables (A/B)
-                            </div>
-                            {filtroAntiCuriosos && outputs.titulos.length > 0 && (
-                                <div className="optimization-badge">
-                                    ☑️ Optimización ON
-                                </div>
-                            )}
-                        </div>
-
-                        {outputs.titulos.length > 0 && (
-                            <div className="action-buttons">
-                                <button className="action-btn success" onClick={exportarTextos}>
-                                    <span>💾</span>
-                                    Exportar Textos
-                                </button>
-                                <button className="action-btn primary" onClick={regenerarTextos}>
-                                    <span>🔄</span>
-                                    Generar Nuevas Variantes
-                                </button>
-                                <button className="action-btn secondary" onClick={resetear}>
-                                    <span>🗑️</span>
-                                    Resetear
-                                </button>
-                            </div>
-                        )}
-
-                        {outputs.titulos.length === 0 ? (
-                            <div className="content-section" style={{gridColumn: '1 / -1'}}>
-                                <div className="empty-state">
-                                    <div className="empty-icon">🎨</div>
-                                    <div className="empty-text">Configura tu proyecto y genera textos</div>
-                                    <div className="empty-subtext">Los textos generados aparecerán aquí</div>
-                                </div>
-                            </div>
-                        ) : (
-                            <div className="content-grid">
-                                <div className="content-section">
-                                    <div className="section-header">
-                                        <div className="section-title-wrapper">
-                                            <span className="section-icon">💜</span>
-                                            <span className="section-title-text">H1 Títulos</span>
-                                        </div>
-                                        <div className="section-count">{outputs.titulos.length}</div>
-                                    </div>
-                                    {outputs.titulos.map((titulo, index) => (
-                                        <div key={index} className="variant-item">
-                                            <span className="variant-number">#{index + 1}</span>
-                                            <span className="variant-text">{titulo}</span>
-                                            <button 
-                                                className="variant-copy-btn"
-                                                onClick={() => copiarTexto(titulo, index)}
-                                            >
-                                                📋 Copiar
-                                            </button>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                <div className="content-section">
-                                    <div className="section-header">
-                                        <div className="section-title-wrapper">
-                                            <span className="section-icon">💙</span>
-                                            <span className="section-title-text">H2 Subtítulos</span>
-                                        </div>
-                                        <div className="section-count">{outputs.subtitulos.length}</div>
-                                    </div>
-                                    {outputs.subtitulos.map((subtitulo, index) => (
-                                        <div key={index} className="variant-item">
-                                            <span className="variant-number">#{index + 1}</span>
-                                            <span className="variant-text">{subtitulo}</span>
-                                            <button 
-                                                className="variant-copy-btn"
-                                                onClick={() => copiarTexto(subtitulo, index)}
-                                            >
-                                                📋 Copiar
-                                            </button>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                <div className="content-section">
-                                    <div className="section-header">
-                                        <div className="section-title-wrapper">
-                                            <span className="section-icon">🧡</span>
-                                            <span className="section-title-text">Descripción</span>
-                                        </div>
-                                        <div className="section-count">{outputs.descripciones.length}</div>
-                                    </div>
-                                    {outputs.descripciones.map((desc, index) => (
-                                        <div key={index} className="variant-item">
-                                            <span className="variant-number">#{index + 1}</span>
-                                            <span className="variant-text">{desc}</span>
-                                            <button 
-                                                className="variant-copy-btn"
-                                                onClick={() => copiarTexto(desc, index)}
-                                            >
-                                                📋 Copiar
-                                            </button>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                <div className="content-section">
-                                    <div className="section-header">
-                                        <div className="section-title-wrapper">
-                                            <span className="section-icon">🚀</span>
-                                            <span className="section-title-text">Call to Action</span>
-                                        </div>
-                                        <div className="section-count">{outputs.ctas.length}</div>
-                                    </div>
-                                    {outputs.ctas.map((cta, index) => (
-                                        <div key={index} className="variant-item">
-                                            <span className="variant-number">#{index + 1}</span>
-                                            <span className="variant-text">{cta}</span>
-                                            <button 
-                                                className="variant-copy-btn"
-                                                onClick={() => copiarTexto(cta, index)}
-                                            >
-                                                📋 Copiar
-                                            </button>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                </div>
-
-                {toast && (
-                    <div className="toast">
-                        <span className="toast-icon">{toast.icono}</span>
-                        <span className="toast-message">{toast.mensaje}</span>
+                {necesitaOpciones && (
+                    <div>
+                        <div className="fq-opciones-label">OPCIONES (separadas por coma)</div>
+                        <input
+                            className="fq-opciones-input"
+                            placeholder="Opción 1, Opción 2, Opción 3..."
+                            value={pregunta.opciones || ''}
+                            onChange={e => onUpdate('opciones', e.target.value)}
+                        />
                     </div>
                 )}
-                </>
-            );
-        }
+            </div>
+        );
+    }
 
-        ReactDOM.render(<App />, document.getElementById('root'));
-    </script>
+    function App() {
+        const [modoIA, setModoIA] = useState('cliente');
+        const [nicho, setNicho] = useState('');
+        const [publico, setPublico] = useState('');
+        const [beneficio, setBeneficio] = useState('');
+        const [nombreInterno, setNombreInterno] = useState('');
+        const [cliente, setCliente] = useState('agencia');
+        const [marcaBlanca, setMarcaBlanca] = useState(false);
+        const [estado, setEstado] = useState('activa');
+        const [dominio, setDominio] = useState('');
+        const [slug, setSlug] = useState('');
+        const [beneficios, setBeneficios] = useState([]);
+        const [preguntas, setPreguntas] = useState([]);
+        const [todasObligatorias, setTodasObligatorias] = useState(false);
+        const [generando, setGenerando] = useState(false);
+        const [filtroAntiCuriosos, setFiltroAntiCuriosos] = useState(false);
+        const [outputs, setOutputs] = useState({ titulos: [], subtitulos: [], descripciones: [], ctas: [] });
+        const [toast, setToast] = useState(null);
+        const [saveStatus, setSaveStatus] = useState('idle');
+        const [sessionGuardada, setSessionGuardada] = useState(null);
+        const [mostrarBanner, setMostrarBanner] = useState(false);
+        const timerGuardado = useRef(null);
+
+        useEffect(() => {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) { const s = JSON.parse(raw); setSessionGuardada(s); setMostrarBanner(true); }
+            } catch(e) {}
+        }, []);
+
+        useEffect(() => {
+            if (!nicho && !publico && !beneficio) return;
+            if (timerGuardado.current) clearTimeout(timerGuardado.current);
+            setSaveStatus('saving');
+            timerGuardado.current = setTimeout(() => {
+                try {
+                    const payload = {
+                        modoIA, nicho, publico, beneficio, nombreInterno, cliente,
+                        marcaBlanca, estado, dominio, slug, beneficios, preguntas,
+                        todasObligatorias, outputs, savedAt: new Date().toISOString()
+                    };
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+                    setSaveStatus('saved');
+                    setTimeout(() => setSaveStatus('idle'), 3000);
+                } catch(e) { setSaveStatus('idle'); }
+            }, 800);
+            return () => clearTimeout(timerGuardado.current);
+        }, [modoIA, nicho, publico, beneficio, nombreInterno, cliente, marcaBlanca,
+            estado, dominio, slug, todasObligatorias,
+            JSON.stringify(beneficios), JSON.stringify(preguntas), JSON.stringify(outputs)]);
+
+        const restaurarSesion = () => {
+            const s = sessionGuardada;
+            if (!s) return;
+            setModoIA(s.modoIA || 'cliente');
+            setNicho(s.nicho || ''); setPublico(s.publico || ''); setBeneficio(s.beneficio || '');
+            setNombreInterno(s.nombreInterno || ''); setCliente(s.cliente || 'agencia');
+            setMarcaBlanca(s.marcaBlanca || false); setEstado(s.estado || 'activa');
+            setDominio(s.dominio || ''); setSlug(s.slug || '');
+            setBeneficios(s.beneficios || []); setPreguntas(s.preguntas || []);
+            setTodasObligatorias(s.todasObligatorias || false);
+            if (s.outputs && s.outputs.titulos && s.outputs.titulos.length > 0) {
+                setOutputs(s.outputs); setFiltroAntiCuriosos(true);
+            }
+            setMostrarBanner(false);
+            mostrarToast('✅ Sesión restaurada', 'success');
+        };
+
+        const agregarPregunta = (tipo) => {
+            setPreguntas([...preguntas, { pregunta: '', tipo, opciones: '' }]);
+        };
+
+        const actualizarPregunta = (index, campo, valor) => {
+            const nuevas = [...preguntas];
+            nuevas[index] = { ...nuevas[index], [campo]: valor };
+            setPreguntas(nuevas);
+        };
+
+        const eliminarPregunta = (index) => {
+            setPreguntas(preguntas.filter((_, i) => i !== index));
+        };
+
+        const generarTextos = async () => {
+            if (!nicho || !publico || !beneficio) {
+                mostrarToast('⚠️ Completa todos los campos requeridos', 'warning');
+                return;
+            }
+            setGenerando(true);
+            try {
+                const response = await fetch('/api/generate-texts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nicho, publico, beneficio, modoIA, nombreInterno })
+                });
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.message || 'Error al generar textos');
+                if (data.success && data.outputs) {
+                    setOutputs(data.outputs); setFiltroAntiCuriosos(true);
+                    mostrarToast('✨ Textos generados exitosamente con IA', 'success');
+                } else throw new Error('Estructura de respuesta inválida');
+            } catch (error) {
+                mostrarToast(`❌ Error: ${error.message}`, 'error');
+            } finally { setGenerando(false); }
+        };
+
+        const agregarBeneficio = () => setBeneficios([...beneficios, '']);
+        const actualizarBeneficio = (index, valor) => { const n = [...beneficios]; n[index] = valor; setBeneficios(n); };
+        const eliminarBeneficio = (index) => setBeneficios(beneficios.filter((_, i) => i !== index));
+
+        const copiarTexto = async (texto) => {
+            try { await navigator.clipboard.writeText(texto); mostrarToast('📋 Copiado', 'success'); }
+            catch { mostrarToast('❌ Error al copiar', 'error'); }
+        };
+
+        const exportarTextos = () => {
+            const contenido = `TEXTOS GENERADOS - ${new Date().toLocaleDateString()}\n\nNICHO: ${nicho}\nPÚBLICO: ${publico}\nBENEFICIO PRINCIPAL: ${beneficio}\n\n=== H1 TÍTULOS ===\n${outputs.titulos.map((t,i)=>`${i+1}. ${t}`).join('\n')}\n\n=== H2 SUBTÍTULOS ===\n${outputs.subtitulos.map((s,i)=>`${i+1}. ${s}`).join('\n')}\n\n=== DESCRIPCIONES ===\n${outputs.descripciones.map((d,i)=>`${i+1}. ${d}`).join('\n')}\n\n=== CALL TO ACTION ===\n${outputs.ctas.map((c,i)=>`${i+1}. ${c}`).join('\n')}`;
+            const blob = new Blob([contenido], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = `textos-landing-${nicho||'sin-nombre'}-${Date.now()}.txt`;
+            a.click(); URL.revokeObjectURL(url);
+            mostrarToast('💾 Textos exportados', 'success');
+        };
+
+        const resetear = () => {
+            if (confirm('¿Resetear? Se perderán los textos generados.')) {
+                setOutputs({ titulos: [], subtitulos: [], descripciones: [], ctas: [] });
+                setFiltroAntiCuriosos(false);
+                localStorage.removeItem(STORAGE_KEY);
+                mostrarToast('🔄 Reseteado', 'success');
+            }
+        };
+
+        const mostrarToast = (mensaje, tipo) => {
+            const iconos = { success: '✅', warning: '⚠️', error: '❌' };
+            setToast({ mensaje, icono: iconos[tipo] || '📢' });
+            setTimeout(() => setToast(null), 3000);
+        };
+
+        return (
+            <>
+            <div className="app-header">
+                <div className="header-content">
+                    <div className="title-container">
+                        <span className="title-icon">🚀</span>
+                        <span className="title-text">Sistema Inteligente de Generación de Landing Pages con IA</span>
+                        <span className="title-badge">CLAUDE AI</span>
+                    </div>
+                    <div className={`autosave-indicator ${saveStatus}`}>
+                        <div className="autosave-dot"></div>
+                        {saveStatus === 'saving' && 'Guardando...'}
+                        {saveStatus === 'saved'  && '✓ Guardado'}
+                        {saveStatus === 'idle'   && 'Guardado automático'}
+                    </div>
+                </div>
+            </div>
+
+            <div className="app-container">
+                <div className="sidebar">
+                    {/* MODO IA */}
+                    <div className="ia-mode-section">
+                        <div className="ia-mode-header">
+                            <div className="ia-mode-icon">🤖</div>
+                            <div><div className="ia-mode-title">IA: Modo {modoIA === 'cliente' ? 'Cliente' : 'Agencia'}</div></div>
+                            <div className="ia-mode-badge">4 VARIANTES</div>
+                        </div>
+                        <div className="mode-selector">
+                            <button className={`mode-btn cliente ${modoIA==='cliente'?'active':''}`} onClick={() => setModoIA('cliente')}><span>👤</span>Modo Cliente</button>
+                            <button className={`mode-btn agencia ${modoIA==='agencia'?'active':''}`} onClick={() => setModoIA('agencia')}><span>🏢</span>Modo Agencia</button>
+                        </div>
+                    </div>
+
+                    {/* CAMPOS BASE */}
+                    <div className="config-section">
+                        <div className="config-title"><span className="config-title-icon">🎯</span>NICHO</div>
+                        <input type="text" className="form-input" placeholder="odontologo" value={nicho} onChange={e => setNicho(e.target.value)} />
+                    </div>
+                    <div className="config-section">
+                        <div className="config-title"><span className="config-title-icon">👥</span>PÚBLICO</div>
+                        <input type="text" className="form-input" placeholder="pacientes para transplante" value={publico} onChange={e => setPublico(e.target.value)} />
+                    </div>
+                    <div className="config-section">
+                        <div className="config-title"><span className="config-title-icon">⭐</span>BENEFICIO PRINCIPAL</div>
+                        <input type="text" className="form-input" placeholder="Promocion verano" value={beneficio} onChange={e => setBeneficio(e.target.value)} />
+                    </div>
+
+                    {/* MODO AGENCIA */}
+                    {modoIA === 'agencia' && (
+                        <>
+                            <div className="config-header">
+                                <span className="config-header-icon">⚙️</span>
+                                <span className="config-header-title">Configuración</span>
+                            </div>
+                            <div className="form-group">
+                                <label className="form-label">Nombre interno</label>
+                                <input type="text" className="form-input" placeholder="Campaña #606" value={nombreInterno} onChange={e => setNombreInterno(e.target.value)} />
+                            </div>
+                            <div className="form-group">
+                                <label className="form-label">Asignar a Cliente</label>
+                                <select className="form-select" value={cliente} onChange={e => setCliente(e.target.value)}>
+                                    <option value="agencia">Es para mi (Agencia)</option>
+                                    <option value="cliente1">Cliente 1</option>
+                                    <option value="cliente2">Cliente 2</option>
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label className="checkbox-group">
+                                    <input type="checkbox" checked={marcaBlanca} onChange={e => setMarcaBlanca(e.target.checked)} />
+                                    <span className="checkbox-label"><span>⚡</span>Vender como Marca Blanca</span>
+                                </label>
+                            </div>
+                            <div className="form-group">
+                                <label className="form-label">Estado</label>
+                                <select className="form-select" value={estado} onChange={e => setEstado(e.target.value)}>
+                                    <option value="activa">Activa</option>
+                                    <option value="borrador">Borrador</option>
+                                    <option value="pausada">Pausada</option>
+                                    <option value="archivada">Archivada</option>
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label className="form-label">Dominio</label>
+                                <select className="form-select" value={dominio} onChange={e => setDominio(e.target.value)}>
+                                    <option value="">Seleccionar dominio...</option>
+                                    <option value="expertoenmetaads.com">expertoenmetaads.com</option>
+                                    <option value="midominio.com">midominio.com</option>
+                                    <option value="otro.com">otro.com</option>
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label className="form-label">Slug (URL)</label>
+                                <input type="text" className="form-input" placeholder="mi-landing" value={slug} onChange={e => setSlug(e.target.value)} />
+                            </div>
+                        </>
+                    )}
+
+                    <button className="btn-generate" onClick={generarTextos} disabled={generando}>
+                        <span className="btn-text">{generando ? '⏳ Generando...' : '✨ Generar Textos'}</span>
+                    </button>
+                    {generando && <div className="loading-text">PROCESANDO CON CLAUDE SONNET 4</div>}
+
+                    {/* BENEFICIOS */}
+                    <div className="config-section" style={{marginTop:'24px'}}>
+                        <div className="config-title"><span className="config-title-icon">💎</span>Beneficios Adicionales</div>
+                        {beneficios.map((b, i) => (
+                            <div key={i} className="beneficio-item">
+                                <input type="text" className="beneficio-input" placeholder={`Beneficio ${i+1}`} value={b} onChange={e => actualizarBeneficio(i, e.target.value)} />
+                                <button className="btn-remove" onClick={() => eliminarBeneficio(i)}>✕</button>
+                            </div>
+                        ))}
+                        <button className="btn-add" onClick={agregarBeneficio}>+ Agregar Beneficio</button>
+                    </div>
+
+                    {/* ── FORMULARIO AVANZADO ── */}
+                    <div className="config-section" style={{marginTop:'24px'}}>
+                        <div className="config-title"><span className="config-title-icon">📋</span>Formulario</div>
+
+                        {preguntas.map((pregunta, index) => (
+                            <PreguntaCard
+                                key={index}
+                                pregunta={pregunta}
+                                index={index}
+                                onUpdate={(campo, valor) => actualizarPregunta(index, campo, valor)}
+                                onDelete={() => eliminarPregunta(index)}
+                            />
+                        ))}
+
+                        {/* Botones para agregar tipo de campo */}
+                        <div className="fq-add-btns">
+                            {TIPOS_CAMPO.map(t => (
+                                <button key={t.value} className="fq-add-btn" onClick={() => agregarPregunta(t.value)}>
+                                    {t.label}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Toggle todas obligatorias */}
+                        <Toggle
+                            value={todasObligatorias}
+                            onChange={setTodasObligatorias}
+                            label="Hacer todas obligatorias"
+                            sub="Activa para que todas las preguntas sean requeridas"
+                        />
+                    </div>
+                </div>
+
+                {/* MAIN CONTENT */}
+                <div className="main-content">
+                    {mostrarBanner && sessionGuardada && (
+                        <div className="session-banner">
+                            <div className="session-banner-left">
+                                <span>💾</span>
+                                <div>
+                                    <div className="session-banner-text">Tenés una sesión guardada</div>
+                                    <div className="session-banner-time">Guardada el {formatFecha(sessionGuardada.savedAt)}</div>
+                                </div>
+                            </div>
+                            <div style={{display:'flex', gap:'8px', alignItems:'center'}}>
+                                <button className="btn-restore" onClick={restaurarSesion}>Restaurar</button>
+                                <button className="btn-dismiss" onClick={() => setMostrarBanner(false)}>✕</button>
+                            </div>
+                        </div>
+                    )}
+
+                    <div className="content-header">
+                        <div className="content-title"><span>📝</span>Copies variables (A/B)</div>
+                        {filtroAntiCuriosos && outputs.titulos.length > 0 && (
+                            <div className="optimization-badge">☑️ Optimización ON</div>
+                        )}
+                    </div>
+
+                    {outputs.titulos.length > 0 && (
+                        <div className="action-buttons">
+                            <button className="action-btn success" onClick={exportarTextos}><span>💾</span>Exportar Textos</button>
+                            <button className="action-btn primary" onClick={generarTextos}><span>🔄</span>Generar Nuevas Variantes</button>
+                            <button className="action-btn secondary" onClick={resetear}><span>🗑️</span>Resetear</button>
+                        </div>
+                    )}
+
+                    {outputs.titulos.length === 0 ? (
+                        <div className="content-section">
+                            <div className="empty-state">
+                                <div className="empty-icon">🎨</div>
+                                <div className="empty-text">Configura tu proyecto y genera textos</div>
+                                <div className="empty-subtext">Los textos generados aparecerán aquí</div>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="content-grid">
+                            {[
+                                { icon:'💜', title:'H1 Títulos',    data: outputs.titulos },
+                                { icon:'💙', title:'H2 Subtítulos', data: outputs.subtitulos },
+                                { icon:'🧡', title:'Descripción',   data: outputs.descripciones },
+                                { icon:'🚀', title:'Call to Action',data: outputs.ctas },
+                            ].map(sec => (
+                                <div key={sec.title} className="content-section">
+                                    <div className="section-header">
+                                        <div className="section-title-wrapper">
+                                            <span className="section-icon">{sec.icon}</span>
+                                            <span className="section-title-text">{sec.title}</span>
+                                        </div>
+                                        <div className="section-count">{sec.data.length}</div>
+                                    </div>
+                                    {sec.data.map((texto, i) => (
+                                        <div key={i} className="variant-item">
+                                            <span className="variant-number">#{i+1}</span>
+                                            <span className="variant-text">{texto}</span>
+                                            <button className="variant-copy-btn" onClick={() => copiarTexto(texto)}>📋 Copiar</button>
+                                        </div>
+                                    ))}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            {toast && (
+                <div className="toast">
+                    <span className="toast-icon">{toast.icono}</span>
+                    <span className="toast-message">{toast.mensaje}</span>
+                </div>
+            )}
+            </>
+        );
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+</script>
 </body>
 </html>
