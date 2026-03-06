@@ -80,7 +80,7 @@
             z-index: 1;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
         }
 
         .title-container {
@@ -122,6 +122,82 @@
             text-transform: uppercase;
             box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
         }
+
+        /* ── AUTOSAVE INDICATOR ── */
+        .autosave-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.5);
+            transition: all 0.4s ease;
+        }
+        .autosave-indicator.saved {
+            color: #6ee7b7;
+            border-color: rgba(16,185,129,0.35);
+            background: rgba(16,185,129,0.1);
+        }
+        .autosave-indicator.saving {
+            color: #fbbf24;
+            border-color: rgba(251,191,36,0.35);
+            background: rgba(251,191,36,0.08);
+        }
+        .autosave-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: currentColor;
+            flex-shrink: 0;
+        }
+        .autosave-indicator.saving .autosave-dot {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+        /* ── SESSION BANNER ── */
+        .session-banner {
+            background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(52,211,153,0.08));
+            border: 1px solid rgba(16,185,129,0.3);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .session-banner-left { display: flex; align-items: center; gap: 10px; }
+        .session-banner-text { font-size: 13px; font-weight: 700; color: #065f46; }
+        .session-banner-time { font-size: 11px; color: #047857; margin-top: 2px; }
+        .btn-restore {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid rgba(16,185,129,0.4);
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #065f46;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .btn-restore:hover { background: rgba(16,185,129,0.08); }
+        .btn-dismiss {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            color: #047857;
+            opacity: 0.6;
+            padding: 4px;
+            transition: opacity 0.2s;
+        }
+        .btn-dismiss:hover { opacity: 1; }
 
         .app-container {
             display: flex;
@@ -867,6 +943,17 @@
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
 
+        // ── CLAVE DE GUARDADO ──
+        const STORAGE_KEY = 'landing_gen_v1';
+
+        function formatFecha(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleString('es-AR', {
+                day: '2-digit', month: '2-digit', year: 'numeric',
+                hour: '2-digit', minute: '2-digit'
+            });
+        }
+
         function App() {
             const [modoIA, setModoIA] = useState('cliente');
             const [nicho, setNicho] = useState('');
@@ -893,6 +980,70 @@
             });
             const [toast, setToast] = useState(null);
 
+            // ── NUEVOS ESTADOS PARA AUTOSAVE ──
+            const [saveStatus, setSaveStatus] = useState('idle'); // idle | saving | saved
+            const [sessionGuardada, setSessionGuardada] = useState(null);
+            const [mostrarBanner, setMostrarBanner] = useState(false);
+            const timerGuardado = useRef(null);
+
+            // Al iniciar: chequear si hay sesión guardada
+            useEffect(() => {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    if (raw) {
+                        const s = JSON.parse(raw);
+                        setSessionGuardada(s);
+                        setMostrarBanner(true);
+                    }
+                } catch(e) {}
+            }, []);
+
+            // Autosave: cada vez que cambia cualquier campo (con debounce de 800ms)
+            useEffect(() => {
+                if (!nicho && !publico && !beneficio) return;
+                if (timerGuardado.current) clearTimeout(timerGuardado.current);
+                setSaveStatus('saving');
+                timerGuardado.current = setTimeout(() => {
+                    try {
+                        const payload = {
+                            modoIA, nicho, publico, beneficio,
+                            nombreInterno, cliente, marcaBlanca, estado, dominio, slug,
+                            beneficios, preguntas, outputs,
+                            savedAt: new Date().toISOString()
+                        };
+                        localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+                        setSaveStatus('saved');
+                        setTimeout(() => setSaveStatus('idle'), 3000);
+                    } catch(e) { setSaveStatus('idle'); }
+                }, 800);
+                return () => clearTimeout(timerGuardado.current);
+            }, [modoIA, nicho, publico, beneficio, nombreInterno, cliente, marcaBlanca,
+                estado, dominio, slug, JSON.stringify(beneficios), JSON.stringify(preguntas), JSON.stringify(outputs)]);
+
+            // Restaurar sesión guardada
+            const restaurarSesion = () => {
+                const s = sessionGuardada;
+                if (!s) return;
+                setModoIA(s.modoIA || 'cliente');
+                setNicho(s.nicho || '');
+                setPublico(s.publico || '');
+                setBeneficio(s.beneficio || '');
+                setNombreInterno(s.nombreInterno || '');
+                setCliente(s.cliente || 'agencia');
+                setMarcaBlanca(s.marcaBlanca || false);
+                setEstado(s.estado || 'activa');
+                setDominio(s.dominio || '');
+                setSlug(s.slug || '');
+                setBeneficios(s.beneficios || []);
+                setPreguntas(s.preguntas || []);
+                if (s.outputs && s.outputs.titulos && s.outputs.titulos.length > 0) {
+                    setOutputs(s.outputs);
+                    setFiltroAntiCuriosos(true);
+                }
+                setMostrarBanner(false);
+                mostrarToast('✅ Sesión restaurada', 'success');
+            };
+
             const generarTextos = async () => {
                 if (!nicho || !publico || !beneficio) {
                     mostrarToast('⚠️ Completa todos los campos requeridos', 'warning');
@@ -902,53 +1053,6 @@
                 setGenerando(true);
 
                 try {
-                    // ─────────────────────────────────────────────────────────────
-                    // PROMPT OPTIMIZADO PARA A/B TESTING
-                    // Cada variante usa un ángulo psicológico completamente distinto:
-                    //   V1 → Dolor        (el problema que siente hoy)
-                    //   V2 → Transformación (cómo será su vida después)
-                    //   V3 → Autoridad    (el profesional más confiable)
-                    //   V4 → Urgencia     (por qué actuar ahora, no después)
-                    // ─────────────────────────────────────────────────────────────
-                    const systemPrompt = `Eres un experto en copywriting de conversión y marketing directo para landing pages de alta performance. Tu especialidad es crear textos que conviertan visitantes en leads usando técnicas avanzadas de persuasión.
-
-REGLAS ABSOLUTAS:
-- Cada variante debe usar un ángulo psicológico COMPLETAMENTE DIFERENTE entre sí
-- Nunca repitas estructuras, palabras clave ni enfoques entre variantes
-- Los textos deben sonar humanos, naturales y específicos al nicho (NUNCA genéricos)
-- Incluí números, datos o detalles concretos cuando sumen credibilidad
-- El idioma de salida debe coincidir con el idioma del nicho/público recibido
-
-ÁNGULOS PSICOLÓGICOS (uno por variante, en este orden):
-V1 - DOLOR: Apuntá al problema más doloroso del público. La frustración que siente hoy mismo.
-V2 - TRANSFORMACIÓN: Pintá el "después". Cómo será su vida, negocio o situación luego del servicio.
-V3 - AUTORIDAD: Posicioná al profesional/marca como la opción más confiable, experta y probada del mercado.
-V4 - URGENCIA/FOMO: Generá miedo a perderse la oportunidad. Escasez real, ventana de tiempo o consecuencia de no actuar.
-
-Respondé ÚNICAMENTE con un objeto JSON válido, sin explicaciones ni bloques markdown. Estructura exacta:
-{
-  "titulos": ["V1 título", "V2 título", "V3 título", "V4 título"],
-  "subtitulos": ["V1 subtítulo", "V2 subtítulo", "V3 subtítulo", "V4 subtítulo"],
-  "descripciones": ["V1 descripción de 2-3 oraciones", "V2 descripción", "V3 descripción", "V4 descripción"],
-  "ctas": ["V1 botón CTA", "V2 botón CTA", "V3 botón CTA", "V4 botón CTA"]
-}`;
-
-                    const userPrompt = `Generá 4 variantes A/B para una landing page con estos datos:
-
-NICHO: ${nicho}
-PÚBLICO OBJETIVO: ${publico}
-BENEFICIO / OFERTA PRINCIPAL: ${beneficio}
-${modoIA === 'agencia' && nombreInterno ? `CONTEXTO DE CAMPAÑA: ${nombreInterno}` : ''}
-${beneficios.filter(b => b.trim()).length > 0 ? `BENEFICIOS ADICIONALES: ${beneficios.filter(b => b.trim()).join(', ')}` : ''}
-
-Recordá aplicar en orden:
-- V1: ángulo DOLOR → qué problema/frustración tiene el público HOY
-- V2: ángulo TRANSFORMACIÓN → cómo cambiará su situación con el servicio
-- V3: ángulo AUTORIDAD → por qué este profesional/marca es la mejor opción
-- V4: ángulo URGENCIA → por qué actuar ahora y no después
-
-Los CTAs deben ser botones de acción concretos (2-5 palabras), específicos para el nicho.`;
-
                     const response = await fetch('/api/generate-texts', {
                         method: 'POST',
                         headers: {
@@ -1076,6 +1180,7 @@ ${outputs.ctas.map((c, i) => `${i + 1}. ${c}`).join('\n')}
                         ctas: []
                     });
                     setFiltroAntiCuriosos(false);
+                    localStorage.removeItem(STORAGE_KEY);
                     mostrarToast('🔄 Aplicación reseteada', 'success');
                 }
             };
@@ -1099,6 +1204,14 @@ ${outputs.ctas.map((c, i) => `${i + 1}. ${c}`).join('\n')}
                             <span className="title-icon">🚀</span>
                             <span className="title-text">Sistema Inteligente de Generación de Landing Pages con IA</span>
                             <span className="title-badge">CLAUDE AI</span>
+                        </div>
+
+                        {/* INDICADOR AUTOSAVE */}
+                        <div className={`autosave-indicator ${saveStatus}`}>
+                            <div className="autosave-dot"></div>
+                            {saveStatus === 'saving' && 'Guardando...'}
+                            {saveStatus === 'saved'  && '✓ Guardado'}
+                            {saveStatus === 'idle'   && 'Guardado automático'}
                         </div>
                     </div>
                 </div>
@@ -1349,6 +1462,24 @@ ${outputs.ctas.map((c, i) => `${i + 1}. ${c}`).join('\n')}
                     </div>
 
                     <div className="main-content">
+
+                        {/* BANNER SESIÓN GUARDADA */}
+                        {mostrarBanner && sessionGuardada && (
+                            <div className="session-banner">
+                                <div className="session-banner-left">
+                                    <span>💾</span>
+                                    <div>
+                                        <div className="session-banner-text">Tenés una sesión guardada</div>
+                                        <div className="session-banner-time">Guardada el {formatFecha(sessionGuardada.savedAt)}</div>
+                                    </div>
+                                </div>
+                                <div style={{display:'flex', gap:'8px', alignItems:'center'}}>
+                                    <button className="btn-restore" onClick={restaurarSesion}>Restaurar</button>
+                                    <button className="btn-dismiss" onClick={() => setMostrarBanner(false)}>✕</button>
+                                </div>
+                            </div>
+                        )}
+
                         <div className="content-header">
                             <div className="content-title">
                                 <span>📝</span>
