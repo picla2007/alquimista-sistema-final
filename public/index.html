@@ -72,6 +72,7 @@
         .btn-remove:hover{background:rgba(239,68,68,0.3);transform:scale(1.05)}
         .btn-add{width:100%;padding:10px;background:rgba(16,185,129,0.15);border:1px dashed rgba(16,185,129,0.4);border-radius:8px;color:#6ee7b7;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.2s}
         .btn-add:hover{background:rgba(16,185,129,0.25);border-color:rgba(16,185,129,0.6)}
+        /* TEMA */
         .tema-section{background:linear-gradient(135deg,rgba(6,182,212,0.1) 0%,rgba(99,102,241,0.1) 100%);border:1px solid rgba(6,182,212,0.2);border-radius:16px;padding:20px;margin-bottom:24px}
         .tema-section-title{display:flex;align-items:center;gap:10px;margin-bottom:16px}
         .tema-section-icon{width:36px;height:36px;background:linear-gradient(135deg,#06b6d4,#6366f1);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px}
@@ -87,6 +88,18 @@
         .tema-name{font-size:11px;font-weight:700;color:white;text-align:center;padding:5px 4px;letter-spacing:0.3px}
         .tema-check{position:absolute;top:5px;right:6px;width:16px;height:16px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--navy-dark);font-weight:900;opacity:0;transition:opacity 0.2s}
         .tema-btn.active .tema-check{opacity:1}
+        /* HERO IMAGE */
+        .hero-img-section{margin-top:16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:14px}
+        .hero-img-title{font-size:11px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+        .hero-img-input{width:100%;padding:9px 12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:white;font-size:12px;font-family:inherit;transition:all 0.2s;margin-bottom:6px}
+        .hero-img-input:focus{outline:none;border-color:var(--primary)}
+        .hero-img-input::placeholder{color:var(--gray-500)}
+        .hero-img-preview{width:100%;height:70px;border-radius:8px;object-fit:cover;margin-top:6px;border:1px solid rgba(255,255,255,0.1)}
+        .hero-overlay-row{display:flex;align-items:center;gap:8px;margin-top:8px}
+        .hero-overlay-label{font-size:11px;color:var(--gray-400);flex:1}
+        .hero-overlay-input{width:60px;padding:5px 8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:white;font-size:12px;font-family:inherit;text-align:center}
+        .hero-overlay-input:focus{outline:none;border-color:var(--primary)}
+        /* CAJAS */
         .cajas-section{margin-top:16px}
         .cajas-toggle-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
         .cajas-toggle-label{font-size:13px;font-weight:600;color:var(--gray-300);display:flex;align-items:center;gap:8px}
@@ -98,7 +111,19 @@
         .caja-textarea{width:100%;padding:8px 12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:7px;color:white;font-size:12px;font-family:inherit;resize:vertical;min-height:52px}
         .caja-textarea:focus{outline:none;border-color:var(--primary)}
         .caja-textarea::placeholder{color:var(--gray-500)}
-        /* ── FORMULARIO REDISEÑADO ── */
+        /* BLOQUE PROBLEMA */
+        .problema-section-sidebar{background:linear-gradient(135deg,rgba(239,68,68,0.1),rgba(251,113,133,0.08));border:1px solid rgba(239,68,68,0.25);border-radius:12px;padding:14px;margin-top:16px}
+        .problema-toggle-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+        .problema-toggle-label{font-size:13px;font-weight:600;color:#fca5a5;display:flex;align-items:center;gap:8px}
+        .problema-fields{display:flex;flex-direction:column;gap:8px}
+        .problema-input{width:100%;padding:8px 12px;background:rgba(255,255,255,0.05);border:1px solid rgba(239,68,68,0.2);border-radius:8px;color:white;font-size:13px;font-family:inherit;transition:all 0.2s}
+        .problema-input:focus{outline:none;border-color:#ef4444}
+        .problema-input::placeholder{color:var(--gray-500)}
+        .problema-textarea{width:100%;padding:8px 12px;background:rgba(255,255,255,0.05);border:1px solid rgba(239,68,68,0.2);border-radius:8px;color:white;font-size:12px;font-family:inherit;resize:vertical;min-height:72px;transition:all 0.2s}
+        .problema-textarea:focus{outline:none;border-color:#ef4444}
+        .problema-textarea::placeholder{color:var(--gray-500)}
+        .problema-field-label{font-size:10px;font-weight:700;color:#fca5a5;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+        /* FORM BUILDER */
         .form-builder-section{margin-top:24px}
         .form-builder-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
         .form-builder-title{font-size:12px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:8px}
@@ -121,7 +146,7 @@
         .fq-add-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
         .fq-add-btn{padding:7px 12px;background:rgba(16,185,129,0.12);border:1px dashed rgba(16,185,129,0.35);border-radius:8px;color:#6ee7b7;cursor:pointer;font-size:11px;font-weight:600;transition:all 0.2s;display:flex;align-items:center;gap:4px}
         .fq-add-btn:hover{background:rgba(16,185,129,0.22);border-color:rgba(16,185,129,0.6)}
-        /* WHATSAPP FIELD */
+        /* WHATSAPP */
         .wa-section{background:linear-gradient(135deg,rgba(37,211,102,0.1),rgba(18,140,126,0.1));border:1px solid rgba(37,211,102,0.25);border-radius:12px;padding:14px;margin-top:16px}
         .wa-section-title{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:12px;font-weight:700;color:#6ee7b7;text-transform:uppercase;letter-spacing:0.8px}
         .wa-input-wrap{position:relative;display:flex;align-items:center}
@@ -255,15 +280,9 @@ const TEMAS = [
     {id:'flow',name:'Flow',icon:'✨',preview:{bg:'linear-gradient(135deg,#faf5ff,#ede9fe)',bar:'#7c3aed',bar2:'#a78bfa'}},
 ];
 
-const TIPOS_CAMPO = [
-    {value:'texto',label:'Texto corto'},
-    {value:'parrafo',label:'Párrafo'},
-    {value:'opciones',label:'Selección única'},
-    {value:'multiple',label:'Múltiple opción'},
-    {value:'select',label:'Desplegable'},
-];
+const TIPOS_CAMPO=[{value:'texto',label:'Texto corto'},{value:'parrafo',label:'Párrafo'},{value:'opciones',label:'Selección única'},{value:'multiple',label:'Múltiple opción'},{value:'select',label:'Desplegable'}];
 
-const TEMA_CSS = {
+const TEMA_CSS={
     dark:{body:'background:#0f172a;color:#e2e8f0;font-family:"Inter",sans-serif;',header:'background:linear-gradient(135deg,#1e293b,#0f172a);border-bottom:1px solid rgba(99,102,241,0.3);',h1:'color:#ffffff;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.15;',h2:'color:#c7d2fe;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:400;opacity:0.9;',desc:'color:#94a3b8;font-size:1.05rem;line-height:1.75;',cajas_bg:'background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.25);',cajas_title:'color:#a5b4fc;',cajas_text:'color:#94a3b8;',form_bg:'background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);',form_input:'background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);color:white;',form_label:'color:#cbd5e1;',accent:'#6366f1',logo_text:'#ffffff'},
     light:{body:'background:#f8fafc;color:#1e293b;font-family:"Inter",sans-serif;',header:'background:white;border-bottom:1px solid #e2e8f0;box-shadow:0 1px 8px rgba(0,0,0,0.06);',h1:'color:#0f172a;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.15;',h2:'color:#475569;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:400;',desc:'color:#64748b;font-size:1.05rem;line-height:1.75;',cajas_bg:'background:white;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,0.04);',cajas_title:'color:#6366f1;',cajas_text:'color:#64748b;',form_bg:'background:white;border:1px solid #e2e8f0;box-shadow:0 4px 16px rgba(0,0,0,0.06);',form_input:'background:#f8fafc;border:1px solid #e2e8f0;color:#1e293b;',form_label:'color:#475569;',accent:'#6366f1',logo_text:'#0f172a'},
     carta:{body:'background:#fffbf0;color:#451a03;font-family:"Georgia",serif;',header:'background:#fef3c7;border-bottom:2px solid #fbbf24;',h1:'color:#78350f;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.15;font-family:"Georgia",serif;',h2:'color:#92400e;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:400;font-style:italic;',desc:'color:#7c3a03;font-size:1.05rem;line-height:1.85;',cajas_bg:'background:#fff7ed;border:1px solid #fde68a;',cajas_title:'color:#b45309;',cajas_text:'color:#92400e;',form_bg:'background:#fff7ed;border:2px solid #fde68a;',form_input:'background:white;border:1px solid #fde68a;color:#451a03;',form_label:'color:#92400e;',accent:'#d97706',logo_text:'#78350f'},
@@ -275,31 +294,23 @@ const TEMA_CSS = {
 function formatFecha(iso){if(!iso)return '';return new Date(iso).toLocaleString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});}
 function Toggle({value,onChange,label,sub}){return(<div className="toggle-row"><div><div className="toggle-label">{label}</div>{sub&&<div className="toggle-sub">{sub}</div>}</div><label className="toggle-switch" onClick={()=>onChange(!value)}><div className={`toggle-track ${value?'on':''}`}></div><div className={`toggle-thumb ${value?'on':''}`}></div></label></div>);}
 
-// ── PREGUNTA CARD REDISEÑADA ──
 function PreguntaCard({pregunta,index,onUpdate,onDelete}){
     const necesitaOpciones=['opciones','multiple','select'].includes(pregunta.tipo);
-    return(
-        <div className="fq-card">
-            <div className="fq-card-header">
-                <div className="fq-card-num">{index+1}</div>
-                <input className="fq-card-input" placeholder="Escribí la pregunta..." value={pregunta.pregunta} onChange={e=>onUpdate('pregunta',e.target.value)}/>
-                <button className="fq-card-delete" onClick={onDelete}>✕</button>
-            </div>
-            <div className="fq-card-row">
-                <select className="fq-type-select" value={pregunta.tipo} onChange={e=>onUpdate('tipo',e.target.value)}>
-                    {TIPOS_CAMPO.map(t=>(<option key={t.value} value={t.value}>{t.label}</option>))}
-                </select>
-                {necesitaOpciones&&(
-                    <input className="fq-opts-input" placeholder="Op1, Op2, Op3..." value={pregunta.opciones||''} onChange={e=>onUpdate('opciones',e.target.value)}/>
-                )}
-            </div>
-        </div>
-    );
+    return(<div className="fq-card"><div className="fq-card-header"><div className="fq-card-num">{index+1}</div><input className="fq-card-input" placeholder="Escribí la pregunta..." value={pregunta.pregunta} onChange={e=>onUpdate('pregunta',e.target.value)}/><button className="fq-card-delete" onClick={onDelete}>✕</button></div><div className="fq-card-row"><select className="fq-type-select" value={pregunta.tipo} onChange={e=>onUpdate('tipo',e.target.value)}>{TIPOS_CAMPO.map(t=>(<option key={t.value} value={t.value}>{t.label}</option>))}</select>{necesitaOpciones&&(<input className="fq-opts-input" placeholder="Op1, Op2, Op3..." value={pregunta.opciones||''} onChange={e=>onUpdate('opciones',e.target.value)}/>)}</div></div>);
 }
 
-function generarHTMLLanding({titulo,subtitulo,descripcion,cta,tema,beneficios,preguntas,todasObligatorias,cajas,mostrarCajas,nicho,publico,waNumero}){
+function generarHTMLLanding({titulo,subtitulo,descripcion,cta,tema,beneficios,preguntas,todasObligatorias,cajas,mostrarCajas,nicho,publico,waNumero,heroImgUrl,heroOverlay,mostrarProblema,problemaTitle,problemaText}){
     const t=TEMA_CSS[tema]||TEMA_CSS.dark;
     const waLimpio=(waNumero||'').replace(/\D/g,'');
+    const overlay=parseFloat(heroOverlay)||0.5;
+
+    // Hero background
+    const heroBg = heroImgUrl
+        ? `background-image:linear-gradient(rgba(0,0,0,${overlay}),rgba(0,0,0,${overlay})),url('${heroImgUrl}');background-size:cover;background-position:center;background-attachment:fixed;`
+        : '';
+    const heroTextOverride = heroImgUrl ? 'color:white!important;' : '';
+    const heroH2Override = heroImgUrl ? 'color:rgba(255,255,255,0.85)!important;' : '';
+    const heroDescOverride = heroImgUrl ? 'color:rgba(255,255,255,0.75)!important;' : '';
 
     const campoHTML=(p,i)=>{
         const req=todasObligatorias?'required':'';const name=`campo_${i}`;const label=p.pregunta||`Campo ${i+1}`;
@@ -310,43 +321,34 @@ function generarHTMLLanding({titulo,subtitulo,descripcion,cta,tema,beneficios,pr
         return `<div class="campo"><label>${label}</label><input type="text" name="${name}" ${req} placeholder="Tu respuesta..."></div>`;
     };
 
-    // Script handleSubmit: con o sin WhatsApp
-    const submitScript = waLimpio
-        ? `function handleSubmit(e){e.preventDefault();var form=e.target;var lines=['Hola! Completé el formulario en la landing:',''];var inputs=form.querySelectorAll('input:not([type=radio]):not([type=checkbox]),textarea,select');inputs.forEach(function(el){if(el.value)lines.push('▸ '+el.name.replace('campo_','Campo ')+': '+el.value);});var radios={};form.querySelectorAll('input[type=radio]:checked').forEach(function(el){radios[el.name]=el.value;});Object.keys(radios).forEach(function(k){lines.push('▸ '+k.replace('campo_','Campo ')+': '+radios[k]);});var checks=[];form.querySelectorAll('input[type=checkbox]:checked').forEach(function(el){checks.push(el.value);});if(checks.length)lines.push('▸ Seleccionados: '+checks.join(', '));var msg=encodeURIComponent(lines.join('\\n'));document.getElementById('successModal').classList.add('show');document.getElementById('waLink').href='https://wa.me/${waLimpio}?text='+msg;form.reset();}`
-        : `function handleSubmit(e){e.preventDefault();document.getElementById('successModal').classList.add('show');e.target.reset();}`;
+    const submitScript=waLimpio
+        ?`function handleSubmit(e){e.preventDefault();var form=e.target;var lines=['Hola! Completé el formulario en la landing:',''];var inputs=form.querySelectorAll('input:not([type=radio]):not([type=checkbox]),textarea,select');inputs.forEach(function(el){if(el.value)lines.push('▸ '+el.name.replace('campo_','Campo ')+': '+el.value);});var radios={};form.querySelectorAll('input[type=radio]:checked').forEach(function(el){radios[el.name]=el.value;});Object.keys(radios).forEach(function(k){lines.push('▸ '+k.replace('campo_','Campo ')+': '+radios[k]);});var checks=[];form.querySelectorAll('input[type=checkbox]:checked').forEach(function(el){checks.push(el.value);});if(checks.length)lines.push('▸ Seleccionados: '+checks.join(', '));var msg=encodeURIComponent(lines.join('\\n'));document.getElementById('successModal').classList.add('show');document.getElementById('waLink').href='https://wa.me/${waLimpio}?text='+msg;form.reset();}`
+        :`function handleSubmit(e){e.preventDefault();document.getElementById('successModal').classList.add('show');e.target.reset();}`;
 
-    // Modal con o sin botón WhatsApp
-    const modalHTML = waLimpio
-        ? `<div class="modal-overlay" id="successModal"><div class="modal"><div class="modal-icon">🎉</div><div class="modal-title">¡Recibimos tu consulta!</div><div class="modal-sub">Gracias por escribirnos. Hacé clic abajo para contactarnos por WhatsApp y te respondemos al toque.</div><a id="waLink" href="#" target="_blank" class="wa-modal-btn">💬 Ir a WhatsApp</a><button class="modal-btn-sec" onclick="document.getElementById('successModal').classList.remove('show')">Cerrar</button></div></div>`
-        : `<div class="modal-overlay" id="successModal"><div class="modal"><div class="modal-icon">🎉</div><div class="modal-title">¡Recibimos tu consulta!</div><div class="modal-sub">Gracias por escribirnos. Te vamos a contactar en las próximas 24 horas hábiles.</div><button class="modal-btn" onclick="document.getElementById('successModal').classList.remove('show')">Perfecto, gracias</button></div></div>`;
+    const modalHTML=waLimpio
+        ?`<div class="modal-overlay" id="successModal"><div class="modal"><div class="modal-icon">🎉</div><div class="modal-title">¡Recibimos tu consulta!</div><div class="modal-sub">Gracias por escribirnos. Hacé clic abajo para contactarnos por WhatsApp y te respondemos al toque.</div><a id="waLink" href="#" target="_blank" class="wa-modal-btn">💬 Ir a WhatsApp</a><button class="modal-btn-sec" onclick="document.getElementById('successModal').classList.remove('show')">Cerrar</button></div></div>`
+        :`<div class="modal-overlay" id="successModal"><div class="modal"><div class="modal-icon">🎉</div><div class="modal-title">¡Recibimos tu consulta!</div><div class="modal-sub">Gracias por escribirnos. Te vamos a contactar en las próximas 24 horas hábiles.</div><button class="modal-btn" onclick="document.getElementById('successModal').classList.remove('show')">Perfecto, gracias</button></div></div>`;
 
-    const waModalCSS = waLimpio
-        ? `.wa-modal-btn{display:inline-block;padding:14px 32px;background:#25d366;color:white;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;margin-bottom:10px;transition:all 0.2s;}.wa-modal-btn:hover{background:#128c7e;transform:translateY(-1px);}.modal-btn-sec{padding:10px 24px;background:none;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;color:#64748b;cursor:pointer;font-family:inherit;}`
-        : `.modal-btn{padding:14px 32px;background:#10b981;color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;}`;
+    const waModalCSS=waLimpio
+        ?`.wa-modal-btn{display:inline-block;padding:14px 32px;background:#25d366;color:white;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;margin-bottom:10px;transition:all 0.2s;}.wa-modal-btn:hover{background:#128c7e;transform:translateY(-1px);}.modal-btn-sec{padding:10px 24px;background:none;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;color:#64748b;cursor:pointer;font-family:inherit;}`
+        :`.modal-btn{padding:14px 32px;background:#10b981;color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;}`;
 
     const cajasHTML=mostrarCajas&&cajas.length>0?`<section class="cajas-section"><div class="container"><div class="cajas-grid">${cajas.map((c,i)=>`<div class="caja"><div class="caja-num">${i+1}</div><div class="caja-titulo">${c.titulo}</div><div class="caja-desc">${c.descripcion}</div></div>`).join('')}</div></div></section>`:'';
     const beneficiosHTML=beneficios&&beneficios.filter(Boolean).length>0?`<section class="beneficios-section"><div class="container"><h3 class="beneficios-title">¿Por qué elegirnos?</h3><ul class="beneficios-list">${beneficios.filter(Boolean).map(b=>`<li class="beneficio-item"><span class="beneficio-check">✓</span><span>${b}</span></li>`).join('')}</ul></div></section>`:'';
+
+    const problemaHTML=mostrarProblema&&problemaText?`<section class="problema-section"><div class="container"><div class="problema-card"><div class="problema-icon">💸</div><div class="problema-content"><h3>${problemaTitle||'Cada día que esperás, perdés dinero real.'}</h3><p>${problemaText}</p><a href="#form" class="problema-cta">Solucionarlo ahora →</a></div></div></div></section>`:'';
+
     const formHTML=preguntas&&preguntas.length>0?`<section class="form-section" id="form"><div class="container"><div class="form-box"><h3 class="form-title">Completá tus datos</h3><p class="form-sub">Llenás en 2 minutos y te contactamos en menos de 24hs.</p><form class="landing-form" onsubmit="handleSubmit(event)">${preguntas.map((p,i)=>campoHTML(p,i)).join('')}<button type="submit" class="submit-btn">${cta}</button></form></div></div></section>`:`<section class="form-section" id="form"><div class="container"><div class="form-box" style="text-align:center;padding:48px;"><a href="#form" class="cta-hero-btn">${cta}</a></div></div></section>`;
 
-    return `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${titulo}</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{${t.body} min-height:100vh;}.container{max-width:900px;margin:0 auto;padding:0 24px;}.nav{${t.header} padding:16px 0;position:sticky;top:0;z-index:100;}.nav-inner{display:flex;align-items:center;justify-content:space-between;}.nav-logo{font-size:20px;font-weight:800;color:${t.logo_text};text-decoration:none;}.nav-cta{padding:10px 22px;background:${t.accent};color:white;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;transition:opacity 0.2s;}.nav-cta:hover{opacity:0.85;}.hero{padding:80px 0 60px;}.hero-eyebrow{display:inline-block;background:${t.accent}20;color:${t.accent};padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:24px;}.hero h1{${t.h1} margin-bottom:20px;max-width:820px;}.hero h2{${t.h2} margin-bottom:32px;max-width:680px;}.hero-desc{${t.desc} max-width:620px;margin-bottom:40px;}.cta-hero-btn{display:inline-block;padding:18px 40px;background:${t.accent};color:white;border-radius:12px;font-size:16px;font-weight:800;text-decoration:none;transition:all 0.25s;box-shadow:0 8px 24px ${t.accent}40;}.cta-hero-btn:hover{transform:translateY(-2px);}.cajas-section{padding:60px 0;}.cajas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}.caja{${t.cajas_bg} border-radius:14px;padding:28px;transition:transform 0.2s;}.caja:hover{transform:translateY(-3px);}.caja-num{width:36px;height:36px;background:${t.accent};color:white;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;margin-bottom:14px;}.caja-titulo{font-size:17px;font-weight:700;${t.cajas_title} margin-bottom:8px;}.caja-desc{font-size:14px;line-height:1.65;${t.cajas_text}}.beneficios-section{padding:50px 0;}.beneficios-title{font-size:22px;font-weight:800;margin-bottom:24px;${t.h1.split(';')[0]};}.beneficios-list{list-style:none;display:flex;flex-direction:column;gap:12px;}.beneficio-item{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.5;}.beneficio-check{width:24px;height:24px;background:${t.accent};color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;}.form-section{padding:60px 0 80px;}.form-box{${t.form_bg} border-radius:20px;padding:40px;}.form-title{font-size:24px;font-weight:800;margin-bottom:8px;${t.h1.split(';')[0]};}.form-sub{font-size:14px;${t.desc} margin-bottom:32px;}.landing-form{display:flex;flex-direction:column;gap:18px;}.campo{display:flex;flex-direction:column;gap:6px;}.campo label{font-size:13px;font-weight:700;${t.form_label} text-transform:uppercase;letter-spacing:0.5px;}.campo input[type="text"],.campo textarea,.campo select{${t.form_input} padding:12px 16px;border-radius:10px;font-size:14px;font-family:inherit;transition:all 0.2s;width:100%;}.campo textarea{min-height:100px;resize:vertical;}.campo input:focus,.campo textarea:focus,.campo select:focus{outline:none;border-color:${t.accent};box-shadow:0 0 0 3px ${t.accent}20;}.radio-group,.check-group{display:flex;flex-direction:column;gap:8px;}.radio-opt,.check-opt{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;cursor:pointer;${t.form_input} transition:all 0.15s;}.radio-opt:hover,.check-opt:hover{border-color:${t.accent};}.radio-opt input,.check-opt input{accent-color:${t.accent};}.submit-btn{padding:16px 32px;background:${t.accent};color:white;border:none;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;transition:all 0.25s;margin-top:8px;box-shadow:0 6px 20px ${t.accent}40;font-family:inherit;}.submit-btn:hover{transform:translateY(-2px);opacity:0.92;}.footer{padding:32px 0;border-top:1px solid ${t.accent}20;text-align:center;font-size:13px;opacity:0.5;}.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;align-items:center;justify-content:center;}.modal-overlay.show{display:flex;}.modal{background:white;border-radius:20px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,0.3);}.modal-icon{font-size:48px;margin-bottom:16px;}.modal-title{font-size:22px;font-weight:800;color:#0f172a;margin-bottom:8px;}.modal-sub{font-size:14px;color:#64748b;margin-bottom:24px;line-height:1.6;display:flex;flex-direction:column;gap:10px;align-items:center;}${waModalCSS}@media(max-width:640px){.hero{padding:50px 0 40px;}.hero h1{font-size:1.9rem;}.form-box{padding:24px;}.cajas-grid{grid-template-columns:1fr;}}</style></head><body><nav class="nav"><div class="container"><div class="nav-inner"><a href="#" class="nav-logo">${nicho?nicho.charAt(0).toUpperCase()+nicho.slice(1):'Mi Negocio'}</a><a href="#form" class="nav-cta">${cta}</a></div></div></nav><section class="hero"><div class="container"><div class="hero-eyebrow">${publico||'Para vos'}</div><h1>${titulo}</h1><h2>${subtitulo}</h2><p class="hero-desc">${descripcion}</p><a href="#form" class="cta-hero-btn">${cta} →</a></div></section>${cajasHTML}${beneficiosHTML}${formHTML}<footer class="footer"><div class="container"><p>© ${new Date().getFullYear()} ${nicho?nicho.charAt(0).toUpperCase()+nicho.slice(1):'Mi Negocio'} · Todos los derechos reservados</p></div></footer>${modalHTML}<script>${submitScript}<\/script></body></html>`;
+    return `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${titulo}</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{${t.body} min-height:100vh;}.container{max-width:900px;margin:0 auto;padding:0 24px;}.nav{${t.header} padding:16px 0;position:sticky;top:0;z-index:100;}.nav-inner{display:flex;align-items:center;justify-content:space-between;}.nav-logo{font-size:20px;font-weight:800;color:${t.logo_text};text-decoration:none;}.nav-cta{padding:10px 22px;background:${t.accent};color:white;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;transition:opacity 0.2s;}.nav-cta:hover{opacity:0.85;}.hero{padding:80px 0 60px;${heroBg}}.hero-eyebrow{display:inline-block;background:${heroImgUrl?'rgba(255,255,255,0.2)':t.accent+'20'};color:${heroImgUrl?'white':t.accent};padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:24px;}.hero h1{${t.h1} ${heroTextOverride} margin-bottom:20px;max-width:820px;}.hero h2{${t.h2} ${heroH2Override} margin-bottom:32px;max-width:680px;}.hero-desc{${t.desc} ${heroDescOverride} max-width:620px;margin-bottom:40px;}.cta-hero-btn{display:inline-block;padding:18px 40px;background:${t.accent};color:white;border-radius:12px;font-size:16px;font-weight:800;text-decoration:none;transition:all 0.25s;box-shadow:0 8px 24px ${t.accent}40;}.cta-hero-btn:hover{transform:translateY(-2px);}.problema-section{padding:40px 0;background-color:#fff1f2;}.problema-card{background:white;border-radius:16px;padding:30px;display:flex;align-items:flex-start;gap:24px;border:1px solid #fecdd3;box-shadow:0 4px 15px rgba(0,0,0,0.05);}.problema-icon{font-size:42px;background:#ffe4e6;width:72px;height:72px;min-width:72px;display:flex;align-items:center;justify-content:center;border-radius:50%;}.problema-content h3{color:#9f1239;font-size:1.3rem;font-weight:800;margin-bottom:10px;line-height:1.3;}.problema-content p{color:#4c0519;font-size:1rem;line-height:1.7;margin-bottom:16px;}.problema-cta{display:inline-block;padding:10px 22px;background:#ef4444;color:white;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;transition:all 0.2s;}.problema-cta:hover{background:#dc2626;transform:translateY(-1px);}.cajas-section{padding:60px 0;}.cajas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}.caja{${t.cajas_bg} border-radius:14px;padding:28px;transition:transform 0.2s;}.caja:hover{transform:translateY(-3px);}.caja-num{width:36px;height:36px;background:${t.accent};color:white;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;margin-bottom:14px;}.caja-titulo{font-size:17px;font-weight:700;${t.cajas_title} margin-bottom:8px;}.caja-desc{font-size:14px;line-height:1.65;${t.cajas_text}}.beneficios-section{padding:50px 0;}.beneficios-title{font-size:22px;font-weight:800;margin-bottom:24px;${t.h1.split(';')[0]};}.beneficios-list{list-style:none;display:flex;flex-direction:column;gap:12px;}.beneficio-item{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.5;}.beneficio-check{width:24px;height:24px;background:${t.accent};color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;}.form-section{padding:60px 0 80px;}.form-box{${t.form_bg} border-radius:20px;padding:40px;}.form-title{font-size:24px;font-weight:800;margin-bottom:8px;${t.h1.split(';')[0]};}.form-sub{font-size:14px;${t.desc} margin-bottom:32px;}.landing-form{display:flex;flex-direction:column;gap:18px;}.campo{display:flex;flex-direction:column;gap:6px;}.campo label{font-size:13px;font-weight:700;${t.form_label} text-transform:uppercase;letter-spacing:0.5px;}.campo input[type="text"],.campo textarea,.campo select{${t.form_input} padding:12px 16px;border-radius:10px;font-size:14px;font-family:inherit;transition:all 0.2s;width:100%;}.campo textarea{min-height:100px;resize:vertical;}.campo input:focus,.campo textarea:focus,.campo select:focus{outline:none;border-color:${t.accent};box-shadow:0 0 0 3px ${t.accent}20;}.radio-group,.check-group{display:flex;flex-direction:column;gap:8px;}.radio-opt,.check-opt{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;cursor:pointer;${t.form_input} transition:all 0.15s;}.radio-opt:hover,.check-opt:hover{border-color:${t.accent};}.radio-opt input,.check-opt input{accent-color:${t.accent};}.submit-btn{padding:16px 32px;background:${t.accent};color:white;border:none;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;transition:all 0.25s;margin-top:8px;box-shadow:0 6px 20px ${t.accent}40;font-family:inherit;}.submit-btn:hover{transform:translateY(-2px);opacity:0.92;}.footer{padding:32px 0;border-top:1px solid ${t.accent}20;text-align:center;font-size:13px;opacity:0.5;}.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;align-items:center;justify-content:center;}.modal-overlay.show{display:flex;}.modal{background:white;border-radius:20px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,0.3);}.modal-icon{font-size:48px;margin-bottom:16px;}.modal-title{font-size:22px;font-weight:800;color:#0f172a;margin-bottom:8px;}.modal-sub{font-size:14px;color:#64748b;margin-bottom:24px;line-height:1.6;display:flex;flex-direction:column;gap:10px;align-items:center;}${waModalCSS}@media(max-width:640px){.hero{padding:50px 0 40px;background-attachment:scroll;}.hero h1{font-size:1.9rem;}.form-box{padding:24px;}.cajas-grid{grid-template-columns:1fr;}.problema-card{flex-direction:column;align-items:center;text-align:center;}}</style></head><body><nav class="nav"><div class="container"><div class="nav-inner"><a href="#" class="nav-logo">${nicho?nicho.charAt(0).toUpperCase()+nicho.slice(1):'Mi Negocio'}</a><a href="#form" class="nav-cta">${cta}</a></div></div></nav><section class="hero"><div class="container"><div class="hero-eyebrow">${publico||'Para vos'}</div><h1>${titulo}</h1><h2>${subtitulo}</h2><p class="hero-desc">${descripcion}</p><a href="#form" class="cta-hero-btn">${cta} →</a></div></section>${problemaHTML}${cajasHTML}${beneficiosHTML}${formHTML}<footer class="footer"><div class="container"><p>© ${new Date().getFullYear()} ${nicho?nicho.charAt(0).toUpperCase()+nicho.slice(1):'Mi Negocio'} · Todos los derechos reservados</p></div></footer>${modalHTML}<script>${submitScript}<\/script></body></html>`;
 }
 
-/* ── PREVIEW MODAL ── */
 function PreviewModal({html,temaActual,nicho,onClose,onDescargar}){
     const [device,setDevice]=useState('desktop');
     const iframeRef=useRef(null);
     useEffect(()=>{const onKey=(e)=>{if(e.key==='Escape')onClose();};document.addEventListener('keydown',onKey);document.body.style.overflow='hidden';return()=>{document.removeEventListener('keydown',onKey);document.body.style.overflow='';};},[onClose]);
     useEffect(()=>{if(iframeRef.current)iframeRef.current.srcdoc=html;},[html]);
-    return(
-        <div className="preview-overlay">
-            <div className="preview-bar">
-                <div className="preview-bar-left"><span style={{fontSize:'20px',flexShrink:0}}>👁️</span><span className="preview-bar-title">{nicho||'Mi Landing'}</span><span className="preview-bar-badge">{temaActual.icon} {temaActual.name}</span></div>
-                <div className="preview-devices">{[{id:'desktop',label:'🖥️ Desktop'},{id:'tablet',label:'📱 Tablet'},{id:'mobile',label:'📲 Mobile'}].map(d=>(<button key={d.id} className={`preview-device-btn ${device===d.id?'active':''}`} onClick={()=>setDevice(d.id)}>{d.label}</button>))}</div>
-                <div className="preview-bar-right"><button className="preview-dl-btn" onClick={onDescargar}>⬇️ Descargar HTML</button><button className="preview-close" onClick={onClose} title="Esc">✕</button></div>
-            </div>
-            <div className="preview-stage"><div className={`preview-frame-wrap ${device}`}><iframe ref={iframeRef} className="preview-iframe" title="Preview" sandbox="allow-scripts allow-same-origin"/></div></div>
-        </div>
-    );
+    return(<div className="preview-overlay"><div className="preview-bar"><div className="preview-bar-left"><span style={{fontSize:'20px',flexShrink:0}}>👁️</span><span className="preview-bar-title">{nicho||'Mi Landing'}</span><span className="preview-bar-badge">{temaActual.icon} {temaActual.name}</span></div><div className="preview-devices">{[{id:'desktop',label:'🖥️ Desktop'},{id:'tablet',label:'📱 Tablet'},{id:'mobile',label:'📲 Mobile'}].map(d=>(<button key={d.id} className={`preview-device-btn ${device===d.id?'active':''}`} onClick={()=>setDevice(d.id)}>{d.label}</button>))}</div><div className="preview-bar-right"><button className="preview-dl-btn" onClick={onDescargar}>⬇️ Descargar HTML</button><button className="preview-close" onClick={onClose} title="Esc">✕</button></div></div><div className="preview-stage"><div className={`preview-frame-wrap ${device}`}><iframe ref={iframeRef} className="preview-iframe" title="Preview" sandbox="allow-scripts allow-same-origin"/></div></div></div>);
 }
 
 function App(){
@@ -364,6 +366,11 @@ function App(){
     const [preguntas,setPreguntas]=useState([]);
     const [todasObligatorias,setTodasObligatorias]=useState(false);
     const [waNumero,setWaNumero]=useState('');
+    const [heroImgUrl,setHeroImgUrl]=useState('');
+    const [heroOverlay,setHeroOverlay]=useState('0.5');
+    const [mostrarProblema,setMostrarProblema]=useState(false);
+    const [problemaTitle,setProblemaTitle]=useState('Cada día que esperás, perdés dinero real.');
+    const [problemaText,setProblemaText]=useState('Los gastos fijos no se detienen mientras mirás cómo otras propiedades se llenan. Es frustrante saber que hay demanda, pero tu negocio sigue invisible para miles de clientes que buscan exactamente lo que ofrecés.');
     const [generando,setGenerando]=useState(false);
     const [filtroAntiCuriosos,setFiltroAntiCuriosos]=useState(false);
     const [outputs,setOutputs]=useState({titulos:[],subtitulos:[],descripciones:[],ctas:[]});
@@ -376,6 +383,7 @@ function App(){
     const [cajas,setCajas]=useState([{titulo:'Analizamos',descripcion:'Revisamos tu caso para ver si es viable.'},{titulo:'Activamos',descripcion:'Implementación sin marearte.'},{titulo:'Resultados',descripcion:'Vos atendés y cerrás.'}]);
     const [varSel,setVarSel]=useState({titulo:null,subtitulo:null,descripcion:null,cta:null});
     const [previewHTML,setPreviewHTML]=useState(null);
+    const [imgPreviewOk,setImgPreviewOk]=useState(false);
     const timerGuardado=useRef(null);
 
     useEffect(()=>{try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const s=JSON.parse(raw);setSessionGuardada(s);setMostrarBanner(true);}}catch(e){}},[]);
@@ -385,12 +393,12 @@ function App(){
         if(timerGuardado.current)clearTimeout(timerGuardado.current);
         setSaveStatus('saving');
         timerGuardado.current=setTimeout(()=>{
-            try{const payload={modoIA,nicho,publico,beneficio,nombreInterno,cliente,marcaBlanca,estado,dominio,slug,beneficios,preguntas,todasObligatorias,waNumero,outputs,temaSeleccionado,mostrarCajas,cajas,savedAt:new Date().toISOString()};localStorage.setItem(STORAGE_KEY,JSON.stringify(payload));setSaveStatus('saved');setTimeout(()=>setSaveStatus('idle'),3000);}catch(e){setSaveStatus('idle');}
+            try{const payload={modoIA,nicho,publico,beneficio,nombreInterno,cliente,marcaBlanca,estado,dominio,slug,beneficios,preguntas,todasObligatorias,waNumero,heroImgUrl,heroOverlay,mostrarProblema,problemaTitle,problemaText,outputs,temaSeleccionado,mostrarCajas,cajas,savedAt:new Date().toISOString()};localStorage.setItem(STORAGE_KEY,JSON.stringify(payload));setSaveStatus('saved');setTimeout(()=>setSaveStatus('idle'),3000);}catch(e){setSaveStatus('idle');}
         },800);
         return()=>clearTimeout(timerGuardado.current);
-    },[modoIA,nicho,publico,beneficio,nombreInterno,cliente,marcaBlanca,estado,dominio,slug,todasObligatorias,waNumero,temaSeleccionado,mostrarCajas,JSON.stringify(beneficios),JSON.stringify(preguntas),JSON.stringify(outputs),JSON.stringify(cajas)]);
+    },[modoIA,nicho,publico,beneficio,nombreInterno,cliente,marcaBlanca,estado,dominio,slug,todasObligatorias,waNumero,heroImgUrl,heroOverlay,mostrarProblema,problemaTitle,problemaText,temaSeleccionado,mostrarCajas,JSON.stringify(beneficios),JSON.stringify(preguntas),JSON.stringify(outputs),JSON.stringify(cajas)]);
 
-    const restaurarSesion=()=>{const s=sessionGuardada;if(!s)return;setModoIA(s.modoIA||'cliente');setNicho(s.nicho||'');setPublico(s.publico||'');setBeneficio(s.beneficio||'');setNombreInterno(s.nombreInterno||'');setCliente(s.cliente||'agencia');setMarcaBlanca(s.marcaBlanca||false);setEstado(s.estado||'activa');setDominio(s.dominio||'');setSlug(s.slug||'');setBeneficios(s.beneficios||[]);setPreguntas(s.preguntas||[]);setTodasObligatorias(s.todasObligatorias||false);if(s.waNumero)setWaNumero(s.waNumero);if(s.temaSeleccionado)setTemaSeleccionado(s.temaSeleccionado);if(s.mostrarCajas!==undefined)setMostrarCajas(s.mostrarCajas);if(s.cajas)setCajas(s.cajas);if(s.outputs&&s.outputs.titulos&&s.outputs.titulos.length>0){setOutputs(s.outputs);setFiltroAntiCuriosos(true);}setMostrarBanner(false);mostrarToast('✅ Sesión restaurada','success');};
+    const restaurarSesion=()=>{const s=sessionGuardada;if(!s)return;setModoIA(s.modoIA||'cliente');setNicho(s.nicho||'');setPublico(s.publico||'');setBeneficio(s.beneficio||'');setNombreInterno(s.nombreInterno||'');setCliente(s.cliente||'agencia');setMarcaBlanca(s.marcaBlanca||false);setEstado(s.estado||'activa');setDominio(s.dominio||'');setSlug(s.slug||'');setBeneficios(s.beneficios||[]);setPreguntas(s.preguntas||[]);setTodasObligatorias(s.todasObligatorias||false);if(s.waNumero)setWaNumero(s.waNumero);if(s.heroImgUrl)setHeroImgUrl(s.heroImgUrl);if(s.heroOverlay)setHeroOverlay(s.heroOverlay);if(s.mostrarProblema!==undefined)setMostrarProblema(s.mostrarProblema);if(s.problemaTitle)setProblemaTitle(s.problemaTitle);if(s.problemaText)setProblemaText(s.problemaText);if(s.temaSeleccionado)setTemaSeleccionado(s.temaSeleccionado);if(s.mostrarCajas!==undefined)setMostrarCajas(s.mostrarCajas);if(s.cajas)setCajas(s.cajas);if(s.outputs&&s.outputs.titulos&&s.outputs.titulos.length>0){setOutputs(s.outputs);setFiltroAntiCuriosos(true);}setMostrarBanner(false);mostrarToast('✅ Sesión restaurada','success');};
 
     const actualizarCaja=(i,campo,valor)=>{const n=[...cajas];n[i]={...n[i],[campo]:valor};setCajas(n);};
     const agregarPregunta=(tipo='texto')=>setPreguntas([...preguntas,{pregunta:'',tipo,opciones:''}]);
@@ -400,7 +408,7 @@ function App(){
     const generarTextos=async()=>{
         if(!nicho||!publico||!beneficio){mostrarToast('⚠️ Completa todos los campos requeridos','warning');return;}
         setGenerando(true);setVarSel({titulo:null,subtitulo:null,descripcion:null,cta:null});
-        try{const response=await fetch('/api/generate-texts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nicho,publico,beneficio,modoIA,nombreInterno})});const data=await response.json();if(!response.ok)throw new Error(data.message||'Error al generar textos');if(data.success&&data.outputs){setOutputs(data.outputs);setFiltroAntiCuriosos(true);mostrarToast('✨ Textos listos — elegí una variante de cada sección para armar tu landing','success');}else throw new Error('Estructura de respuesta inválida');}
+        try{const response=await fetch('/api/generate-texts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nicho,publico,beneficio,modoIA,nombreInterno})});const data=await response.json();if(!response.ok)throw new Error(data.message||'Error al generar textos');if(data.success&&data.outputs){setOutputs(data.outputs);setFiltroAntiCuriosos(true);mostrarToast('✨ Textos listos — elegí una variante de cada sección','success');}else throw new Error('Estructura de respuesta inválida');}
         catch(error){mostrarToast(`❌ Error: ${error.message}`,'error');}
         finally{setGenerando(false);}
     };
@@ -411,8 +419,9 @@ function App(){
     const buildParams=useCallback(()=>({
         titulo:outputs.titulos[varSel.titulo],subtitulo:outputs.subtitulos[varSel.subtitulo],
         descripcion:outputs.descripciones[varSel.descripcion],cta:outputs.ctas[varSel.cta],
-        tema:temaSeleccionado,beneficios,preguntas,todasObligatorias,cajas,mostrarCajas,nicho,publico,waNumero
-    }),[outputs,varSel,temaSeleccionado,beneficios,preguntas,todasObligatorias,cajas,mostrarCajas,nicho,publico,waNumero]);
+        tema:temaSeleccionado,beneficios,preguntas,todasObligatorias,cajas,mostrarCajas,nicho,publico,
+        waNumero,heroImgUrl,heroOverlay,mostrarProblema,problemaTitle,problemaText
+    }),[outputs,varSel,temaSeleccionado,beneficios,preguntas,todasObligatorias,cajas,mostrarCajas,nicho,publico,waNumero,heroImgUrl,heroOverlay,mostrarProblema,problemaTitle,problemaText]);
 
     const abrirPreview=()=>{if(!varCompletas){mostrarToast('⚠️ Elegí una variante de cada sección primero','warning');return;}setPreviewHTML(generarHTMLLanding(buildParams()));};
     const descargarHTML=(htmlOverride)=>{const html=htmlOverride||generarHTMLLanding(buildParams());const blob=new Blob([html],{type:'text/html'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`landing-${nicho||'mi-landing'}-${temaSeleccionado}-${Date.now()}.html`;a.click();URL.revokeObjectURL(url);mostrarToast('🏗️ ¡Landing descargada!','success');};
@@ -429,6 +438,9 @@ function App(){
     const seleccionadas=Object.values(varSel).filter(v=>v!==null).length;
     const SECS=[{key:'titulo',icon:'💜',label:'H1 TÍTULO',data:outputs.titulos},{key:'subtitulo',icon:'💙',label:'H2 SUBTÍTULO',data:outputs.subtitulos},{key:'descripcion',icon:'🧡',label:'DESCRIPCIÓN',data:outputs.descripciones},{key:'cta',icon:'🚀',label:'CALL TO ACTION',data:outputs.ctas}];
 
+    // badges de features activos
+    const featuresOn=[heroImgUrl?'🖼️':'',mostrarProblema?'💸':'',mostrarCajas?'📦':'',waNumero?'💬':''].filter(Boolean);
+
     return(<>
     {previewHTML&&(<PreviewModal html={previewHTML} temaActual={temaActual} nicho={nicho} onClose={()=>setPreviewHTML(null)} onDescargar={()=>{descargarHTML(previewHTML);setPreviewHTML(null);}}/>)}
 
@@ -436,6 +448,7 @@ function App(){
 
     <div className="app-container">
     <div className="sidebar">
+        {/* MODO IA */}
         <div className="ia-mode-section"><div className="ia-mode-header"><div className="ia-mode-icon">🤖</div><div><div className="ia-mode-title">IA: Modo {modoIA==='cliente'?'Cliente':'Agencia'}</div></div><div className="ia-mode-badge">4 VARIANTES</div></div><div className="mode-selector"><button className={`mode-btn cliente ${modoIA==='cliente'?'active':''}`} onClick={()=>setModoIA('cliente')}><span>👤</span>Modo Cliente</button><button className={`mode-btn agencia ${modoIA==='agencia'?'active':''}`} onClick={()=>setModoIA('agencia')}><span>🏢</span>Modo Agencia</button></div></div>
 
         <div className="config-section"><div className="config-title">🎯 NICHO</div><input type="text" className="form-input" placeholder="odontologo" value={nicho} onChange={e=>setNicho(e.target.value)}/></div>
@@ -447,40 +460,47 @@ function App(){
         <button className="btn-generate" onClick={generarTextos} disabled={generando}><span className="btn-text">{generando?'⏳ Generando...':'✨ Generar Textos'}</span></button>
         {generando&&<div className="loading-text">PROCESANDO CON CLAUDE SONNET 4</div>}
 
-        {/* TEMA */}
+        {/* TEMA + IMAGEN HERO + PROBLEMA + CAJAS */}
         <div className="tema-section" style={{marginTop:'24px'}}>
             <div className="tema-section-title"><div className="tema-section-icon">🎨</div><span className="tema-section-label">Tema Visual / Diseño</span><span className="tema-section-badge">LANDING</span></div>
             <div className="tema-grid">{TEMAS.map(tema=>(<button key={tema.id} className={`tema-btn ${temaSeleccionado===tema.id?'active':''}`} onClick={()=>{setTemaSeleccionado(tema.id);mostrarToast(`🎨 Tema ${tema.name} seleccionado`,'success');}}><div className="tema-preview" style={{background:tema.preview.bg}}><div className="tema-preview-bar" style={{background:tema.preview.bar}}></div><div className="tema-preview-bar2" style={{background:tema.preview.bar2}}></div></div><div className="tema-name">{tema.icon} {tema.name}</div><div className="tema-check">✓</div></button>))}</div>
+
+            {/* IMAGEN DE FONDO HERO */}
+            <div className="hero-img-section">
+                <div className="hero-img-title">🖼️ Imagen de fondo — Hero</div>
+                <input className="hero-img-input" type="url" placeholder="https://ejemplo.com/imagen.jpg" value={heroImgUrl} onChange={e=>{setHeroImgUrl(e.target.value);setImgPreviewOk(false);}}/>
+                {heroImgUrl&&(<img src={heroImgUrl} className="hero-img-preview" onLoad={()=>setImgPreviewOk(true)} onError={()=>setImgPreviewOk(false)} style={{display:imgPreviewOk?'block':'none'}} alt="preview"/>)}
+                {heroImgUrl&&!imgPreviewOk&&<div style={{fontSize:'11px',color:'#fca5a5',marginTop:'4px'}}>⚠️ No se puede cargar la imagen — verificá la URL</div>}
+                {heroImgUrl&&(<div className="hero-overlay-row"><span className="hero-overlay-label">Opacidad del overlay oscuro</span><input className="hero-overlay-input" type="number" min="0" max="1" step="0.05" value={heroOverlay} onChange={e=>setHeroOverlay(e.target.value)}/></div>)}
+                <div style={{fontSize:'10px',color:'var(--gray-500)',marginTop:'6px'}}>Usá una imagen de Unsplash, Pexels o cualquier URL pública. Opcional.</div>
+            </div>
+
+            {/* BLOQUE PROBLEMA */}
+            <div className="problema-section-sidebar">
+                <div className="problema-toggle-row"><span className="problema-toggle-label">💸 Bloque "Problema/Urgencia"</span><label className="toggle-switch" onClick={()=>setMostrarProblema(!mostrarProblema)}><div className={`toggle-track ${mostrarProblema?'on':''}`} style={mostrarProblema?{background:'#ef4444'}:{}}></div><div className={`toggle-thumb ${mostrarProblema?'on':''}`}></div></label></div>
+                {mostrarProblema&&(<div className="problema-fields">
+                    <div><div className="problema-field-label">Título del bloque</div><input className="problema-input" placeholder="Cada día que esperás, perdés dinero real." value={problemaTitle} onChange={e=>setProblemaTitle(e.target.value)}/></div>
+                    <div><div className="problema-field-label">Texto de agitación</div><textarea className="problema-textarea" placeholder="Los gastos fijos no se detienen mientras mirás cómo otras propiedades se llenan..." value={problemaText} onChange={e=>setProblemaText(e.target.value)}/></div>
+                </div>)}
+            </div>
+
+            {/* CAJAS */}
             <div className="cajas-section"><div className="cajas-toggle-row"><span className="cajas-toggle-label"><span>📦</span> Cajas Informativas (3 Pasos)</span><label className="toggle-switch" onClick={()=>setMostrarCajas(!mostrarCajas)}><div className={`toggle-track ${mostrarCajas?'on':''}`}></div><div className={`toggle-thumb ${mostrarCajas?'on':''}`}></div></label></div>{mostrarCajas&&cajas.map((caja,i)=>(<div key={i} className="caja-item"><div className="caja-label">CAJA {i+1}</div><input className="caja-input" placeholder={`Título ${i+1}`} value={caja.titulo} onChange={e=>actualizarCaja(i,'titulo',e.target.value)}/><textarea className="caja-textarea" placeholder="Descripción breve..." value={caja.descripcion} onChange={e=>actualizarCaja(i,'descripcion',e.target.value)}/></div>))}</div>
         </div>
 
         {/* BENEFICIOS */}
         <div className="config-section"><div className="config-title">💎 Beneficios Adicionales</div>{beneficios.map((b,i)=>(<div key={i} className="beneficio-item"><input type="text" className="beneficio-input" placeholder={`Beneficio ${i+1}`} value={b} onChange={e=>actualizarBeneficio(i,e.target.value)}/><button className="btn-remove" onClick={()=>eliminarBeneficio(i)}>✕</button></div>))}<button className="btn-add" onClick={agregarBeneficio}>+ Agregar Beneficio</button></div>
 
-        {/* FORMULARIO REDISEÑADO */}
+        {/* FORMULARIO */}
         <div className="form-builder-section">
-            <div className="form-builder-header">
-                <div className="form-builder-title">📋 Formulario</div>
-                <span style={{fontSize:'11px',color:'var(--gray-500)'}}>{preguntas.length} campo{preguntas.length!==1?'s':''}</span>
-            </div>
-            {preguntas.map((pregunta,index)=>(
-                <PreguntaCard key={index} pregunta={pregunta} index={index} onUpdate={(campo,valor)=>actualizarPregunta(index,campo,valor)} onDelete={()=>eliminarPregunta(index)}/>
-            ))}
-            <div className="fq-add-row">
-                {[{tipo:'texto',label:'📝 Texto'},{tipo:'parrafo',label:'📄 Párrafo'},{tipo:'opciones',label:'🔘 Opciones'},{tipo:'multiple',label:'☑️ Múltiple'},{tipo:'select',label:'▾ Select'}].map(t=>(
-                    <button key={t.tipo} className="fq-add-btn" onClick={()=>agregarPregunta(t.tipo)}>{t.label}</button>
-                ))}
-            </div>
+            <div className="form-builder-header"><div className="form-builder-title">📋 Formulario</div><span style={{fontSize:'11px',color:'var(--gray-500)'}}>{preguntas.length} campo{preguntas.length!==1?'s':''}</span></div>
+            {preguntas.map((pregunta,index)=>(<PreguntaCard key={index} pregunta={pregunta} index={index} onUpdate={(campo,valor)=>actualizarPregunta(index,campo,valor)} onDelete={()=>eliminarPregunta(index)}/>))}
+            <div className="fq-add-row">{[{tipo:'texto',label:'📝 Texto'},{tipo:'parrafo',label:'📄 Párrafo'},{tipo:'opciones',label:'🔘 Opciones'},{tipo:'multiple',label:'☑️ Múltiple'},{tipo:'select',label:'▾ Select'}].map(t=>(<button key={t.tipo} className="fq-add-btn" onClick={()=>agregarPregunta(t.tipo)}>{t.label}</button>))}</div>
             <Toggle value={todasObligatorias} onChange={setTodasObligatorias} label="Hacer todas obligatorias" sub="Activa para que todas sean requeridas"/>
-
-            {/* WHATSAPP */}
             <div className="wa-section">
                 <div className="wa-section-title">💬 WhatsApp destino</div>
-                <div className="wa-input-wrap">
-                    <span className="wa-prefix">+</span>
-                    <input className="wa-input" type="tel" placeholder="5491112345678" value={waNumero} onChange={e=>setWaNumero(e.target.value)} maxLength={20}/>
-                </div>
-                <div className="wa-hint">Incluí código de país. Ej: 5491112345678 (ARG) · Opcional — si lo dejás vacío el form solo muestra un modal de gracias.</div>
+                <div className="wa-input-wrap"><span className="wa-prefix">+</span><input className="wa-input" type="tel" placeholder="5491112345678" value={waNumero} onChange={e=>setWaNumero(e.target.value)} maxLength={20}/></div>
+                <div className="wa-hint">Incluí código de país. Ej: 5491112345678 (ARG) · Opcional.</div>
             </div>
         </div>
     </div>
@@ -490,7 +510,8 @@ function App(){
 
         <div className="content-header">
             <div className="content-title"><span>📝</span>Copies variables (A/B)</div>
-            <div style={{display:'flex',gap:'10px',alignItems:'center'}}>
+            <div style={{display:'flex',gap:'8px',alignItems:'center',flexWrap:'wrap'}}>
+                {featuresOn.map((f,i)=>(<span key={i} style={{fontSize:'18px'}} title="Feature activo">{f}</span>))}
                 <div className="tema-active-badge" style={{background:temaActual.preview.bg,border:`1px solid ${temaActual.preview.bar}40`,color:['light','carta','tienda','noticia','flow'].includes(temaActual.id)?'#1e293b':'white'}}>{temaActual.icon} {temaActual.name}</div>
                 {filtroAntiCuriosos&&outputs.titulos.length>0&&(<div className="optimization-badge">☑️ Optimización ON</div>)}
             </div>
@@ -506,7 +527,7 @@ function App(){
             {SECS.map(sec=>(<div key={sec.key} className="selector-group"><div className="selector-group-title"><span>{sec.icon}</span>{sec.label}{varSel[sec.key]!==null&&<span style={{marginLeft:'auto',color:'#16a34a',fontWeight:700}}>✓ #{varSel[sec.key]+1} seleccionada</span>}</div><div className="selector-options">{sec.data.map((texto,i)=>(<div key={i} className={`selector-option ${varSel[sec.key]===i?'selected':''}`} onClick={()=>selVar(sec.key,i)}><span className="selector-option-num">#{i+1}</span><span>{texto}</span></div>))}</div></div>))}
             <div className="landing-btns-row">
                 <button className="btn-preview-landing" onClick={abrirPreview} disabled={!varCompletas}><span style={{position:'relative',zIndex:1,fontSize:'18px'}}>👁️</span><div className="btn-landing-inner"><span>Preview</span><span className="btn-landing-sub">Ver antes de descargar</span></div></button>
-                <button className="btn-generar-landing" onClick={()=>descargarHTML()} disabled={!varCompletas}><span style={{position:'relative',zIndex:1,fontSize:'18px'}}>⬇️</span><div className="btn-landing-inner"><span>{varCompletas?'Descargar HTML':`${4-seleccionadas} más...`}</span><span className="btn-landing-sub">{varCompletas?`${temaActual.icon} ${temaActual.name}${waNumero?' · WhatsApp ON':''}`:``}</span></div></button>
+                <button className="btn-generar-landing" onClick={()=>descargarHTML()} disabled={!varCompletas}><span style={{position:'relative',zIndex:1,fontSize:'18px'}}>⬇️</span><div className="btn-landing-inner"><span>{varCompletas?'Descargar HTML':`${4-seleccionadas} más...`}</span><span className="btn-landing-sub">{varCompletas?`${temaActual.icon} ${temaActual.name}${featuresOn.length?' · '+featuresOn.join(' '):''}`:''}</span></div></button>
             </div>
         </div>)}
 
