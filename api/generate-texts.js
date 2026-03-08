@@ -1,27 +1,34 @@
 const generarTextos = async () => {
     setGenerando(true);
+    // Limpiamos los textos anteriores antes de generar nuevos
+    setVarSel({titulo: null, subtitulo: null, descripcion: null, cta: null});
+
     try {
-      const response = await fetch('/api/generate-texts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+        const response = await fetch('/api/generate-texts', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nicho, publico, beneficio, modoIA, nombreInterno })
+        });
 
-      const data = await response.json();
+        const data = await response.json();
 
-      if (data.success && data.outputs) {
-        setOutputs(data.outputs);
-        setVarianteActual(0);
-        mostrarToast('✅ ¡Textos generados con éxito!', 'success');
-      } else {
-        // Lanza el error si la respuesta no es la esperada
-        throw new Error(data.message || 'Estructura de respuesta inválida');
-      }
+        if (response.ok && data.success) {
+            // Si todo salió bien, guardamos los resultados
+            setOutputs(data.outputs);
+            setVarianteActual(0);
+            mostrarToast('✅ ¡Textos generados con éxito!', 'success');
+        } else {
+            // Si el servidor responde con un error, lo lanzamos al catch
+            throw new Error(data.message || 'Estructura de respuesta inválida');
+        }
+
     } catch (error) {
-      // Captura el error y lo muestra en el Toast
-      mostrarToast(`❌ Error: ${error.message}`, 'error');
+        // Aquí capturamos cualquier fallo y mostramos el aviso en pantalla
+        mostrarToast(`❌ Error: ${error.message}`, 'error');
+        console.error("Error al generar:", error);
+
     } finally {
-      // Apaga el spinner o estado de carga siempre, falle o no
-      setGenerando(false);
+        // Esto se ejecuta siempre para que el botón deje de estar "cargando"
+        setGenerando(false);
     }
-  };
+};
