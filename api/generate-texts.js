@@ -1,95 +1,87 @@
-// api/generate-texts.js
 export default async function handler(req, res) {
-  // Solo permitimos peticiones POST
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { nicho, publico, beneficio } = req.body;
+  const { nicho, publico, beneficio, modoIA, nombreInterno } = req.body;
 
-  // Validación rápida de datos
   if (!nicho || !publico || !beneficio) {
-    return res.status(400).json({ error: 'Faltan campos obligatorios' });
+    return res.status(400).json({ success: false, message: 'Faltan campos requeridos' });
   }
+
+  const contextoAgencia = modoIA === 'agencia' && nombreInterno
+    ? `Nombre interno del proyecto: "${nombreInterno}". `
+    : '';
+
+  const prompt = `Sos un experto en copywriting de alta conversión para landing pages.
+${contextoAgencia}Generá textos persuasivos para una landing page con estos datos:
+- Nicho/Servicio: ${nicho}
+- Público objetivo: ${publico}
+- Beneficio principal: ${beneficio}
+
+Generá exactamente 4 variantes de cada elemento, usando los 4 ángulos psicológicos: DOLOR, TRANSFORMACIÓN, AUTORIDAD y URGENCIA/FOMO.
+
+También generá UN bloque de "Problema/Urgencia" coherente con el nicho "${nicho}". Este bloque agita el dolor del prospecto antes de mostrar la solución.
+
+Respondé ÚNICAMENTE con un JSON válido, sin texto adicional, sin markdown, sin backticks:
+{
+  "titulos": ["titulo1", "titulo2", "titulo3", "titulo4"],
+  "subtitulos": ["subtitulo1", "subtitulo2", "subtitulo3", "subtitulo4"],
+  "descripciones": ["descripcion1", "descripcion2", "descripcion3", "descripcion4"],
+  "ctas": ["cta1", "cta2", "cta3", "cta4"],
+  "problemaTitle": "Título corto y poderoso que nombra el dolor principal del prospecto para el nicho ${nicho} (máx 12 palabras)",
+  "problemaText": "Párrafo de 2-3 oraciones que agita el problema específico de ${nicho}. Habla directamente al prospecto en segunda persona, describe cómo se siente el dolor en su día a día, sin ofrecer solución todavía."
+}
+
+Reglas:
+- H1 títulos: poderosos, específicos, máx 12 palabras
+- H2 subtítulos: complementan el H1, agregan contexto o prueba social
+- Descripciones: 2-3 oraciones que profundizan el beneficio y conectan emocionalmente
+- CTAs: verbos de acción directa, máx 5 palabras, primera persona cuando aplica
+- Todo en español rioplatense (Argentina)
+- Sin comillas dobles dentro de los strings (usar comillas simples si es necesario)`;
 
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
+        'Content-Type': 'application/json',
         'x-api-key': process.env.ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
-        'content-type': 'application/json'
+        'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 1000,
-        system: `Eres un experto en copywriting de conversión y marketing directo para landing pages de alta performance. Tu especialidad es crear textos que conviertan visitantes en leads usando técnicas avanzadas de persuasión.
-
-REGLAS ABSOLUTAS:
-- Cada variante debe usar un ángulo psicológico COMPLETAMENTE DIFERENTE entre sí
-- Nunca repitas estructuras, palabras clave ni enfoques entre variantes
-- Los textos deben sonar humanos, naturales y específicos al nicho (NUNCA genéricos)
-- Incluí números, datos o detalles concretos cuando sumen credibilidad
-- El idioma de salida debe coincidir con el idioma del nicho/público recibido
-
-ÁNGULOS PSICOLÓGICOS (uno por variante, en este orden):
-V1 - DOLOR: Apuntá al problema más doloroso del público. La frustración que siente hoy mismo.
-V2 - TRANSFORMACIÓN: Pintá el "después". Cómo será su vida, negocio o situación luego del servicio.
-V3 - AUTORIDAD: Posicioná al profesional/marca como la opción más confiable, experta y probada del mercado.
-V4 - URGENCIA/FOMO: Generá miedo a perderse la oportunidad. Escasez real, ventana de tiempo o consecuencia de no actuar.
-
-Respondé ÚNICAMENTE con un objeto JSON válido, sin explicaciones ni bloques markdown. Estructura exacta:
-{
-  "titulos": ["V1 título", "V2 título", "V3 título", "V4 título"],
-  "subtitulos": ["V1 subtítulo", "V2 subtítulo", "V3 subtítulo", "V4 subtítulo"],
-  "descripciones": ["V1 descripción de 2-3 oraciones", "V2 descripción", "V3 descripción", "V4 descripción"],
-  "ctas": ["V1 botón CTA", "V2 botón CTA", "V3 botón CTA", "V4 botón CTA"]
-}`,
-        messages: [{
-          role: "user",
-          content: `Generá 4 variantes A/B para una landing page con estos datos:
-
-NICHO: ${nicho}
-PÚBLICO OBJETIVO: ${publico}
-BENEFICIO / OFERTA PRINCIPAL: ${beneficio}
-
-Recordá aplicar en orden:
-- V1: ángulo DOLOR → qué problema/frustración tiene el público HOY
-- V2: ángulo TRANSFORMACIÓN → cómo cambiará su situación con el servicio
-- V3: ángulo AUTORIDAD → por qué este profesional/marca es la mejor opción
-- V4: ángulo URGENCIA → por qué actuar ahora y no después
-
-Los CTAs deben ser botones de acción concretos (2-5 palabras), específicos para el nicho.`
-        }]
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 2000,
+        messages: [{ role: 'user', content: prompt }]
       })
     });
 
-    const data = await response.json();
-
-    if (!data.content || data.content.length === 0) {
-      throw new Error("La IA no devolvió contenido");
+    if (!response.ok) {
+      const errData = await response.json();
+      throw new Error(errData.error?.message || `API error ${response.status}`);
     }
 
-    const textResponse = data.content[0].text;
+    const data = await response.json();
+    const content = data.content[0]?.text || '';
 
-    // Limpiar posibles bloques markdown antes de parsear
-    const cleanText = textResponse
-      .replace(/```json\s*/gi, '')
-      .replace(/```\s*/g, '')
-      .trim();
+    let outputs;
+    try {
+      const clean = content.replace(/```json|```/g, '').trim();
+      outputs = JSON.parse(clean);
+    } catch (e) {
+      throw new Error('Error al parsear respuesta de Claude');
+    }
 
-    const cleanJson = JSON.parse(cleanText);
+    if (!outputs.titulos || !Array.isArray(outputs.titulos) || outputs.titulos.length < 4) {
+      throw new Error('Respuesta incompleta de Claude');
+    }
 
-    return res.status(200).json({
-      success: true,
-      outputs: cleanJson
-    });
+    return res.status(200).json({ success: true, outputs });
 
   } catch (error) {
-    console.error('Error en API:', error);
-    return res.status(500).json({
-      error: 'Error generando textos',
-      message: error.message
-    });
+    console.error('Error en generate-texts:', error);
+    return res.status(500).json({ success: false, message: error.message });
   }
 }
