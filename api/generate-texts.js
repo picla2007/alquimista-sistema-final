@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     ? `Nombre interno del proyecto: "${nombreInterno}". `
     : '';
 
-  const prompt = `Sos un experto en copywriting de alta conversión para landing pages.
+  const prompt = `Sos un experto en copywriting de alta conversión para landing pages. 
 ${contextoAgencia}Generá textos persuasivos para una landing page con estos datos:
 - Nicho/Servicio: ${nicho}
 - Público objetivo: ${publico}
@@ -23,7 +23,7 @@ ${contextoAgencia}Generá textos persuasivos para una landing page con estos dat
 
 Generá exactamente 4 variantes de cada elemento, usando los 4 ángulos psicológicos: DOLOR, TRANSFORMACIÓN, AUTORIDAD y URGENCIA/FOMO.
 
-También generá UN bloque de "Problema/Urgencia" coherente con el nicho "${nicho}". Este bloque agita el dolor del prospecto antes de mostrar la solución.
+También generá UN bloque de "Problema/Urgencia" coherente con el nicho. Este bloque va en la landing para agitar el dolor del prospecto antes de mostrar la solución.
 
 Respondé ÚNICAMENTE con un JSON válido, sin texto adicional, sin markdown, sin backticks:
 {
@@ -31,17 +31,17 @@ Respondé ÚNICAMENTE con un JSON válido, sin texto adicional, sin markdown, si
   "subtitulos": ["subtitulo1", "subtitulo2", "subtitulo3", "subtitulo4"],
   "descripciones": ["descripcion1", "descripcion2", "descripcion3", "descripcion4"],
   "ctas": ["cta1", "cta2", "cta3", "cta4"],
-  "problemaTitle": "Título corto y poderoso que nombra el dolor principal del prospecto para el nicho ${nicho} (máx 12 palabras)",
-  "problemaText": "Párrafo de 2-3 oraciones que agita el problema específico de ${nicho}. Habla directamente al prospecto en segunda persona, describe cómo se siente el dolor en su día a día, sin ofrecer solución todavía."
+  "problemaTitle": "Título corto y poderoso que nombra el dolor principal del prospecto (máx 12 palabras)",
+  "problemaText": "Párrafo de 2-3 oraciones que agita el problema. Habla directamente al prospecto, describe cómo se siente el dolor en su día a día, sin ofrecer solución todavía. Específico para el nicho ${nicho}."
 }
 
-Reglas:
+Reglas para los textos principales:
 - H1 títulos: poderosos, específicos, máx 12 palabras
 - H2 subtítulos: complementan el H1, agregan contexto o prueba social
 - Descripciones: 2-3 oraciones que profundizan el beneficio y conectan emocionalmente
 - CTAs: verbos de acción directa, máx 5 palabras, primera persona cuando aplica
 - Todo en español rioplatense (Argentina)
-- Sin comillas dobles dentro de los strings (usar comillas simples si es necesario)`;
+- Sin comillas dobles dentro de los strings (usar simples si es necesario)`;
 
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
