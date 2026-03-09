@@ -606,9 +606,10 @@ function App(){
     const generarTextos=async()=>{
         if(!nicho||!publico||!beneficio){mostrarToast('⚠️ Completa todos los campos requeridos','warning');return;}
         setGenerando(true);setVarSel({titulo:null,subtitulo:null,descripcion:null,cta:null});
-        try{const response=await fetch('/api/generate-texts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nicho,publico,beneficio,modoIA,nombreInterno})});const data=await response.json();if(!response.ok)throw new Error(data.message||'Error al generar textos');if(data.success&&data.outputs){setOutputs(data.outputs);setFiltroAntiCuriosos(true);if(data.outputs.problemaTitle){setProblemaTitle(data.outputs.problemaTitle);}if(data.outputs.problemaText){setProblemaText(data.outputs.problemaText);}if(data.outputs.problemaTitle||data.outputs.problemaText){setMostrarProblema(true);setProblemaAutoFilled(true);setTimeout(()=>setProblemaAutoFilled(false),2000);}mostrarToast('✨ Textos + Bloque Problema generados para '+nicho+' 💸','success');}else throw new Error('Estructura de respuesta inválida');
-        finally{setGenerando(false);}
-    };
+        try{const response=await fetch('/api/generate-texts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nicho,publico,beneficio,modoIA,nombreInterno})});const data=await response.json();if(!response.ok)throw new Error(data.message||'Error al generar textos');if(data.success&&data.outputs){setOutputs(data.outputs);setFiltroAntiCuriosos(true);if(data.outputs.problemaTitle){setProblemaTitle(data.outputs.problemaTitle);}if(data.outputs.problemaText){setProblemaText(data.outputs.problemaText);}if(data.outputs.problemaTitle||data.outputs.problemaText){setMostrarProblema(true);setProblemaAutoFilled(true);setTimeout(()=>setProblemaAutoFilled(false),2000);}mostrarToast('✨ Textos + Bloque Problema generados para '+nicho+' 💸','success');
+      }else throw new Error('Estructura de respuesta inválida');
+        }catch(err){mostrarToast('❌ Error: '+err.message,'error');}finally{setGenerando(false);}
+  };
 
     const selVar=(tipo,index)=>setVarSel(prev=>({...prev,[tipo]:prev[tipo]===index?null:index}));
     const varCompletas=varSel.titulo!==null&&varSel.subtitulo!==null&&varSel.descripcion!==null&&varSel.cta!==null;
