@@ -545,14 +545,37 @@ function PreviewModal({html,temaActual,nicho,onClose,onDescargar}){
     const iframeRef=useRef(null);
     useEffect(()=>{const onKey=(e)=>{if(e.key==='Escape')onClose();};document.addEventListener('keydown',onKey);document.body.style.overflow='hidden';return()=>{document.removeEventListener('keydown',onKey);document.body.style.overflow='';};},[onClose]);
     useEffect(()=>{if(iframeRef.current)iframeRef.current.srcdoc=html;},[html]);
-    return(<div className="preview-overlay"><div className="preview-bar"><div className="preview-bar-left"><span style={{fontSize:'20px',flexShrink:0}}>👁️</span><span className="preview-bar-title">{nicho||'Mi Landing'}</span><span className="preview-bar-badge">{temaActual.icon} {temaActual.name}</span></div><div className="preview-devices">{[{id:'desktop',label:'🖥️ Desktop'},{id:'tablet',label:'📱 Tablet'},{id:'mobile',label:'📲 Mobile'}].map(d=>(<button key={d.id} className={`preview-device-btn ${device===d.id?'active':''}`} onClick={()=>setDevice(d.id)}>{d.label}</button>))}</div><div className="preview-bar-right"><button className="preview-dl-btn" onClick={onDescargar}>⬇️ Descargar HTML</button><button className="preview-close" onClick={onClose} title="Esc">✕</button></div></div><div className="preview-stage"><div className={`preview-frame-wrap ${device}`}><iframe 
-  ref={iframeRef} 
-  className="preview-iframe" 
-  title="Preview" 
-  sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"
-/>
+   return (
+        <div className="preview-overlay">
+            <div className="preview-bar">
+                <div className="preview-bar-left">
+                    <span style={{ fontSize: '20px', flexShrink: 0 }}>👁️</span>
+                    <span className="preview-bar-title">{nicho || 'Mi Landing'}</span>
+                    <span className="preview-bar-badge">{temaActual.icon} {temaActual.name}</span>
+                </div>
+                <div className="preview-devices">
+                    {[{ id: 'desktop', label: '🖥️ Desktop' }, { id: 'tablet', label: '📱 Tablet' }, { id: 'mobile', label: '📲 Mobile' }].map(d => (
+                        <button key={d.id} className={`preview-device-btn ${device === d.id ? 'active' : ''}`} onClick={() => setDevice(d.id)}>{d.label}</button>
+                    ))}
+                </div>
+                <div className="preview-bar-right">
+                    <button className="preview-dl-btn" onClick={onDescargar}>⬇️ Descargar HTML</button>
+                    <button className="preview-close" onClick={onClose} title="Esc">✕</button>
+                </div>
+            </div>
+            <div className="preview-stage">
+                <div className={`preview-frame-wrap ${device}`}>
+                    <iframe
+                        ref={iframeRef}
+                        className="preview-iframe"
+                        title="Preview"
+                        sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"
+                    />
+                </div>
+            </div>
+        </div>
+    );
 }
-
 function App(){
     const [tabActiva,setTabActiva]=useState('generador');
     const [modoIA,setModoIA]=useState('cliente');
