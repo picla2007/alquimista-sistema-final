@@ -325,7 +325,12 @@
         .modal-add-confirm:hover{opacity:0.9}
         .modal-add-cancel{padding:12px 20px;background:white;border:1px solid var(--gray-200);border-radius:10px;color:var(--gray-600);font-size:14px;font-weight:600;cursor:pointer}
         .crm-datos-cell{font-size:12px;color:var(--gray-600);max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:999;width:60px;height:60px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.5);text-decoration:none;transition:all 0.3s;animation:waPulse 2s infinite;}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,0.7);}
+.wa-float svg{width:32px;height:32px;fill:white;}
+.wa-float-tooltip{position:absolute;right:70px;background:#0f172a;color:white;padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;white-space:nowrap;opacity:0;transition:opacity 0.2s;pointer-events:none;}
+.wa-float:hover .wa-float-tooltip{opacity:1;}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.5)}50%{box-shadow:0 4px 32px rgba(37,211,102,0.85),0 0 0 8px rgba(37,211,102,0.15)}}
         @media(max-width:1200px){.content-grid{grid-template-columns:1fr}.crm-stats{grid-template-columns:repeat(2,1fr)}}
         @media(max-width:768px){.app-container{flex-direction:column}.sidebar{width:100%}.crm-stats{grid-template-columns:repeat(2,1fr)}}
     </style>
