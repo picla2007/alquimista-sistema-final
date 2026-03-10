@@ -307,6 +307,8 @@
         .crm-add-btn:hover{transform:translateY(-1px)}
         .crm-clear-btn{padding:10px 18px;background:white;border:1px solid var(--gray-200);border-radius:10px;color:var(--gray-600);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:6px}
         .crm-clear-btn:hover{border-color:var(--danger);color:var(--danger)}
+        .crm-export-btn{padding:10px 18px;background:linear-gradient(135deg,#10b981,#059669);border:none;border-radius:10px;color:white;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:6px;box-shadow:0 3px 10px rgba(16,185,129,0.3)}
+        .crm-export-btn:hover{transform:translateY(-1px);box-shadow:0 5px 15px rgba(16,185,129,0.4)}
         /* Modal agregar lead */
         .modal-add-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:8000;display:flex;align-items:center;justify-content:center;animation:fadeInOverlay 0.2s}
         .modal-add-box{background:white;border-radius:20px;padding:32px;width:90%;max-width:460px;box-shadow:0 24px 60px rgba(0,0,0,0.25)}
@@ -452,7 +454,24 @@ function CRMPage({leads,onUpdateLead,onDeleteLead,onAddLead,mostrarToast}){
         if(!num){mostrarToast('⚠️ Este lead no tiene teléfono cargado','warning');return;}
         window.open(`https://wa.me/${num}`,'_blank');
     };
-
+const exportarCSV=()=>{
+    if(leads.length===0){mostrarToast('⚠️ No hay leads para exportar','warning');return;}
+    const lista=filtro==='todos'?leads:leads.filter(l=>l.estado===filtro);
+    if(lista.length===0){mostrarToast('⚠️ No hay leads con ese filtro activo','warning');return;}
+    const escapar=(v)=>{const s=String(v||'');return s.includes(',')||s.includes('"')||s.includes('\n')?`"${s.replace(/"/g,'""')}"`:s;};
+    const filas=[['Nombre','Teléfono','Landing','Estado','Fecha','Datos'].join(',')];
+    lista.forEach(l=>{
+        const datos=l.datos&&Object.keys(l.datos).length>0?Object.entries(l.datos).map(([k,v])=>`${k}: ${v}`).join(' | '):'';
+        filas.push([escapar(l.nombre),escapar(l.telefono),escapar(l.landing),escapar(l.estado),escapar(formatFecha(l.fecha)),escapar(datos)].join(','));
+    });
+    const bom='\uFEFF';
+    const blob=new Blob([bom+filas.join('\n')],{type:'text/csv;charset=utf-8;'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;a.download=`leads-crm-${new Date().toLocaleDateString('es-AR').replace(/\//g,'-')}.csv`;
+    a.click();URL.revokeObjectURL(url);
+    mostrarToast(`📊 ${lista.length} lead${lista.length!==1?'s':''} exportado${lista.length!==1?'s':''} a CSV`,'success');
+};
     return(<div className="crm-page">
         {showModal&&(<div className="modal-add-overlay"><div className="modal-add-box">
             <div className="modal-add-title">➕ Agregar lead manualmente</div>
@@ -468,7 +487,7 @@ function CRMPage({leads,onUpdateLead,onDeleteLead,onAddLead,mostrarToast}){
             <div className="crm-title">📋 CRM de Leads</div>
             <div style={{display:'flex',gap:'10px',flexWrap:'wrap'}}>
                 <button className="crm-add-btn" onClick={()=>setShowModal(true)}>➕ Agregar lead</button>
-                {leads.length>0&&<button className="crm-clear-btn" onClick={()=>{if(confirm('¿Borrar todos los leads? Esta acción no se puede deshacer.'))onDeleteLead('__all__');}}>🗑️ Limpiar todo</button>}
+                {leads.length>0&&<button className="crm-clear-btn" onClick={()=>{if(confirm('¿Borrar todos los leads? Esta acción no se puede deshacer.'))onDeleteLead('__all__');}}>{leads.length>0&&<button className="crm-export-btn" onClick={exportarCSV} title={filtro!=='todos'?`Exportar ${filtro}s`:'Exportar todos'}>📊 {filtro!=='todos'?`Exportar ${filtro}s`:'Exportar CSV'}</button>}🗑️ Limpiar todo</button>}
             </div>
         </div>
 
