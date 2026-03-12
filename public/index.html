@@ -624,6 +624,7 @@ function App(){
     const [cajas,setCajas]=useState([{titulo:'Analizamos',descripcion:'Revisamos tu caso para ver si es viable.'},{titulo:'Activamos',descripcion:'Implementación sin marearte.'},{titulo:'Resultados',descripcion:'Vos atendés y cerrás.'}]);
     const [mostrarFaq,setMostrarFaq]=useState(false);
     const [faqs,setFaqs]=useState([{pregunta:'¿Cómo funciona?',respuesta:'Completás el formulario y te contactamos en menos de 24hs.'},{pregunta:'¿Cuánto cuesta?',respuesta:'Tenemos planes para todos los presupuestos. Consultanos sin compromiso.'},{pregunta:'¿Cuándo veo resultados?',respuesta:'La mayoría de clientes ven los primeros resultados en los primeros 7 días.'}]);
+    const [varSel,setVarSel]=useState({titulo:null,subtitulo:null,descripcion:null,cta:null});
     const [previewHTML,setPreviewHTML]=useState(null);
     const [imgPreviewOk,setImgPreviewOk]=useState(false);
     const [problemaAutoFilled,setProblemaAutoFilled]=useState(false);
