@@ -369,7 +369,7 @@ function PreguntaCard({pregunta,index,onUpdate,onDelete}){
 }
 
 // ── GENERADOR HTML LANDING ──
-function generarHTMLLanding({titulo,subtitulo,descripcion,cta,tema,beneficios,preguntas,todasObligatorias,multiStep,cajas,mostrarCajas,mostrarFaq,nicho,publico,waNumero,heroImgUrl,heroOverlay,mostrarProblema,problemaTitle,problemaText,mostrarFaq,faqs,landingId}){
+function generarHTMLLanding({titulo,subtitulo,descripcion,cta,tema,beneficios,preguntas,todasObligatorias,multiStep,cajas,mostrarCajas,nicho,publico,waNumero,heroImgUrl,heroOverlay,mostrarProblema,problemaTitle,problemaText,mostrarFaq,faqs,landingId}){
     const t=TEMA_CSS[tema]||TEMA_CSS.dark;
     const waLimpio=(waNumero||'').replace(/\D/g,'');
     const overlay=parseFloat(heroOverlay)||0.5;
