@@ -424,29 +424,8 @@ function handleSubmit(e){
     const beneficiosHTML=beneficios&&beneficios.filter(Boolean).length>0?`<section class="beneficios-section"><div class="container"><h3 class="beneficios-title">¿Por qué elegirnos?</h3><ul class="beneficios-list">${beneficios.filter(Boolean).map(b=>`<li class="beneficio-item"><span class="beneficio-check">✓</span><span>${b}</span></li>`).join('')}</ul></div></section>`:'';
     const faqHTML=mostrarFaq&&faqs&&faqs.filter(f=>f.pregunta&&f.respuesta).length>0?`<section class="faq-section"><div class="container"><h3 class="faq-title">❓ Preguntas frecuentes</h3><div class="faq-list">${faqs.filter(f=>f.pregunta&&f.respuesta).map((f,i)=>`<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q"><span>${f.pregunta}</span><span class="faq-icon">+</span></div><div class="faq-a">${f.respuesta}</div></div>`).join('')}</div></div></section>`:'';
     const contadorHTML=mostrarContador?`<div class="urgency-bar" id="urgency-bar"><span class="urgency-msg">${contadorMsg}</span><span class="urgency-timer" id="urgency-timer">--:--:--</span><a href="#form" class="urgency-cta">Quiero el descuento →</a></div>`:'';
-    const contadorScript=mostrarContador?('(function(){var K="urg_'+lid+'";var D='+contadorHoras+'*3600000;var s=localStorage.getItem(K);var e=s?parseInt(s):Date.now()+D;if(!s)localStorage.setItem(K,String(e));function p(n){return n<10?"0"+n:n;}function tick(){var l=Math.max(0,e-Date.now());var el=document.getElementById("urgency-timer");if(el)el.textContent=p(Math.floor(l/3600000))+":"+p(Math.floor((l%3600000)/60000))+":"+p(Math.floor((l%60000)/1000));if(l<=0){e=Date.now()+D;localStorage.setItem(K,String(e));}}tick();setInterval(tick,1000);})();'):''; 
     const contadorCSS=mostrarContador?`.urgency-bar{position:sticky;top:0;z-index:200;background:linear-gradient(90deg,#dc2626,#b91c1c);color:white;display:flex;align-items:center;justify-content:center;gap:16px;padding:10px 20px;flex-wrap:wrap;}.urgency-msg{font-size:14px;font-weight:600;}.urgency-timer{font-size:20px;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:2px;background:rgba(0,0,0,0.2);padding:4px 12px;border-radius:6px;}.urgency-cta{font-size:12px;font-weight:700;color:white;background:rgba(255,255,255,0.2);padding:6px 14px;border-radius:20px;text-decoration:none;white-space:nowrap;transition:background 0.2s;}.urgency-cta:hover{background:rgba(255,255,255,0.35);}`:'' ;
-(function(){
-  var KEY='urgency_end_${lid}';
-  var HOURS=${contadorHoras};
-  var stored=localStorage.getItem(KEY);
-  var endTime=stored?parseInt(stored):Date.now()+HOURS*3600000;
-  if(!stored)localStorage.setItem(KEY,endTime);
-  function pad(n){return n<10?'0'+n:n;}
-  function tick(){
-    var now=Date.now();
-    var diff=endTime-now;
-    if(diff<=0){diff=0;endTime=Date.now()+HOURS*3600000;localStorage.setItem(KEY,endTime);}
-    var h=Math.floor(diff/3600000);
-    var m=Math.floor((diff%3600000)/60000);
-    var s=Math.floor((diff%60000)/1000);
-    var el=document.getElementById('urgency-timer');
-    if(el)el.textContent=pad(h)+':'+pad(m)+':'+pad(s);
-  }
-  tick();
-  setInterval(tick,1000);
-})();
-`:'';
+    const contadorScript=mostrarContador?('(function(){var K="urg_'+lid+'";var D='+contadorHoras+'*3600000;var s=localStorage.getItem(K);var e=s?parseInt(s):Date.now()+D;if(!s)localStorage.setItem(K,String(e));function p(n){return n<10?"0"+n:n;}function t(){var l=Math.max(0,e-Date.now());var el=document.getElementById("urgency-timer");if(el)el.textContent=p(Math.floor(l/3600000))+":"+p(Math.floor((l%3600000)/60000))+":"+p(Math.floor((l%60000)/1000));if(l<=0){e=Date.now()+D;localStorage.setItem(K,String(e));}}t();setInterval(t,1000);})();'):''; 
     const faqCSS=mostrarFaq?'.faq-section{padding:50px 0;}.faq-title{font-size:22px;font-weight:800;margin-bottom:24px;}.faq-list{display:flex;flex-direction:column;gap:12px;}.faq-item{border-radius:12px;overflow:hidden;cursor:pointer;border:1px solid rgba(0,0,0,0.08);transition:all 0.2s;}.faq-item:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08);}.faq-q{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;font-size:15px;font-weight:700;gap:12px;}.faq-icon{font-size:22px;font-weight:300;flex-shrink:0;transition:transform 0.3s;}.faq-item.open .faq-icon{transform:rotate(45deg);}.faq-a{max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.3s;font-size:14px;line-height:1.7;padding:0 22px;}.faq-item.open .faq-a{max-height:300px;padding:0 22px 18px;}':'';
     const problemaHTML=mostrarProblema&&problemaText?`<section class="problema-section"><div class="container"><div class="problema-card"><div class="problema-icon">💸</div><div class="problema-content"><h3>${problemaTitle||'Cada día que esperás, perdés dinero real.'}</h3><p>${problemaText}</p><a href="#form" class="problema-cta">Solucionarlo ahora →</a></div></div></div></section>`:'';
     const totalPasos=preguntas.length;
