@@ -404,22 +404,7 @@ function handleSubmit(e){
   var telefono=datos['campo_1']||'';
   var lead={id:'${lid}_'+Date.now(),nombre:nombre,telefono:telefono,datos:datos,landing:'${nicho||'Sin nombre'}',landingId:'${lid}',estado:'nuevo',fecha:new Date().toISOString()};
   try{var existing=JSON.parse(localStorage.getItem('${CRM_KEY}')||'[]');existing.unshift(lead);localStorage.setItem('${CRM_KEY}',JSON.stringify(existing));}catch(err){}
-  ${waLimpio?`var labels={};form.querySelectorAll('.campo').forEach(function(c){var lbl=c.querySelector('label');var inp=c.querySelector('[name]');if(lbl&&inp)labels[inp.name]=lbl.textContent.trim();});var nicho='${nicho||'tu negocio'}';
-  var nichoLow=nicho.toLowerCase();
-  var ico=nichoLow.match(/odont|dent|implant|ortod/)? '🦷':
-          nichoLow.match(/mecanic|auto|taller|vehic|repuest/)? '🔧':
-          nichoLow.match(/medic|clinic|salud|doctor|farmac/)? '🏥':
-          nichoLow.match(/gym|fitness|entrena|nutricion/)? '💪':
-          nichoLow.match(/restaurant|comida|cocina|delivery|cafe/)? '🍽️':
-          nichoLow.match(/inmobil|propiedad|alquiler|depto|casa/)? '🏠':
-          nichoLow.match(/abogad|legal|estudio|juicio/)? '⚖️':
-          nichoLow.match(/peluquer|estetica|belleza|spa|salon/)? '💇':
-          nichoLow.match(/construc|refaccion|herreria|plomer/)? '🏗️':
-          nichoLow.match(/mascota|veterinar|perro|gato/)? '🐾':
-          nichoLow.match(/contad|impuesto|finanz|factur/)? '📊':
-          nichoLow.match(/ropa|indument|moda|calzado/)? '👗':
-          '✅';
-  var lines=[ico+' *Nueva consulta - '+nicho+'*',''];Object.keys(datos).forEach(function(k){var label=labels[k]||k.replace('campo_','Campo ');lines.push('▸ *'+label+'*: '+datos[k]);});lines.push('');lines.push('_Enviado desde tu landing page_');var msg=encodeURIComponent(lines.join('\\n'));document.getElementById('successModal').classList.add('show');document.getElementById('waLink').href='https://wa.me/${waLimpio}?text='+msg;`:`document.getElementById('successModal').classList.add('show');`}
+  ${waLimpio?`var labels={};form.querySelectorAll('.campo').forEach(function(c){var lbl=c.querySelector('label');var inp=c.querySelector('[name]');if(lbl&&inp)labels[inp.name]=lbl.textContent.trim();});var nicho='${nicho||'tu negocio'}';var nl=nicho.toLowerCase();var ico=nl.match(/odont|dent|implant|ortod/)?'\uD83E\uDDB7':nl.match(/mecanic|auto|taller|vehic|repuest/)?'\uD83D\uDD27':nl.match(/medic|clinic|salud|doctor|farmac/)?'\uD83C\uDFE5':nl.match(/gym|fitness|entrena|nutricion/)?'\uD83D\uDCAA':nl.match(/restaurant|comida|cocina|delivery|cafe/)?'\uD83C\uDF7D\uFE0F':nl.match(/inmobil|propiedad|alquiler|depto|casa/)?'\uD83C\uDFE0':nl.match(/abogad|legal|estudio|juicio/)?'\u2696\uFE0F':nl.match(/peluquer|estetica|belleza|spa|salon/)?'\uD83D\uDC87':nl.match(/construc|refaccion|herreria|plomer/)?'\uD83C\uDFD7\uFE0F':nl.match(/mascota|veterinar|perro|gato/)?'\uD83D\uDC3E':nl.match(/contad|impuesto|finanz|factur/)?'\uD83D\uDCCA':nl.match(/ropa|indument|moda|calzado/)?'\uD83D\uDC57':'\u2705';var lines=[ico+' *Nueva consulta - '+nicho+'*',''];Object.keys(datos).forEach(function(k){var label=labels[k]||k.replace('campo_','Campo ');lines.push('\u25b8 *'+label+'*: '+datos[k]);});lines.push('');lines.push('_Enviado desde tu landing page_');var msg=encodeURIComponent(lines.join('\\\\n'));document.getElementById('successModal').classList.add('show');document.getElementById('waLink').href='https://wa.me/${waLimpio}?text='+msg;`:`document.getElementById('successModal').classList.add('show');`}
   form.reset();
 }`;
 
