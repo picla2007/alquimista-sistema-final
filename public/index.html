@@ -403,7 +403,7 @@ function handleSubmit(e){
   var telefono=datos['campo_1']||'';
   var lead={id:'${lid}_'+Date.now(),nombre:nombre,telefono:telefono,datos:datos,landing:'${nicho||'Sin nombre'}',landingId:'${lid}',estado:'nuevo',fecha:new Date().toISOString()};
   try{var existing=JSON.parse(localStorage.getItem('${CRM_KEY}')||'[]');existing.unshift(lead);localStorage.setItem('${CRM_KEY}',JSON.stringify(existing));}catch(err){}
-  ${waLimpio?`var lines=['Hola! Completé el formulario:',''];Object.keys(datos).forEach(function(k){lines.push('▸ '+k.replace('campo_','Campo ')+': '+datos[k]);});var msg=encodeURIComponent(lines.join('\\n'));document.getElementById('successModal').classList.add('show');document.getElementById('waLink').href='https://wa.me/${waLimpio}?text='+msg;`:`document.getElementById('successModal').classList.add('show');`}
+  ${waLimpio?`var labels={};form.querySelectorAll('.campo').forEach(function(c){var lbl=c.querySelector('label');var inp=c.querySelector('[name]');if(lbl&&inp)labels[inp.name]=lbl.textContent.trim();});var nicho='${nicho||'tu negocio'}';var lines=['📋 *Nueva consulta — '+nicho+'*',''];Object.keys(datos).forEach(function(k){var label=labels[k]||k.replace('campo_','Campo ');lines.push('▸ *'+label+'*: '+datos[k]);});lines.push('');lines.push('_Enviado desde tu landing page_');var msg=encodeURIComponent(lines.join('\\n'));document.getElementById('successModal').classList.add('show');document.getElementById('waLink').href='https://wa.me/${waLimpio}?text='+msg;`:`document.getElementById('successModal').classList.add('show');`}
   form.reset();
 }`;
 
