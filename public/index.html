@@ -419,7 +419,7 @@ function handleSubmit(e){
         :'';
 
     const modalHTML=waLimpio
-        ?`<div class="modal-overlay" id="successModal"><div class="modal"><div class="modal-icon">🎉</div><div class="modal-title">¡Recibimos tu consulta!</div><div class="modal-sub">Gracias por escribirnos. Hacé clic abajo para contactarnos por WhatsApp y te respondemos al toque.</div><a id="waLink" href="#" target="_blank" class="wa-modal-btn">💬 Ir a WhatsApp</a><button class="modal-btn-sec" onclick="document.getElementById('successModal').classList.remove('show')">Cerrar</button></div></div>`
+        ?`<div class="modal-overlay" id="successModal"><div class="modal"><div class="modal-icon">🎉</div><div class="modal-title">¡Recibimos tu consulta!</div><div class="modal-sub">Gracias por escribirnos. Hacé clic abajo para contactarnos por WhatsApp y te respondemos al toque.</div><a id="waLink" href="#" target="_top" class="wa-modal-btn">💬 Ir a WhatsApp</a><button class="modal-btn-sec" onclick="document.getElementById('successModal').classList.remove('show')">Cerrar</button></div></div>`
         :`<div class="modal-overlay" id="successModal"><div class="modal"><div class="modal-icon">🎉</div><div class="modal-title">¡Recibimos tu consulta!</div><div class="modal-sub">Gracias por escribirnos. Te vamos a contactar en las próximas 24 horas hábiles.</div><button class="modal-btn" onclick="document.getElementById('successModal').classList.remove('show')">Perfecto, gracias</button></div></div>`;
 
     const cajasHTML=mostrarCajas&&cajas.length>0?`<section class="cajas-section"><div class="container"><div class="cajas-grid">${cajas.map((c,i)=>`<div class="caja"><div class="caja-num">${i+1}</div><div class="caja-titulo">${c.titulo}</div><div class="caja-desc">${c.descripcion}</div></div>`).join('')}</div></div></section>`:'';
@@ -759,6 +759,20 @@ function App(){
         <div className="tema-section" style={{marginTop:'24px'}}>
             <div className="tema-section-title"><div className="tema-section-icon">🎨</div><span className="tema-section-label">Tema Visual / Diseño</span><span className="tema-section-badge">LANDING</span></div>
             <div className="tema-grid">{TEMAS.map(tema=>(<button key={tema.id} className={`tema-btn ${temaSeleccionado===tema.id?'active':''}`} onClick={()=>{setTemaSeleccionado(tema.id);mostrarToast(`🎨 Tema ${tema.name} seleccionado`,'success');}}><div className="tema-preview" style={{background:tema.preview.bg}}><div className="tema-preview-bar" style={{background:tema.preview.bar}}></div><div className="tema-preview-bar2" style={{background:tema.preview.bar2}}></div></div><div className="tema-name">{tema.icon} {tema.name}</div><div className="tema-check">✓</div></button>))}</div>
+            <div style={{marginTop:'12px',padding:'14px 16px',background:'var(--surface-2)',borderRadius:'10px',display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap'}}>
+              <span style={{fontSize:'12px',fontWeight:'700',color:'var(--gray-300)',textTransform:'uppercase',letterSpacing:'0.5px'}}>🎨 Color de acento</span>
+              <div style={{display:'flex',alignItems:'center',gap:'8px',flex:1,minWidth:'180px'}}>
+                <input type="color" value={accentCustom||'#6366f1'} onChange={e=>setAccentCustom(e.target.value)}
+                  style={{width:'36px',height:'36px',border:'none',borderRadius:'8px',cursor:'pointer',padding:'2px',background:'transparent'}}/>
+                <input type="text" placeholder="Vacío = color del tema"
+                  value={accentCustom} onChange={e=>setAccentCustom(e.target.value)}
+                  style={{flex:1,background:'var(--surface)',border:'1px solid var(--border)',borderRadius:'8px',padding:'8px 10px',fontSize:'12px',color:'var(--gray-100)',fontFamily:'monospace'}}/>
+                {accentCustom&&<button onClick={()=>setAccentCustom('')}
+                  style={{fontSize:'11px',padding:'6px 10px',background:'transparent',border:'1px solid var(--border)',borderRadius:'6px',color:'var(--gray-400)',cursor:'pointer',whiteSpace:'nowrap'}}>
+                  ✕ Reset
+                </button>}
+              </div>
+            </div>
             <div className="hero-img-section">
                 <div className="hero-img-title">🖼️ Imagen de fondo — Hero</div>
                 <input className="hero-img-input" type="url" placeholder="https://ejemplo.com/imagen.jpg" value={heroImgUrl} onChange={e=>{setHeroImgUrl(e.target.value);setImgPreviewOk(false);}}/>
