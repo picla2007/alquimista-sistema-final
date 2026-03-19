@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -258,101 +257,73 @@
         .toast-icon{font-size:20px}
         .toast-message{font-size:14px;font-weight:600;color:var(--gray-800)}
         .tema-active-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:700}
-
-```
-    /* ══ PROMPTS SECTION — NUEVO ══ */
-    .prompts-section{background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(52,211,153,0.08));border:1px solid rgba(16,185,129,0.25);border-radius:16px;padding:20px;margin-top:20px}
-    .prompts-section-title{display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:12px;font-weight:700;color:#6ee7b7;text-transform:uppercase;letter-spacing:0.8px}
-    .btn-gen-prompts{width:100%;padding:13px 16px;background:linear-gradient(135deg,#10b981 0%,#059669 100%);border:none;border-radius:10px;color:white;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.25s;box-shadow:0 4px 14px rgba(16,185,129,0.35);margin-bottom:14px;letter-spacing:0.3px}
-    .btn-gen-prompts:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 7px 20px rgba(16,185,129,0.45)}
-    .btn-gen-prompts:disabled{opacity:0.5;cursor:not-allowed;transform:none}
-    .prompt-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:14px;margin-bottom:10px;transition:border-color 0.2s}
-    .prompt-card:last-child{margin-bottom:0}
-    .prompt-card:hover{border-color:rgba(16,185,129,0.4)}
-    .prompt-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;gap:8px}
-    .prompt-card-label{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;flex-shrink:0}
-    .prompt-card-label.dolor{color:#fca5a5}
-    .prompt-card-label.resultado{color:#86efac}
-    .prompt-card-label.sistema{color:#93c5fd}
-    .prompt-card-copy{padding:5px 10px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:7px;color:rgba(255,255,255,0.7);font-size:11px;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap}
-    .prompt-card-copy:hover{background:rgba(16,185,129,0.25);border-color:rgba(16,185,129,0.5);color:#6ee7b7}
-    .prompt-card-text{font-size:12px;color:var(--gray-300);line-height:1.7;word-break:break-word}
-    .prompt-card-empty{font-size:11px;color:var(--gray-500);font-style:italic}
-    .prompts-loading{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 0 6px;color:#6ee7b7;font-size:13px;font-weight:600}
-    .prompts-loading-dot{width:6px;height:6px;border-radius:50%;background:#6ee7b7;animation:promptDot 1.2s infinite}
-    .prompts-loading-dot:nth-child(2){animation-delay:0.2s}
-    .prompts-loading-dot:nth-child(3){animation-delay:0.4s}
-    @keyframes promptDot{0%,80%,100%{opacity:0.2;transform:scale(0.8)}40%{opacity:1;transform:scale(1)}}
-
-    /* ══ CRM STYLES ══ */
-    .crm-page{flex:1;background:white;padding:32px;overflow-y:auto;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
-    .crm-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px}
-    .crm-title{font-size:26px;font-weight:800;color:var(--gray-900);display:flex;align-items:center;gap:12px}
-    .crm-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
-    .crm-stat{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:4px}
-    .crm-stat-num{font-size:28px;font-weight:800;color:var(--gray-900)}
-    .crm-stat-label{font-size:12px;font-weight:600;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.5px}
-    .crm-stat.nuevo .crm-stat-num{color:#6366f1}
-    .crm-stat.contactado .crm-stat-num{color:#f59e0b}
-    .crm-stat.cerrado .crm-stat-num{color:#10b981}
-    .crm-filters{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;align-items:center}
-    .crm-filter-btn{padding:8px 16px;border-radius:8px;border:1px solid var(--gray-200);background:white;font-size:13px;font-weight:600;color:var(--gray-600);cursor:pointer;transition:all 0.15s}
-    .crm-filter-btn.active{background:var(--primary);color:white;border-color:var(--primary);box-shadow:0 2px 8px rgba(99,102,241,0.25)}
-    .crm-filter-btn:hover:not(.active){border-color:var(--primary);color:var(--primary)}
-    .crm-search{flex:1;min-width:180px;max-width:280px;padding:8px 14px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:inherit;color:var(--gray-800);transition:all 0.2s}
-    .crm-search:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(99,102,241,0.1)}
-    .crm-search::placeholder{color:var(--gray-400)}
-    .crm-table{width:100%;border-collapse:collapse}
-    .crm-table th{background:var(--gray-50);padding:12px 16px;text-align:left;font-size:11px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.8px;border-bottom:2px solid var(--gray-200)}
-    .crm-table td{padding:14px 16px;border-bottom:1px solid var(--gray-100);font-size:14px;color:var(--gray-800);vertical-align:middle}
-    .crm-table tr:last-child td{border-bottom:none}
-    .crm-table tr:hover td{background:var(--gray-50)}
-    .crm-name{font-weight:700;color:var(--gray-900)}
-    .crm-phone{color:var(--primary);font-weight:600;font-size:13px}
-    .crm-landing-tag{display:inline-block;background:#ede9fe;color:#6d28d9;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700}
-    .crm-date{font-size:12px;color:var(--gray-500)}
-    .crm-status-btn{padding:5px 12px;border-radius:20px;border:none;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:5px}
-    .crm-status-btn.nuevo{background:#ede9fe;color:#6d28d9}
-    .crm-status-btn.nuevo:hover{background:#ddd6fe}
-    .crm-status-btn.contactado{background:#fef3c7;color:#92400e}
-    .crm-status-btn.contactado:hover{background:#fde68a}
-    .crm-status-btn.cerrado{background:#d1fae5;color:#065f46}
-    .crm-status-btn.cerrado:hover{background:#a7f3d0}
-    .crm-actions{display:flex;gap:6px;align-items:center}
-    .crm-wa-btn{width:32px;height:32px;background:#d1fae5;border:none;border-radius:8px;color:#065f46;cursor:pointer;font-size:15px;transition:all 0.2s;display:flex;align-items:center;justify-content:center}
-    .crm-wa-btn:hover{background:#25d366;color:white}
-    .crm-del-btn{width:32px;height:32px;background:#fee2e2;border:none;border-radius:8px;color:#991b1b;cursor:pointer;font-size:13px;transition:all 0.2s;display:flex;align-items:center;justify-content:center}
-    .crm-del-btn:hover{background:#ef4444;color:white}
-    .crm-empty{text-align:center;padding:60px 20px}
-    .crm-empty-icon{font-size:56px;margin-bottom:16px}
-    .crm-empty-text{font-size:17px;font-weight:600;color:var(--gray-700);margin-bottom:8px}
-    .crm-empty-sub{font-size:13px;color:var(--gray-400);line-height:1.6}
-    .crm-add-btn{padding:10px 20px;background:linear-gradient(135deg,var(--primary),var(--secondary));border:none;border-radius:10px;color:white;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:8px;box-shadow:0 4px 12px rgba(99,102,241,0.3)}
-    .crm-add-btn:hover{transform:translateY(-1px)}
-    .crm-clear-btn{padding:10px 18px;background:white;border:1px solid var(--gray-200);border-radius:10px;color:var(--gray-600);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:6px}
-    .crm-clear-btn:hover{border-color:var(--danger);color:var(--danger)}
-    .crm-export-btn{padding:10px 18px;background:linear-gradient(135deg,#10b981,#059669);border:none;border-radius:10px;color:white;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:6px;box-shadow:0 3px 10px rgba(16,185,129,0.3)}
-    .crm-export-btn:hover{transform:translateY(-1px);box-shadow:0 5px 15px rgba(16,185,129,0.4)}
-    .modal-add-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:8000;display:flex;align-items:center;justify-content:center;animation:fadeInOverlay 0.2s}
-    .modal-add-box{background:white;border-radius:20px;padding:32px;width:90%;max-width:460px;box-shadow:0 24px 60px rgba(0,0,0,0.25)}
-    .modal-add-title{font-size:20px;font-weight:800;color:var(--gray-900);margin-bottom:6px;display:flex;align-items:center;gap:10px}
-    .modal-add-sub{font-size:13px;color:var(--gray-500);margin-bottom:24px}
-    .modal-add-field{margin-bottom:16px}
-    .modal-add-label{display:block;font-size:12px;font-weight:700;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
-    .modal-add-input{width:100%;padding:11px 14px;border:1px solid var(--gray-200);border-radius:10px;font-size:14px;font-family:inherit;color:var(--gray-800);transition:all 0.2s}
-    .modal-add-input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(99,102,241,0.1)}
-    .modal-add-select{width:100%;padding:11px 14px;border:1px solid var(--gray-200);border-radius:10px;font-size:14px;font-family:inherit;color:var(--gray-800);background:white}
-    .modal-add-select:focus{outline:none;border-color:var(--primary)}
-    .modal-add-btns{display:flex;gap:10px;margin-top:24px}
-    .modal-add-confirm{flex:1;padding:12px;background:linear-gradient(135deg,var(--primary),var(--secondary));border:none;border-radius:10px;color:white;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.2s}
-    .modal-add-confirm:hover{opacity:0.9}
-    .modal-add-cancel{padding:12px 20px;background:white;border:1px solid var(--gray-200);border-radius:10px;color:var(--gray-600);font-size:14px;font-weight:600;cursor:pointer}
-    .crm-datos-cell{font-size:12px;color:var(--gray-600);max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    @media(max-width:1200px){.content-grid{grid-template-columns:1fr}.crm-stats{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:768px){.app-container{flex-direction:column}.sidebar{width:100%}.crm-stats{grid-template-columns:repeat(2,1fr)}}
-</style>
-```
-
+        /* ══ CRM STYLES ══ */
+        .crm-page{flex:1;background:white;padding:32px;overflow-y:auto;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+        .crm-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px}
+        .crm-title{font-size:26px;font-weight:800;color:var(--gray-900);display:flex;align-items:center;gap:12px}
+        .crm-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+        .crm-stat{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:4px}
+        .crm-stat-num{font-size:28px;font-weight:800;color:var(--gray-900)}
+        .crm-stat-label{font-size:12px;font-weight:600;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.5px}
+        .crm-stat.nuevo .crm-stat-num{color:#6366f1}
+        .crm-stat.contactado .crm-stat-num{color:#f59e0b}
+        .crm-stat.cerrado .crm-stat-num{color:#10b981}
+        .crm-filters{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;align-items:center}
+        .crm-filter-btn{padding:8px 16px;border-radius:8px;border:1px solid var(--gray-200);background:white;font-size:13px;font-weight:600;color:var(--gray-600);cursor:pointer;transition:all 0.15s}
+        .crm-filter-btn.active{background:var(--primary);color:white;border-color:var(--primary);box-shadow:0 2px 8px rgba(99,102,241,0.25)}
+        .crm-filter-btn:hover:not(.active){border-color:var(--primary);color:var(--primary)}
+        .crm-search{flex:1;min-width:180px;max-width:280px;padding:8px 14px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:inherit;color:var(--gray-800);transition:all 0.2s}
+        .crm-search:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(99,102,241,0.1)}
+        .crm-search::placeholder{color:var(--gray-400)}
+        .crm-table{width:100%;border-collapse:collapse}
+        .crm-table th{background:var(--gray-50);padding:12px 16px;text-align:left;font-size:11px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.8px;border-bottom:2px solid var(--gray-200)}
+        .crm-table td{padding:14px 16px;border-bottom:1px solid var(--gray-100);font-size:14px;color:var(--gray-800);vertical-align:middle}
+        .crm-table tr:last-child td{border-bottom:none}
+        .crm-table tr:hover td{background:var(--gray-50)}
+        .crm-name{font-weight:700;color:var(--gray-900)}
+        .crm-phone{color:var(--primary);font-weight:600;font-size:13px}
+        .crm-landing-tag{display:inline-block;background:#ede9fe;color:#6d28d9;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700}
+        .crm-date{font-size:12px;color:var(--gray-500)}
+        .crm-status-btn{padding:5px 12px;border-radius:20px;border:none;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:5px}
+        .crm-status-btn.nuevo{background:#ede9fe;color:#6d28d9}
+        .crm-status-btn.nuevo:hover{background:#ddd6fe}
+        .crm-status-btn.contactado{background:#fef3c7;color:#92400e}
+        .crm-status-btn.contactado:hover{background:#fde68a}
+        .crm-status-btn.cerrado{background:#d1fae5;color:#065f46}
+        .crm-status-btn.cerrado:hover{background:#a7f3d0}
+        .crm-actions{display:flex;gap:6px;align-items:center}
+        .crm-wa-btn{width:32px;height:32px;background:#d1fae5;border:none;border-radius:8px;color:#065f46;cursor:pointer;font-size:15px;transition:all 0.2s;display:flex;align-items:center;justify-content:center}
+        .crm-wa-btn:hover{background:#25d366;color:white}
+        .crm-del-btn{width:32px;height:32px;background:#fee2e2;border:none;border-radius:8px;color:#991b1b;cursor:pointer;font-size:13px;transition:all 0.2s;display:flex;align-items:center;justify-content:center}
+        .crm-del-btn:hover{background:#ef4444;color:white}
+        .crm-empty{text-align:center;padding:60px 20px}
+        .crm-empty-icon{font-size:56px;margin-bottom:16px}
+        .crm-empty-text{font-size:17px;font-weight:600;color:var(--gray-700);margin-bottom:8px}
+        .crm-empty-sub{font-size:13px;color:var(--gray-400);line-height:1.6}
+        .crm-add-btn{padding:10px 20px;background:linear-gradient(135deg,var(--primary),var(--secondary));border:none;border-radius:10px;color:white;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:8px;box-shadow:0 4px 12px rgba(99,102,241,0.3)}
+        .crm-add-btn:hover{transform:translateY(-1px)}
+        .crm-clear-btn{padding:10px 18px;background:white;border:1px solid var(--gray-200);border-radius:10px;color:var(--gray-600);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:6px}
+        .crm-clear-btn:hover{border-color:var(--danger);color:var(--danger)}
+        .crm-export-btn{padding:10px 18px;background:linear-gradient(135deg,#10b981,#059669);border:none;border-radius:10px;color:white;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:6px;box-shadow:0 3px 10px rgba(16,185,129,0.3)}
+        .crm-export-btn:hover{transform:translateY(-1px);box-shadow:0 5px 15px rgba(16,185,129,0.4)}
+        .modal-add-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:8000;display:flex;align-items:center;justify-content:center;animation:fadeInOverlay 0.2s}
+        .modal-add-box{background:white;border-radius:20px;padding:32px;width:90%;max-width:460px;box-shadow:0 24px 60px rgba(0,0,0,0.25)}
+        .modal-add-title{font-size:20px;font-weight:800;color:var(--gray-900);margin-bottom:6px;display:flex;align-items:center;gap:10px}
+        .modal-add-sub{font-size:13px;color:var(--gray-500);margin-bottom:24px}
+        .modal-add-field{margin-bottom:16px}
+        .modal-add-label{display:block;font-size:12px;font-weight:700;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+        .modal-add-input{width:100%;padding:11px 14px;border:1px solid var(--gray-200);border-radius:10px;font-size:14px;font-family:inherit;color:var(--gray-800);transition:all 0.2s}
+        .modal-add-input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(99,102,241,0.1)}
+        .modal-add-select{width:100%;padding:11px 14px;border:1px solid var(--gray-200);border-radius:10px;font-size:14px;font-family:inherit;color:var(--gray-800);background:white}
+        .modal-add-select:focus{outline:none;border-color:var(--primary)}
+        .modal-add-btns{display:flex;gap:10px;margin-top:24px}
+        .modal-add-confirm{flex:1;padding:12px;background:linear-gradient(135deg,var(--primary),var(--secondary));border:none;border-radius:10px;color:white;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.2s}
+        .modal-add-confirm:hover{opacity:0.9}
+        .modal-add-cancel{padding:12px 20px;background:white;border:1px solid var(--gray-200);border-radius:10px;color:var(--gray-600);font-size:14px;font-weight:600;cursor:pointer}
+        .crm-datos-cell{font-size:12px;color:var(--gray-600);max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        @media(max-width:1200px){.content-grid{grid-template-columns:1fr}.crm-stats{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:768px){.app-container{flex-direction:column}.sidebar{width:100%}.crm-stats{grid-template-columns:repeat(2,1fr)}}
+    </style>
 </head>
 <body>
 <div id="root"></div>
@@ -362,489 +333,587 @@ const STORAGE_KEY = 'landing_gen_v1';
 const CRM_KEY = 'landing_crm_v1';
 
 const TEMAS = [
-{id:‘dark’,name:‘Dark’,icon:‘🌑’,preview:{bg:‘linear-gradient(135deg,#0f172a,#1e293b)’,bar:’#6366f1’,bar2:’#8b5cf6’}},
-{id:‘light’,name:‘Light’,icon:‘☀️’,preview:{bg:‘linear-gradient(135deg,#f8fafc,#e2e8f0)’,bar:’#6366f1’,bar2:’#94a3b8’}},
-{id:‘carta’,name:‘Carta’,icon:‘📄’,preview:{bg:‘linear-gradient(135deg,#fffbf0,#fef3c7)’,bar:’#d97706’,bar2:’#fbbf24’}},
-{id:‘tienda’,name:‘Tienda’,icon:‘🛍️’,preview:{bg:‘linear-gradient(135deg,#fff0f9,#fce7f3)’,bar:’#ec4899’,bar2:’#f472b6’}},
-{id:‘noticia’,name:‘Noticia’,icon:‘📰’,preview:{bg:‘linear-gradient(135deg,#f0f9ff,#e0f2fe)’,bar:’#0284c7’,bar2:’#38bdf8’}},
-{id:‘flow’,name:‘Flow’,icon:‘✨’,preview:{bg:‘linear-gradient(135deg,#faf5ff,#ede9fe)’,bar:’#7c3aed’,bar2:’#a78bfa’}},
-{id:‘saas’,name:‘Modern SaaS’,icon:‘🚀’,preview:{bg:‘linear-gradient(135deg,#6366f1,#4f46e5)’,bar:’#ffffff’,bar2:’#c7d2fe’}},
-{id:‘luxury’,name:‘Premium’,icon:‘💎’,preview:{bg:‘linear-gradient(135deg,#1a1a1a,#2d2d2d)’,bar:’#d4af37’,bar2:’#ffffff’}},
-{id:‘cyber’,name:‘Cyberpunk’,icon:‘⚡’,preview:{bg:‘linear-gradient(135deg,#000000,#1a0033)’,bar:’#00f2ff’,bar2:’#ff00ff’}},
-{id:‘natural’,name:‘Organic’,icon:‘🌿’,preview:{bg:‘linear-gradient(135deg,#f0f4f0,#d9e4d9)’,bar:’#166534’,bar2:’#4ade80’}},
+    {id:'dark',name:'Dark',icon:'🌑',preview:{bg:'linear-gradient(135deg,#0f172a,#1e293b)',bar:'#6366f1',bar2:'#8b5cf6'}},
+    {id:'light',name:'Light',icon:'☀️',preview:{bg:'linear-gradient(135deg,#f8fafc,#e2e8f0)',bar:'#6366f1',bar2:'#94a3b8'}},
+    {id:'carta',name:'Carta',icon:'📄',preview:{bg:'linear-gradient(135deg,#fffbf0,#fef3c7)',bar:'#d97706',bar2:'#fbbf24'}},
+    {id:'tienda',name:'Tienda',icon:'🛍️',preview:{bg:'linear-gradient(135deg,#fff0f9,#fce7f3)',bar:'#ec4899',bar2:'#f472b6'}},
+    {id:'noticia',name:'Noticia',icon:'📰',preview:{bg:'linear-gradient(135deg,#f0f9ff,#e0f2fe)',bar:'#0284c7',bar2:'#38bdf8'}},
+    {id:'flow',name:'Flow',icon:'✨',preview:{bg:'linear-gradient(135deg,#faf5ff,#ede9fe)',bar:'#7c3aed',bar2:'#a78bfa'}},
+    {id:'saas',name:'Modern SaaS',icon:'🚀',preview:{bg:'linear-gradient(135deg,#6366f1,#4f46e5)',bar:'#ffffff',bar2:'#c7d2fe'}},
+    {id:'luxury',name:'Premium',icon:'💎',preview:{bg:'linear-gradient(135deg,#1a1a1a,#2d2d2d)',bar:'#d4af37',bar2:'#ffffff'}},
+    {id:'cyber',name:'Cyberpunk',icon:'⚡',preview:{bg:'linear-gradient(135deg,#000000,#1a0033)',bar:'#00f2ff',bar2:'#ff00ff'}},
+    {id:'natural',name:'Organic',icon:'🌿',preview:{bg:'linear-gradient(135deg,#f0f4f0,#d9e4d9)',bar:'#166534',bar2:'#4ade80'}},
 ];
-const TIPOS_CAMPO=[{value:‘texto’,label:‘Texto corto’},{value:‘parrafo’,label:‘Párrafo’},{value:‘opciones’,label:‘Selección única’},{value:‘multiple’,label:‘Múltiple opción’},{value:‘select’,label:‘Desplegable’}];
+const TIPOS_CAMPO=[{value:'texto',label:'Texto corto'},{value:'parrafo',label:'Párrafo'},{value:'opciones',label:'Selección única'},{value:'multiple',label:'Múltiple opción'},{value:'select',label:'Desplegable'}];
 const TEMA_CSS={
-dark:{body:‘background:#0f172a;color:#e2e8f0;font-family:“Inter”,sans-serif;’,header:‘background:linear-gradient(135deg,#1e293b,#0f172a);border-bottom:1px solid rgba(99,102,241,0.3);’,h1:‘color:#ffffff;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.15;’,h2:‘color:#c7d2fe;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:400;opacity:0.9;’,desc:‘color:#94a3b8;font-size:1.05rem;line-height:1.75;’,cajas_bg:‘background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.25);’,cajas_title:‘color:#a5b4fc;’,cajas_text:‘color:#94a3b8;’,form_bg:‘background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);’,form_input:‘background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);color:white;’,form_label:‘color:#cbd5e1;’,accent:’#6366f1’,logo_text:’#ffffff’},
-light:{body:‘background:#f8fafc;color:#1e293b;font-family:“Inter”,sans-serif;’,header:‘background:white;border-bottom:1px solid #e2e8f0;box-shadow:0 1px 8px rgba(0,0,0,0.06);’,h1:‘color:#0f172a;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.15;’,h2:‘color:#475569;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:400;’,desc:‘color:#64748b;font-size:1.05rem;line-height:1.75;’,cajas_bg:‘background:white;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,0.04);’,cajas_title:‘color:#6366f1;’,cajas_text:‘color:#64748b;’,form_bg:‘background:white;border:1px solid #e2e8f0;box-shadow:0 4px 16px rgba(0,0,0,0.06);’,form_input:‘background:#f8fafc;border:1px solid #e2e8f0;color:#1e293b;’,form_label:‘color:#475569;’,accent:’#6366f1’,logo_text:’#0f172a’},
-carta:{body:‘background:#fffbf0;color:#451a03;font-family:“Georgia”,serif;’,header:‘background:#fef3c7;border-bottom:2px solid #fbbf24;’,h1:‘color:#78350f;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.15;font-family:“Georgia”,serif;’,h2:‘color:#92400e;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:400;font-style:italic;’,desc:‘color:#7c3a03;font-size:1.05rem;line-height:1.85;’,cajas_bg:‘background:#fff7ed;border:1px solid #fde68a;’,cajas_title:‘color:#b45309;’,cajas_text:‘color:#92400e;’,form_bg:‘background:#fff7ed;border:2px solid #fde68a;’,form_input:‘background:white;border:1px solid #fde68a;color:#451a03;’,form_label:‘color:#92400e;’,accent:’#d97706’,logo_text:’#78350f’},
-tienda:{body:‘background:#fff0f9;color:#500724;font-family:“Inter”,sans-serif;’,header:‘background:white;border-bottom:2px solid #fbcfe8;box-shadow:0 2px 12px rgba(236,72,153,0.1);’,h1:‘color:#be185d;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.15;’,h2:‘color:#9d174d;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:500;’,desc:‘color:#831843;font-size:1.05rem;line-height:1.75;’,cajas_bg:‘background:white;border:1px solid #fbcfe8;box-shadow:0 2px 8px rgba(236,72,153,0.08);’,cajas_title:‘color:#be185d;’,cajas_text:‘color:#9d174d;’,form_bg:‘background:white;border:2px solid #fbcfe8;box-shadow:0 4px 20px rgba(236,72,153,0.1);’,form_input:‘background:#fff0f9;border:1px solid #fbcfe8;color:#500724;’,form_label:‘color:#9d174d;’,accent:’#ec4899’,logo_text:’#be185d’},
-noticia:{body:‘background:#f0f9ff;color:#0c4a6e;font-family:“Georgia”,serif;’,header:‘background:#0c4a6e;border-bottom:3px solid #0ea5e9;’,h1:‘color:#0c4a6e;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.15;font-family:“Georgia”,serif;’,h2:‘color:#075985;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:400;font-style:italic;’,desc:‘color:#0369a1;font-size:1.05rem;line-height:1.85;’,cajas_bg:‘background:white;border-left:4px solid #0ea5e9;border-top:1px solid #e0f2fe;border-right:1px solid #e0f2fe;border-bottom:1px solid #e0f2fe;’,cajas_title:‘color:#0284c7;’,cajas_text:‘color:#0369a1;’,form_bg:‘background:white;border:2px solid #bae6fd;’,form_input:‘background:#f0f9ff;border:1px solid #bae6fd;color:#0c4a6e;’,form_label:‘color:#075985;’,accent:’#0284c7’,logo_text:’#ffffff’},
-flow:{body:‘background:linear-gradient(160deg,#faf5ff 0%,#f0f9ff 50%,#fdf2f8 100%);min-height:100vh;color:#3b0764;font-family:“Inter”,sans-serif;’,header:‘background:rgba(255,255,255,0.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(167,139,250,0.2);’,h1:‘color:#3b0764;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.15;’,h2:‘color:#6d28d9;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:400;’,desc:‘color:#7c3aed;font-size:1.05rem;line-height:1.75;opacity:0.85;’,cajas_bg:‘background:rgba(255,255,255,0.7);backdrop-filter:blur(10px);border:1px solid rgba(167,139,250,0.3);box-shadow:0 4px 20px rgba(124,58,237,0.08);’,cajas_title:‘color:#7c3aed;’,cajas_text:‘color:#6d28d9;’,form_bg:‘background:rgba(255,255,255,0.8);backdrop-filter:blur(20px);border:1px solid rgba(167,139,250,0.3);box-shadow:0 8px 32px rgba(124,58,237,0.1);’,form_input:‘background:rgba(255,255,255,0.6);border:1px solid rgba(167,139,250,0.3);color:#3b0764;’,form_label:‘color:#6d28d9;’,accent:’#7c3aed’,logo_text:’#3b0764’},
-saas:{body:‘background:#f9fafb;color:#111827;font-family:“Inter”,sans-serif;’,header:‘background:linear-gradient(135deg,#4f46e5,#7c3aed);border-bottom:none;clip-path:polygon(0 0, 100% 0, 100% 90%, 0 100%);padding-bottom:100px;’,h1:‘color:#ffffff;font-size:clamp(2.5rem,6vw,4rem);font-weight:800;letter-spacing:-1px;’,h2:‘color:#c7d2fe;font-size:1.25rem;font-weight:400;’,desc:‘color:#4b5563;font-size:1.1rem;line-height:1.7;’,cajas_bg:‘background:#ffffff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);’,cajas_title:‘color:#4f46e5;font-weight:700;’,cajas_text:‘color:#6b7280;’,form_bg:‘background:#ffffff;border:1px solid #e5e7eb;border-radius:20px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);’,form_input:‘background:#f3f4f6;border:1px solid #d1d5db;color:#111827;’,form_label:‘color:#374151;font-weight:600;’,accent:’#4f46e5’,logo_text:’#ffffff’},
-luxury:{body:‘background:#f4f1ea;color:#1a1a1a;font-family:“Georgia”,serif;’,header:‘background:#1a1a1a;border-bottom:1px solid #d4af37;’,h1:‘color:#d4af37;font-size:clamp(2rem,5vw,3.5rem);font-weight:400;text-transform:uppercase;letter-spacing:4px;’,h2:‘color:#ffffff;font-size:1.1rem;font-weight:300;letter-spacing:2px;opacity:0.8;’,desc:‘color:#4a4a4a;font-size:1.1rem;line-height:1.8;font-style:italic;’,cajas_bg:‘background:#ffffff;border:none;border-bottom:3px solid #d4af37;border-radius:0;’,cajas_title:‘color:#1a1a1a;text-transform:uppercase;letter-spacing:1px;’,cajas_text:‘color:#666666;’,form_bg:‘background:#1a1a1a;border:1px solid #d4af37;padding:40px;’,form_input:‘background:transparent;border:none;border-bottom:1px solid #d4af37;color:#ffffff;border-radius:0;’,form_label:‘color:#d4af37;text-transform:uppercase;font-size:11px;’,accent:’#d4af37’,logo_text:’#d4af37’},
-cyber:{body:‘background:#050505;color:#00f2ff;font-family:“Courier New”,monospace;’,header:‘background:#000;border-bottom:2px solid #ff00ff;box-shadow:0 0 15px #ff00ff;’,h1:‘color:#fff;text-shadow:0 0 10px #00f2ff,0 0 20px #00f2ff;font-size:clamp(2rem,6vw,4rem);text-transform:uppercase;’,h2:‘color:#ff00ff;font-size:1.2rem;letter-spacing:3px;’,desc:‘color:#888;font-size:1rem;’,cajas_bg:‘background:rgba(255,0,255,0.05);border:1px solid #ff00ff;’,cajas_title:‘color:#00f2ff;’,cajas_text:‘color:#ffffff;opacity:0.8;’,form_bg:‘background:#0a0a0a;border:2px solid #00f2ff;box-shadow:5px 5px 0px #ff00ff;’,form_input:‘background:#1a1a1a;border:1px solid #444;color:#00f2ff;’,form_label:‘color:#ff00ff;font-size:10px;text-transform:uppercase;’,accent:’#00f2ff’,logo_text:’#00f2ff’},
-natural:{body:‘background:#f8faf8;color:#166534;font-family:“Segoe UI”,sans-serif;’,header:‘background:#ffffff;border-bottom:2px solid #86efac;’,h1:‘color:#14532d;font-size:clamp(2.2rem,5vw,3.2rem);font-weight:700;’,h2:‘color:#16a34a;font-size:1.3rem;font-weight:500;’,desc:‘color:#374151;font-size:1.1rem;line-height:1.7;’,cajas_bg:‘background:#ecfdf5;border-radius:30px;border:none;box-shadow:0 4px 20px rgba(22,101,52,0.05);’,cajas_title:‘color:#059669;font-weight:700;’,cajas_text:‘color:#065f46;’,form_bg:‘background:#ffffff;border-radius:40px;padding:35px;border:2px solid #dcfce7;’,form_input:‘background:#f0fdf4;border:1px solid #dcfce7;color:#166534;border-radius:15px;’,form_label:‘color:#166534;font-weight:700;’,accent:’#10b981’,logo_text:’#059669’},
+    dark:{body:'background:#0f172a;color:#e2e8f0;font-family:"Inter",sans-serif;',header:'background:linear-gradient(135deg,#1e293b,#0f172a);border-bottom:1px solid rgba(99,102,241,0.3);',h1:'color:#ffffff;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.15;',h2:'color:#c7d2fe;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:400;opacity:0.9;',desc:'color:#94a3b8;font-size:1.05rem;line-height:1.75;',cajas_bg:'background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.25);',cajas_title:'color:#a5b4fc;',cajas_text:'color:#94a3b8;',form_bg:'background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);',form_input:'background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);color:white;',form_label:'color:#cbd5e1;',accent:'#6366f1',logo_text:'#ffffff'},
+    light:{body:'background:#f8fafc;color:#1e293b;font-family:"Inter",sans-serif;',header:'background:white;border-bottom:1px solid #e2e8f0;box-shadow:0 1px 8px rgba(0,0,0,0.06);',h1:'color:#0f172a;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.15;',h2:'color:#475569;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:400;',desc:'color:#64748b;font-size:1.05rem;line-height:1.75;',cajas_bg:'background:white;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,0.04);',cajas_title:'color:#6366f1;',cajas_text:'color:#64748b;',form_bg:'background:white;border:1px solid #e2e8f0;box-shadow:0 4px 16px rgba(0,0,0,0.06);',form_input:'background:#f8fafc;border:1px solid #e2e8f0;color:#1e293b;',form_label:'color:#475569;',accent:'#6366f1',logo_text:'#0f172a'},
+    carta:{body:'background:#fffbf0;color:#451a03;font-family:"Georgia",serif;',header:'background:#fef3c7;border-bottom:2px solid #fbbf24;',h1:'color:#78350f;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.15;font-family:"Georgia",serif;',h2:'color:#92400e;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:400;font-style:italic;',desc:'color:#7c3a03;font-size:1.05rem;line-height:1.85;',cajas_bg:'background:#fff7ed;border:1px solid #fde68a;',cajas_title:'color:#b45309;',cajas_text:'color:#92400e;',form_bg:'background:#fff7ed;border:2px solid #fde68a;',form_input:'background:white;border:1px solid #fde68a;color:#451a03;',form_label:'color:#92400e;',accent:'#d97706',logo_text:'#78350f'},
+    tienda:{body:'background:#fff0f9;color:#500724;font-family:"Inter",sans-serif;',header:'background:white;border-bottom:2px solid #fbcfe8;box-shadow:0 2px 12px rgba(236,72,153,0.1);',h1:'color:#be185d;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.15;',h2:'color:#9d174d;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:500;',desc:'color:#831843;font-size:1.05rem;line-height:1.75;',cajas_bg:'background:white;border:1px solid #fbcfe8;box-shadow:0 2px 8px rgba(236,72,153,0.08);',cajas_title:'color:#be185d;',cajas_text:'color:#9d174d;',form_bg:'background:white;border:2px solid #fbcfe8;box-shadow:0 4px 20px rgba(236,72,153,0.1);',form_input:'background:#fff0f9;border:1px solid #fbcfe8;color:#500724;',form_label:'color:#9d174d;',accent:'#ec4899',logo_text:'#be185d'},
+    noticia:{body:'background:#f0f9ff;color:#0c4a6e;font-family:"Georgia",serif;',header:'background:#0c4a6e;border-bottom:3px solid #0ea5e9;',h1:'color:#0c4a6e;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.15;font-family:"Georgia",serif;',h2:'color:#075985;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:400;font-style:italic;',desc:'color:#0369a1;font-size:1.05rem;line-height:1.85;',cajas_bg:'background:white;border-left:4px solid #0ea5e9;border-top:1px solid #e0f2fe;border-right:1px solid #e0f2fe;border-bottom:1px solid #e0f2fe;',cajas_title:'color:#0284c7;',cajas_text:'color:#0369a1;',form_bg:'background:white;border:2px solid #bae6fd;',form_input:'background:#f0f9ff;border:1px solid #bae6fd;color:#0c4a6e;',form_label:'color:#075985;',accent:'#0284c7',logo_text:'#ffffff'},
+    flow:{body:'background:linear-gradient(160deg,#faf5ff 0%,#f0f9ff 50%,#fdf2f8 100%);min-height:100vh;color:#3b0764;font-family:"Inter",sans-serif;',header:'background:rgba(255,255,255,0.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(167,139,250,0.2);',h1:'color:#3b0764;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.15;',h2:'color:#6d28d9;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:400;',desc:'color:#7c3aed;font-size:1.05rem;line-height:1.75;opacity:0.85;',cajas_bg:'background:rgba(255,255,255,0.7);backdrop-filter:blur(10px);border:1px solid rgba(167,139,250,0.3);box-shadow:0 4px 20px rgba(124,58,237,0.08);',cajas_title:'color:#7c3aed;',cajas_text:'color:#6d28d9;',form_bg:'background:rgba(255,255,255,0.8);backdrop-filter:blur(20px);border:1px solid rgba(167,139,250,0.3);box-shadow:0 8px 32px rgba(124,58,237,0.1);',form_input:'background:rgba(255,255,255,0.6);border:1px solid rgba(167,139,250,0.3);color:#3b0764;',form_label:'color:#6d28d9;',accent:'#7c3aed',logo_text:'#3b0764'},
+    saas:{body:'background:#f9fafb;color:#111827;font-family:"Inter",sans-serif;',header:'background:linear-gradient(135deg,#4f46e5,#7c3aed);border-bottom:none;clip-path:polygon(0 0, 100% 0, 100% 90%, 0 100%);padding-bottom:100px;',h1:'color:#ffffff;font-size:clamp(2.5rem,6vw,4rem);font-weight:800;letter-spacing:-1px;',h2:'color:#c7d2fe;font-size:1.25rem;font-weight:400;',desc:'color:#4b5563;font-size:1.1rem;line-height:1.7;',cajas_bg:'background:#ffffff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);',cajas_title:'color:#4f46e5;font-weight:700;',cajas_text:'color:#6b7280;',form_bg:'background:#ffffff;border:1px solid #e5e7eb;border-radius:20px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);',form_input:'background:#f3f4f6;border:1px solid #d1d5db;color:#111827;',form_label:'color:#374151;font-weight:600;',accent:'#4f46e5',logo_text:'#ffffff'},
+    luxury:{body:'background:#f4f1ea;color:#1a1a1a;font-family:"Georgia",serif;',header:'background:#1a1a1a;border-bottom:1px solid #d4af37;',h1:'color:#d4af37;font-size:clamp(2rem,5vw,3.5rem);font-weight:400;text-transform:uppercase;letter-spacing:4px;',h2:'color:#ffffff;font-size:1.1rem;font-weight:300;letter-spacing:2px;opacity:0.8;',desc:'color:#4a4a4a;font-size:1.1rem;line-height:1.8;font-style:italic;',cajas_bg:'background:#ffffff;border:none;border-bottom:3px solid #d4af37;border-radius:0;',cajas_title:'color:#1a1a1a;text-transform:uppercase;letter-spacing:1px;',cajas_text:'color:#666666;',form_bg:'background:#1a1a1a;border:1px solid #d4af37;padding:40px;',form_input:'background:transparent;border:none;border-bottom:1px solid #d4af37;color:#ffffff;border-radius:0;',form_label:'color:#d4af37;text-transform:uppercase;font-size:11px;',accent:'#d4af37',logo_text:'#d4af37'},
+    cyber:{body:'background:#050505;color:#00f2ff;font-family:"Courier New",monospace;',header:'background:#000;border-bottom:2px solid #ff00ff;box-shadow:0 0 15px #ff00ff;',h1:'color:#fff;text-shadow:0 0 10px #00f2ff,0 0 20px #00f2ff;font-size:clamp(2rem,6vw,4rem);text-transform:uppercase;',h2:'color:#ff00ff;font-size:1.2rem;letter-spacing:3px;',desc:'color:#888;font-size:1rem;',cajas_bg:'background:rgba(255,0,255,0.05);border:1px solid #ff00ff;',cajas_title:'color:#00f2ff;',cajas_text:'color:#ffffff;opacity:0.8;',form_bg:'background:#0a0a0a;border:2px solid #00f2ff;box-shadow:5px 5px 0px #ff00ff;',form_input:'background:#1a1a1a;border:1px solid #444;color:#00f2ff;',form_label:'color:#ff00ff;font-size:10px;text-transform:uppercase;',accent:'#00f2ff',logo_text:'#00f2ff'},
+    natural:{body:'background:#f8faf8;color:#166534;font-family:"Segoe UI",sans-serif;',header:'background:#ffffff;border-bottom:2px solid #86efac;',h1:'color:#14532d;font-size:clamp(2.2rem,5vw,3.2rem);font-weight:700;',h2:'color:#16a34a;font-size:1.3rem;font-weight:500;',desc:'color:#374151;font-size:1.1rem;line-height:1.7;',cajas_bg:'background:#ecfdf5;border-radius:30px;border:none;box-shadow:0 4px 20px rgba(22,101,52,0.05);',cajas_title:'color:#059669;font-weight:700;',cajas_text:'color:#065f46;',form_bg:'background:#ffffff;border-radius:40px;padding:35px;border:2px solid #dcfce7;',form_input:'background:#f0fdf4;border:1px solid #dcfce7;color:#166534;border-radius:15px;',form_label:'color:#166534;font-weight:700;',accent:'#10b981',logo_text:'#059669'},
 };
 
-function formatFecha(iso){if(!iso)return ‘’;return new Date(iso).toLocaleString(‘es-AR’,{day:‘2-digit’,month:‘2-digit’,year:‘numeric’,hour:‘2-digit’,minute:‘2-digit’});}
+function formatFecha(iso){if(!iso)return '';return new Date(iso).toLocaleString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});}
 function uid(){return Date.now().toString(36)+Math.random().toString(36).substr(2,5);}
 
-function Toggle({value,onChange,label,sub}){return(<div className="toggle-row"><div><div className="toggle-label">{label}</div>{sub&&<div className="toggle-sub">{sub}</div>}</div><label className=“toggle-switch” onClick={()=>onChange(!value)}><div className={`toggle-track ${value?'on':''}`}></div><div className={`toggle-thumb ${value?'on':''}`}></div></label></div>);}
+function Toggle({value,onChange,label,sub}){return(<div className="toggle-row"><div><div className="toggle-label">{label}</div>{sub&&<div className="toggle-sub">{sub}</div>}</div><label className="toggle-switch" onClick={()=>onChange(!value)}><div className={`toggle-track ${value?'on':''}`}></div><div className={`toggle-thumb ${value?'on':''}`}></div></label></div>);}
 
 function PreguntaCard({pregunta,index,onUpdate,onDelete}){
-const necesitaOpciones=[‘opciones’,‘multiple’,‘select’].includes(pregunta.tipo);
-return(<div className="fq-card"><div className="fq-card-header"><div className="fq-card-num">{index+1}</div><input className=“fq-card-input” placeholder=“Nombre del campo (ej: Nombre, Teléfono)” value={pregunta.pregunta} onChange={e=>onUpdate(‘pregunta’,e.target.value)}/><button className="fq-card-delete" onClick={onDelete}>✕</button></div><div className="fq-card-row"><select className=“fq-type-select” value={pregunta.tipo} onChange={e=>onUpdate(‘tipo’,e.target.value)}>{TIPOS_CAMPO.map(t=>(<option key={t.value} value={t.value}>{t.label}</option>))}</select>{necesitaOpciones&&(<input className=“fq-opts-input” placeholder=“Op1, Op2, Op3…” value={pregunta.opciones||’’} onChange={e=>onUpdate(‘opciones’,e.target.value)}/>)}</div></div>);
+    const necesitaOpciones=['opciones','multiple','select'].includes(pregunta.tipo);
+    return(<div className="fq-card"><div className="fq-card-header"><div className="fq-card-num">{index+1}</div><input className="fq-card-input" placeholder="Nombre del campo (ej: Nombre, Teléfono)" value={pregunta.pregunta} onChange={e=>onUpdate('pregunta',e.target.value)}/><button className="fq-card-delete" onClick={onDelete}>✕</button></div><div className="fq-card-row"><select className="fq-type-select" value={pregunta.tipo} onChange={e=>onUpdate('tipo',e.target.value)}>{TIPOS_CAMPO.map(t=>(<option key={t.value} value={t.value}>{t.label}</option>))}</select>{necesitaOpciones&&(<input className="fq-opts-input" placeholder="Op1, Op2, Op3..." value={pregunta.opciones||''} onChange={e=>onUpdate('opciones',e.target.value)}/>)}</div></div>);
 }
 
-// ══ GENERADOR HTML LANDING ══
+// ── GENERADOR HTML LANDING ──
 function generarHTMLLanding({titulo,subtitulo,descripcion,cta,tema,beneficios,preguntas,todasObligatorias,multiStep,cajas,mostrarCajas,nicho,publico,waNumero,emailNotif,pagoLink,pagoTexto,heroImgUrl,heroImgBase64,heroOverlay,mostrarProblema,problemaTitle,problemaText,mostrarFaq,faqs,mostrarContador,contadorMsg,contadorHoras,accentCustom,landingId}){
-const tBase=TEMA_CSS[tema]||TEMA_CSS.dark;
-const t=accentCustom?{…tBase,accent:accentCustom}:tBase;
-const waLimpio=(waNumero||’’).replace(/\D/g,’’);
-const overlay=parseFloat(heroOverlay)||0.5;
-const heroSrc=heroImgBase64||heroImgUrl;
-const heroBg=heroSrc?`background-image:linear-gradient(rgba(0,0,0,${overlay}),rgba(0,0,0,${overlay})),url('${heroSrc}');background-size:cover;background-position:center;background-attachment:fixed;`:’’;
-const heroTextOverride=heroSrc?‘color:white!important;’:’’;
-const heroH2Override=heroSrc?‘color:rgba(255,255,255,0.85)!important;’:’’;
-const heroDescOverride=heroSrc?‘color:rgba(255,255,255,0.75)!important;’:’’;
-const lid=landingId||uid();
+    const tBase=TEMA_CSS[tema]||TEMA_CSS.dark;
+    const t=accentCustom?{...tBase,accent:accentCustom}:tBase;
+    const waLimpio=(waNumero||'').replace(/\D/g,'');
+    const overlay=parseFloat(heroOverlay)||0.5;
+    const heroSrc=heroImgBase64||heroImgUrl;
+    const heroBg=heroSrc?`background-image:linear-gradient(rgba(0,0,0,${overlay}),rgba(0,0,0,${overlay})),url('${heroSrc}');background-size:cover;background-position:center;background-attachment:fixed;`:'';
+    const heroTextOverride=heroSrc?'color:white!important;':'';
+    const heroH2Override=heroSrc?'color:rgba(255,255,255,0.85)!important;':'';
+    const heroDescOverride=heroSrc?'color:rgba(255,255,255,0.75)!important;':'';
+    const lid=landingId||uid();
 
-```
-const campoHTML=(p,i)=>{
-    const req=todasObligatorias?'required':'';const name=`campo_${i}`;const rawLabel=p.pregunta||`Campo ${i+1}`;const isWA=/tel[eé]?f?|whatsapp|celular|m[oó]vil|wha?ts?/i.test(rawLabel);const label=isWA?'Dejá tu WhatsApp':rawLabel;
-    if(p.tipo==='parrafo')return `<div class="campo"><label>${label}</label><textarea name="${name}" ${req} placeholder="Tu respuesta..."></textarea></div>`;
-    if(p.tipo==='opciones'){const opts=(p.opciones||'').split(',').map(o=>o.trim()).filter(Boolean);return `<div class="campo"><label>${label}</label><div class="radio-group">${opts.map((o,j)=>`<label class="radio-opt"><input type="radio" name="${name}" value="${o}" ${req}><span>${o}</span></label>`).join('')}</div></div>`;}
-    if(p.tipo==='multiple'){const opts=(p.opciones||'').split(',').map(o=>o.trim()).filter(Boolean);return `<div class="campo"><label>${label}</label><div class="check-group">${opts.map((o,j)=>`<label class="check-opt"><input type="checkbox" name="${name}_${j}" value="${o}"><span>${o}</span></label>`).join('')}</div></div>`;}
-    if(p.tipo==='select'){const opts=(p.opciones||'').split(',').map(o=>o.trim()).filter(Boolean);return `<div class="campo"><label>${label}</label><select name="${name}" ${req}><option value="">Seleccioná una opción...</option>${opts.map(o=>`<option value="${o}">${o}</option>`).join('')}</select></div>`;}
-    if(isWA)return `<div class="campo"><label>${label}</label><input type="tel" name="${name}" ${req} placeholder="Ej: +54 9 11 1234-5678"></div>`;
-    return `<div class="campo"><label>${label}</label><input type="text" name="${name}" ${req} placeholder="Tu respuesta..."></div>`;
-};
+    const campoHTML=(p,i)=>{
+        const req=todasObligatorias?'required':'';const name=`campo_${i}`;const rawLabel=p.pregunta||`Campo ${i+1}`;const isWA=/tel[eé]?f?|whatsapp|celular|m[oó]vil|wha?ts?/i.test(rawLabel);const label=isWA?'Dejá tu WhatsApp':rawLabel;
+        if(p.tipo==='parrafo')return `<div class="campo"><label>${label}</label><textarea name="${name}" ${req} placeholder="Tu respuesta..."></textarea></div>`;
+        if(p.tipo==='opciones'){const opts=(p.opciones||'').split(',').map(o=>o.trim()).filter(Boolean);return `<div class="campo"><label>${label}</label><div class="radio-group">${opts.map((o,j)=>`<label class="radio-opt"><input type="radio" name="${name}" value="${o}" ${req}><span>${o}</span></label>`).join('')}</div></div>`;}
+        if(p.tipo==='multiple'){const opts=(p.opciones||'').split(',').map(o=>o.trim()).filter(Boolean);return `<div class="campo"><label>${label}</label><div class="check-group">${opts.map((o,j)=>`<label class="check-opt"><input type="checkbox" name="${name}_${j}" value="${o}"><span>${o}</span></label>`).join('')}</div></div>`;}
+        if(p.tipo==='select'){const opts=(p.opciones||'').split(',').map(o=>o.trim()).filter(Boolean);return `<div class="campo"><label>${label}</label><select name="${name}" ${req}><option value="">Seleccioná una opción...</option>${opts.map(o=>`<option value="${o}">${o}</option>`).join('')}</select></div>`;}
+        if(isWA)return `<div class="campo"><label>${label}</label><input type="tel" name="${name}" ${req} placeholder="Ej: +54 9 11 1234-5678"></div>`;
+        return `<div class="campo"><label>${label}</label><input type="text" name="${name}" ${req} placeholder="Tu respuesta..."></div>`;
+    };
 
-const submitScript=`
-```
-
+    const submitScript=`
 function handleSubmit(e){
-e.preventDefault();
-var form=e.target;
-var datos={};
-form.querySelectorAll(‘input[type=text],textarea,select’).forEach(function(el){if(el.value)datos[el.name]=el.value;});
-form.querySelectorAll(‘input[type=radio]:checked’).forEach(function(el){datos[el.name]=el.value;});
-var checks=[];form.querySelectorAll(‘input[type=checkbox]:checked’).forEach(function(el){checks.push(el.value);});
-if(checks.length)datos[‘seleccionados’]=checks.join(’, ‘);
-var nombre=datos[‘campo_0’]||datos[Object.keys(datos)[0]]||‘Sin nombre’;
-var telefono=datos[‘campo_1’]||’’;
-var lead={id:’${lid}_’+Date.now(),nombre:nombre,telefono:telefono,datos:datos,landing:’${nicho||‘Sin nombre’}’,landingId:’${lid}’,estado:‘nuevo’,fecha:new Date().toISOString()};
-try{var existing=JSON.parse(localStorage.getItem(’${CRM_KEY}’)||’[]’);existing.unshift(lead);localStorage.setItem(’${CRM_KEY}’,JSON.stringify(existing));}catch(err){}
-${waLimpio?`var labels={};form.querySelectorAll('.campo').forEach(function(c){var lbl=c.querySelector('label');var inp=c.querySelector('[name]');if(lbl&&inp)labels[inp.name]=lbl.textContent.trim();});var nicho='${nicho||'tu negocio'}';var nl=nicho.toLowerCase();var ico=nl.match(/odont|dent|implant|ortod/)?'\uD83E\uDDB7':nl.match(/mecanic|auto|taller|vehic|repuest/)?'\uD83D\uDD27':nl.match(/medic|clinic|salud|doctor|farmac/)?'\uD83C\uDFE5':nl.match(/gym|fitness|entrena|nutricion/)?'\uD83D\uDCAA':nl.match(/restaurant|comida|cocina|delivery|cafe/)?'\uD83C\uDF7D\uFE0F':nl.match(/inmobil|propiedad|alquiler|depto|casa/)?'\uD83C\uDFE0':nl.match(/abogad|legal|estudio|juicio/)?'\u2696\uFE0F':nl.match(/peluquer|estetica|belleza|spa|salon/)?'\uD83D\uDC87':nl.match(/construc|refaccion|herreria|plomer/)?'\uD83C\uDFD7\uFE0F':nl.match(/mascota|veterinar|perro|gato/)?'\uD83D\uDC3E':nl.match(/contad|impuesto|finanz|factur/)?'\uD83D\uDCCA':nl.match(/ropa|indument|moda|calzado/)?'\uD83D\uDC57':'\u2705';var lines=[ico+' *Nueva consulta - '+nicho+'*',''];Object.keys(datos).forEach(function(k){var label=labels[k]||k.replace('campo_','Campo ');lines.push('\u25b8 *'+label+'*: '+datos[k]);});lines.push('');lines.push('_Enviado desde tu landing page_');var msg=encodeURIComponent(lines.join('\\\\n'));document.getElementById('successModal').classList.add('show');document.getElementById('waLink').href='https://wa.me/${waLimpio}?text='+msg;`:`document.getElementById('successModal').classList.add('show');`}
-form.reset();
+  e.preventDefault();
+  var form=e.target;
+  var datos={};
+  form.querySelectorAll('input[type=text],textarea,select').forEach(function(el){if(el.value)datos[el.name]=el.value;});
+  form.querySelectorAll('input[type=radio]:checked').forEach(function(el){datos[el.name]=el.value;});
+  var checks=[];form.querySelectorAll('input[type=checkbox]:checked').forEach(function(el){checks.push(el.value);});
+  if(checks.length)datos['seleccionados']=checks.join(', ');
+  var nombre=datos['campo_0']||datos[Object.keys(datos)[0]]||'Sin nombre';
+  var telefono=datos['campo_1']||'';
+  var lead={id:'${lid}_'+Date.now(),nombre:nombre,telefono:telefono,datos:datos,landing:'${nicho||'Sin nombre'}',landingId:'${lid}',estado:'nuevo',fecha:new Date().toISOString()};
+  try{var existing=JSON.parse(localStorage.getItem('${CRM_KEY}')||'[]');existing.unshift(lead);localStorage.setItem('${CRM_KEY}',JSON.stringify(existing));}catch(err){}
+  ${emailNotif?`try{fetch('https://formspree.io/${emailNotif}',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({_replyto:datos.campo_0||'',Negocio:'${nicho||''}',_subject:'Nuevo lead - ${nicho||'Landing'}',...datos})});}catch(fe){}`:''}
+  ${emailNotif?`fetch('https://formspree.io/f/'+lead.landingId,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email:'${emailNotif}',nicho:'${nicho||''}',datos:datos})}).catch(function(){});`:''}
+  ${waLimpio?`var labels={};form.querySelectorAll('.campo').forEach(function(c){var lbl=c.querySelector('label');var inp=c.querySelector('[name]');if(lbl&&inp)labels[inp.name]=lbl.textContent.trim();});var nicho='${nicho||'tu negocio'}';var nl=nicho.toLowerCase();var ico=nl.match(/odont|dent|implant|ortod/)?'\uD83E\uDDB7':nl.match(/mecanic|auto|taller|vehic|repuest/)?'\uD83D\uDD27':nl.match(/medic|clinic|salud|doctor|farmac/)?'\uD83C\uDFE5':nl.match(/gym|fitness|entrena|nutricion/)?'\uD83D\uDCAA':nl.match(/restaurant|comida|cocina|delivery|cafe/)?'\uD83C\uDF7D\uFE0F':nl.match(/inmobil|propiedad|alquiler|depto|casa/)?'\uD83C\uDFE0':nl.match(/abogad|legal|estudio|juicio/)?'\u2696\uFE0F':nl.match(/peluquer|estetica|belleza|spa|salon/)?'\uD83D\uDC87':nl.match(/construc|refaccion|herreria|plomer/)?'\uD83C\uDFD7\uFE0F':nl.match(/mascota|veterinar|perro|gato/)?'\uD83D\uDC3E':nl.match(/contad|impuesto|finanz|factur/)?'\uD83D\uDCCA':nl.match(/ropa|indument|moda|calzado/)?'\uD83D\uDC57':'\u2705';var lines=[ico+' *Nueva consulta - '+nicho+'*',''];Object.keys(datos).forEach(function(k){var label=labels[k]||k.replace('campo_','Campo ');lines.push('\u25b8 *'+label+'*: '+datos[k]);});lines.push('');lines.push('_Enviado desde tu landing page_');var msg=encodeURIComponent(lines.join('\\\\n'));document.getElementById('successModal').classList.add('show');document.getElementById('waLink').href='https://wa.me/${waLimpio}?text='+msg;`:`document.getElementById('successModal').classList.add('show');`}
+  form.reset();
 }`;
 
-```
-const waModalCSS=waLimpio?`.wa-modal-btn{display:inline-block;padding:14px 32px;background:#25d366;color:white;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;margin-bottom:10px;transition:all 0.2s;}.wa-modal-btn:hover{background:#128c7e;transform:translateY(-1px);}.modal-btn-sec{padding:10px 24px;background:none;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;color:#64748b;cursor:pointer;font-family:inherit;}`:`.modal-btn{padding:14px 32px;background:#10b981;color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;}`;
-const waFloatCSS=waLimpio?`.wa-float{position:fixed;bottom:28px;right:28px;z-index:999;width:60px;height:60px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.5);text-decoration:none;transition:all 0.3s;animation:waPulse 2s infinite;}.wa-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,0.7);}.wa-float svg{width:32px;height:32px;fill:white;}.wa-float-tooltip{position:absolute;right:70px;background:#0f172a;color:white;padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;white-space:nowrap;opacity:0;transition:opacity 0.2s;pointer-events:none;}.wa-float:hover .wa-float-tooltip{opacity:1;}@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.5)}50%{box-shadow:0 4px 32px rgba(37,211,102,0.85),0 0 0 8px rgba(37,211,102,0.15)}}`:'' ;
-const waMsgFloat='Hola! Vi la página de '+(nicho||'tu negocio');
-const waFloatURL=waLimpio?'https://wa.me/'+waLimpio+'?text='+encodeURIComponent(waMsgFloat).replace(/%2B/g,'%20'):'';
-const waFloatHTML=waLimpio?`<a href="${waFloatURL}" target="_top" class="wa-float" aria-label="Contactar por WhatsApp"><div class="wa-float-tooltip">💬 Escribinos por WhatsApp</div><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>`:'';
-const modalHTML=waLimpio?`<div class="modal-overlay" id="successModal"><div class="modal"><div class="modal-icon">🎉</div><div class="modal-title">¡Recibimos tu consulta!</div><div class="modal-sub">Gracias por escribirnos. Hacé clic abajo para contactarnos por WhatsApp y te respondemos al toque.</div><a id="waLink" href="#" target="_top" class="wa-modal-btn">💬 Ir a WhatsApp</a><button class="modal-btn-sec" onclick="document.getElementById('successModal').classList.remove('show')">Cerrar</button></div></div>`:`<div class="modal-overlay" id="successModal"><div class="modal"><div class="modal-icon">🎉</div><div class="modal-title">¡Recibimos tu consulta!</div><div class="modal-sub">Gracias por escribirnos. Te vamos a contactar en las próximas 24 horas hábiles.</div><button class="modal-btn" onclick="document.getElementById('successModal').classList.remove('show')">Perfecto, gracias</button></div></div>`;
-const cajasHTML=mostrarCajas&&cajas.length>0?`<section class="cajas-section"><div class="container"><div class="cajas-grid">${cajas.map((c,i)=>`<div class="caja"><div class="caja-num">${i+1}</div><div class="caja-titulo">${c.titulo}</div><div class="caja-desc">${c.descripcion}</div></div>`).join('')}</div></div></section>`:'';
-const beneficiosHTML=beneficios&&beneficios.filter(Boolean).length>0?`<section id="beneficios" class="beneficios-section"><div class="container"><h3 class="beneficios-title">¿Por qué elegirnos?</h3><ul class="beneficios-list">${beneficios.filter(Boolean).map(b=>`<li class="beneficio-item"><span class="beneficio-check">✓</span><span>${b}</span></li>`).join('')}</ul></div></section>`:'';
-const faqHTML=mostrarFaq&&faqs&&faqs.filter(f=>f.pregunta&&f.respuesta).length>0?`<section class="faq-section"><div class="container"><h3 class="faq-title">❓ Preguntas frecuentes</h3><div class="faq-list">${faqs.filter(f=>f.pregunta&&f.respuesta).map((f,i)=>`<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q"><span>${f.pregunta}</span><span class="faq-icon">+</span></div><div class="faq-a">${f.respuesta}</div></div>`).join('')}</div></div></section>`:'';
-const contadorHTML=mostrarContador?`<div class="urgency-bar" id="urgency-bar"><span class="urgency-msg">${contadorMsg}</span><span class="urgency-timer" id="urgency-timer">--:--:--</span><a href="#form" class="urgency-cta">Quiero el descuento →</a></div>`:'';
-const contadorCSS=mostrarContador?`.urgency-bar{position:sticky;top:0;z-index:200;background:linear-gradient(90deg,#dc2626,#b91c1c);color:white;display:flex;align-items:center;justify-content:center;gap:16px;padding:10px 20px;flex-wrap:wrap;}.urgency-msg{font-size:14px;font-weight:600;}.urgency-timer{font-size:20px;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:2px;background:rgba(0,0,0,0.2);padding:4px 12px;border-radius:6px;}.urgency-cta{font-size:12px;font-weight:700;color:white;background:rgba(255,255,255,0.2);padding:6px 14px;border-radius:20px;text-decoration:none;white-space:nowrap;transition:background 0.2s;}.urgency-cta:hover{background:rgba(255,255,255,0.35);}`:'' ;
-const contadorScript=mostrarContador?('(function(){var K="urg_'+lid+'";var D='+contadorHoras+'*3600000;var s=localStorage.getItem(K);var e=s?parseInt(s):Date.now()+D;if(!s)localStorage.setItem(K,String(e));function p(n){return n<10?"0"+n:n;}function t(){var l=Math.max(0,e-Date.now());var el=document.getElementById("urgency-timer");if(el)el.textContent=p(Math.floor(l/3600000))+":"+p(Math.floor((l%3600000)/60000))+":"+p(Math.floor((l%60000)/1000));if(l<=0){e=Date.now()+D;localStorage.setItem(K,String(e));}}t();setInterval(t,1000);})();'):''; 
-const faqCSS=mostrarFaq?'.faq-section{padding:50px 0;}.faq-title{font-size:22px;font-weight:800;margin-bottom:24px;}.faq-list{display:flex;flex-direction:column;gap:12px;}.faq-item{border-radius:12px;overflow:hidden;cursor:pointer;border:1px solid rgba(0,0,0,0.08);transition:all 0.2s;}.faq-item:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08);}.faq-q{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;font-size:15px;font-weight:700;gap:12px;}.faq-icon{font-size:22px;font-weight:300;flex-shrink:0;transition:transform 0.3s;}.faq-item.open .faq-icon{transform:rotate(45deg);}.faq-a{max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.3s;font-size:14px;line-height:1.7;padding:0 22px;}.faq-item.open .faq-a{max-height:300px;padding:0 22px 18px;}':'';
-const problemaHTML=mostrarProblema&&problemaText?`<section class="problema-section"><div class="container"><div class="problema-card"><div class="problema-icon">💸</div><div class="problema-content"><h3>${problemaTitle||'Cada día que esperás, perdés dinero real.'}</h3><p>${problemaText}</p><a href="#beneficios" class="problema-cta">Ver por qué nos eligen →</a></div></div></div></section>`:'';
-const totalPasos=preguntas.length;
-const multiStepCSS=multiStep&&preguntas.length>1?`.ms-progress{display:flex;align-items:center;gap:8px;margin-bottom:28px;}.ms-progress-bar{flex:1;height:4px;border-radius:2px;background:rgba(0,0,0,0.1);}.ms-progress-fill{height:100%;border-radius:2px;background:${t.accent};transition:width 0.4s ease;}.ms-step-label{font-size:12px;font-weight:700;color:${t.accent};white-space:nowrap;}.ms-campo{display:none;animation:msFadeIn 0.3s ease;}.ms-campo.active{display:flex;flex-direction:column;gap:6px;}.ms-nav{display:flex;gap:10px;margin-top:20px;}.ms-btn-back{padding:12px 24px;background:transparent;border:2px solid ${t.accent};border-radius:10px;color:${t.accent};font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.2s;}.ms-btn-back:hover{background:${t.accent}15;}.ms-btn-next{flex:1;padding:14px 24px;background:${t.accent};border:none;border-radius:10px;color:white;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;transition:all 0.2s;box-shadow:0 4px 14px ${t.accent}40;}.ms-btn-next:hover{opacity:0.9;transform:translateY(-1px);}@keyframes msFadeIn{from{opacity:0;transform:translateX(18px);}to{opacity:1;transform:translateX(0);}}`:'' ;
-const multiStepScript=multiStep&&preguntas.length>1?`var _msStep=0;var _msTotal=${totalPasos};function _msShow(n){document.querySelectorAll('.ms-campo').forEach(function(el,i){el.classList.toggle('active',i===n);});var fill=document.getElementById('ms-fill');if(fill)fill.style.width=((n+1)/_msTotal*100)+'%';var label=document.getElementById('ms-label');if(label)label.textContent='Paso '+(n+1)+' de '+_msTotal;var back=document.getElementById('ms-back');if(back)back.style.display=n===0?'none':'block';var next=document.getElementById('ms-next');if(next)next.textContent=n===_msTotal-1?'${cta} →':'Siguiente →';}function _msNext(){var campos=document.querySelectorAll('.ms-campo');var actual=campos[_msStep];var input=actual?actual.querySelector('input,textarea,select'):null;if(input&&input.hasAttribute('required')&&!input.value.trim()){input.focus();input.style.borderColor='#ef4444';setTimeout(function(){input.style.borderColor='';},1500);return;}if(_msStep<_msTotal-1){_msStep++;_msShow(_msStep);}else{document.getElementById('ms-form').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));}}function _msBack(){if(_msStep>0){_msStep--;_msShow(_msStep);}}window.addEventListener('DOMContentLoaded',function(){_msShow(0);});`:'' ;
-const formHTML=preguntas&&preguntas.length>0?(multiStep&&preguntas.length>1?`<section class="form-section" id="form"><div class="container"><div class="form-box"><h3 class="form-title">Completá tus datos</h3><p class="form-sub">Solo ${totalPasos} preguntas rápidas.</p><div class="ms-progress"><span class="ms-step-label" id="ms-label">Paso 1 de ${totalPasos}</span><div class="ms-progress-bar"><div class="ms-progress-fill" id="ms-fill" style="width:${Math.round(1/totalPasos*100)}%"></div></div></div><form class="landing-form" id="ms-form" onsubmit="handleSubmit(event)">${preguntas.map((p,i)=>`<div class="ms-campo${i===0?' active':''}">${campoHTML(p,i)}</div>`).join('')}<div class="ms-nav"><button type="button" id="ms-back" class="ms-btn-back" onclick="_msBack()" style="display:none">← Atrás</button><button type="button" id="ms-next" class="ms-btn-next" onclick="_msNext()">Siguiente →</button></div></form></div></div></section>`:`<section class="form-section" id="form"><div class="container"><div class="form-box"><h3 class="form-title">Completá tus datos</h3><p class="form-sub">Llenás en 2 minutos y te contactamos en menos de 24hs.</p><form class="landing-form" onsubmit="handleSubmit(event)">${preguntas.map((p,i)=>campoHTML(p,i)).join('')}<button type="submit" class="submit-btn">${cta}</button></form></div></div></section>`):`<section class="form-section" id="form"><div class="container"><div class="form-box" style="text-align:center;padding:48px;"><p style="font-size:16px;opacity:0.6;margin-bottom:16px;">Agregá campos al formulario para activarlo.</p></div></div></section>`;
+    const waModalCSS=waLimpio?`.wa-modal-btn{display:inline-block;padding:14px 32px;background:#25d366;color:white;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;margin-bottom:10px;transition:all 0.2s;}.wa-modal-btn:hover{background:#128c7e;transform:translateY(-1px);}.modal-btn-sec{padding:10px 24px;background:none;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;color:#64748b;cursor:pointer;font-family:inherit;}`:`.modal-btn{padding:14px 32px;background:#10b981;color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;}`;
 
-return `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${titulo}</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{${t.body} min-height:100vh;}html{scroll-behavior:smooth;}.container{max-width:900px;margin:0 auto;padding:0 24px;}.nav{${t.header} padding:16px 0;position:sticky;top:0;z-index:100;}.nav-inner{display:flex;align-items:center;justify-content:space-between;}.nav-logo{font-size:20px;font-weight:800;color:${t.logo_text};text-decoration:none;}.nav-cta{padding:10px 22px;background:${t.accent};color:white;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;transition:opacity 0.2s;}.nav-cta:hover{opacity:0.85;}.hero{padding:80px 0 60px;${heroBg}}.hero-eyebrow{display:inline-block;background:${heroSrc?'rgba(255,255,255,0.2)':t.accent+'20'};color:${heroSrc?'white':t.accent};padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:24px;}.hero h1{${t.h1} ${heroTextOverride} margin-bottom:20px;max-width:820px;}.hero h2{${t.h2} ${heroH2Override} margin-bottom:32px;max-width:680px;}.hero-desc{${t.desc} ${heroDescOverride} max-width:620px;margin-bottom:40px;}.cta-hero-btn{display:inline-block;padding:18px 40px;background:${t.accent};color:white;border-radius:12px;font-size:16px;font-weight:800;text-decoration:none;transition:all 0.25s;box-shadow:0 8px 24px ${t.accent}40;}.cta-hero-btn:hover{transform:translateY(-2px);}.pago-direct-btn{display:inline-block;padding:12px 28px;background:rgba(255,255,255,0.15);color:white;border:2px solid rgba(255,255,255,0.5);border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;transition:all 0.25s;margin-top:16px;}.pago-direct-btn:hover{background:rgba(255,255,255,0.25);transform:translateY(-1px);}.problema-section{padding:40px 0;background-color:#fff1f2;}.problema-card{background:white;border-radius:16px;padding:30px;display:flex;align-items:flex-start;gap:24px;border:1px solid #fecdd3;box-shadow:0 4px 15px rgba(0,0,0,0.05);}.problema-icon{font-size:42px;background:#ffe4e6;width:72px;height:72px;min-width:72px;display:flex;align-items:center;justify-content:center;border-radius:50%;}.problema-content h3{color:#9f1239;font-size:1.3rem;font-weight:800;margin-bottom:10px;line-height:1.3;}.problema-content p{color:#4c0519;font-size:1rem;line-height:1.7;margin-bottom:16px;}.problema-cta{display:inline-block;padding:10px 22px;background:#ef4444;color:white;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;transition:all 0.2s;}.problema-cta:hover{background:#dc2626;transform:translateY(-1px);}.cajas-section{padding:60px 0;}.cajas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}.caja{${t.cajas_bg} border-radius:14px;padding:28px;transition:transform 0.2s;}.caja:hover{transform:translateY(-3px);}.caja-num{width:36px;height:36px;background:${t.accent};color:white;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;margin-bottom:14px;}.caja-titulo{font-size:17px;font-weight:700;${t.cajas_title} margin-bottom:8px;}.caja-desc{font-size:14px;line-height:1.65;${t.cajas_text}}.beneficios-section{padding:50px 0;}.beneficios-title{font-size:22px;font-weight:800;margin-bottom:24px;${t.h1.split(';')[0]};}.beneficios-list{list-style:none;display:flex;flex-direction:column;gap:12px;}.beneficio-item{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.5;}.beneficio-check{width:24px;height:24px;background:${t.accent};color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;}.form-section{padding:60px 0 80px;}.form-box{${t.form_bg} border-radius:20px;padding:40px;}.form-title{font-size:24px;font-weight:800;margin-bottom:8px;${t.h1.split(';')[0]};}.form-sub{font-size:14px;${t.desc} margin-bottom:32px;}.landing-form{display:flex;flex-direction:column;gap:18px;}.campo{display:flex;flex-direction:column;gap:6px;}.campo label{font-size:13px;font-weight:700;${t.form_label} text-transform:uppercase;letter-spacing:0.5px;}.campo input[type="text"],.campo textarea,.campo select{${t.form_input} padding:12px 16px;border-radius:10px;font-size:14px;font-family:inherit;transition:all 0.2s;width:100%;}.campo textarea{min-height:100px;resize:vertical;}.campo input:focus,.campo textarea:focus,.campo select:focus{outline:none;border-color:${t.accent};box-shadow:0 0 0 3px ${t.accent}20;}.radio-group,.check-group{display:flex;flex-direction:column;gap:8px;}.radio-opt,.check-opt{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;cursor:pointer;${t.form_input} transition:all 0.15s;}.radio-opt:hover,.check-opt:hover{border-color:${t.accent};}.radio-opt input,.check-opt input{accent-color:${t.accent};}.submit-btn{padding:16px 32px;background:${t.accent};color:white;border:none;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;transition:all 0.25s;margin-top:8px;box-shadow:0 6px 20px ${t.accent}40;font-family:inherit;}.submit-btn:hover{transform:translateY(-2px);opacity:0.92;}.footer{padding:32px 0;border-top:1px solid ${t.accent}20;text-align:center;font-size:13px;opacity:0.5;}.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;align-items:center;justify-content:center;}.modal-overlay.show{display:flex;}.modal{background:white;border-radius:20px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,0.3);}.modal-icon{font-size:48px;margin-bottom:16px;}.modal-title{font-size:22px;font-weight:800;color:#0f172a;margin-bottom:8px;}.modal-sub{font-size:14px;color:#64748b;margin-bottom:24px;line-height:1.6;display:flex;flex-direction:column;gap:10px;align-items:center;}${waModalCSS}${multiStepCSS}${waFloatCSS}${faqCSS}${contadorCSS}@media(max-width:640px){.hero{padding:50px 0 40px;background-attachment:scroll;}.hero h1{font-size:1.9rem;}.form-box{padding:24px;}.cajas-grid{grid-template-columns:1fr;}.problema-card{flex-direction:column;align-items:center;text-align:center;}}</style></head><body><nav class="nav"><div class="container"><div class="nav-inner"><a href="javascript:void(0)" class="nav-logo">${nicho?nicho.charAt(0).toUpperCase()+nicho.slice(1):'Mi Negocio'}</a><a href="#form" class="nav-cta">${cta}</a></div></div></nav>${contadorHTML}<section class="hero"><div class="container"><div class="hero-eyebrow">${publico||'Para vos'}</div><h1>${titulo}</h1><h2>${subtitulo}</h2><p class="hero-desc">${descripcion}</p><a href="#form" class="cta-hero-btn">${cta} →</a>${pagoLink?'<br><a href="'+(pagoLink)+'" target="_top" class="pago-direct-btn">💳 '+(pagoTexto)+' →</a>':''}</div></section>${problemaHTML}${cajasHTML}${beneficiosHTML}${faqHTML}${formHTML}<footer class="footer"><div class="container"><p>© ${new Date().getFullYear()} ${nicho?nicho.charAt(0).toUpperCase()+nicho.slice(1):'Mi Negocio'} · Todos los derechos reservados</p></div></footer>${modalHTML}${waFloatHTML}<script>${submitScript}${multiStepScript}${contadorScript}
-```
+    // ── BOTÓN FLOTANTE DE WHATSAPP (solo si hay número) ──
+    const waFloatCSS=waLimpio?`.wa-float{position:fixed;bottom:28px;right:28px;z-index:999;width:60px;height:60px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.5);text-decoration:none;transition:all 0.3s;animation:waPulse 2s infinite;}.wa-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,0.7);}.wa-float svg{width:32px;height:32px;fill:white;}.wa-float-tooltip{position:absolute;right:70px;background:#0f172a;color:white;padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;white-space:nowrap;opacity:0;transition:opacity 0.2s;pointer-events:none;}.wa-float:hover .wa-float-tooltip{opacity:1;}@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.5)}50%{box-shadow:0 4px 32px rgba(37,211,102,0.85),0 0 0 8px rgba(37,211,102,0.15)}}`:'' ;
 
-(function(){function fixAnchors(){document.querySelectorAll(‘a[href^=”#”]’).forEach(function(a){if(a._anchorFixed)return;a._anchorFixed=true;a.addEventListener(‘click’,function(e){var t=a.getAttribute(‘href’);if(!t||t===’#’||t===‘javascript:void(0)’){e.preventDefault();return;}var el=document.querySelector(t);if(el){e.preventDefault();el.scrollIntoView({behavior:‘smooth’});}});});}if(document.readyState===‘loading’){document.addEventListener(‘DOMContentLoaded’,fixAnchors);}else{fixAnchors();}})();</script></body></html>`;
+    const waMsgFloat='Hola! Vi la página de '+(nicho||'tu negocio');
+    const waFloatURL=waLimpio?'https://wa.me/'+waLimpio+'?text='+encodeURIComponent(waMsgFloat).replace(/%2B/g,'%20'):'';
+    const waFloatHTML=waLimpio
+        ?`<a href="${waFloatURL}" target="_top" class="wa-float" aria-label="Contactar por WhatsApp"><div class="wa-float-tooltip">💬 Escribinos por WhatsApp</div><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>`
+        :'';
+
+    const modalHTML=waLimpio
+        ?`<div class="modal-overlay" id="successModal"><div class="modal"><div class="modal-icon">🎉</div><div class="modal-title">¡Recibimos tu consulta!</div><div class="modal-sub">Gracias por escribirnos. Hacé clic abajo para contactarnos por WhatsApp y te respondemos al toque.</div><a id="waLink" href="#" target="_top" class="wa-modal-btn">💬 Ir a WhatsApp</a><button class="modal-btn-sec" onclick="document.getElementById('successModal').classList.remove('show')">Cerrar</button></div></div>`
+        :`<div class="modal-overlay" id="successModal"><div class="modal"><div class="modal-icon">🎉</div><div class="modal-title">¡Recibimos tu consulta!</div><div class="modal-sub">Gracias por escribirnos. Te vamos a contactar en las próximas 24 horas hábiles.</div><button class="modal-btn" onclick="document.getElementById('successModal').classList.remove('show')">Perfecto, gracias</button></div></div>`;
+
+    const cajasHTML=mostrarCajas&&cajas.length>0?`<section class="cajas-section"><div class="container"><div class="cajas-grid">${cajas.map((c,i)=>`<div class="caja"><div class="caja-num">${i+1}</div><div class="caja-titulo">${c.titulo}</div><div class="caja-desc">${c.descripcion}</div></div>`).join('')}</div></div></section>`:'';
+    const beneficiosHTML=beneficios&&beneficios.filter(Boolean).length>0?`<section id="beneficios" class="beneficios-section"><div class="container"><h3 class="beneficios-title">¿Por qué elegirnos?</h3><ul class="beneficios-list">${beneficios.filter(Boolean).map(b=>`<li class="beneficio-item"><span class="beneficio-check">✓</span><span>${b}</span></li>`).join('')}</ul></div></section>`:'';
+    const faqHTML=mostrarFaq&&faqs&&faqs.filter(f=>f.pregunta&&f.respuesta).length>0?`<section class="faq-section"><div class="container"><h3 class="faq-title">❓ Preguntas frecuentes</h3><div class="faq-list">${faqs.filter(f=>f.pregunta&&f.respuesta).map((f,i)=>`<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q"><span>${f.pregunta}</span><span class="faq-icon">+</span></div><div class="faq-a">${f.respuesta}</div></div>`).join('')}</div></div></section>`:'';
+    const contadorHTML=mostrarContador?`<div class="urgency-bar" id="urgency-bar"><span class="urgency-msg">${contadorMsg}</span><span class="urgency-timer" id="urgency-timer">--:--:--</span><a href="#form" class="urgency-cta">Quiero el descuento →</a></div>`:'';
+    const contadorCSS=mostrarContador?`.urgency-bar{position:sticky;top:0;z-index:200;background:linear-gradient(90deg,#dc2626,#b91c1c);color:white;display:flex;align-items:center;justify-content:center;gap:16px;padding:10px 20px;flex-wrap:wrap;}.urgency-msg{font-size:14px;font-weight:600;}.urgency-timer{font-size:20px;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:2px;background:rgba(0,0,0,0.2);padding:4px 12px;border-radius:6px;}.urgency-cta{font-size:12px;font-weight:700;color:white;background:rgba(255,255,255,0.2);padding:6px 14px;border-radius:20px;text-decoration:none;white-space:nowrap;transition:background 0.2s;}.urgency-cta:hover{background:rgba(255,255,255,0.35);}`:'' ;
+    const contadorScript=mostrarContador?('(function(){var K="urg_'+lid+'";var D='+contadorHoras+'*3600000;var s=localStorage.getItem(K);var e=s?parseInt(s):Date.now()+D;if(!s)localStorage.setItem(K,String(e));function p(n){return n<10?"0"+n:n;}function t(){var l=Math.max(0,e-Date.now());var el=document.getElementById("urgency-timer");if(el)el.textContent=p(Math.floor(l/3600000))+":"+p(Math.floor((l%3600000)/60000))+":"+p(Math.floor((l%60000)/1000));if(l<=0){e=Date.now()+D;localStorage.setItem(K,String(e));}}t();setInterval(t,1000);})();'):''; 
+    const faqCSS=mostrarFaq?'.faq-section{padding:50px 0;}.faq-title{font-size:22px;font-weight:800;margin-bottom:24px;}.faq-list{display:flex;flex-direction:column;gap:12px;}.faq-item{border-radius:12px;overflow:hidden;cursor:pointer;border:1px solid rgba(0,0,0,0.08);transition:all 0.2s;}.faq-item:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08);}.faq-q{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;font-size:15px;font-weight:700;gap:12px;}.faq-icon{font-size:22px;font-weight:300;flex-shrink:0;transition:transform 0.3s;}.faq-item.open .faq-icon{transform:rotate(45deg);}.faq-a{max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.3s;font-size:14px;line-height:1.7;padding:0 22px;}.faq-item.open .faq-a{max-height:300px;padding:0 22px 18px;}':'';
+    const problemaHTML=mostrarProblema&&problemaText?`<section class="problema-section"><div class="container"><div class="problema-card"><div class="problema-icon">💸</div><div class="problema-content"><h3>${problemaTitle||'Cada día que esperás, perdés dinero real.'}</h3><p>${problemaText}</p><a href="#beneficios" class="problema-cta">Ver por qué nos eligen →</a></div></div></div></section>`:'';
+    const totalPasos=preguntas.length;
+    const multiStepCSS=multiStep&&preguntas.length>1?`.ms-progress{display:flex;align-items:center;gap:8px;margin-bottom:28px;}.ms-progress-bar{flex:1;height:4px;border-radius:2px;background:rgba(0,0,0,0.1);}.ms-progress-fill{height:100%;border-radius:2px;background:${t.accent};transition:width 0.4s ease;}.ms-step-label{font-size:12px;font-weight:700;color:${t.accent};white-space:nowrap;}.ms-campo{display:none;animation:msFadeIn 0.3s ease;}.ms-campo.active{display:flex;flex-direction:column;gap:6px;}.ms-nav{display:flex;gap:10px;margin-top:20px;}.ms-btn-back{padding:12px 24px;background:transparent;border:2px solid ${t.accent};border-radius:10px;color:${t.accent};font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.2s;}.ms-btn-back:hover{background:${t.accent}15;}.ms-btn-next{flex:1;padding:14px 24px;background:${t.accent};border:none;border-radius:10px;color:white;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;transition:all 0.2s;box-shadow:0 4px 14px ${t.accent}40;}.ms-btn-next:hover{opacity:0.9;transform:translateY(-1px);}@keyframes msFadeIn{from{opacity:0;transform:translateX(18px);}to{opacity:1;transform:translateX(0);}}`:'' ;
+    const multiStepScript=multiStep&&preguntas.length>1?`
+var _msStep=0;
+var _msTotal=${totalPasos};
+function _msShow(n){
+  document.querySelectorAll('.ms-campo').forEach(function(el,i){el.classList.toggle('active',i===n);});
+  var fill=document.getElementById('ms-fill');
+  if(fill)fill.style.width=((n+1)/_msTotal*100)+'%';
+  var label=document.getElementById('ms-label');
+  if(label)label.textContent='Paso '+(n+1)+' de '+_msTotal;
+  var back=document.getElementById('ms-back');
+  if(back)back.style.display=n===0?'none':'block';
+  var next=document.getElementById('ms-next');
+  if(next)next.textContent=n===_msTotal-1?'${cta} →':'Siguiente →';
+}
+function _msNext(){
+  var campos=document.querySelectorAll('.ms-campo');
+  var actual=campos[_msStep];
+  var input=actual?actual.querySelector('input,textarea,select'):null;
+  if(input&&input.hasAttribute('required')&&!input.value.trim()){input.focus();input.style.borderColor='#ef4444';setTimeout(function(){input.style.borderColor='';},1500);return;}
+  if(_msStep<_msTotal-1){_msStep++;_msShow(_msStep);}else{document.getElementById('ms-form').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));}
+}
+function _msBack(){if(_msStep>0){_msStep--;_msShow(_msStep);}}
+window.addEventListener('DOMContentLoaded',function(){_msShow(0);});
+`:'' ;
+    const formHTML=preguntas&&preguntas.length>0
+      ?(multiStep&&preguntas.length>1
+        ?`<section class="form-section" id="form"><div class="container"><div class="form-box"><h3 class="form-title">Completá tus datos</h3><p class="form-sub">Solo ${totalPasos} preguntas rápidas.</p><div class="ms-progress"><span class="ms-step-label" id="ms-label">Paso 1 de ${totalPasos}</span><div class="ms-progress-bar"><div class="ms-progress-fill" id="ms-fill" style="width:${Math.round(1/totalPasos*100)}%"></div></div></div><form class="landing-form" id="ms-form" onsubmit="handleSubmit(event)">${preguntas.map((p,i)=>`<div class="ms-campo${i===0?' active':''}">${campoHTML(p,i)}</div>`).join('')}<div class="ms-nav"><button type="button" id="ms-back" class="ms-btn-back" onclick="_msBack()" style="display:none">← Atrás</button><button type="button" id="ms-next" class="ms-btn-next" onclick="_msNext()">Siguiente →</button></div></form></div></div></section>`
+        :`<section class="form-section" id="form"><div class="container"><div class="form-box"><h3 class="form-title">Completá tus datos</h3><p class="form-sub">Llenás en 2 minutos y te contactamos en menos de 24hs.</p><form class="landing-form" onsubmit="handleSubmit(event)">${preguntas.map((p,i)=>campoHTML(p,i)).join('')}<button type="submit" class="submit-btn">${cta}</button></form></div></div></section>`)
+      :`<section class="form-section" id="form"><div class="container"><div class="form-box" style="text-align:center;padding:48px;"><p style="font-size:16px;opacity:0.6;margin-bottom:16px;">Agregá campos al formulario para activarlo.</p></div></div></section>`;
+
+    return `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${titulo}</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{${t.body} min-height:100vh;}html{scroll-behavior:smooth;}.container{max-width:900px;margin:0 auto;padding:0 24px;}.nav{${t.header} padding:16px 0;position:sticky;top:0;z-index:100;}.nav-inner{display:flex;align-items:center;justify-content:space-between;}.nav-logo{font-size:20px;font-weight:800;color:${t.logo_text};text-decoration:none;}.nav-cta{padding:10px 22px;background:${t.accent};color:white;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;transition:opacity 0.2s;}.nav-cta:hover{opacity:0.85;}.hero{padding:80px 0 60px;${heroBg}}.hero-eyebrow{display:inline-block;background:${heroSrc?'rgba(255,255,255,0.2)':t.accent+'20'};color:${heroSrc?'white':t.accent};padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:24px;}.hero h1{${t.h1} ${heroTextOverride} margin-bottom:20px;max-width:820px;}.hero h2{${t.h2} ${heroH2Override} margin-bottom:32px;max-width:680px;}.hero-desc{${t.desc} ${heroDescOverride} max-width:620px;margin-bottom:40px;}.cta-hero-btn{display:inline-block;padding:18px 40px;background:${t.accent};color:white;border-radius:12px;font-size:16px;font-weight:800;text-decoration:none;transition:all 0.25s;box-shadow:0 8px 24px ${t.accent}40;}.cta-hero-btn:hover{transform:translateY(-2px);}.pago-direct-btn{display:inline-block;padding:12px 28px;background:rgba(255,255,255,0.15);color:white;border:2px solid rgba(255,255,255,0.5);border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;transition:all 0.25s;margin-top:16px;}.pago-direct-btn:hover{background:rgba(255,255,255,0.25);transform:translateY(-1px);}.problema-section{padding:40px 0;background-color:#fff1f2;}.problema-card{background:white;border-radius:16px;padding:30px;display:flex;align-items:flex-start;gap:24px;border:1px solid #fecdd3;box-shadow:0 4px 15px rgba(0,0,0,0.05);}.problema-icon{font-size:42px;background:#ffe4e6;width:72px;height:72px;min-width:72px;display:flex;align-items:center;justify-content:center;border-radius:50%;}.problema-content h3{color:#9f1239;font-size:1.3rem;font-weight:800;margin-bottom:10px;line-height:1.3;}.problema-content p{color:#4c0519;font-size:1rem;line-height:1.7;margin-bottom:16px;}.problema-cta{display:inline-block;padding:10px 22px;background:#ef4444;color:white;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;transition:all 0.2s;}.problema-cta:hover{background:#dc2626;transform:translateY(-1px);}.cajas-section{padding:60px 0;}.cajas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}.caja{${t.cajas_bg} border-radius:14px;padding:28px;transition:transform 0.2s;}.caja:hover{transform:translateY(-3px);}.caja-num{width:36px;height:36px;background:${t.accent};color:white;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;margin-bottom:14px;}.caja-titulo{font-size:17px;font-weight:700;${t.cajas_title} margin-bottom:8px;}.caja-desc{font-size:14px;line-height:1.65;${t.cajas_text}}.beneficios-section{padding:50px 0;}.beneficios-title{font-size:22px;font-weight:800;margin-bottom:24px;${t.h1.split(';')[0]};}.beneficios-list{list-style:none;display:flex;flex-direction:column;gap:12px;}.beneficio-item{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.5;}.beneficio-check{width:24px;height:24px;background:${t.accent};color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;}.form-section{padding:60px 0 80px;}.form-box{${t.form_bg} border-radius:20px;padding:40px;}.form-title{font-size:24px;font-weight:800;margin-bottom:8px;${t.h1.split(';')[0]};}.form-sub{font-size:14px;${t.desc} margin-bottom:32px;}.landing-form{display:flex;flex-direction:column;gap:18px;}.campo{display:flex;flex-direction:column;gap:6px;}.campo label{font-size:13px;font-weight:700;${t.form_label} text-transform:uppercase;letter-spacing:0.5px;}.campo input[type="text"],.campo textarea,.campo select{${t.form_input} padding:12px 16px;border-radius:10px;font-size:14px;font-family:inherit;transition:all 0.2s;width:100%;}.campo textarea{min-height:100px;resize:vertical;}.campo input:focus,.campo textarea:focus,.campo select:focus{outline:none;border-color:${t.accent};box-shadow:0 0 0 3px ${t.accent}20;}.radio-group,.check-group{display:flex;flex-direction:column;gap:8px;}.radio-opt,.check-opt{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;cursor:pointer;${t.form_input} transition:all 0.15s;}.radio-opt:hover,.check-opt:hover{border-color:${t.accent};}.radio-opt input,.check-opt input{accent-color:${t.accent};}.submit-btn{padding:16px 32px;background:${t.accent};color:white;border:none;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;transition:all 0.25s;margin-top:8px;box-shadow:0 6px 20px ${t.accent}40;font-family:inherit;}.submit-btn:hover{transform:translateY(-2px);opacity:0.92;}.footer{padding:32px 0;border-top:1px solid ${t.accent}20;text-align:center;font-size:13px;opacity:0.5;}.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;align-items:center;justify-content:center;}.modal-overlay.show{display:flex;}.modal{background:white;border-radius:20px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,0.3);}.modal-icon{font-size:48px;margin-bottom:16px;}.modal-title{font-size:22px;font-weight:800;color:#0f172a;margin-bottom:8px;}.modal-sub{font-size:14px;color:#64748b;margin-bottom:24px;line-height:1.6;display:flex;flex-direction:column;gap:10px;align-items:center;}${waModalCSS}${multiStepCSS}${waFloatCSS}${faqCSS}${contadorCSS}@media(max-width:640px){.hero{padding:50px 0 40px;background-attachment:scroll;}.hero h1{font-size:1.9rem;}.form-box{padding:24px;}.cajas-grid{grid-template-columns:1fr;}.problema-card{flex-direction:column;align-items:center;text-align:center;}}</style></head><body><nav class="nav"><div class="container"><div class="nav-inner"><a href="javascript:void(0)" class="nav-logo">${nicho?nicho.charAt(0).toUpperCase()+nicho.slice(1):'Mi Negocio'}</a><a href="#form" class="nav-cta">${cta}</a></div></div></nav>${contadorHTML}<section class="hero"><div class="container"><div class="hero-eyebrow">${publico||'Para vos'}</div><h1>${titulo}</h1><h2>${subtitulo}</h2><p class="hero-desc">${descripcion}</p><a href="#form" class="cta-hero-btn">${cta} →</a>${pagoLink?'<br><a href="'+(pagoLink)+'" target="_top" class="pago-direct-btn">💳 '+(pagoTexto)+' →</a>':''}</div></section>${problemaHTML}${cajasHTML}${beneficiosHTML}${faqHTML}${formHTML}<footer class="footer"><div class="container"><p>© ${new Date().getFullYear()} ${nicho?nicho.charAt(0).toUpperCase()+nicho.slice(1):'Mi Negocio'} · Todos los derechos reservados</p></div></footer>${modalHTML}${waFloatHTML}<script>${submitScript}${multiStepScript}${contadorScript}
+(function(){function fixAnchors(){document.querySelectorAll('a[href^="#"]').forEach(function(a){if(a._anchorFixed)return;a._anchorFixed=true;a.addEventListener('click',function(e){var t=a.getAttribute('href');if(!t||t==='#'||t==='javascript:void(0)'){e.preventDefault();return;}var el=document.querySelector(t);if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}});});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fixAnchors);}else{fixAnchors();}})();<\/script></body></html>`;
 }
 
 // ══ CRM PAGE ══
 function CRMPage({leads,onUpdateLead,onDeleteLead,onAddLead,mostrarToast}){
-const [filtro,setFiltro]=useState(‘todos’);
-const [search,setSearch]=useState(’’);
-const [showModal,setShowModal]=useState(false);
-const [nuevoLead,setNuevoLead]=useState({nombre:’’,telefono:’’,landing:’’,estado:‘nuevo’});
-const leadsFiltrados=leads.filter(l=>{const matchFiltro=filtro===‘todos’||l.estado===filtro;const matchSearch=!search||l.nombre.toLowerCase().includes(search.toLowerCase())||l.telefono.includes(search)||(l.landing||’’).toLowerCase().includes(search.toLowerCase());return matchFiltro&&matchSearch;});
-const stats={total:leads.length,nuevo:leads.filter(l=>l.estado===‘nuevo’).length,contactado:leads.filter(l=>l.estado===‘contactado’).length,cerrado:leads.filter(l=>l.estado===‘cerrado’).length};
-const siguienteEstado={nuevo:‘contactado’,contactado:‘cerrado’,cerrado:‘nuevo’};
-const estadoLabel={nuevo:‘🔵 Nuevo’,contactado:‘🟡 Contactado’,cerrado:‘🟢 Cerrado’};
-const guardarNuevoLead=()=>{if(!nuevoLead.nombre.trim()){mostrarToast(‘⚠️ Ingresá al menos el nombre’,‘warning’);return;}const lead={id:uid(),nombre:nuevoLead.nombre,telefono:nuevoLead.telefono,landing:nuevoLead.landing||‘Manual’,estado:nuevoLead.estado,fecha:new Date().toISOString(),datos:{}};onAddLead(lead);setNuevoLead({nombre:’’,telefono:’’,landing:’’,estado:‘nuevo’});setShowModal(false);mostrarToast(‘✅ Lead agregado’,‘success’);};
-const abrirWA=(lead)=>{const num=lead.telefono.replace(/\D/g,’’);if(!num){mostrarToast(‘⚠️ Este lead no tiene teléfono cargado’,‘warning’);return;}window.open(`https://wa.me/${num}`,’_blank’);};
-const exportarCSV=()=>{if(leads.length===0){mostrarToast(‘⚠️ No hay leads para exportar’,‘warning’);return;}const lista=filtro===‘todos’?leads:leads.filter(l=>l.estado===filtro);if(lista.length===0){mostrarToast(‘⚠️ No hay leads con ese filtro activo’,‘warning’);return;}const escapar=(v)=>{const s=String(v||’’);return s.includes(’,’)||s.includes(’”’)||s.includes(’\n’)?`"${s.replace(/"/g,'""')}"`:s;};const filas=[[‘Nombre’,‘Teléfono’,‘Landing’,‘Estado’,‘Fecha’,‘Datos’].join(’,’)];lista.forEach(l=>{const datos=l.datos&&Object.keys(l.datos).length>0?Object.entries(l.datos).map(([k,v])=>`${k}: ${v}`).join(’ | ‘):’’;filas.push([escapar(l.nombre),escapar(l.telefono),escapar(l.landing),escapar(l.estado),escapar(formatFecha(l.fecha)),escapar(datos)].join(’,’));});const bom=’\uFEFF’;const blob=new Blob([bom+filas.join(’\n’)],{type:‘text/csv;charset=utf-8;’});const url=URL.createObjectURL(blob);const a=document.createElement(‘a’);a.href=url;a.download=`leads-crm-${new Date().toLocaleDateString('es-AR').replace(/\//g,'-')}.csv`;a.click();URL.revokeObjectURL(url);mostrarToast(`📊 ${lista.length} lead${lista.length!==1?'s':''} exportado${lista.length!==1?'s':''}  a CSV`,‘success’);};
-return(<div className="crm-page">
-{showModal&&(<div className="modal-add-overlay"><div className="modal-add-box"><div className="modal-add-title">➕ Agregar lead manualmente</div><div className="modal-add-sub">Cargá los datos del lead. El nombre es obligatorio.</div><div className="modal-add-field"><label className="modal-add-label">Nombre *</label><input className=“modal-add-input” placeholder=“Juan Pérez” value={nuevoLead.nombre} onChange={e=>setNuevoLead({…nuevoLead,nombre:e.target.value})}/></div><div className="modal-add-field"><label className="modal-add-label">Teléfono (WhatsApp)</label><input className=“modal-add-input” placeholder=“5491112345678” value={nuevoLead.telefono} onChange={e=>setNuevoLead({…nuevoLead,telefono:e.target.value})}/></div><div className="modal-add-field"><label className="modal-add-label">¿De qué landing vino?</label><input className=“modal-add-input” placeholder=“cabaña córdoba, dentista, etc.” value={nuevoLead.landing} onChange={e=>setNuevoLead({…nuevoLead,landing:e.target.value})}/></div><div className="modal-add-field"><label className="modal-add-label">Estado inicial</label><select className=“modal-add-select” value={nuevoLead.estado} onChange={e=>setNuevoLead({…nuevoLead,estado:e.target.value})}><option value="nuevo">🔵 Nuevo</option><option value="contactado">🟡 Contactado</option><option value="cerrado">🟢 Cerrado</option></select></div><div className="modal-add-btns"><button className="modal-add-confirm" onClick={guardarNuevoLead}>Guardar lead</button><button className=“modal-add-cancel” onClick={()=>setShowModal(false)}>Cancelar</button></div></div></div>)}
-<div className="crm-header"><div className="crm-title">📋 CRM de Leads</div><div style={{display:‘flex’,gap:‘10px’,flexWrap:‘wrap’}}><button className=“crm-add-btn” onClick={()=>setShowModal(true)}>➕ Agregar lead</button>{leads.length>0&&<button className=“crm-export-btn” onClick={exportarCSV} title={filtro!==‘todos’?`Exportar ${filtro}s`:‘Exportar todos’}>📊 {filtro!==‘todos’?`Exportar ${filtro}s`:‘Exportar CSV’}</button>}{leads.length>0&&<button className=“crm-clear-btn” onClick={()=>{if(confirm(’¿Borrar todos los leads? Esta acción no se puede deshacer.’))onDeleteLead(’**all**’);}}>🗑️ Limpiar todo</button>}</div></div>
-<div className="crm-stats"><div className="crm-stat"><div className="crm-stat-num">{stats.total}</div><div className="crm-stat-label">Total leads</div></div><div className="crm-stat nuevo"><div className="crm-stat-num">{stats.nuevo}</div><div className="crm-stat-label">🔵 Nuevos</div></div><div className="crm-stat contactado"><div className="crm-stat-num">{stats.contactado}</div><div className="crm-stat-label">🟡 Contactados</div></div><div className="crm-stat cerrado"><div className="crm-stat-num">{stats.cerrado}</div><div className="crm-stat-label">🟢 Cerrados</div></div></div>
-<div className="crm-filters">{[‘todos’,‘nuevo’,‘contactado’,‘cerrado’].map(f=>(<button key={f} className={`crm-filter-btn ${filtro===f?'active':''}`} onClick={()=>setFiltro(f)}>{f===‘todos’?`Todos (${stats.total})`:f===‘nuevo’?`🔵 Nuevos (${stats.nuevo})`:f===‘contactado’?`🟡 Contactados (${stats.contactado})`:`🟢 Cerrados (${stats.cerrado})`}</button>))}<input className=“crm-search” placeholder=“🔍 Buscar por nombre, tel, landing…” value={search} onChange={e=>setSearch(e.target.value)}/></div>
-{leadsFiltrados.length===0?(<div className="crm-empty"><div className="crm-empty-icon">{leads.length===0?‘📭’:‘🔍’}</div><div className="crm-empty-text">{leads.length===0?‘Todavía no tenés leads’:‘No hay resultados para tu búsqueda’}</div><div className="crm-empty-sub">{leads.length===0?‘Los leads llegan automáticamente cuando alguien llena el formulario de una landing descargada. También podés agregarlos manualmente.’:‘Probá con otro filtro o búsqueda.’}</div></div>):(<div style={{overflowX:‘auto’}}><table className="crm-table"><thead><tr><th>Nombre</th><th>Teléfono</th><th>Landing</th><th>Datos</th><th>Fecha</th><th>Estado</th><th>Acciones</th></tr></thead><tbody>{leadsFiltrados.map(lead=>(<tr key={lead.id}><td><div className="crm-name">{lead.nombre}</div></td><td><div className="crm-phone">{lead.telefono||’—’}</div></td><td><span className="crm-landing-tag">{lead.landing||’—’}</span></td><td><div className=“crm-datos-cell” title={lead.datos?Object.entries(lead.datos).map(([k,v])=>`${k}: ${v}`).join(’ | ‘):’’}>{lead.datos&&Object.keys(lead.datos).length>0?Object.entries(lead.datos).slice(0,2).map(([k,v])=>`${v}`).join(’ · ‘):’—’}</div></td><td><div className="crm-date">{formatFecha(lead.fecha)}</div></td><td><button className={`crm-status-btn ${lead.estado}`} onClick={()=>onUpdateLead(lead.id,{estado:siguienteEstado[lead.estado]})} title=“Clic para cambiar estado”>{estadoLabel[lead.estado]}</button></td><td><div className="crm-actions"><button className=“crm-wa-btn” onClick={()=>abrirWA(lead)} title=“Abrir WhatsApp”>💬</button><button className=“crm-del-btn” onClick={()=>{if(confirm(’¿Eliminar este lead?’))onDeleteLead(lead.id);}} title=“Eliminar”>🗑️</button></div></td></tr>))}</tbody></table></div>)}
-</div>);
+    const [filtro,setFiltro]=useState('todos');
+    const [search,setSearch]=useState('');
+    const [showModal,setShowModal]=useState(false);
+    const [nuevoLead,setNuevoLead]=useState({nombre:'',telefono:'',landing:'',estado:'nuevo'});
+
+    const leadsFiltrados=leads.filter(l=>{
+        const matchFiltro=filtro==='todos'||l.estado===filtro;
+        const matchSearch=!search||l.nombre.toLowerCase().includes(search.toLowerCase())||l.telefono.includes(search)||(l.landing||'').toLowerCase().includes(search.toLowerCase());
+        return matchFiltro&&matchSearch;
+    });
+
+    const stats={
+        total:leads.length,
+        nuevo:leads.filter(l=>l.estado==='nuevo').length,
+        contactado:leads.filter(l=>l.estado==='contactado').length,
+        cerrado:leads.filter(l=>l.estado==='cerrado').length,
+    };
+
+    const siguienteEstado={nuevo:'contactado',contactado:'cerrado',cerrado:'nuevo'};
+    const estadoLabel={nuevo:'🔵 Nuevo',contactado:'🟡 Contactado',cerrado:'🟢 Cerrado'};
+
+    const guardarNuevoLead=()=>{
+        if(!nuevoLead.nombre.trim()){mostrarToast('⚠️ Ingresá al menos el nombre','warning');return;}
+        const lead={id:uid(),nombre:nuevoLead.nombre,telefono:nuevoLead.telefono,landing:nuevoLead.landing||'Manual',estado:nuevoLead.estado,fecha:new Date().toISOString(),datos:{}};
+        onAddLead(lead);
+        setNuevoLead({nombre:'',telefono:'',landing:'',estado:'nuevo'});
+        setShowModal(false);
+        mostrarToast('✅ Lead agregado','success');
+    };
+
+    const abrirWA=(lead)=>{
+        const num=lead.telefono.replace(/\D/g,'');
+        if(!num){mostrarToast('⚠️ Este lead no tiene teléfono cargado','warning');return;}
+        window.open(`https://wa.me/${num}`,'_blank');
+    };
+
+    const exportarCSV=()=>{
+        if(leads.length===0){mostrarToast('⚠️ No hay leads para exportar','warning');return;}
+        const lista=filtro==='todos'?leads:leads.filter(l=>l.estado===filtro);
+        if(lista.length===0){mostrarToast('⚠️ No hay leads con ese filtro activo','warning');return;}
+        const escapar=(v)=>{const s=String(v||'');return s.includes(',')||s.includes('"')||s.includes('\n')?`"${s.replace(/"/g,'""')}"`:s;};
+        const filas=[['Nombre','Teléfono','Landing','Estado','Fecha','Datos'].join(',')];
+        lista.forEach(l=>{
+            const datos=l.datos&&Object.keys(l.datos).length>0?Object.entries(l.datos).map(([k,v])=>`${k}: ${v}`).join(' | '):'';
+            filas.push([escapar(l.nombre),escapar(l.telefono),escapar(l.landing),escapar(l.estado),escapar(formatFecha(l.fecha)),escapar(datos)].join(','));
+        });
+        const bom='\uFEFF';
+        const blob=new Blob([bom+filas.join('\n')],{type:'text/csv;charset=utf-8;'});
+        const url=URL.createObjectURL(blob);
+        const a=document.createElement('a');
+        a.href=url;a.download=`leads-crm-${new Date().toLocaleDateString('es-AR').replace(/\//g,'-')}.csv`;
+        a.click();URL.revokeObjectURL(url);
+        mostrarToast(`📊 ${lista.length} lead${lista.length!==1?'s':''} exportado${lista.length!==1?'s':''}  a CSV`,'success');
+    };
+
+    return(<div className="crm-page">
+        {showModal&&(<div className="modal-add-overlay"><div className="modal-add-box">
+            <div className="modal-add-title">➕ Agregar lead manualmente</div>
+            <div className="modal-add-sub">Cargá los datos del lead. El nombre es obligatorio.</div>
+            <div className="modal-add-field"><label className="modal-add-label">Nombre *</label><input className="modal-add-input" placeholder="Juan Pérez" value={nuevoLead.nombre} onChange={e=>setNuevoLead({...nuevoLead,nombre:e.target.value})}/></div>
+            <div className="modal-add-field"><label className="modal-add-label">Teléfono (WhatsApp)</label><input className="modal-add-input" placeholder="5491112345678" value={nuevoLead.telefono} onChange={e=>setNuevoLead({...nuevoLead,telefono:e.target.value})}/></div>
+            <div className="modal-add-field"><label className="modal-add-label">¿De qué landing vino?</label><input className="modal-add-input" placeholder="cabaña córdoba, dentista, etc." value={nuevoLead.landing} onChange={e=>setNuevoLead({...nuevoLead,landing:e.target.value})}/></div>
+            <div className="modal-add-field"><label className="modal-add-label">Estado inicial</label><select className="modal-add-select" value={nuevoLead.estado} onChange={e=>setNuevoLead({...nuevoLead,estado:e.target.value})}><option value="nuevo">🔵 Nuevo</option><option value="contactado">🟡 Contactado</option><option value="cerrado">🟢 Cerrado</option></select></div>
+            <div className="modal-add-btns"><button className="modal-add-confirm" onClick={guardarNuevoLead}>Guardar lead</button><button className="modal-add-cancel" onClick={()=>setShowModal(false)}>Cancelar</button></div>
+        </div></div>)}
+
+        <div className="crm-header">
+            <div className="crm-title">📋 CRM de Leads</div>
+            <div style={{display:'flex',gap:'10px',flexWrap:'wrap'}}>
+                <button className="crm-add-btn" onClick={()=>setShowModal(true)}>➕ Agregar lead</button>
+                {leads.length>0&&<button className="crm-export-btn" onClick={exportarCSV} title={filtro!=='todos'?`Exportar ${filtro}s`:'Exportar todos'}>📊 {filtro!=='todos'?`Exportar ${filtro}s`:'Exportar CSV'}</button>}
+                {leads.length>0&&<button className="crm-clear-btn" onClick={()=>{if(confirm('¿Borrar todos los leads? Esta acción no se puede deshacer.'))onDeleteLead('__all__');}}>🗑️ Limpiar todo</button>}
+            </div>
+        </div>
+
+        <div className="crm-stats">
+            <div className="crm-stat"><div className="crm-stat-num">{stats.total}</div><div className="crm-stat-label">Total leads</div></div>
+            <div className="crm-stat nuevo"><div className="crm-stat-num">{stats.nuevo}</div><div className="crm-stat-label">🔵 Nuevos</div></div>
+            <div className="crm-stat contactado"><div className="crm-stat-num">{stats.contactado}</div><div className="crm-stat-label">🟡 Contactados</div></div>
+            <div className="crm-stat cerrado"><div className="crm-stat-num">{stats.cerrado}</div><div className="crm-stat-label">🟢 Cerrados</div></div>
+        </div>
+
+        <div className="crm-filters">
+            {['todos','nuevo','contactado','cerrado'].map(f=>(<button key={f} className={`crm-filter-btn ${filtro===f?'active':''}`} onClick={()=>setFiltro(f)}>{f==='todos'?`Todos (${stats.total})`:f==='nuevo'?`🔵 Nuevos (${stats.nuevo})`:f==='contactado'?`🟡 Contactados (${stats.contactado})`:`🟢 Cerrados (${stats.cerrado})`}</button>))}
+            <input className="crm-search" placeholder="🔍 Buscar por nombre, tel, landing..." value={search} onChange={e=>setSearch(e.target.value)}/>
+        </div>
+
+        {leadsFiltrados.length===0?(
+            <div className="crm-empty">
+                <div className="crm-empty-icon">{leads.length===0?'📭':'🔍'}</div>
+                <div className="crm-empty-text">{leads.length===0?'Todavía no tenés leads':'No hay resultados para tu búsqueda'}</div>
+                <div className="crm-empty-sub">{leads.length===0?'Los leads llegan automáticamente cuando alguien llena el formulario de una landing descargada. También podés agregarlos manualmente.':'Probá con otro filtro o búsqueda.'}</div>
+            </div>
+        ):(
+        <div style={{overflowX:'auto'}}>
+        <table className="crm-table">
+            <thead><tr><th>Nombre</th><th>Teléfono</th><th>Landing</th><th>Datos</th><th>Fecha</th><th>Estado</th><th>Acciones</th></tr></thead>
+            <tbody>
+            {leadsFiltrados.map(lead=>(
+                <tr key={lead.id}>
+                    <td><div className="crm-name">{lead.nombre}</div></td>
+                    <td><div className="crm-phone">{lead.telefono||'—'}</div></td>
+                    <td><span className="crm-landing-tag">{lead.landing||'—'}</span></td>
+                    <td><div className="crm-datos-cell" title={lead.datos?Object.entries(lead.datos).map(([k,v])=>`${k}: ${v}`).join(' | '):''}>
+                        {lead.datos&&Object.keys(lead.datos).length>0?Object.entries(lead.datos).slice(0,2).map(([k,v])=>`${v}`).join(' · '):'—'}
+                    </div></td>
+                    <td><div className="crm-date">{formatFecha(lead.fecha)}</div></td>
+                    <td><button className={`crm-status-btn ${lead.estado}`} onClick={()=>onUpdateLead(lead.id,{estado:siguienteEstado[lead.estado]})} title="Clic para cambiar estado">{estadoLabel[lead.estado]}</button></td>
+                    <td><div className="crm-actions">
+                        <button className="crm-wa-btn" onClick={()=>abrirWA(lead)} title="Abrir WhatsApp">💬</button>
+                        <button className="crm-del-btn" onClick={()=>{if(confirm('¿Eliminar este lead?'))onDeleteLead(lead.id);}} title="Eliminar">🗑️</button>
+                    </div></td>
+                </tr>
+            ))}
+            </tbody>
+        </table>
+        </div>)}
+    </div>);
 }
 
 function PreviewModal({html,temaActual,nicho,onClose,onDescargar}){
-const [device,setDevice]=useState(‘desktop’);
-const iframeRef=useRef(null);
-useEffect(()=>{const onKey=(e)=>{if(e.key===‘Escape’)onClose();};document.addEventListener(‘keydown’,onKey);document.body.style.overflow=‘hidden’;return()=>{document.removeEventListener(‘keydown’,onKey);document.body.style.overflow=’’;};},[onClose]);
-useEffect(()=>{if(iframeRef.current)iframeRef.current.srcdoc=html;},[html]);
-return(<div className="preview-overlay"><div className="preview-bar"><div className="preview-bar-left"><span style={{fontSize:‘20px’,flexShrink:0}}>👁️</span><span className="preview-bar-title">{nicho||‘Mi Landing’}</span><span className="preview-bar-badge">{temaActual.icon} {temaActual.name}</span></div><div className="preview-devices">{[{id:‘desktop’,label:‘🖥️ Desktop’},{id:‘tablet’,label:‘📱 Tablet’},{id:‘mobile’,label:‘📲 Mobile’}].map(d=>(<button key={d.id} className={`preview-device-btn ${device===d.id?'active':''}`} onClick={()=>setDevice(d.id)}>{d.label}</button>))}</div><div className="preview-bar-right"><button className="preview-dl-btn" onClick={onDescargar}>⬇️ Descargar HTML</button><button className="preview-close" onClick={onClose} title="Esc">✕</button></div></div><div className="preview-stage"><div className={`preview-frame-wrap ${device}`}><iframe ref={iframeRef} className="preview-iframe" title="Preview" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-top-navigation-by-user-activation"/></div></div></div>);
-}
-
-// ══ SECCIÓN PROMPTS — componente interno ══
-function PromptCard({angulo,icon,label,colorClass,texto,onCopiar}){
-return(
-<div className="prompt-card">
-<div className="prompt-card-header">
-<span className={`prompt-card-label ${colorClass}`}>{icon} Ángulo {label}</span>
-{texto&&<button className=“prompt-card-copy” onClick={()=>onCopiar(texto)}>📋 Copiar prompt</button>}
-</div>
-{texto
-?<div className="prompt-card-text">{texto}</div>
-:<div className="prompt-card-empty">Generá los prompts para ver este ángulo</div>
-}
-</div>
-);
+    const [device,setDevice]=useState('desktop');
+    const iframeRef=useRef(null);
+    useEffect(()=>{const onKey=(e)=>{if(e.key==='Escape')onClose();};document.addEventListener('keydown',onKey);document.body.style.overflow='hidden';return()=>{document.removeEventListener('keydown',onKey);document.body.style.overflow='';};},[onClose]);
+    useEffect(()=>{if(iframeRef.current)iframeRef.current.srcdoc=html;},[html]);
+    return(<div className="preview-overlay"><div className="preview-bar"><div className="preview-bar-left"><span style={{fontSize:'20px',flexShrink:0}}>👁️</span><span className="preview-bar-title">{nicho||'Mi Landing'}</span><span className="preview-bar-badge">{temaActual.icon} {temaActual.name}</span></div><div className="preview-devices">{[{id:'desktop',label:'🖥️ Desktop'},{id:'tablet',label:'📱 Tablet'},{id:'mobile',label:'📲 Mobile'}].map(d=>(<button key={d.id} className={`preview-device-btn ${device===d.id?'active':''}`} onClick={()=>setDevice(d.id)}>{d.label}</button>))}</div><div className="preview-bar-right"><button className="preview-dl-btn" onClick={onDescargar}>⬇️ Descargar HTML</button><button className="preview-close" onClick={onClose} title="Esc">✕</button></div></div><div className="preview-stage"><div className={`preview-frame-wrap ${device}`}><iframe ref={iframeRef} className="preview-iframe" title="Preview" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-top-navigation-by-user-activation"/></div></div></div>);
 }
 
 function App(){
-const [tabActiva,setTabActiva]=useState(‘generador’);
-const [modoIA,setModoIA]=useState(‘cliente’);
-const [nicho,setNicho]=useState(’’);
-const [publico,setPublico]=useState(’’);
-const [beneficio,setBeneficio]=useState(’’);
-const [nombreInterno,setNombreInterno]=useState(’’);
-const [cliente,setCliente]=useState(‘agencia’);
-const [marcaBlanca,setMarcaBlanca]=useState(false);
-const [estado,setEstado]=useState(‘activa’);
-const [dominio,setDominio]=useState(’’);
-const [slug,setSlug]=useState(’’);
-const [beneficios,setBeneficios]=useState([]);
-const [preguntas,setPreguntas]=useState([]);
-const [todasObligatorias,setTodasObligatorias]=useState(false);
-const [multiStep,setMultiStep]=useState(false);
-const [waNumero,setWaNumero]=useState(’’);
-const [emailNotif,setEmailNotif]=useState(’’);
-const [pagoLink,setPagoLink]=useState(’’);
-const [pagoTexto,setPagoTexto]=useState(‘Pagar directo con MercadoPago’);
-const [heroImgUrl,setHeroImgUrl]=useState(’’);
-const [heroImgBase64,setHeroImgBase64]=useState(’’);
-const [heroImgMode,setHeroImgMode]=useState(‘url’);
-const [heroOverlay,setHeroOverlay]=useState(‘0.5’);
-const [mostrarProblema,setMostrarProblema]=useState(false);
-const [problemaTitle,setProblemaTitle]=useState(‘Cada día que esperás, perdés dinero real.’);
-const [problemaText,setProblemaText]=useState(‘Los gastos fijos no se detienen mientras mirás cómo otras propiedades se llenan. Es frustrante saber que hay demanda, pero tu negocio sigue invisible para miles de clientes que buscan exactamente lo que ofrecés.’);
-const [generando,setGenerando]=useState(false);
-const [filtroAntiCuriosos,setFiltroAntiCuriosos]=useState(false);
-const [outputs,setOutputs]=useState({titulos:[],subtitulos:[],descripciones:[],ctas:[]});
-const [toast,setToast]=useState(null);
-const [saveStatus,setSaveStatus]=useState(‘idle’);
-const [sessionGuardada,setSessionGuardada]=useState(null);
-const [mostrarBanner,setMostrarBanner]=useState(false);
-const [temaSeleccionado,setTemaSeleccionado]=useState(‘dark’);
-const [accentCustom,setAccentCustom]=useState(’’);
-const [mostrarCajas,setMostrarCajas]=useState(false);
-const [cajas,setCajas]=useState([{titulo:‘Analizamos’,descripcion:‘Revisamos tu caso para ver si es viable.’},{titulo:‘Activamos’,descripcion:‘Implementación sin marearte.’},{titulo:‘Resultados’,descripcion:‘Vos atendés y cerrás.’}]);
-const [mostrarFaq,setMostrarFaq]=useState(false);
-const [mostrarContador,setMostrarContador]=useState(false);
-const [contadorMsg,setContadorMsg]=useState(’¡Oferta por tiempo limitado!’);
-const [contadorHoras,setContadorHoras]=useState(24);
-const [faqs,setFaqs]=useState([{pregunta:’¿Cómo funciona?’,respuesta:‘Completás el formulario y te contactamos en menos de 24hs.’},{pregunta:’¿Cuánto cuesta?’,respuesta:‘Tenemos planes para todos los presupuestos. Consultanos sin compromiso.’},{pregunta:’¿Cuándo veo resultados?’,respuesta:‘La mayoría de clientes ven los primeros resultados en los primeros 7 días.’}]);
-const [varSel,setVarSel]=useState({titulo:null,subtitulo:null,descripcion:null,cta:null});
-const [previewHTML,setPreviewHTML]=useState(null);
-const [imgPreviewOk,setImgPreviewOk]=useState(false);
-const [problemaAutoFilled,setProblemaAutoFilled]=useState(false);
-const [leads,setLeads]=useState([]);
+    const [tabActiva,setTabActiva]=useState('generador');
+    const [modoIA,setModoIA]=useState('cliente');
+    const [nicho,setNicho]=useState('');
+    const [publico,setPublico]=useState('');
+    const [beneficio,setBeneficio]=useState('');
+    const [nombreInterno,setNombreInterno]=useState('');
+    const [cliente,setCliente]=useState('agencia');
+    const [marcaBlanca,setMarcaBlanca]=useState(false);
+    const [estado,setEstado]=useState('activa');
+    const [dominio,setDominio]=useState('');
+    const [slug,setSlug]=useState('');
+    const [beneficios,setBeneficios]=useState([]);
+    const [preguntas,setPreguntas]=useState([]);
+    const [todasObligatorias,setTodasObligatorias]=useState(false);
+    const [multiStep,setMultiStep]=useState(false);
+    const [waNumero,setWaNumero]=useState('');
+    const [emailNotif,setEmailNotif]=useState('');
+    const [pagoLink,setPagoLink]=useState('');
+    const [pagoTexto,setPagoTexto]=useState('Pagar directo con MercadoPago');
+    const [heroImgUrl,setHeroImgUrl]=useState('');
+    const [heroImgBase64,setHeroImgBase64]=useState('');
+    const [heroImgMode,setHeroImgMode]=useState('url');// 'url' | 'upload'
+    const [heroOverlay,setHeroOverlay]=useState('0.5');
+    const [mostrarProblema,setMostrarProblema]=useState(false);
+    const [problemaTitle,setProblemaTitle]=useState('Cada día que esperás, perdés dinero real.');
+    const [problemaText,setProblemaText]=useState('Los gastos fijos no se detienen mientras mirás cómo otras propiedades se llenan. Es frustrante saber que hay demanda, pero tu negocio sigue invisible para miles de clientes que buscan exactamente lo que ofrecés.');
+    const [generando,setGenerando]=useState(false);
+    const [filtroAntiCuriosos,setFiltroAntiCuriosos]=useState(false);
+    const [outputs,setOutputs]=useState({titulos:[],subtitulos:[],descripciones:[],ctas:[]});
+    const [toast,setToast]=useState(null);
+    const [saveStatus,setSaveStatus]=useState('idle');
+    const [sessionGuardada,setSessionGuardada]=useState(null);
+    const [mostrarBanner,setMostrarBanner]=useState(false);
+    const [temaSeleccionado,setTemaSeleccionado]=useState('dark');
+    const [accentCustom,setAccentCustom]=useState('');
+    const [mostrarCajas,setMostrarCajas]=useState(false);
+    const [cajas,setCajas]=useState([{titulo:'Analizamos',descripcion:'Revisamos tu caso para ver si es viable.'},{titulo:'Activamos',descripcion:'Implementación sin marearte.'},{titulo:'Resultados',descripcion:'Vos atendés y cerrás.'}]);
+    const [mostrarFaq,setMostrarFaq]=useState(false);
+    const [mostrarContador,setMostrarContador]=useState(false);
+    const [contadorMsg,setContadorMsg]=useState('¡Oferta por tiempo limitado!');
+    const [contadorHoras,setContadorHoras]=useState(24);
+    const [faqs,setFaqs]=useState([{pregunta:'¿Cómo funciona?',respuesta:'Completás el formulario y te contactamos en menos de 24hs.'},{pregunta:'¿Cuánto cuesta?',respuesta:'Tenemos planes para todos los presupuestos. Consultanos sin compromiso.'},{pregunta:'¿Cuándo veo resultados?',respuesta:'La mayoría de clientes ven los primeros resultados en los primeros 7 días.'}]);
+    const [varSel,setVarSel]=useState({titulo:null,subtitulo:null,descripcion:null,cta:null});
+    const [previewHTML,setPreviewHTML]=useState(null);
+    const [imgPreviewOk,setImgPreviewOk]=useState(false);
+    const [problemaAutoFilled,setProblemaAutoFilled]=useState(false);
+    const [leads,setLeads]=useState([]);
+    const timerGuardado=useRef(null);
 
-```
-// ══ NUEVO ESTADO: PROMPTS ══
-const [prompts,setPrompts]=useState({dolor:'',resultado:'',sistema:'',loading:false});
+    useEffect(()=>{
+        try{const raw=localStorage.getItem(CRM_KEY);if(raw)setLeads(JSON.parse(raw));}catch(e){}
+    },[]);
 
-const timerGuardado=useRef(null);
+    useEffect(()=>{
+        const interval=setInterval(()=>{
+            try{const raw=localStorage.getItem(CRM_KEY);if(raw){const nuevos=JSON.parse(raw);if(nuevos.length!==leads.length)setLeads(nuevos);}}catch(e){}
+        },2000);
+        return()=>clearInterval(interval);
+    },[leads.length]);
 
-useEffect(()=>{try{const raw=localStorage.getItem(CRM_KEY);if(raw)setLeads(JSON.parse(raw));}catch(e){}}, []);
-useEffect(()=>{const interval=setInterval(()=>{try{const raw=localStorage.getItem(CRM_KEY);if(raw){const nuevos=JSON.parse(raw);if(nuevos.length!==leads.length)setLeads(nuevos);}}catch(e){}},2000);return()=>clearInterval(interval);},[leads.length]);
+    const persistirLeads=(lista)=>{setLeads(lista);try{localStorage.setItem(CRM_KEY,JSON.stringify(lista));}catch(e){}};
+    const onAddLead=(lead)=>persistirLeads([lead,...leads]);
+    const onUpdateLead=(id,cambios)=>persistirLeads(leads.map(l=>l.id===id?{...l,...cambios}:l));
+    const onDeleteLead=(id)=>{if(id==='__all__')persistirLeads([]);else persistirLeads(leads.filter(l=>l.id!==id));};
 
-const persistirLeads=(lista)=>{setLeads(lista);try{localStorage.setItem(CRM_KEY,JSON.stringify(lista));}catch(e){}};
-const onAddLead=(lead)=>persistirLeads([lead,...leads]);
-const onUpdateLead=(id,cambios)=>persistirLeads(leads.map(l=>l.id===id?{...l,...cambios}:l));
-const onDeleteLead=(id)=>{if(id==='__all__')persistirLeads([]);else persistirLeads(leads.filter(l=>l.id!==id));};
-const leadsNuevos=leads.filter(l=>l.estado==='nuevo').length;
+    const leadsNuevos=leads.filter(l=>l.estado==='nuevo').length;
 
-useEffect(()=>{try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const s=JSON.parse(raw);setSessionGuardada(s);setMostrarBanner(true);}}catch(e){}},[]);
+    useEffect(()=>{try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const s=JSON.parse(raw);setSessionGuardada(s);setMostrarBanner(true);}}catch(e){}},[]);
 
-useEffect(()=>{
-    if(!nicho&&!publico&&!beneficio)return;
-    if(timerGuardado.current)clearTimeout(timerGuardado.current);
-    setSaveStatus('saving');
-    timerGuardado.current=setTimeout(()=>{
-        try{const payload={modoIA,nicho,publico,beneficio,nombreInterno,cliente,marcaBlanca,estado,dominio,slug,beneficios,preguntas,todasObligatorias,multiStep,waNumero,heroImgUrl,heroOverlay,mostrarProblema,problemaTitle,problemaText,outputs,temaSeleccionado,accentCustom,mostrarCajas,cajas,mostrarFaq,faqs,mostrarContador,contadorMsg,contadorHoras,emailNotif,pagoLink,pagoTexto,savedAt:new Date().toISOString()};localStorage.setItem(STORAGE_KEY,JSON.stringify(payload));setSaveStatus('saved');setTimeout(()=>setSaveStatus('idle'),3000);}catch(e){setSaveStatus('idle');}
-    },800);
-    return()=>clearTimeout(timerGuardado.current);
-},[modoIA,nicho,publico,beneficio,nombreInterno,cliente,marcaBlanca,estado,dominio,slug,todasObligatorias,multiStep,waNumero,heroImgUrl,heroOverlay,mostrarProblema,problemaTitle,problemaText,temaSeleccionado,mostrarCajas,JSON.stringify(beneficios),JSON.stringify(preguntas),JSON.stringify(outputs),JSON.stringify(cajas),JSON.stringify(faqs)]);
+    useEffect(()=>{
+        if(!nicho&&!publico&&!beneficio)return;
+        if(timerGuardado.current)clearTimeout(timerGuardado.current);
+        setSaveStatus('saving');
+        timerGuardado.current=setTimeout(()=>{
+            try{const payload={modoIA,nicho,publico,beneficio,nombreInterno,cliente,marcaBlanca,estado,dominio,slug,beneficios,preguntas,todasObligatorias,multiStep,waNumero,heroImgUrl,heroOverlay,mostrarProblema,problemaTitle,problemaText,outputs,temaSeleccionado,accentCustom,mostrarCajas,cajas,mostrarFaq,faqs,mostrarContador,contadorMsg,contadorHoras,emailNotif,pagoLink,pagoTexto,savedAt:new Date().toISOString()};localStorage.setItem(STORAGE_KEY,JSON.stringify(payload));setSaveStatus('saved');setTimeout(()=>setSaveStatus('idle'),3000);}catch(e){setSaveStatus('idle');}
+        },800);
+        return()=>clearTimeout(timerGuardado.current);
+    },[modoIA,nicho,publico,beneficio,nombreInterno,cliente,marcaBlanca,estado,dominio,slug,todasObligatorias,multiStep,waNumero,heroImgUrl,heroOverlay,mostrarProblema,problemaTitle,problemaText,temaSeleccionado,mostrarCajas,JSON.stringify(beneficios),JSON.stringify(preguntas),JSON.stringify(outputs),JSON.stringify(cajas),JSON.stringify(faqs)]);
 
-const restaurarSesion=()=>{const s=sessionGuardada;if(!s)return;setModoIA(s.modoIA||'cliente');setNicho(s.nicho||'');setPublico(s.publico||'');setBeneficio(s.beneficio||'');setNombreInterno(s.nombreInterno||'');setCliente(s.cliente||'agencia');setMarcaBlanca(s.marcaBlanca||false);setEstado(s.estado||'activa');setDominio(s.dominio||'');setSlug(s.slug||'');setBeneficios(s.beneficios||[]);setPreguntas(s.preguntas||[]);setTodasObligatorias(s.todasObligatorias||false);if(s.multiStep!==undefined)setMultiStep(s.multiStep);if(s.waNumero)setWaNumero(s.waNumero);if(s.emailNotif)setEmailNotif(s.emailNotif);if(s.pagoLink)setPagoLink(s.pagoLink);if(s.pagoTexto)setPagoTexto(s.pagoTexto);if(s.heroImgUrl)setHeroImgUrl(s.heroImgUrl);if(s.heroOverlay)setHeroOverlay(s.heroOverlay);if(s.mostrarProblema!==undefined)setMostrarProblema(s.mostrarProblema);if(s.problemaTitle)setProblemaTitle(s.problemaTitle);if(s.problemaText)setProblemaText(s.problemaText);if(s.temaSeleccionado)setTemaSeleccionado(s.temaSeleccionado);if(s.accentCustom!==undefined)setAccentCustom(s.accentCustom||'');if(s.mostrarCajas!==undefined)setMostrarCajas(s.mostrarCajas);if(s.cajas)setCajas(s.cajas);if(s.mostrarFaq!==undefined)setMostrarFaq(s.mostrarFaq);if(s.faqs)setFaqs(s.faqs);if(s.mostrarContador!==undefined)setMostrarContador(s.mostrarContador);if(s.contadorHoras)setContadorHoras(s.contadorHoras);if(s.outputs&&s.outputs.titulos&&s.outputs.titulos.length>0){setOutputs(s.outputs);setFiltroAntiCuriosos(true);}setMostrarBanner(false);mostrarToast('✅ Sesión restaurada','success');};
+    const restaurarSesion=()=>{const s=sessionGuardada;if(!s)return;setModoIA(s.modoIA||'cliente');setNicho(s.nicho||'');setPublico(s.publico||'');setBeneficio(s.beneficio||'');setNombreInterno(s.nombreInterno||'');setCliente(s.cliente||'agencia');setMarcaBlanca(s.marcaBlanca||false);setEstado(s.estado||'activa');setDominio(s.dominio||'');setSlug(s.slug||'');setBeneficios(s.beneficios||[]);setPreguntas(s.preguntas||[]);setTodasObligatorias(s.todasObligatorias||false);if(s.multiStep!==undefined)setMultiStep(s.multiStep);if(s.waNumero)setWaNumero(s.waNumero);if(s.emailNotif)setEmailNotif(s.emailNotif);if(s.pagoLink)setPagoLink(s.pagoLink);if(s.pagoTexto)setPagoTexto(s.pagoTexto);if(s.heroImgUrl)setHeroImgUrl(s.heroImgUrl);if(s.heroOverlay)setHeroOverlay(s.heroOverlay);if(s.mostrarProblema!==undefined)setMostrarProblema(s.mostrarProblema);if(s.problemaTitle)setProblemaTitle(s.problemaTitle);if(s.problemaText)setProblemaText(s.problemaText);if(s.temaSeleccionado)setTemaSeleccionado(s.temaSeleccionado);if(s.accentCustom!==undefined)setAccentCustom(s.accentCustom||'');if(s.mostrarCajas!==undefined)setMostrarCajas(s.mostrarCajas);if(s.cajas)setCajas(s.cajas);if(s.mostrarFaq!==undefined)setMostrarFaq(s.mostrarFaq);if(s.faqs)setFaqs(s.faqs);if(s.mostrarContador!==undefined)setMostrarContador(s.mostrarContador);if(s.contadorHoras)setContadorHoras(s.contadorHoras);if(s.outputs&&s.outputs.titulos&&s.outputs.titulos.length>0){setOutputs(s.outputs);setFiltroAntiCuriosos(true);}setMostrarBanner(false);mostrarToast('✅ Sesión restaurada','success');};
 
-const actualizarCaja=(i,campo,valor)=>{const n=[...cajas];n[i]={...n[i],[campo]:valor};setCajas(n);};
-const agregarPregunta=(tipo='texto')=>setPreguntas([...preguntas,{pregunta:'',tipo,opciones:''}]);
-const agregarCamposBasicos=()=>setPreguntas([{pregunta:'Nombre',tipo:'texto',opciones:''},{pregunta:'Teléfono',tipo:'texto',opciones:''},{pregunta:'Email',tipo:'texto',opciones:''}]);
-const actualizarPregunta=(index,campo,valor)=>{const n=[...preguntas];n[index]={...n[index],[campo]:valor};setPreguntas(n);};
-const eliminarPregunta=(index)=>setPreguntas(preguntas.filter((_,i)=>i!==index));
+    const actualizarCaja=(i,campo,valor)=>{const n=[...cajas];n[i]={...n[i],[campo]:valor};setCajas(n);};
+    const agregarPregunta=(tipo='texto')=>setPreguntas([...preguntas,{pregunta:'',tipo,opciones:''}]);
+    const agregarCamposBasicos=()=>setPreguntas([{pregunta:'Nombre',tipo:'texto',opciones:''},{pregunta:'Teléfono',tipo:'texto',opciones:''},{pregunta:'Email',tipo:'texto',opciones:''}]);
+    const actualizarPregunta=(index,campo,valor)=>{const n=[...preguntas];n[index]={...n[index],[campo]:valor};setPreguntas(n);};
+    const eliminarPregunta=(index)=>setPreguntas(preguntas.filter((_,i)=>i!==index));
 
-const generarTextos=async()=>{
-    if(!nicho||!publico||!beneficio){mostrarToast('⚠️ Completa todos los campos requeridos','warning');return;}
-    setGenerando(true);setVarSel({titulo:null,subtitulo:null,descripcion:null,cta:null});
-    try{
-        const response=await fetch('/api/generate-texts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nicho,publico,beneficio,modoIA,nombreInterno})});
-        const data=await response.json();
-        if(!response.ok)throw new Error(data.message||'Error al generar textos');
-        if(data.success&&data.outputs){
-            setOutputs(data.outputs);setFiltroAntiCuriosos(true);
-            if(data.outputs.problemaTitle)setProblemaTitle(data.outputs.problemaTitle);
-            if(data.outputs.problemaText)setProblemaText(data.outputs.problemaText);
-            if(data.outputs.problemaTitle||data.outputs.problemaText){setMostrarProblema(true);setProblemaAutoFilled(true);setTimeout(()=>setProblemaAutoFilled(false),2000);}
-            mostrarToast('✨ Textos + Bloque Problema generados para '+nicho+' 💸','success');
-        }else throw new Error('Estructura de respuesta inválida');
-    }catch(err){mostrarToast('❌ Error: '+err.message,'error');}
-    finally{setGenerando(false);}
-};
+    const generarTextos=async()=>{
+        if(!nicho||!publico||!beneficio){mostrarToast('⚠️ Completa todos los campos requeridos','warning');return;}
+        setGenerando(true);setVarSel({titulo:null,subtitulo:null,descripcion:null,cta:null});
+        try{
+            const response=await fetch('/api/generate-texts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nicho,publico,beneficio,modoIA,nombreInterno})});
+            const data=await response.json();
+            if(!response.ok)throw new Error(data.message||'Error al generar textos');
+            if(data.success&&data.outputs){
+                setOutputs(data.outputs);
+                setFiltroAntiCuriosos(true);
+                if(data.outputs.problemaTitle)setProblemaTitle(data.outputs.problemaTitle);
+                if(data.outputs.problemaText)setProblemaText(data.outputs.problemaText);
+                if(data.outputs.problemaTitle||data.outputs.problemaText){setMostrarProblema(true);setProblemaAutoFilled(true);setTimeout(()=>setProblemaAutoFilled(false),2000);}
+                mostrarToast('✨ Textos + Bloque Problema generados para '+nicho+' 💸','success');
+            }else throw new Error('Estructura de respuesta inválida');
+        }catch(err){mostrarToast('❌ Error: '+err.message,'error');}
+        finally{setGenerando(false);}
+    };
 
-// ══ NUEVA FUNCIÓN: GENERAR PROMPTS IA ══
-const generarPrompts=async()=>{
-    if(!nicho||!publico||!beneficio){mostrarToast('⚠️ Completá Nicho, Público y Beneficio primero','warning');return;}
-    setPrompts(prev=>({...prev,loading:true}));
-    try{
-        const response=await fetch('https://api.anthropic.com/v1/messages',{
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({
-                model:'claude-sonnet-4-20250514',
-                max_tokens:1000,
-                system:`Sos un experto en copywriting para negocios argentinos. Generá 3 prompts de copywriting listos para usar, en español rioplatense, para el siguiente negocio. Devolvé SOLO un JSON válido sin texto extra ni backticks con esta estructura: {"dolor":"prompt ángulo dolor entre 80 y 120 palabras","resultado":"prompt ángulo resultado entre 80 y 120 palabras","sistema":"prompt ángulo sistema entre 80 y 120 palabras"}. Cada prompt debe empezar con una promesa o problema concreto y estar listo para copiar y pegar en un anuncio o landing.`,
-                messages:[{role:'user',content:`Nicho: ${nicho}\nPúblico objetivo: ${publico}\nBeneficio principal: ${beneficio}\n\nGenerá los 3 prompts de copywriting.`}]
-            })
-        });
-        const data=await response.json();
-        const raw=data.content?.[0]?.text||'';
-        const clean=raw.replace(/```json|```/g,'').trim();
-        const parsed=JSON.parse(clean);
-        setPrompts({dolor:parsed.dolor||'',resultado:parsed.resultado||'',sistema:parsed.sistema||'',loading:false});
-        mostrarToast('✅ 3 prompts generados con IA','success');
-    }catch(err){
-        setPrompts(prev=>({...prev,loading:false}));
-        mostrarToast('❌ Error al generar prompts: '+err.message,'error');
-    }
-};
+    const selVar=(tipo,index)=>setVarSel(prev=>({...prev,[tipo]:prev[tipo]===index?null:index}));
+    const editarTexto=(tipo,i,val)=>{if(!val.trim())return;const key=tipo==='titulo'?'titulos':tipo==='subtitulo'?'subtitulos':tipo==='descripcion'?'descripciones':'ctas';setOutputs(prev=>({...prev,[key]:[...prev[key].slice(0,i),val,...prev[key].slice(i+1)]}));};
+    const varCompletas=varSel.titulo!==null&&varSel.subtitulo!==null&&varSel.descripcion!==null&&varSel.cta!==null;
 
-const selVar=(tipo,index)=>setVarSel(prev=>({...prev,[tipo]:prev[tipo]===index?null:index}));
-const editarTexto=(tipo,i,val)=>{if(!val.trim())return;const key=tipo==='titulo'?'titulos':tipo==='subtitulo'?'subtitulos':tipo==='descripcion'?'descripciones':'ctas';setOutputs(prev=>({...prev,[key]:[...prev[key].slice(0,i),val,...prev[key].slice(i+1)]}));};
-const varCompletas=varSel.titulo!==null&&varSel.subtitulo!==null&&varSel.descripcion!==null&&varSel.cta!==null;
+    const buildParams=useCallback(()=>({
+        titulo:outputs.titulos[varSel.titulo],subtitulo:outputs.subtitulos[varSel.subtitulo],
+        descripcion:outputs.descripciones[varSel.descripcion],cta:outputs.ctas[varSel.cta],
+        tema:temaSeleccionado,accentCustom,beneficios,preguntas,todasObligatorias,multiStep,cajas,mostrarCajas,mostrarFaq,faqs,mostrarContador,contadorMsg,contadorHoras,nicho,publico,
+        waNumero,emailNotif,pagoLink,pagoTexto,heroImgUrl,heroImgBase64,heroOverlay,mostrarProblema,problemaTitle,problemaText,landingId:uid()
+    }),[outputs,varSel,temaSeleccionado,accentCustom,beneficios,preguntas,todasObligatorias,multiStep,cajas,mostrarCajas,mostrarFaq,mostrarContador,contadorMsg,contadorHoras,nicho,publico,waNumero,emailNotif,pagoLink,pagoTexto,heroImgUrl,heroImgBase64,heroOverlay,mostrarProblema,problemaTitle,problemaText]);
 
-const buildParams=useCallback(()=>({
-    titulo:outputs.titulos[varSel.titulo],subtitulo:outputs.subtitulos[varSel.subtitulo],
-    descripcion:outputs.descripciones[varSel.descripcion],cta:outputs.ctas[varSel.cta],
-    tema:temaSeleccionado,accentCustom,beneficios,preguntas,todasObligatorias,multiStep,cajas,mostrarCajas,mostrarFaq,faqs,mostrarContador,contadorMsg,contadorHoras,nicho,publico,
-    waNumero,emailNotif,pagoLink,pagoTexto,heroImgUrl,heroImgBase64,heroOverlay,mostrarProblema,problemaTitle,problemaText,landingId:uid()
-}),[outputs,varSel,temaSeleccionado,accentCustom,beneficios,preguntas,todasObligatorias,multiStep,cajas,mostrarCajas,mostrarFaq,mostrarContador,contadorMsg,contadorHoras,nicho,publico,waNumero,emailNotif,pagoLink,pagoTexto,heroImgUrl,heroImgBase64,heroOverlay,mostrarProblema,problemaTitle,problemaText]);
+    const abrirPreview=()=>{if(!varCompletas){mostrarToast('⚠️ Elegí una variante de cada sección primero','warning');return;}setPreviewHTML(generarHTMLLanding(buildParams()));};
+    const descargarHTML=(htmlOverride)=>{const html=htmlOverride||generarHTMLLanding(buildParams());const blob=new Blob([html],{type:'text/html'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`landing-${nicho||'mi-landing'}-${temaSeleccionado}-${Date.now()}.html`;a.click();URL.revokeObjectURL(url);mostrarToast('🏗️ ¡Landing descargada!','success');};
+    const agregarBeneficio=()=>setBeneficios([...beneficios,'']);
+    const actualizarBeneficio=(i,v)=>{const n=[...beneficios];n[i]=v;setBeneficios(n);};
+    const eliminarBeneficio=(i)=>setBeneficios(beneficios.filter((_,j)=>j!==i));
+    const copiarTexto=async(texto)=>{try{await navigator.clipboard.writeText(texto);mostrarToast('📋 Copiado','success');}catch{mostrarToast('❌ Error al copiar','error');}};
+    const exportarTextos=()=>{const contenido=`TEXTOS GENERADOS - ${new Date().toLocaleDateString()}\nNICHO: ${nicho}\nPÚBLICO: ${publico}\nBENEFICIO: ${beneficio}\n\n=== H1 TÍTULOS ===\n${outputs.titulos.map((t,i)=>`${i+1}. ${t}`).join('\n')}\n\n=== H2 SUBTÍTULOS ===\n${outputs.subtitulos.map((s,i)=>`${i+1}. ${s}`).join('\n')}\n\n=== DESCRIPCIONES ===\n${outputs.descripciones.map((d,i)=>`${i+1}. ${d}`).join('\n')}\n\n=== CALL TO ACTION ===\n${outputs.ctas.map((c,i)=>`${i+1}. ${c}`).join('\n')}`;const blob=new Blob([contenido],{type:'text/plain'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`textos-landing-${nicho||'sin-nombre'}-${Date.now()}.txt`;a.click();URL.revokeObjectURL(url);mostrarToast('💾 Textos exportados','success');};
+    const resetear=()=>{if(confirm('¿Resetear? Se perderán los textos generados.')){setOutputs({titulos:[],subtitulos:[],descripciones:[],ctas:[]});setVarSel({titulo:null,subtitulo:null,descripcion:null,cta:null});setFiltroAntiCuriosos(false);localStorage.removeItem(STORAGE_KEY);mostrarToast('🔄 Reseteado','success');}};
+    const mostrarToast=(mensaje,tipo)=>{const iconos={success:'✅',warning:'⚠️',error:'❌'};setToast({mensaje,icono:iconos[tipo]||'📢'});setTimeout(()=>setToast(null),3500);};
 
-const abrirPreview=()=>{if(!varCompletas){mostrarToast('⚠️ Elegí una variante de cada sección primero','warning');return;}setPreviewHTML(generarHTMLLanding(buildParams()));};
-const descargarHTML=(htmlOverride)=>{const html=htmlOverride||generarHTMLLanding(buildParams());const blob=new Blob([html],{type:'text/html'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`landing-${nicho||'mi-landing'}-${temaSeleccionado}-${Date.now()}.html`;a.click();URL.revokeObjectURL(url);mostrarToast('🏗️ ¡Landing descargada!','success');};
-const agregarBeneficio=()=>setBeneficios([...beneficios,'']);
-const actualizarBeneficio=(i,v)=>{const n=[...beneficios];n[i]=v;setBeneficios(n);};
-const eliminarBeneficio=(i)=>setBeneficios(beneficios.filter((_,j)=>j!==i));
-const copiarTexto=async(texto)=>{try{await navigator.clipboard.writeText(texto);mostrarToast('📋 Copiado','success');}catch{mostrarToast('❌ Error al copiar','error');}};
-const exportarTextos=()=>{const contenido=`TEXTOS GENERADOS - ${new Date().toLocaleDateString()}\nNICHO: ${nicho}\nPÚBLICO: ${publico}\nBENEFICIO: ${beneficio}\n\n=== H1 TÍTULOS ===\n${outputs.titulos.map((t,i)=>`${i+1}. ${t}`).join('\n')}\n\n=== H2 SUBTÍTULOS ===\n${outputs.subtitulos.map((s,i)=>`${i+1}. ${s}`).join('\n')}\n\n=== DESCRIPCIONES ===\n${outputs.descripciones.map((d,i)=>`${i+1}. ${d}`).join('\n')}\n\n=== CALL TO ACTION ===\n${outputs.ctas.map((c,i)=>`${i+1}. ${c}`).join('\n')}`;const blob=new Blob([contenido],{type:'text/plain'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`textos-landing-${nicho||'sin-nombre'}-${Date.now()}.txt`;a.click();URL.revokeObjectURL(url);mostrarToast('💾 Textos exportados','success');};
-const resetear=()=>{if(confirm('¿Resetear? Se perderán los textos generados.')){setOutputs({titulos:[],subtitulos:[],descripciones:[],ctas:[]});setVarSel({titulo:null,subtitulo:null,descripcion:null,cta:null});setFiltroAntiCuriosos(false);localStorage.removeItem(STORAGE_KEY);mostrarToast('🔄 Reseteado','success');}};
-const mostrarToast=(mensaje,tipo)=>{const iconos={success:'✅',warning:'⚠️',error:'❌'};setToast({mensaje,icono:iconos[tipo]||'📢'});setTimeout(()=>setToast(null),3500);};
+    const temaActual=TEMAS.find(t=>t.id===temaSeleccionado)||TEMAS[0];
+    const seleccionadas=Object.values(varSel).filter(v=>v!==null).length;
+    const SECS=[{key:'titulo',icon:'💜',label:'H1 TÍTULO',data:outputs.titulos},{key:'subtitulo',icon:'💙',label:'H2 SUBTÍTULO',data:outputs.subtitulos},{key:'descripcion',icon:'🧡',label:'DESCRIPCIÓN',data:outputs.descripciones},{key:'cta',icon:'🚀',label:'CALL TO ACTION',data:outputs.ctas}];
+    const featuresOn=[heroImgUrl?'🖼️':'',mostrarProblema?'💸':'',mostrarCajas?'📦':'',waNumero?'💬':''].filter(Boolean);
 
-const temaActual=TEMAS.find(t=>t.id===temaSeleccionado)||TEMAS[0];
-const seleccionadas=Object.values(varSel).filter(v=>v!==null).length;
-const SECS=[{key:'titulo',icon:'💜',label:'H1 TÍTULO',data:outputs.titulos},{key:'subtitulo',icon:'💙',label:'H2 SUBTÍTULO',data:outputs.subtitulos},{key:'descripcion',icon:'🧡',label:'DESCRIPCIÓN',data:outputs.descripciones},{key:'cta',icon:'🚀',label:'CALL TO ACTION',data:outputs.ctas}];
-const featuresOn=[heroImgUrl?'🖼️':'',mostrarProblema?'💸':'',mostrarCajas?'📦':'',waNumero?'💬':''].filter(Boolean);
+    return(<>
+    {previewHTML&&(<PreviewModal html={previewHTML} temaActual={temaActual} nicho={nicho} onClose={()=>setPreviewHTML(null)} onDescargar={()=>{descargarHTML(previewHTML);setPreviewHTML(null);}}/>)}
 
-const PROMPT_ANGULOS=[
-    {key:'dolor',icon:'💔',label:'Dolor',colorClass:'dolor'},
-    {key:'resultado',icon:'🏆',label:'Resultado',colorClass:'resultado'},
-    {key:'sistema',icon:'⚙️',label:'Sistema',colorClass:'sistema'},
-];
-
-return(<>
-{previewHTML&&(<PreviewModal html={previewHTML} temaActual={temaActual} nicho={nicho} onClose={()=>setPreviewHTML(null)} onDescargar={()=>{descargarHTML(previewHTML);setPreviewHTML(null);}}/>)}
-
-<div className="app-header"><div className="header-content">
-    <div className="title-container"><span className="title-icon">🚀</span><span className="title-text">Sistema Inteligente de Generación de Landing Pages con IA</span><span className="title-badge">CLAUDE AI</span></div>
-    <div className="header-right">
-        <div className="nav-tabs">
-            <button className={`nav-tab ${tabActiva==='generador'?'active':''}`} onClick={()=>setTabActiva('generador')}>✨ Generador</button>
-            <button className={`nav-tab ${tabActiva==='crm'?'active':''}`} onClick={()=>setTabActiva('crm')}>📋 CRM{leadsNuevos>0&&<span className="nav-tab-badge">{leadsNuevos}</span>}</button>
-        </div>
-        <div className={`autosave-indicator ${saveStatus}`}><div className="autosave-dot"></div>{saveStatus==='saving'&&'Guardando...'}{saveStatus==='saved'&&'✓ Guardado'}{saveStatus==='idle'&&'Guardado automático'}</div>
-    </div>
-</div></div>
-
-{tabActiva==='crm'?(
-    <CRMPage leads={leads} onUpdateLead={onUpdateLead} onDeleteLead={onDeleteLead} onAddLead={onAddLead} mostrarToast={mostrarToast}/>
-):(
-<div className="app-container">
-<div className="sidebar">
-    <div className="ia-mode-section"><div className="ia-mode-header"><div className="ia-mode-icon">🤖</div><div><div className="ia-mode-title">IA: Modo {modoIA==='cliente'?'Cliente':'Agencia'}</div></div><div className="ia-mode-badge">4 VARIANTES</div></div><div className="mode-selector"><button className={`mode-btn cliente ${modoIA==='cliente'?'active':''}`} onClick={()=>setModoIA('cliente')}><span>👤</span>Modo Cliente</button><button className={`mode-btn agencia ${modoIA==='agencia'?'active':''}`} onClick={()=>setModoIA('agencia')}><span>🏢</span>Modo Agencia</button></div></div>
-
-    <div className="config-section"><div className="config-title">🎯 NICHO</div><input type="text" className="form-input" placeholder="odontologo" value={nicho} onChange={e=>setNicho(e.target.value)}/></div>
-    <div className="config-section"><div className="config-title">👥 PÚBLICO</div><input type="text" className="form-input" placeholder="pacientes para transplante" value={publico} onChange={e=>setPublico(e.target.value)}/></div>
-    <div className="config-section"><div className="config-title">⭐ BENEFICIO PRINCIPAL</div><input type="text" className="form-input" placeholder="Promocion verano" value={beneficio} onChange={e=>setBeneficio(e.target.value)}/></div>
-
-    {modoIA==='agencia'&&(<><div className="config-header"><span className="config-header-icon">⚙️</span><span className="config-header-title">Configuración Agencia</span></div><div className="form-group"><label className="form-label">Nombre interno</label><input type="text" className="form-input" placeholder="Campaña #606" value={nombreInterno} onChange={e=>setNombreInterno(e.target.value)}/></div><div className="form-group"><label className="form-label">Asignar a Cliente</label><select className="form-select" value={cliente} onChange={e=>setCliente(e.target.value)}><option value="agencia">Es para mi (Agencia)</option><option value="cliente1">Cliente 1</option><option value="cliente2">Cliente 2</option></select></div><div className="form-group"><label className="checkbox-group"><input type="checkbox" checked={marcaBlanca} onChange={e=>setMarcaBlanca(e.target.checked)}/><span className="checkbox-label"><span>⚡</span>Vender como Marca Blanca</span></label></div><div className="form-group"><label className="form-label">Estado</label><select className="form-select" value={estado} onChange={e=>setEstado(e.target.value)}><option value="activa">Activa</option><option value="borrador">Borrador</option><option value="pausada">Pausada</option><option value="archivada">Archivada</option></select></div><div className="form-group"><label className="form-label">Dominio</label><select className="form-select" value={dominio} onChange={e=>setDominio(e.target.value)}><option value="">Seleccionar dominio...</option><option value="expertoenmetaads.com">expertoenmetaads.com</option><option value="midominio.com">midominio.com</option><option value="otro.com">otro.com</option></select></div><div className="form-group"><label className="form-label">Slug (URL)</label><input type="text" className="form-input" placeholder="mi-landing" value={slug} onChange={e=>setSlug(e.target.value)}/></div></>)}
-
-    <button className="btn-generate" onClick={generarTextos} disabled={generando}><span className="btn-text">{generando?'⏳ Generando...':'✨ Generar Textos'}</span></button>
-    {generando&&<div className="loading-text">PROCESANDO CON CLAUDE SONNET 4</div>}
-
-    {/* ══ NUEVA SECCIÓN: PROMPTS DE COPYWRITING ══ */}
-    <div className="prompts-section">
-        <div className="prompts-section-title">🧠 Prompts de Copywriting</div>
-        <button
-            className="btn-gen-prompts"
-            onClick={generarPrompts}
-            disabled={prompts.loading||!nicho}
-            title={!nicho?'Ingresá el nicho primero':''}
-        >
-            {prompts.loading?'⏳ Generando prompts...':'🎯 Generar prompts (3 ángulos)'}
-        </button>
-        {prompts.loading&&(
-            <div className="prompts-loading">
-                <div className="prompts-loading-dot"></div>
-                <div className="prompts-loading-dot"></div>
-                <div className="prompts-loading-dot"></div>
-                <span>Claude está escribiendo...</span>
+    <div className="app-header"><div className="header-content">
+        <div className="title-container"><span className="title-icon">🚀</span><span className="title-text">Sistema Inteligente de Generación de Landing Pages con IA</span><span className="title-badge">CLAUDE AI</span></div>
+        <div className="header-right">
+            <div className="nav-tabs">
+                <button className={`nav-tab ${tabActiva==='generador'?'active':''}`} onClick={()=>setTabActiva('generador')}>✨ Generador</button>
+                <button className={`nav-tab ${tabActiva==='crm'?'active':''}`} onClick={()=>setTabActiva('crm')}>
+                    📋 CRM
+                    {leadsNuevos>0&&<span className="nav-tab-badge">{leadsNuevos}</span>}
+                </button>
             </div>
-        )}
-        {PROMPT_ANGULOS.map(({key,icon,label,colorClass})=>(
-            <PromptCard
-                key={key}
-                angulo={key}
-                icon={icon}
-                label={label}
-                colorClass={colorClass}
-                texto={prompts[key]}
-                onCopiar={copiarTexto}
-            />
-        ))}
-    </div>
+            <div className={`autosave-indicator ${saveStatus}`}><div className="autosave-dot"></div>{saveStatus==='saving'&&'Guardando...'}{saveStatus==='saved'&&'✓ Guardado'}{saveStatus==='idle'&&'Guardado automático'}</div>
+        </div>
+    </div></div>
 
-    <div className="tema-section" style={{marginTop:'24px'}}>
-        <div className="tema-section-title"><div className="tema-section-icon">🎨</div><span className="tema-section-label">Tema Visual / Diseño</span><span className="tema-section-badge">LANDING</span></div>
-        <div className="tema-grid">{TEMAS.map(tema=>(<button key={tema.id} className={`tema-btn ${temaSeleccionado===tema.id?'active':''}`} onClick={()=>{setTemaSeleccionado(tema.id);mostrarToast(`🎨 Tema ${tema.name} seleccionado`,'success');}}><div className="tema-preview" style={{background:tema.preview.bg}}><div className="tema-preview-bar" style={{background:tema.preview.bar}}></div><div className="tema-preview-bar2" style={{background:tema.preview.bar2}}></div></div><div className="tema-name">{tema.icon} {tema.name}</div><div className="tema-check">✓</div></button>))}</div>
-        <div style={{marginTop:'12px',padding:'14px 16px',background:'var(--surface-2)',borderRadius:'10px',display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap'}}>
-          <span style={{fontSize:'12px',fontWeight:'700',color:'var(--gray-300)',textTransform:'uppercase',letterSpacing:'0.5px'}}>🎨 Color de acento</span>
-          <div style={{display:'flex',alignItems:'center',gap:'8px',flex:1,minWidth:'180px'}}>
-            <input type="color" value={accentCustom||'#6366f1'} onChange={e=>setAccentCustom(e.target.value)} style={{width:'36px',height:'36px',border:'none',borderRadius:'8px',cursor:'pointer',padding:'2px',background:'transparent'}}/>
-            <input type="text" placeholder="Vacío = color del tema" value={accentCustom} onChange={e=>setAccentCustom(e.target.value)} style={{flex:1,background:'var(--surface)',border:'1px solid var(--border)',borderRadius:'8px',padding:'8px 10px',fontSize:'12px',color:'var(--gray-100)',fontFamily:'monospace'}}/>
-            {accentCustom&&<button onClick={()=>setAccentCustom('')} style={{fontSize:'11px',padding:'6px 10px',background:'transparent',border:'1px solid var(--border)',borderRadius:'6px',color:'var(--gray-400)',cursor:'pointer',whiteSpace:'nowrap'}}>✕ Reset</button>}
+    {tabActiva==='crm'?(
+        <CRMPage leads={leads} onUpdateLead={onUpdateLead} onDeleteLead={onDeleteLead} onAddLead={onAddLead} mostrarToast={mostrarToast}/>
+    ):(
+    <div className="app-container">
+    <div className="sidebar">
+        <div className="ia-mode-section"><div className="ia-mode-header"><div className="ia-mode-icon">🤖</div><div><div className="ia-mode-title">IA: Modo {modoIA==='cliente'?'Cliente':'Agencia'}</div></div><div className="ia-mode-badge">4 VARIANTES</div></div><div className="mode-selector"><button className={`mode-btn cliente ${modoIA==='cliente'?'active':''}`} onClick={()=>setModoIA('cliente')}><span>👤</span>Modo Cliente</button><button className={`mode-btn agencia ${modoIA==='agencia'?'active':''}`} onClick={()=>setModoIA('agencia')}><span>🏢</span>Modo Agencia</button></div></div>
+
+        <div className="config-section"><div className="config-title">🎯 NICHO</div><input type="text" className="form-input" placeholder="odontologo" value={nicho} onChange={e=>setNicho(e.target.value)}/></div>
+        <div className="config-section"><div className="config-title">👥 PÚBLICO</div><input type="text" className="form-input" placeholder="pacientes para transplante" value={publico} onChange={e=>setPublico(e.target.value)}/></div>
+        <div className="config-section"><div className="config-title">⭐ BENEFICIO PRINCIPAL</div><input type="text" className="form-input" placeholder="Promocion verano" value={beneficio} onChange={e=>setBeneficio(e.target.value)}/></div>
+
+        {modoIA==='agencia'&&(<><div className="config-header"><span className="config-header-icon">⚙️</span><span className="config-header-title">Configuración Agencia</span></div><div className="form-group"><label className="form-label">Nombre interno</label><input type="text" className="form-input" placeholder="Campaña #606" value={nombreInterno} onChange={e=>setNombreInterno(e.target.value)}/></div><div className="form-group"><label className="form-label">Asignar a Cliente</label><select className="form-select" value={cliente} onChange={e=>setCliente(e.target.value)}><option value="agencia">Es para mi (Agencia)</option><option value="cliente1">Cliente 1</option><option value="cliente2">Cliente 2</option></select></div><div className="form-group"><label className="checkbox-group"><input type="checkbox" checked={marcaBlanca} onChange={e=>setMarcaBlanca(e.target.checked)}/><span className="checkbox-label"><span>⚡</span>Vender como Marca Blanca</span></label></div><div className="form-group"><label className="form-label">Estado</label><select className="form-select" value={estado} onChange={e=>setEstado(e.target.value)}><option value="activa">Activa</option><option value="borrador">Borrador</option><option value="pausada">Pausada</option><option value="archivada">Archivada</option></select></div><div className="form-group"><label className="form-label">Dominio</label><select className="form-select" value={dominio} onChange={e=>setDominio(e.target.value)}><option value="">Seleccionar dominio...</option><option value="expertoenmetaads.com">expertoenmetaads.com</option><option value="midominio.com">midominio.com</option><option value="otro.com">otro.com</option></select></div><div className="form-group"><label className="form-label">Slug (URL)</label><input type="text" className="form-input" placeholder="mi-landing" value={slug} onChange={e=>setSlug(e.target.value)}/></div></>)}
+
+        <button className="btn-generate" onClick={generarTextos} disabled={generando}><span className="btn-text">{generando?'⏳ Generando...':'✨ Generar Textos'}</span></button>
+        {generando&&<div className="loading-text">PROCESANDO CON CLAUDE SONNET 4</div>}
+
+        <div style={{marginTop:'16px',background:'linear-gradient(135deg,rgba(147,51,234,0.12) 0%,rgba(99,102,241,0.12) 100%)',border:'1px solid rgba(147,51,234,0.25)',borderRadius:'14px',padding:'16px'}}>
+          <div style={{fontSize:'11px',fontWeight:'700',color:'#c4b5fd',textTransform:'uppercase',letterSpacing:'1px',marginBottom:'12px',display:'flex',alignItems:'center',gap:'6px'}}>
+            <span>📋</span> Generar prompts (3 ángulos)
+          </div>
+          <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
+            <button onClick={()=>{
+              const prompt=`Sos un experto en copywriting de alto rendimiento. Generá 4 variantes de cada sección para una landing page.\n\nNicho: ${nicho||'[completar]'}\nPúblico: ${publico||'[completar]'}\nBeneficio principal: ${beneficio||'[completar]'}\n\nÁNGULO: DOLOR — Apuntá al problema más urgente que siente tu público. Hacé que cada titular toque una herida real.\n\nGenerá:\n- 4 Títulos H1 (máx 60 caracteres, ángulo dolor)\n- 4 Subtítulos H2 (máx 100 caracteres)\n- 4 Descripciones (2-3 oraciones persuasivas)\n- 3 Call to Action (máx 35 caracteres, en español)\n\nSeparar cada variante con |||`;
+              navigator.clipboard.writeText(prompt).then(()=>mostrarToast('📋 Prompt Dolor copiado','success'));
+            }} style={{width:'100%',padding:'10px 14px',background:'linear-gradient(135deg,rgba(239,68,68,0.2),rgba(220,38,38,0.2))',border:'1px solid rgba(239,68,68,0.35)',borderRadius:'9px',color:'#fca5a5',fontSize:'13px',fontWeight:'700',cursor:'pointer',textAlign:'left',transition:'all 0.2s',display:'flex',alignItems:'center',gap:'8px'}}
+              onMouseEnter={e=>e.currentTarget.style.background='linear-gradient(135deg,rgba(239,68,68,0.3),rgba(220,38,38,0.3))'}
+              onMouseLeave={e=>e.currentTarget.style.background='linear-gradient(135deg,rgba(239,68,68,0.2),rgba(220,38,38,0.2))'}>
+              <span>📄</span> Copiar prompt — Dolor
+            </button>
+            <button onClick={()=>{
+              const prompt=`Sos un experto en copywriting de alto rendimiento. Generá 4 variantes de cada sección para una landing page.\n\nNicho: ${nicho||'[completar]'}\nPúblico: ${publico||'[completar]'}\nBeneficio principal: ${beneficio||'[completar]'}\n\nÁNGULO: RESULTADO — Mostrá la transformación concreta. Qué tiene, siente o logra el cliente después de contratarte.\n\nGenerá:\n- 4 Títulos H1 (máx 60 caracteres, ángulo resultado)\n- 4 Subtítulos H2 (máx 100 caracteres)\n- 4 Descripciones (2-3 oraciones persuasivas)\n- 3 Call to Action (máx 35 caracteres, en español)\n\nSeparar cada variante con |||`;
+              navigator.clipboard.writeText(prompt).then(()=>mostrarToast('📋 Prompt Resultado copiado','success'));
+            }} style={{width:'100%',padding:'10px 14px',background:'linear-gradient(135deg,rgba(16,185,129,0.2),rgba(5,150,105,0.2))',border:'1px solid rgba(16,185,129,0.35)',borderRadius:'9px',color:'#6ee7b7',fontSize:'13px',fontWeight:'700',cursor:'pointer',textAlign:'left',transition:'all 0.2s',display:'flex',alignItems:'center',gap:'8px'}}
+              onMouseEnter={e=>e.currentTarget.style.background='linear-gradient(135deg,rgba(16,185,129,0.3),rgba(5,150,105,0.3))'}
+              onMouseLeave={e=>e.currentTarget.style.background='linear-gradient(135deg,rgba(16,185,129,0.2),rgba(5,150,105,0.2))'}>
+              <span>📄</span> Copiar prompt — Resultado
+            </button>
+            <button onClick={()=>{
+              const prompt=`Sos un experto en copywriting de alto rendimiento. Generá 4 variantes de cada sección para una landing page.\n\nNicho: ${nicho||'[completar]'}\nPúblico: ${publico||'[completar]'}\nBeneficio principal: ${beneficio||'[completar]'}\n\nÁNGULO: SISTEMA — Presentá tu método, proceso o sistema único. Mostrá que tenés una forma probada y diferente de resolver el problema.\n\nGenerá:\n- 4 Títulos H1 (máx 60 caracteres, ángulo sistema)\n- 4 Subtítulos H2 (máx 100 caracteres)\n- 4 Descripciones (2-3 oraciones persuasivas)\n- 3 Call to Action (máx 35 caracteres, en español)\n\nSeparar cada variante con |||`;
+              navigator.clipboard.writeText(prompt).then(()=>mostrarToast('📋 Prompt Sistema copiado','success'));
+            }} style={{width:'100%',padding:'10px 14px',background:'linear-gradient(135deg,rgba(99,102,241,0.2),rgba(139,92,246,0.2))',border:'1px solid rgba(99,102,241,0.35)',borderRadius:'9px',color:'#a5b4fc',fontSize:'13px',fontWeight:'700',cursor:'pointer',textAlign:'left',transition:'all 0.2s',display:'flex',alignItems:'center',gap:'8px'}}
+              onMouseEnter={e=>e.currentTarget.style.background='linear-gradient(135deg,rgba(99,102,241,0.3),rgba(139,92,246,0.3))'}
+              onMouseLeave={e=>e.currentTarget.style.background='linear-gradient(135deg,rgba(99,102,241,0.2),rgba(139,92,246,0.2))'}>
+              <span>📄</span> Copiar prompt — Sistema
+            </button>
           </div>
         </div>
-        <div className="hero-img-section">
-            <div className="hero-img-title">🖼️ Imagen de fondo — Hero</div>
-            <div style={{display:'flex',gap:'6px',marginBottom:'10px'}}>
-              <button onClick={()=>{setHeroImgMode('url');setHeroImgBase64('');}} style={{flex:1,padding:'7px',borderRadius:'8px',border:'2px solid',borderColor:heroImgMode==='url'?'var(--accent)':'var(--border)',background:heroImgMode==='url'?'var(--accent)20':'transparent',color:heroImgMode==='url'?'var(--accent)':'var(--gray-400)',fontWeight:'700',fontSize:'12px',cursor:'pointer'}}>🔗 URL externa</button>
-              <button onClick={()=>{setHeroImgMode('upload');setHeroImgUrl('');setImgPreviewOk(false);}} style={{flex:1,padding:'7px',borderRadius:'8px',border:'2px solid',borderColor:heroImgMode==='upload'?'var(--accent)':'var(--border)',background:heroImgMode==='upload'?'var(--accent)20':'transparent',color:heroImgMode==='upload'?'var(--accent)':'var(--gray-400)',fontWeight:'700',fontSize:'12px',cursor:'pointer'}}>📁 Subir archivo</button>
+
+        <div className="tema-section" style={{marginTop:'24px'}}>
+            <div className="tema-section-title"><div className="tema-section-icon">🎨</div><span className="tema-section-label">Tema Visual / Diseño</span><span className="tema-section-badge">LANDING</span></div>
+            <div className="tema-grid">{TEMAS.map(tema=>(<button key={tema.id} className={`tema-btn ${temaSeleccionado===tema.id?'active':''}`} onClick={()=>{setTemaSeleccionado(tema.id);mostrarToast(`🎨 Tema ${tema.name} seleccionado`,'success');}}><div className="tema-preview" style={{background:tema.preview.bg}}><div className="tema-preview-bar" style={{background:tema.preview.bar}}></div><div className="tema-preview-bar2" style={{background:tema.preview.bar2}}></div></div><div className="tema-name">{tema.icon} {tema.name}</div><div className="tema-check">✓</div></button>))}</div>
+            <div style={{marginTop:'12px',padding:'14px 16px',background:'var(--surface-2)',borderRadius:'10px',display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap'}}>
+              <span style={{fontSize:'12px',fontWeight:'700',color:'var(--gray-300)',textTransform:'uppercase',letterSpacing:'0.5px'}}>🎨 Color de acento</span>
+              <div style={{display:'flex',alignItems:'center',gap:'8px',flex:1,minWidth:'180px'}}>
+                <input type="color" value={accentCustom||'#6366f1'} onChange={e=>setAccentCustom(e.target.value)}
+                  style={{width:'36px',height:'36px',border:'none',borderRadius:'8px',cursor:'pointer',padding:'2px',background:'transparent'}}/>
+                <input type="text" placeholder="Vacío = color del tema"
+                  value={accentCustom} onChange={e=>setAccentCustom(e.target.value)}
+                  style={{flex:1,background:'var(--surface)',border:'1px solid var(--border)',borderRadius:'8px',padding:'8px 10px',fontSize:'12px',color:'var(--gray-100)',fontFamily:'monospace'}}/>
+                {accentCustom&&<button onClick={()=>setAccentCustom('')}
+                  style={{fontSize:'11px',padding:'6px 10px',background:'transparent',border:'1px solid var(--border)',borderRadius:'6px',color:'var(--gray-400)',cursor:'pointer',whiteSpace:'nowrap'}}>
+                  ✕ Reset
+                </button>}
+              </div>
             </div>
-            {heroImgMode==='url'&&(<>
-              <input className="hero-img-input" type="url" placeholder="https://ejemplo.com/imagen.jpg" value={heroImgUrl} onChange={e=>{setHeroImgUrl(e.target.value);setImgPreviewOk(false);}}/>
-              {heroImgUrl&&(<img src={heroImgUrl} className="hero-img-preview" onLoad={()=>setImgPreviewOk(true)} onError={()=>setImgPreviewOk(false)} style={{display:imgPreviewOk?'block':'none'}} alt="preview"/>)}
-              {heroImgUrl&&!imgPreviewOk&&<div style={{fontSize:'11px',color:'#fca5a5',marginTop:'4px'}}>⚠️ No se puede cargar — verificá la URL</div>}
-              <div style={{fontSize:'10px',color:'var(--gray-500)',marginTop:'6px'}}>Unsplash, Pexels o cualquier URL pública.</div>
-            </>)}
-            {heroImgMode==='upload'&&(<>
-              <label style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'8px',padding:'20px',border:'2px dashed var(--border)',borderRadius:'10px',cursor:'pointer',background:'var(--surface-2)',transition:'all 0.2s'}} onDragOver={e=>{e.preventDefault();e.currentTarget.style.borderColor='var(--accent)';}} onDragLeave={e=>{e.currentTarget.style.borderColor='var(--border)';}} onDrop={e=>{e.preventDefault();e.currentTarget.style.borderColor='var(--border)';const f=e.dataTransfer.files[0];if(f&&f.type.startsWith('image/')){const r=new FileReader();r.onload=ev=>setHeroImgBase64(ev.target.result);r.readAsDataURL(f);}}}>
-                {heroImgBase64?<img src={heroImgBase64} style={{width:'100%',maxHeight:'120px',objectFit:'cover',borderRadius:'8px'}} alt="preview"/>:<><span style={{fontSize:'28px'}}>📷</span><span style={{fontSize:'12px',color:'var(--gray-400)',textAlign:'center'}}>Hacé clic o arrastrá una imagen aquí<br/><span style={{fontSize:'10px',opacity:0.7}}>JPG, PNG, WEBP — se embebe en el HTML</span></span></>}
-                <input type="file" accept="image/*" style={{display:'none'}} onChange={e=>{const f=e.target.files[0];if(f){const r=new FileReader();r.onload=ev=>setHeroImgBase64(ev.target.result);r.readAsDataURL(f);}}}/>
-              </label>
-              {heroImgBase64&&<button onClick={()=>setHeroImgBase64('')} style={{marginTop:'6px',fontSize:'11px',padding:'5px 10px',background:'transparent',border:'1px solid var(--border)',borderRadius:'6px',color:'var(--gray-400)',cursor:'pointer'}}>✕ Quitar imagen</button>}
-              <div style={{fontSize:'10px',color:'var(--gray-500)',marginTop:'6px'}}>La imagen se convierte a base64 y queda embebida en el HTML — funciona sin internet.</div>
-            </>)}
-            {(heroImgUrl||heroImgBase64)&&(<div className="hero-overlay-row"><span className="hero-overlay-label">Opacidad del overlay oscuro</span><input className="hero-overlay-input" type="number" min="0" max="1" step="0.05" value={heroOverlay} onChange={e=>setHeroOverlay(e.target.value)}/></div>)}
+            <div className="hero-img-section">
+                <div className="hero-img-title">🖼️ Imagen de fondo — Hero</div>
+                <div style={{display:'flex',gap:'6px',marginBottom:'10px'}}>
+                  <button onClick={()=>{setHeroImgMode('url');setHeroImgBase64('');}} style={{flex:1,padding:'7px',borderRadius:'8px',border:'2px solid',borderColor:heroImgMode==='url'?'var(--accent)':'var(--border)',background:heroImgMode==='url'?'var(--accent)20':'transparent',color:heroImgMode==='url'?'var(--accent)':'var(--gray-400)',fontWeight:'700',fontSize:'12px',cursor:'pointer'}}>🔗 URL externa</button>
+                  <button onClick={()=>{setHeroImgMode('upload');setHeroImgUrl('');setImgPreviewOk(false);}} style={{flex:1,padding:'7px',borderRadius:'8px',border:'2px solid',borderColor:heroImgMode==='upload'?'var(--accent)':'var(--border)',background:heroImgMode==='upload'?'var(--accent)20':'transparent',color:heroImgMode==='upload'?'var(--accent)':'var(--gray-400)',fontWeight:'700',fontSize:'12px',cursor:'pointer'}}>📁 Subir archivo</button>
+                </div>
+                {heroImgMode==='url'&&(<>
+                  <input className="hero-img-input" type="url" placeholder="https://ejemplo.com/imagen.jpg" value={heroImgUrl} onChange={e=>{setHeroImgUrl(e.target.value);setImgPreviewOk(false);}}/>
+                  {heroImgUrl&&(<img src={heroImgUrl} className="hero-img-preview" onLoad={()=>setImgPreviewOk(true)} onError={()=>setImgPreviewOk(false)} style={{display:imgPreviewOk?'block':'none'}} alt="preview"/>)}
+                  {heroImgUrl&&!imgPreviewOk&&<div style={{fontSize:'11px',color:'#fca5a5',marginTop:'4px'}}>⚠️ No se puede cargar — verificá la URL</div>}
+                  <div style={{fontSize:'10px',color:'var(--gray-500)',marginTop:'6px'}}>Unsplash, Pexels o cualquier URL pública.</div>
+                </>)}
+                {heroImgMode==='upload'&&(<>
+                  <label style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'8px',padding:'20px',border:'2px dashed var(--border)',borderRadius:'10px',cursor:'pointer',background:'var(--surface-2)',transition:'all 0.2s'}}
+                    onDragOver={e=>{e.preventDefault();e.currentTarget.style.borderColor='var(--accent)';}}
+                    onDragLeave={e=>{e.currentTarget.style.borderColor='var(--border)';}}
+                    onDrop={e=>{e.preventDefault();e.currentTarget.style.borderColor='var(--border)';const f=e.dataTransfer.files[0];if(f&&f.type.startsWith('image/')){const r=new FileReader();r.onload=ev=>setHeroImgBase64(ev.target.result);r.readAsDataURL(f);}}}>
+                    {heroImgBase64
+                      ?<img src={heroImgBase64} style={{width:'100%',maxHeight:'120px',objectFit:'cover',borderRadius:'8px'}} alt="preview"/>
+                      :<><span style={{fontSize:'28px'}}>📷</span><span style={{fontSize:'12px',color:'var(--gray-400)',textAlign:'center'}}>Hacé clic o arrastrá una imagen aquí<br/><span style={{fontSize:'10px',opacity:0.7}}>JPG, PNG, WEBP — se embebe en el HTML</span></span></>}
+                    <input type="file" accept="image/*" style={{display:'none'}} onChange={e=>{const f=e.target.files[0];if(f){const r=new FileReader();r.onload=ev=>setHeroImgBase64(ev.target.result);r.readAsDataURL(f);}}}/>
+                  </label>
+                  {heroImgBase64&&<button onClick={()=>setHeroImgBase64('')} style={{marginTop:'6px',fontSize:'11px',padding:'5px 10px',background:'transparent',border:'1px solid var(--border)',borderRadius:'6px',color:'var(--gray-400)',cursor:'pointer'}}>✕ Quitar imagen</button>}
+                  <div style={{fontSize:'10px',color:'var(--gray-500)',marginTop:'6px'}}>La imagen se convierte a base64 y queda embebida en el HTML — funciona sin internet.</div>
+                </>)}
+                {(heroImgUrl||heroImgBase64)&&(<div className="hero-overlay-row"><span className="hero-overlay-label">Opacidad del overlay oscuro</span><input className="hero-overlay-input" type="number" min="0" max="1" step="0.05" value={heroOverlay} onChange={e=>setHeroOverlay(e.target.value)}/></div>)}
+            </div>
+            <div className="problema-section-sidebar">
+                <div className="problema-toggle-row"><span className="problema-toggle-label">💸 Bloque "Problema/Urgencia"</span><label className="toggle-switch" onClick={()=>setMostrarProblema(!mostrarProblema)}><div className={`toggle-track ${mostrarProblema?'on':''}`} style={mostrarProblema?{background:'#ef4444'}:{}}></div><div className={`toggle-thumb ${mostrarProblema?'on':''}`}></div></label></div>
+                {mostrarProblema&&(<div className="problema-fields"><div><div className="problema-field-label">Título del bloque</div><input className="problema-input" placeholder="Cada día que esperás, perdés dinero real." value={problemaTitle} onChange={e=>setProblemaTitle(e.target.value)}/></div><div><div className="problema-field-label">Texto de agitación</div><textarea className="problema-textarea" placeholder="Los gastos fijos no se detienen mientras mirás cómo otras propiedades se llenan..." value={problemaText} onChange={e=>setProblemaText(e.target.value)}/></div></div>)}
+            </div>
+            <div className="cajas-section"><div className="cajas-toggle-row"><span className="cajas-toggle-label"><span>📦</span> Cajas Informativas (3 Pasos)</span><label className="toggle-switch" onClick={()=>setMostrarCajas(!mostrarCajas)}><div className={`toggle-track ${mostrarCajas?'on':''}`}></div><div className={`toggle-thumb ${mostrarCajas?'on':''}`}></div></label></div>{mostrarCajas&&cajas.map((caja,i)=>(<div key={i} className="caja-item"><div className="caja-label">CAJA {i+1}</div><input className="caja-input" placeholder={`Título ${i+1}`} value={caja.titulo} onChange={e=>actualizarCaja(i,'titulo',e.target.value)}/><textarea className="caja-textarea" placeholder="Descripción breve..." value={caja.descripcion} onChange={e=>actualizarCaja(i,'descripcion',e.target.value)}/></div>))}</div>
+            <div className="cajas-section"><div className="cajas-toggle-row"><span className="cajas-toggle-label"><span>❓</span> FAQ (Preguntas frecuentes)</span><label className="toggle-switch" onClick={()=>setMostrarFaq(!mostrarFaq)}><div className={`toggle-track ${mostrarFaq?'on':''}`}></div><div className={`toggle-thumb ${mostrarFaq?'on':''}`}></div></label></div>{mostrarFaq&&(<div className="faq-items">{faqs.map((faq,i)=>(<div key={i} className="faq-edit-item"><input className="caja-input" placeholder={`Pregunta ${i+1}`} value={faq.pregunta} onChange={e=>{const n=[...faqs];n[i]={...n[i],pregunta:e.target.value};setFaqs(n);}}/><textarea className="caja-textarea" placeholder="Respuesta..." value={faq.respuesta} onChange={e=>{const n=[...faqs];n[i]={...n[i],respuesta:e.target.value};setFaqs(n);}}/></div>))}<button className="faq-add-btn" onClick={()=>setFaqs([...faqs,{pregunta:'',respuesta:''}])}>+ Agregar pregunta</button></div>)}</div>
+            <div className="cajas-section"><div className="cajas-toggle-row"><span className="cajas-toggle-label"><span>⏱️</span> Contador de urgencia</span><label className="toggle-switch" onClick={()=>setMostrarContador(!mostrarContador)}><div className={`toggle-track ${mostrarContador?"on":""}`}></div><div className={`toggle-thumb ${mostrarContador?"on":""}`}></div></label></div>{mostrarContador&&(<div style={{padding:"8px 0 4px"}}><div className="problema-field-label">Duración en horas</div><input type="number" className="problema-input" min="1" max="720" value={contadorHoras} onChange={e=>setContadorHoras(Number(e.target.value)||24)} style={{width:"120px"}}/><div style={{fontSize:"11px",color:"var(--gray-400)",marginTop:"4px"}}>El contador se reinicia al expirar. Máx 720hs (30 días).</div></div>)}</div>
         </div>
-        <div className="problema-section-sidebar">
-            <div className="problema-toggle-row"><span className="problema-toggle-label">💸 Bloque "Problema/Urgencia"</span><label className="toggle-switch" onClick={()=>setMostrarProblema(!mostrarProblema)}><div className={`toggle-track ${mostrarProblema?'on':''}`} style={mostrarProblema?{background:'#ef4444'}:{}}></div><div className={`toggle-thumb ${mostrarProblema?'on':''}`}></div></label></div>
-            {mostrarProblema&&(<div className="problema-fields"><div><div className="problema-field-label">Título del bloque</div><input className="problema-input" placeholder="Cada día que esperás, perdés dinero real." value={problemaTitle} onChange={e=>setProblemaTitle(e.target.value)}/></div><div><div className="problema-field-label">Texto de agitación</div><textarea className="problema-textarea" placeholder="Los gastos fijos no se detienen..." value={problemaText} onChange={e=>setProblemaText(e.target.value)}/></div></div>)}
-        </div>
-        <div className="cajas-section"><div className="cajas-toggle-row"><span className="cajas-toggle-label"><span>📦</span> Cajas Informativas (3 Pasos)</span><label className="toggle-switch" onClick={()=>setMostrarCajas(!mostrarCajas)}><div className={`toggle-track ${mostrarCajas?'on':''}`}></div><div className={`toggle-thumb ${mostrarCajas?'on':''}`}></div></label></div>{mostrarCajas&&cajas.map((caja,i)=>(<div key={i} className="caja-item"><div className="caja-label">CAJA {i+1}</div><input className="caja-input" placeholder={`Título ${i+1}`} value={caja.titulo} onChange={e=>actualizarCaja(i,'titulo',e.target.value)}/><textarea className="caja-textarea" placeholder="Descripción breve..." value={caja.descripcion} onChange={e=>actualizarCaja(i,'descripcion',e.target.value)}/></div>))}</div>
-        <div className="cajas-section"><div className="cajas-toggle-row"><span className="cajas-toggle-label"><span>❓</span> FAQ (Preguntas frecuentes)</span><label className="toggle-switch" onClick={()=>setMostrarFaq(!mostrarFaq)}><div className={`toggle-track ${mostrarFaq?'on':''}`}></div><div className={`toggle-thumb ${mostrarFaq?'on':''}`}></div></label></div>{mostrarFaq&&(<div className="faq-items">{faqs.map((faq,i)=>(<div key={i} className="faq-edit-item"><input className="caja-input" placeholder={`Pregunta ${i+1}`} value={faq.pregunta} onChange={e=>{const n=[...faqs];n[i]={...n[i],pregunta:e.target.value};setFaqs(n);}}/><textarea className="caja-textarea" placeholder="Respuesta..." value={faq.respuesta} onChange={e=>{const n=[...faqs];n[i]={...n[i],respuesta:e.target.value};setFaqs(n);}}/></div>))}<button className="faq-add-btn" onClick={()=>setFaqs([...faqs,{pregunta:'',respuesta:''}])}>+ Agregar pregunta</button></div>)}</div>
-        <div className="cajas-section"><div className="cajas-toggle-row"><span className="cajas-toggle-label"><span>⏱️</span> Contador de urgencia</span><label className="toggle-switch" onClick={()=>setMostrarContador(!mostrarContador)}><div className={`toggle-track ${mostrarContador?"on":""}`}></div><div className={`toggle-thumb ${mostrarContador?"on":""}`}></div></label></div>{mostrarContador&&(<div style={{padding:"8px 0 4px"}}><div className="problema-field-label">Duración en horas</div><input type="number" className="problema-input" min="1" max="720" value={contadorHoras} onChange={e=>setContadorHoras(Number(e.target.value)||24)} style={{width:"120px"}}/><div style={{fontSize:"11px",color:"var(--gray-400)",marginTop:"4px"}}>El contador se reinicia al expirar.</div></div>)}</div>
-    </div>
 
-    <div className="config-section"><div className="config-title">💎 Beneficios Adicionales</div>{beneficios.map((b,i)=>(<div key={i} className="beneficio-item"><input type="text" className="beneficio-input" placeholder={`Beneficio ${i+1}`} value={b} onChange={e=>actualizarBeneficio(i,e.target.value)}/><button className="btn-remove" onClick={()=>eliminarBeneficio(i)}>✕</button></div>))}<button className="btn-add" onClick={agregarBeneficio}>+ Agregar Beneficio</button></div>
+        <div className="config-section"><div className="config-title">💎 Beneficios Adicionales</div>{beneficios.map((b,i)=>(<div key={i} className="beneficio-item"><input type="text" className="beneficio-input" placeholder={`Beneficio ${i+1}`} value={b} onChange={e=>actualizarBeneficio(i,e.target.value)}/><button className="btn-remove" onClick={()=>eliminarBeneficio(i)}>✕</button></div>))}<button className="btn-add" onClick={agregarBeneficio}>+ Agregar Beneficio</button></div>
 
-    <div className="form-builder-section">
-        <div className="form-builder-header"><div className="form-builder-title">📋 Formulario</div><span style={{fontSize:'11px',color:'var(--gray-500)'}}>{preguntas.length} campo{preguntas.length!==1?'s':''}</span></div>
-        {preguntas.map((pregunta,index)=>(<PreguntaCard key={index} pregunta={pregunta} index={index} onUpdate={(campo,valor)=>actualizarPregunta(index,campo,valor)} onDelete={()=>eliminarPregunta(index)}/>))}
-        <button className="fq-basic-btn" onClick={agregarCamposBasicos}>⚡ Campos básicos</button>
-        <div className="fq-add-row">{[{tipo:'texto',label:'📝 Texto'},{tipo:'parrafo',label:'📄 Párrafo'},{tipo:'opciones',label:'🔘 Opciones'},{tipo:'multiple',label:'☑️ Múltiple'},{tipo:'select',label:'▾ Select'}].map(t=>(<button key={t.tipo} className="fq-add-btn" onClick={()=>agregarPregunta(t.tipo)}>{t.label}</button>))}</div>
-        <Toggle value={todasObligatorias} onChange={setTodasObligatorias} label="Hacer todas obligatorias" sub="Activa para que todas sean requeridas"/>
-        <Toggle value={multiStep} onChange={setMultiStep} label="📋 Formulario multi-step" sub="Cada campo en un paso separado. Mejor conversión"/>
-        <div className="wa-section">
-            <div className="wa-section-title">💬 WhatsApp destino</div>
-            <div className="wa-input-wrap"><span className="wa-prefix">+</span><input className="wa-input" type="tel" placeholder="5491112345678" value={waNumero} onChange={e=>setWaNumero(e.target.value)} maxLength={20}/></div>
-            <div className="wa-hint">Incluí código de país. Ej: 5491112345678 (ARG) · Opcional.</div>
-            <div style={{marginTop:'14px',paddingTop:'14px',borderTop:'1px solid rgba(37,211,102,0.15)'}}>
+        <div className="form-builder-section">
+            <div className="form-builder-header"><div className="form-builder-title">📋 Formulario</div><span style={{fontSize:'11px',color:'var(--gray-500)'}}>{preguntas.length} campo{preguntas.length!==1?'s':''}</span></div>
+            {preguntas.map((pregunta,index)=>(<PreguntaCard key={index} pregunta={pregunta} index={index} onUpdate={(campo,valor)=>actualizarPregunta(index,campo,valor)} onDelete={()=>eliminarPregunta(index)}/>))}
+            <button className="fq-basic-btn" onClick={agregarCamposBasicos}>⚡ Campos básicos</button><div className="fq-add-row">{[{tipo:'texto',label:'📝 Texto'},{tipo:'parrafo',label:'📄 Párrafo'},{tipo:'opciones',label:'🔘 Opciones'},{tipo:'multiple',label:'☑️ Múltiple'},{tipo:'select',label:'▾ Select'}].map(t=>(<button key={t.tipo} className="fq-add-btn" onClick={()=>agregarPregunta(t.tipo)}>{t.label}</button>))}</div>
+            <Toggle value={todasObligatorias} onChange={setTodasObligatorias} label="Hacer todas obligatorias" sub="Activa para que todas sean requeridas"/>
+            <Toggle value={multiStep} onChange={setMultiStep} label="📋 Formulario multi-step" sub="Cada campo en un paso separado. Mejor conversión"/>
+            <div className="wa-section">
+                <div className="wa-section-title">💬 WhatsApp destino</div>
+                <div className="wa-input-wrap"><span className="wa-prefix">+</span><input className="wa-input" type="tel" placeholder="5491112345678" value={waNumero} onChange={e=>setWaNumero(e.target.value)} maxLength={20}/></div>
+                <div className="wa-hint">Incluí código de país. Ej: 5491112345678 (ARG) · Opcional.</div>
+              <div style={{marginTop:'14px',paddingTop:'14px',borderTop:'1px solid rgba(37,211,102,0.15)'}}>
                 <div className="wa-section-title">✉ Email de notificación</div>
                 <input className="wa-input" type="email" placeholder="dueno@negocio.com" value={emailNotif} onChange={e=>setEmailNotif(e.target.value)} style={{paddingLeft:'12px'}}/>
-                <div className="wa-hint">{emailNotif?'✅ Recibirás un email por cada lead via Formspree.':'Recibí un email por cada lead. Opcional.'}</div>
-            </div>
-            <div style={{marginTop:'14px',paddingTop:'14px',borderTop:'1px solid rgba(37,211,102,0.15)'}}>
+                <div className="wa-hint">{emailNotif?'✅ Recibirás un email por cada lead via Formspree (gratis hasta 50/mes).':'Recibí un email por cada lead. Usa Formspree — no requiere backend. Opcional.'}</div>
+              </div>
+              <div style={{marginTop:'14px',paddingTop:'14px',borderTop:'1px solid rgba(37,211,102,0.15)'}}>
                 <div className="wa-section-title">&#128179; Link de pago directo</div>
                 <input className="wa-input" type="url" placeholder="https://mpago.la/..." value={pagoLink} onChange={e=>setPagoLink(e.target.value)} style={{paddingLeft:'12px'}}/>
                 {pagoLink&&<input className="wa-input" type="text" placeholder="Texto del botón" value={pagoTexto} onChange={e=>setPagoTexto(e.target.value)} style={{paddingLeft:'12px',marginTop:'8px'}}/>}
-                <div className="wa-hint">{pagoLink?'Se muestra un botón secundario bajo el CTA.':'MercadoPago, Gumroad, etc. Opcional.'}</div>
+                <div className="wa-hint">{pagoLink?'Se muestra un boton secundario bajo el CTA principal.':'Opcional. MercadoPago, Gumroad, etc. Aparece como boton secundario en la landing.'}</div>
+              </div>
             </div>
         </div>
     </div>
-</div>
 
-<div className="main-content">
-    {mostrarBanner&&sessionGuardada&&(<div className="session-banner"><div className="session-banner-left"><span>💾</span><div><div className="session-banner-text">Tenés una sesión guardada</div><div className="session-banner-time">Guardada el {formatFecha(sessionGuardada.savedAt)}</div></div></div><div style={{display:'flex',gap:'8px',alignItems:'center'}}><button className="btn-restore" onClick={restaurarSesion}>Restaurar</button><button className="btn-dismiss" onClick={()=>setMostrarBanner(false)}>✕</button></div></div>)}
-    <div className="content-header">
-        <div className="content-title"><span>📝</span>Copies variables (A/B)</div>
-        <div style={{display:'flex',gap:'8px',alignItems:'center',flexWrap:'wrap'}}>
-            {featuresOn.map((f,i)=>(<span key={i} style={{fontSize:'18px'}} title="Feature activo">{f}</span>))}
-            <div className="tema-active-badge" style={{background:temaActual.preview.bg,border:`1px solid ${temaActual.preview.bar}40`,color:['light','carta','tienda','noticia','flow'].includes(temaActual.id)?'#1e293b':'white'}}>{temaActual.icon} {temaActual.name}</div>
-            {filtroAntiCuriosos&&outputs.titulos.length>0&&(<div className="optimization-badge">☑️ Optimización ON</div>)}
+    <div className="main-content">
+        {mostrarBanner&&sessionGuardada&&(<div className="session-banner"><div className="session-banner-left"><span>💾</span><div><div className="session-banner-text">Tenés una sesión guardada</div><div className="session-banner-time">Guardada el {formatFecha(sessionGuardada.savedAt)}</div></div></div><div style={{display:'flex',gap:'8px',alignItems:'center'}}><button className="btn-restore" onClick={restaurarSesion}>Restaurar</button><button className="btn-dismiss" onClick={()=>setMostrarBanner(false)}>✕</button></div></div>)}
+        <div className="content-header">
+            <div className="content-title"><span>📝</span>Copies variables (A/B)</div>
+            <div style={{display:'flex',gap:'8px',alignItems:'center',flexWrap:'wrap'}}>
+                {featuresOn.map((f,i)=>(<span key={i} style={{fontSize:'18px'}} title="Feature activo">{f}</span>))}
+                <div className="tema-active-badge" style={{background:temaActual.preview.bg,border:`1px solid ${temaActual.preview.bar}40`,color:['light','carta','tienda','noticia','flow'].includes(temaActual.id)?'#1e293b':'white'}}>{temaActual.icon} {temaActual.name}</div>
+                {filtroAntiCuriosos&&outputs.titulos.length>0&&(<div className="optimization-badge">☑️ Optimización ON</div>)}
+            </div>
         </div>
-    </div>
-    {outputs.titulos.length>0&&(<div className="action-buttons"><button className="action-btn success" onClick={exportarTextos}><span>💾</span>Exportar Textos</button><button className="action-btn primary" onClick={generarTextos}><span>🔄</span>Generar Nuevas Variantes</button><button className="action-btn secondary" onClick={resetear}><span>🗑️</span>Resetear</button></div>)}
-    {outputs.titulos.length>0&&(
-    <div className="selector-panel">
-        <div className="selector-panel-header"><span style={{fontSize:'22px'}}>🏗️</span><span className="selector-panel-title">Armá tu Landing</span><span className="selector-panel-badge">PASO 2</span></div>
-        <p className="selector-panel-sub">Hacé clic para <strong>seleccionar</strong>. Hacé clic en el texto para <strong>editarlo</strong> directamente.</p>
-        <div className="selector-progress">{SECS.map(s=>(<div key={s.key} className={`selector-progress-dot ${varSel[s.key]!==null?'done':''}`}></div>))}</div>
-        {SECS.map(sec=>(<div key={sec.key} className="selector-group"><div className="selector-group-title"><span>{sec.icon}</span>{sec.label}{varSel[sec.key]!==null&&<span style={{marginLeft:'auto',color:'#16a34a',fontWeight:700}}>✓ #{varSel[sec.key]+1} seleccionada</span>}</div><div className="selector-options">{sec.data.map((texto,i)=>(<div key={i} className={`selector-option ${varSel[sec.key]===i?'selected':''}`} onClick={()=>selVar(sec.key,i)}><span className="selector-option-num">#{i+1}</span><span style={{flex:1,lineHeight:'1.5',fontSize:'13px'}}>{texto}</span><button style={{flexShrink:0,background:'none',border:'none',cursor:'pointer',opacity:0.4,fontSize:'12px',padding:'2px 4px'}} onClick={e=>{e.stopPropagation();const v=prompt('Editar texto:',texto);if(v&&v.trim())editarTexto(sec.key,i,v.trim());}} title="Editar">✏️</button></div>))}</div></div>))}
-        <div className="landing-btns-row">
-            <button className="btn-preview-landing" onClick={abrirPreview} disabled={!varCompletas}><span style={{position:'relative',zIndex:1,fontSize:'18px'}}>👁️</span><div className="btn-landing-inner"><span>Preview</span><span className="btn-landing-sub">Ver antes de descargar</span></div></button>
-            <button className="btn-generar-landing" onClick={()=>descargarHTML()} disabled={!varCompletas}><span style={{position:'relative',zIndex:1,fontSize:'18px'}}>⬇️</span><div className="btn-landing-inner"><span>{varCompletas?'Descargar HTML':`${4-seleccionadas} más...`}</span><span className="btn-landing-sub">{varCompletas?`${temaActual.icon} ${temaActual.name}${featuresOn.length?' · '+featuresOn.join(' '):''}`:''}</span></div></button>
-        </div>
-    </div>)}
-    {outputs.titulos.length===0?(
-    <div className="content-section"><div className="empty-state"><div className="empty-icon">🎨</div><div className="empty-text">Configura tu proyecto y genera textos</div><div className="empty-subtext">Los textos generados aparecerán aquí</div></div></div>
-    ):(
-    <div className="content-grid">
-        {[{icon:'💜',title:'H1 Títulos',data:outputs.titulos,key:'titulo'},{icon:'💙',title:'H2 Subtítulos',data:outputs.subtitulos,key:'subtitulo'},{icon:'🧡',title:'Descripción',data:outputs.descripciones,key:'descripcion'},{icon:'🚀',title:'Call to Action',data:outputs.ctas,key:'cta'}].map(sec=>(
-        <div key={sec.title} className="content-section">
-            <div className="section-header"><div className="section-title-wrapper"><span className="section-icon">{sec.icon}</span><span className="section-title-text">{sec.title}</span></div><div style={{display:"flex",alignItems:"center",gap:"8px"}}><span style={{fontSize:"10px",color:"var(--gray-500)"}}>✏️ editables</span><div className="section-count">{sec.data.length}</div></div></div>
-            {sec.data.map((texto,i)=>(<div key={i} className={`variant-item ${varSel[sec.key]===i?'selected':''}`} onClick={()=>selVar(sec.key,i)}><span className="variant-number">#{i+1}</span><span className="variant-text">{texto}</span>{varSel[sec.key]===i?<span className="variant-selected-badge">✓ ELEGIDA</span>:<button className="variant-copy-btn" onClick={e=>{e.stopPropagation();copiarTexto(texto);}}>📋</button>}<button style={{flexShrink:0,background:'none',border:'none',cursor:'pointer',opacity:0.5,fontSize:'12px',padding:'2px 6px',marginLeft:'4px'}} onClick={e=>{e.stopPropagation();const v=prompt('Editar texto:',texto);if(v&&v.trim())editarTexto(sec.key,i,v.trim());}} title="Editar">✏️</button></div>))}
-        </div>))}
-    </div>)}
-</div></div>)}
-{toast&&(<div className="toast"><span className="toast-icon">{toast.icono}</span><span className="toast-message">{toast.mensaje}</span></div>)}
-</>);
-```
-
+        {outputs.titulos.length>0&&(<div className="action-buttons"><button className="action-btn success" onClick={exportarTextos}><span>💾</span>Exportar Textos</button><button className="action-btn primary" onClick={generarTextos}><span>🔄</span>Generar Nuevas Variantes</button><button className="action-btn secondary" onClick={resetear}><span>🗑️</span>Resetear</button></div>)}
+        {outputs.titulos.length>0&&(
+        <div className="selector-panel">
+            <div className="selector-panel-header"><span style={{fontSize:'22px'}}>🏗️</span><span className="selector-panel-title">Armá tu Landing</span><span className="selector-panel-badge">PASO 2</span></div>
+            <p className="selector-panel-sub">Hacé clic para <strong>seleccionar</strong>. Hacé clic en el texto para <strong>editarlo</strong> directamente.</p>
+            <div className="selector-progress">{SECS.map(s=>(<div key={s.key} className={`selector-progress-dot ${varSel[s.key]!==null?'done':''}`}></div>))}</div>
+            {SECS.map(sec=>(<div key={sec.key} className="selector-group"><div className="selector-group-title"><span>{sec.icon}</span>{sec.label}{varSel[sec.key]!==null&&<span style={{marginLeft:'auto',color:'#16a34a',fontWeight:700}}>✓ #{varSel[sec.key]+1} seleccionada</span>}</div><div className="selector-options">{sec.data.map((texto,i)=>(<div key={i} className={`selector-option ${varSel[sec.key]===i?'selected':''}`} onClick={()=>selVar(sec.key,i)}><span className="selector-option-num">#{i+1}</span><span style={{flex:1,lineHeight:'1.5',fontSize:'13px'}}>{texto}</span><button style={{flexShrink:0,background:'none',border:'none',cursor:'pointer',opacity:0.4,fontSize:'12px',padding:'2px 4px'}} onClick={e=>{e.stopPropagation();const v=prompt('Editar texto:',texto);if(v&&v.trim())editarTexto(sec.key,i,v.trim());}} title="Editar">✏️</button></div>))}</div></div>))}
+            <div className="landing-btns-row">
+                <button className="btn-preview-landing" onClick={abrirPreview} disabled={!varCompletas}><span style={{position:'relative',zIndex:1,fontSize:'18px'}}>👁️</span><div className="btn-landing-inner"><span>Preview</span><span className="btn-landing-sub">Ver antes de descargar</span></div></button>
+                <button className="btn-generar-landing" onClick={()=>descargarHTML()} disabled={!varCompletas}><span style={{position:'relative',zIndex:1,fontSize:'18px'}}>⬇️</span><div className="btn-landing-inner"><span>{varCompletas?'Descargar HTML':`${4-seleccionadas} más...`}</span><span className="btn-landing-sub">{varCompletas?`${temaActual.icon} ${temaActual.name}${featuresOn.length?' · '+featuresOn.join(' '):''}`:''}</span></div></button>
+            </div>
+        </div>)}
+        {outputs.titulos.length===0?(
+        <div className="content-section"><div className="empty-state"><div className="empty-icon">🎨</div><div className="empty-text">Configura tu proyecto y genera textos</div><div className="empty-subtext">Los textos generados aparecerán aquí</div></div></div>
+        ):(
+        <div className="content-grid">
+            {[{icon:'💜',title:'H1 Títulos',data:outputs.titulos,key:'titulo'},{icon:'💙',title:'H2 Subtítulos',data:outputs.subtitulos,key:'subtitulo'},{icon:'🧡',title:'Descripción',data:outputs.descripciones,key:'descripcion'},{icon:'🚀',title:'Call to Action',data:outputs.ctas,key:'cta'}].map(sec=>(
+            <div key={sec.title} className="content-section">
+                <div className="section-header"><div className="section-title-wrapper"><span className="section-icon">{sec.icon}</span><span className="section-title-text">{sec.title}</span></div><div style={{display:"flex",alignItems:"center",gap:"8px"}}><span style={{fontSize:"10px",color:"var(--gray-500)"}}>✏️ editables</span><div className="section-count">{sec.data.length}</div></div></div>
+                {sec.data.map((texto,i)=>(<div key={i} className={`variant-item ${varSel[sec.key]===i?'selected':''}`} onClick={()=>selVar(sec.key,i)}><span className="variant-number">#{i+1}</span><span className="variant-text">{texto}</span>{varSel[sec.key]===i?<span className="variant-selected-badge">✓ ELEGIDA</span>:<button className="variant-copy-btn" onClick={e=>{e.stopPropagation();copiarTexto(texto);}}>📋</button>}<button style={{flexShrink:0,background:'none',border:'none',cursor:'pointer',opacity:0.5,fontSize:'12px',padding:'2px 6px',marginLeft:'4px'}} onClick={e=>{e.stopPropagation();const v=prompt('Editar texto:',texto);if(v&&v.trim())editarTexto(sec.key,i,v.trim());}} title="Editar">✏️</button></div>))}
+            </div>))}
+        </div>)}
+    </div></div>)}
+    {toast&&(<div className="toast"><span className="toast-icon">{toast.icono}</span><span className="toast-message">{toast.mensaje}</span></div>)}
+    </>);
 }
-ReactDOM.render(<App/>,document.getElementById(‘root’));
+ReactDOM.render(<App/>,document.getElementById('root'));
 </script>
-
 </body>
 </html>
