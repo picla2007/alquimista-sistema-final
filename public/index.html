@@ -805,99 +805,117 @@ function PreviewModal({html,temaActual,nicho,onClose,onDescargar}){
 
 function SimuladorEscalamiento(){
     const meses=['MES 1','MES 2','MES 3','MES 4','MES 5','MES 6'];
-    const [rows,setRows]=useState(meses.map((_,i)=>({
+    const initRow=(i)=>({
         presupuesto:i<2?40000:500,
         cpc:i===0?740:i===1?0.5:i===2?1:0.5,
         tdc:i===0?2:1,
-        clicsOvr:'',ventasAOvr:'',
         precioA:i===0?20000:i===1?35000:i===2?10000:47,
-        facAOvr:'',
         precioB:i<2?0:97,
-        facBOvr:'',
         gastosOp:20,
-    })));
+        clicsOvr:null,ventasAOvr:null,facAOvr:null,facBOvr:null,
+    });
+    const [rows,setRows]=useState(()=>meses.map((_,i)=>initRow(i)));
+    const [objUtilidad,setObjUtilidad]=useState('10000000');
     const [usd,setUsd]=useState(1480);
-    const [objUtilidad,setObjUtilidad]=useState(10000000);
-    const fmt=(n,dec=0)=>Number(n).toLocaleString('es-AR',{minimumFractionDigits:dec,maximumFractionDigits:dec});
+
+    const parse=(v)=>{if(v===null||v===''||v===undefined)return null;const n=Number(String(v).replace(/\./g,'').replace(',','.'));return isNaN(n)?null:n;};
+    const fmt=(n,dec=0)=>n===null||n===undefined?'—':Number(n).toLocaleString('es-AR',{minimumFractionDigits:dec,maximumFractionDigits:dec});
     const fmtPct=(n)=>Number(n).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2})+'%';
+
     const calc=(r)=>{
-        const clics=r.clicsOvr!==''?Number(r.clicsOvr):(r.cpc>0?Math.round(r.presupuesto/r.cpc):0);
-        const ventasA=r.ventasAOvr!==''?Number(r.ventasAOvr):Math.round(clics*(r.tdc/100));
+        const pres=Number(r.presupuesto)||0;
+        const cpc=Number(r.cpc)||0;
+        const tdc=Number(r.tdc)||0;
+        const clics=r.clicsOvr!==null?r.clicsOvr:(cpc>0?Math.round(pres/cpc):0);
+        const ventasA=r.ventasAOvr!==null?r.ventasAOvr:Math.round(clics*(tdc/100));
         const ventasB=Math.round(ventasA*0.15);
-        const facA=r.facAOvr!==''?Number(r.facAOvr):ventasA*r.precioA;
-        const facB=r.facBOvr!==''?Number(r.facBOvr):ventasB*r.precioB;
+        const precA=Number(r.precioA)||0;
+        const precB=Number(r.precioB)||0;
+        const facA=r.facAOvr!==null?r.facAOvr:ventasA*precA;
+        const facB=r.facBOvr!==null?r.facBOvr:ventasB*precB;
         const facTotal=facA+facB;
-        const gastos=facTotal*(r.gastosOp/100)+r.presupuesto;
+        const gastos=facTotal*(Number(r.gastosOp)||0)/100+pres;
         const utilidad=facTotal-gastos;
-        const roi=r.presupuesto>0?((utilidad/r.presupuesto)*100):0;
+        const roi=pres>0?((utilidad/pres)*100):0;
         const estado=roi>50?'🚀 ESCALAR YA':roi>0?'⚠️ REVISAR':'🔴 NEGATIVO';
         const estadoColor=roi>50?'#16a34a':roi>0?'#d97706':'#dc2626';
-        const peq=r.precioA>0?Math.ceil(r.presupuesto/r.precioA):0;
+        const peq=precA>0?Math.ceil(pres/precA):0;
         return{clics,ventasA,ventasB,facA,facB,facTotal,utilidad,roi,estado,estadoColor,peq};
     };
-    const upd=(i,k,v)=>{const n=[...rows];n[i]={...n[i],[k]:v};setRows(n);};
+    const upd=(i,k,v)=>setRows(prev=>{const n=prev.map((r,j)=>j===i?{...r,[k]:v}:r);return n;});
     const totales=rows.map(calc);
     const totalFac=totales.reduce((s,r)=>s+r.facTotal,0);
     const totalUtil=totales.reduce((s,r)=>s+r.utilidad,0);
-    const avgTdc=rows.reduce((s,r)=>s+r.tdc,0)/rows.length;
-    const avgPrecio=rows.reduce((s,r)=>s+r.precioA,0)/rows.length;
-    const avgCpc=rows.reduce((s,r)=>s+r.cpc,0)/rows.length;
-    const invNec=avgPrecio>0&&avgTdc>0&&avgCpc>0?Math.round((objUtilidad/0.8)/(avgPrecio*(avgTdc/100))*avgCpc):0;
-    const ventNec=avgPrecio>0?Math.ceil(objUtilidad/0.8/avgPrecio):0;
+    const objNum=Number(String(objUtilidad).replace(/\./g,'').replace(',','.'))||0;
+    const avgTdc=rows.reduce((s,r)=>s+Number(r.tdc),0)/rows.length;
+    const avgPrecio=rows.reduce((s,r)=>s+Number(r.precioA),0)/rows.length;
+    const avgCpc=rows.reduce((s,r)=>s+Number(r.cpc),0)/rows.length;
+    const invNec=avgPrecio>0&&avgTdc>0&&avgCpc>0?Math.round((objNum/0.8)/(avgPrecio*(avgTdc/100))*avgCpc):0;
+    const ventNec=avgPrecio>0?Math.ceil(objNum/0.8/avgPrecio):0;
     const clicsNec=avgTdc>0&&avgCpc>0?Math.ceil(ventNec/(avgTdc/100)):0;
 
-    const noArrows={WebkitAppearance:'none',MozAppearance:'textfield'};
-    const inpBase={width:'100%',padding:'5px 6px',background:'rgba(255,255,255,0.08)',border:'1px solid rgba(255,255,255,0.15)',borderRadius:'5px',color:'white',fontSize:'12px',fontFamily:'inherit',textAlign:'center',...noArrows};
-    const inpCalc={...inpBase,background:'rgba(99,102,241,0.12)',border:'1px solid rgba(99,102,241,0.3)',color:'#c7d2fe'};
+    const noSpin={WebkitAppearance:'none',MozAppearance:'textfield'};
+    const inpBase={width:'100%',padding:'5px 6px',background:'rgba(255,255,255,0.08)',border:'1px solid rgba(255,255,255,0.15)',borderRadius:'5px',color:'white',fontSize:'12px',fontFamily:'inherit',textAlign:'center',...noSpin};
+    const inpOvr={...inpBase,background:'rgba(99,102,241,0.15)',border:'1px solid rgba(99,102,241,0.4)',color:'#c7d2fe'};
     const thS={padding:'8px 10px',fontSize:'10px',fontWeight:'700',color:'#94a3b8',textTransform:'uppercase',letterSpacing:'0.5px',textAlign:'center',borderBottom:'1px solid rgba(255,255,255,0.1)',whiteSpace:'nowrap'};
     const tdS={padding:'6px 8px',fontSize:'12px',textAlign:'center',borderBottom:'1px solid rgba(255,255,255,0.06)',color:'#e2e8f0'};
     const lbS={padding:'6px 8px',fontSize:'12px',textAlign:'left',borderBottom:'1px solid rgba(255,255,255,0.06)',color:'#94a3b8',fontWeight:'600',whiteSpace:'nowrap'};
 
-    const nav=(e)=>{
-        if(e.key==='Enter'||e.key==='Tab'){
-            e.preventDefault();
-            const inputs=Array.from(document.querySelectorAll('.sim-inp'));
-            const idx=inputs.indexOf(e.target);
-            if(idx>=0&&idx<inputs.length-1)inputs[idx+(e.shiftKey&&e.key==='Tab'?-1:1)]?.focus();
-        }
+    // Input with formatted display + tab/enter navigation
+    const Inp=({val,onChange,ovr,fmtVal})=>{
+        const [focused,setFocused]=useState(false);
+        const [local,setLocal]=useState('');
+        const displayVal=focused?local:(fmtVal!==undefined?fmtVal:fmt(val));
+        return(<input
+            className="sim-inp"
+            type="text"
+            value={displayVal}
+            style={ovr?inpOvr:inpBase}
+            onFocus={e=>{setFocused(true);setLocal(val===null||val===undefined?'':String(val));e.target.select();}}
+            onBlur={e=>{setFocused(false);const n=parseFloat(local.replace(/\./g,'').replace(',','.'));onChange(isNaN(n)?null:n);}}
+            onChange={e=>setLocal(e.target.value)}
+            onKeyDown={e=>{
+                if(e.key==='Enter'||e.key==='Tab'){
+                    e.preventDefault();
+                    const all=Array.from(document.querySelectorAll('.sim-inp'));
+                    const idx=all.indexOf(e.target);
+                    const next=all[idx+(e.shiftKey&&e.key==='Tab'?-1:1)];
+                    if(next){const n=parseFloat(local.replace(/\./g,'').replace(',','.'));onChange(isNaN(n)?null:n);next.focus();}
+                }
+            }}
+        />);
     };
-    const I=(val,onChange,calc_=false)=>(<input className="sim-inp" type="number" value={val} onChange={e=>onChange(e.target.value)} onKeyDown={nav} onFocus={e=>e.target.select()} style={calc_?inpCalc:inpBase}/>);
 
     return(
         <div className="sim-widget">
             <div className="sim-widget-title"><span>📊</span>Simulador de Certeza Financiera</div>
-            <div className="sim-widget-sub">Editá cualquier celda — las celdas <span style={{color:'#a5b4fc'}}>azules</span> se calculan solos pero podés sobreescribirlas · Tab/Enter para avanzar</div>
+            <div className="sim-widget-sub">Editá cualquier celda · <span style={{color:'#a5b4fc'}}>Azul</span> = calculado (sobreescribible) · Tab/Enter avanza · los valores muestran separador de miles</div>
             <style>{`.sim-inp::-webkit-outer-spin-button,.sim-inp::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}`}</style>
             <div style={{display:'flex',alignItems:'center',gap:'12px',marginBottom:'16px',padding:'10px 14px',background:'rgba(99,102,241,0.1)',borderRadius:'8px',border:'1px solid rgba(99,102,241,0.2)'}}>
                 <span style={{fontSize:'11px',color:'#94a3b8',fontWeight:'700',textTransform:'uppercase',letterSpacing:'0.5px'}}>USD/ARS</span>
-                {I(usd,(v)=>setUsd(Number(v)||1480))}
+                <Inp val={usd} onChange={v=>setUsd(v||1480)} fmtVal={fmt(usd)}/>
                 <span style={{fontSize:'11px',color:'#64748b'}}>Tipo de cambio</span>
                 <span style={{marginLeft:'auto',fontSize:'11px',color:'#6ee7b7',fontWeight:'700'}}>US$0.50 = ${fmt(usd*0.5)}</span>
             </div>
             <div style={{overflowX:'auto',marginBottom:'16px'}}>
             <table style={{width:'100%',borderCollapse:'collapse',minWidth:'700px'}}>
-                <thead>
-                    <tr style={{background:'rgba(255,255,255,0.04)'}}>
-                        <th style={{...thS,textAlign:'left'}}>Concepto</th>
-                        {meses.map(m=><th key={m} style={thS}>{m}</th>)}
-                    </tr>
-                </thead>
+                <thead><tr style={{background:'rgba(255,255,255,0.04)'}}><th style={{...thS,textAlign:'left'}}>Concepto</th>{meses.map(m=><th key={m} style={thS}>{m}</th>)}</tr></thead>
                 <tbody>
                     <tr><td colSpan={7} style={{...tdS,color:'#6366f1',fontWeight:'800',fontSize:'10px',textTransform:'uppercase',letterSpacing:'1px',paddingTop:'12px'}}>INVERSIÓN (ADS)</td></tr>
-                    <tr><td style={lbS}>Presupuesto ($)</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 6px'}}>{I(r.presupuesto,(v)=>upd(i,'presupuesto',v))}</td>)}</tr>
-                    <tr><td style={lbS}>CPC ($)</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 6px'}}>{I(r.cpc,(v)=>upd(i,'cpc',v))}</td>)}</tr>
-                    <tr><td style={lbS}>Clics totales</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 6px'}}>{I(r.clicsOvr!==''?r.clicsOvr:totales[i].clics,(v)=>upd(i,'clicsOvr',v),true)}</td>)}</tr>
+                    <tr><td style={lbS}>Presupuesto ($)</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={r.presupuesto} onChange={v=>upd(i,'presupuesto',v??0)} fmtVal={fmt(r.presupuesto)}/></td>)}</tr>
+                    <tr><td style={lbS}>CPC ($)</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={r.cpc} onChange={v=>upd(i,'cpc',v??0)} fmtVal={fmt(r.cpc,2)}/></td>)}</tr>
+                    <tr><td style={lbS}>Clics totales</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={r.clicsOvr!==null?r.clicsOvr:totales[i].clics} onChange={v=>upd(i,'clicsOvr',v)} fmtVal={fmt(r.clicsOvr!==null?r.clicsOvr:totales[i].clics)} ovr/></td>)}</tr>
                     <tr><td colSpan={7} style={{...tdS,color:'#06b6d4',fontWeight:'800',fontSize:'10px',textTransform:'uppercase',letterSpacing:'1px',paddingTop:'12px'}}>CONVERSIÓN</td></tr>
-                    <tr><td style={lbS}>Tasa conv. (%)</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 6px'}}>{I(r.tdc,(v)=>upd(i,'tdc',v))}</td>)}</tr>
-                    <tr><td style={lbS}>Ventas Prod A</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 6px'}}>{I(r.ventasAOvr!==''?r.ventasAOvr:totales[i].ventasA,(v)=>upd(i,'ventasAOvr',v),true)}</td>)}</tr>
-                    <tr><td style={lbS}>Precio Prod A ($)</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 6px'}}>{I(r.precioA,(v)=>upd(i,'precioA',v))}</td>)}</tr>
-                    <tr><td style={lbS}>Facturación A</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 6px'}}>{I(r.facAOvr!==''?r.facAOvr:totales[i].facA,(v)=>upd(i,'facAOvr',v),true)}</td>)}</tr>
+                    <tr><td style={lbS}>Tasa conv. (%)</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={r.tdc} onChange={v=>upd(i,'tdc',v??0)} fmtVal={fmtPct(r.tdc)}/></td>)}</tr>
+                    <tr><td style={lbS}>Ventas Prod A</td>{rows.map((r,i)=>{const val=r.ventasAOvr!==null?r.ventasAOvr:totales[i].ventasA;return(<td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={val} onChange={v=>upd(i,'ventasAOvr',v)} fmtVal={fmt(val)} ovr/></td>);})}</tr>
+                    <tr><td style={lbS}>Precio Prod A ($)</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={r.precioA} onChange={v=>upd(i,'precioA',v??0)} fmtVal={fmt(r.precioA)}/></td>)}</tr>
+                    <tr><td style={lbS}>Facturación A</td>{rows.map((r,i)=>{const val=r.facAOvr!==null?r.facAOvr:totales[i].facA;return(<td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={val} onChange={v=>upd(i,'facAOvr',v)} fmtVal={'$'+fmt(val)} ovr/></td>);})}</tr>
                     <tr><td colSpan={7} style={{...tdS,color:'#10b981',fontWeight:'800',fontSize:'10px',textTransform:'uppercase',letterSpacing:'1px',paddingTop:'12px'}}>UP-SELL (15% de compradores)</td></tr>
-                    <tr><td style={lbS}>Precio Prod B ($)</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 6px'}}>{I(r.precioB,(v)=>upd(i,'precioB',v))}</td>)}</tr>
-                    <tr><td style={lbS}>Facturación B</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 6px'}}>{I(r.facBOvr!==''?r.facBOvr:totales[i].facB,(v)=>upd(i,'facBOvr',v),true)}</td>)}</tr>
+                    <tr><td style={lbS}>Precio Prod B ($)</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={r.precioB} onChange={v=>upd(i,'precioB',v??0)} fmtVal={fmt(r.precioB)}/></td>)}</tr>
+                    <tr><td style={lbS}>Facturación B</td>{rows.map((r,i)=>{const val=r.facBOvr!==null?r.facBOvr:totales[i].facB;return(<td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={val} onChange={v=>upd(i,'facBOvr',v)} fmtVal={'$'+fmt(val)} ovr/></td>);})}</tr>
                     <tr><td colSpan={7} style={{...tdS,color:'#f59e0b',fontWeight:'800',fontSize:'10px',textTransform:'uppercase',letterSpacing:'1px',paddingTop:'12px'}}>RESULTADOS</td></tr>
                     <tr><td style={lbS}>Facturación Total</td>{totales.map((c,i)=><td key={i} style={{...tdS,fontWeight:'700'}}>${fmt(c.facTotal)}</td>)}</tr>
-                    <tr><td style={lbS}>Gastos Op (%)</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 6px'}}>{I(r.gastosOp,(v)=>upd(i,'gastosOp',v))}</td>)}</tr>
+                    <tr><td style={lbS}>Gastos Op (%)</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={r.gastosOp} onChange={v=>upd(i,'gastosOp',v??20)} fmtVal={fmtPct(r.gastosOp)}/></td>)}</tr>
                     <tr style={{background:'rgba(16,185,129,0.08)'}}><td style={{...lbS,color:'#6ee7b7',fontWeight:'800'}}>UTILIDAD NETA</td>{totales.map((c,i)=><td key={i} style={{...tdS,fontWeight:'900',color:c.utilidad>=0?'#6ee7b7':'#fca5a5'}}>${fmt(c.utilidad)}</td>)}</tr>
                     <tr><td style={lbS}>ROI</td>{totales.map((c,i)=><td key={i} style={{...tdS,color:c.roi>=0?'#6ee7b7':'#fca5a5',fontWeight:'700'}}>{fmtPct(c.roi)}</td>)}</tr>
                     <tr><td style={lbS}>Estado</td>{totales.map((c,i)=><td key={i} style={{...tdS,fontSize:'11px',fontWeight:'700',color:c.estadoColor}}>{c.estado}</td>)}</tr>
@@ -914,7 +932,7 @@ function SimuladorEscalamiento(){
                 <div style={{fontSize:'11px',fontWeight:'700',color:'#a5b4fc',textTransform:'uppercase',letterSpacing:'0.8px',marginBottom:'12px'}}>🎯 Calculadora de Objetivos Inversa</div>
                 <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'10px',flexWrap:'wrap'}}>
                     <span style={{fontSize:'12px',color:'#94a3b8',whiteSpace:'nowrap'}}>Quiero ganar $</span>
-                    {I(objUtilidad,(v)=>setObjUtilidad(Number(v)||0))}
+                    <Inp val={objNum} onChange={v=>setObjUtilidad(String(v??0))} fmtVal={fmt(objNum)}/>
                     <span style={{fontSize:'12px',color:'#94a3b8',whiteSpace:'nowrap'}}>por mes</span>
                 </div>
                 <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'8px'}}>
