@@ -863,24 +863,53 @@ function SimuladorEscalamiento(){
 
     // Input with formatted display + tab/enter navigation
     const Inp=({val,onChange,ovr,fmtVal})=>{
-        const [focused,setFocused]=useState(false);
-        const [local,setLocal]=useState('');
-        const displayVal=focused?local:(fmtVal!==undefined?fmtVal:fmt(val));
+        const ref=React.useRef(null);
+        const isFocused=React.useRef(false);
+        const localVal=React.useRef('');
+        const [display,setDisplay]=React.useState(fmtVal!==undefined?String(fmtVal):fmt(val));
+        // Sync display when not focused and val changes from outside
+        React.useEffect(()=>{
+            if(!isFocused.current){setDisplay(fmtVal!==undefined?String(fmtVal):fmt(val));}
+        },[val,fmtVal]);
+        const commit=()=>{
+            const raw=localVal.current.replace(/\./g,'').replace(',','.');
+            const n=parseFloat(raw);
+            const result=isNaN(n)?null:n;
+            onChange(result);
+            isFocused.current=false;
+            setDisplay(fmtVal!==undefined?String(fmtVal):fmt(result??val));
+        };
         return(<input
+            ref={ref}
             className="sim-inp"
             type="text"
-            value={displayVal}
+            inputMode="decimal"
+            autoComplete="off"
+            autoCorrect="off"
+            spellCheck={false}
+            value={display}
             style={ovr?inpOvr:inpBase}
-            onFocus={e=>{setFocused(true);setLocal(val===null||val===undefined?'':String(val));e.target.select();}}
-            onBlur={e=>{setFocused(false);const n=parseFloat(local.replace(/\./g,'').replace(',','.'));onChange(isNaN(n)?null:n);}}
-            onChange={e=>setLocal(e.target.value)}
+            onFocus={e=>{
+                isFocused.current=true;
+                const raw=val===null||val===undefined?'':String(val);
+                localVal.current=raw;
+                setDisplay(raw);
+                setTimeout(()=>e.target.select(),0);
+            }}
+            onBlur={()=>commit()}
+            onChange={e=>{localVal.current=e.target.value;setDisplay(e.target.value);}}
             onKeyDown={e=>{
                 if(e.key==='Enter'||e.key==='Tab'){
                     e.preventDefault();
+                    const raw=localVal.current.replace(/\./g,'').replace(',','.');
+                    const n=parseFloat(raw);
+                    const result=isNaN(n)?null:n;
+                    onChange(result);
+                    isFocused.current=false;
                     const all=Array.from(document.querySelectorAll('.sim-inp'));
                     const idx=all.indexOf(e.target);
                     const next=all[idx+(e.shiftKey&&e.key==='Tab'?-1:1)];
-                    if(next){const n=parseFloat(local.replace(/\./g,'').replace(',','.'));onChange(isNaN(n)?null:n);next.focus();}
+                    if(next)next.focus();
                 }
             }}
         />);
