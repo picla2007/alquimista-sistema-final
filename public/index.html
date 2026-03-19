@@ -492,8 +492,8 @@ window.addEventListener('DOMContentLoaded',function(){_msShow(0);});
 .nav{background:linear-gradient(135deg,#1e293b,#0f172a);border-bottom:1px solid rgba(99,102,241,0.3);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
 .nav-logo{font-size:18px;font-weight:800;color:white;text-decoration:none;}.nav-cta{background:${t.accent};color:white;padding:9px 20px;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;transition:opacity 0.2s;}.nav-cta:hover{opacity:0.85;}
 .urgency-wrap{${mostrarContador?'display:block':'display:none'}}
-.page-wrap{display:grid;grid-template-columns:1fr 460px;min-height:calc(100vh - 57px);}
-.left-col{position:relative;overflow:hidden;${imgSrc?`background:url('${imgSrc}') center/cover no-repeat;`:'background:linear-gradient(160deg,#0f0c29 0%,#302b63 50%,#24243e 100%);'}display:flex;flex-direction:column;justify-content:space-between;padding:0;}
+.page-wrap{display:grid;grid-template-columns:1fr 460px;}
+.left-col{position:relative;overflow:hidden;min-height:100%;${imgSrc?`background:url('${imgSrc}') center/cover no-repeat;`:'background:linear-gradient(160deg,#0f0c29 0%,#302b63 50%,#24243e 100%);'}display:flex;flex-direction:column;justify-content:space-between;padding:0;}
 .left-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.7) 60%,rgba(0,0,0,0.95) 100%);z-index:1;}
 .left-content{position:relative;z-index:2;padding:60px 48px 40px;}
 .eyebrow{display:inline-block;background:linear-gradient(135deg,${t.accent},${t.accent}cc);color:white;padding:6px 18px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:24px;box-shadow:0 4px 14px ${t.accent}50;}
@@ -501,7 +501,7 @@ window.addEventListener('DOMContentLoaded',function(){_msShow(0);});
 .left-h2{font-size:1.15rem;color:rgba(255,255,255,0.75);font-weight:400;margin-bottom:20px;line-height:1.6;}
 .left-desc{font-size:1rem;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:32px;}
 .badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px;}.badge{padding:8px 18px;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);border-radius:20px;font-size:12px;font-weight:600;color:white;}
-.lat-benefits{position:relative;z-index:2;padding:32px 48px 48px;border-top:1px solid rgba(255,255,255,0.1);}
+.lat-benefits{position:relative;z-index:2;padding:32px 48px 48px;border-top:1px solid rgba(255,255,255,0.1);background:rgba(0,0,0,0.4);backdrop-filter:blur(10px);}
 .lat-benefits-title{font-size:14px;font-weight:700;color:${t.accent};text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;}
 .lat-benefits-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
 .lat-benefit-item{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:rgba(255,255,255,0.75);line-height:1.5;}
@@ -539,7 +539,7 @@ ${waModalCSS}${waFloatCSS}${contadorCSS}${multiStepCSS}
 <nav class="nav"><a href="javascript:void(0)" class="nav-logo">${nicho?nicho.charAt(0).toUpperCase()+nicho.slice(1):'Mi Negocio'}</a><a href="#form" class="nav-cta">${cta}</a></nav>
 ${contadorHTML}
 <div class="page-wrap">
-  <div class="left-col">
+  <div class="left-col" ${imgSrc?'style="background-image:url(\''+imgSrc+'\')"':''}>
     <div class="left-overlay"></div>
     <div class="left-content">
       <div class="eyebrow">${publico||'Para vos'}</div>
@@ -804,32 +804,111 @@ function PreviewModal({html,temaActual,nicho,onClose,onDescargar}){
 
 
 function SimuladorEscalamiento(){
-    const [data,setData]=useState({inversion:5000,cpl:740,conv:2,ticket:35000});
-    const mensual=Number(data.inversion)*30;
-    const leads=data.cpl>0?Math.round(mensual/Number(data.cpl)):0;
-    const ventas=Math.round(leads*(Number(data.conv)/100));
-    const ingresos=ventas*Number(data.ticket);
-    const roi=ingresos-mensual;
-    const fmt=(n)=>Math.round(n).toLocaleString('es-AR');
+    const meses=['MES 1','MES 2','MES 3','MES 4','MES 5','MES 6'];
+    const [rows,setRows]=useState(meses.map((_,i)=>({
+        presupuesto:i<2?40000:500,
+        cpc:i===0?740:i===1?0.5:i===2?1:0.5,
+        tdc:i===0?2:1,
+        precioA:i===0?20000:i===1?35000:i===2?10000:47,
+        precioB:i<2?0:i===2?97:97,
+        gastosOp:20,
+    })));
+    const [usd,setUsd]=useState(1480);
+    const fmt=(n,dec=0)=>Number(n).toLocaleString('es-AR',{minimumFractionDigits:dec,maximumFractionDigits:dec});
+    const fmtPct=(n)=>Number(n).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2})+'%';
+    const calc=(r)=>{
+        const clics=r.cpc>0?Math.round(r.presupuesto/r.cpc):0;
+        const ventasA=Math.round(clics*(r.tdc/100));
+        const ventasB=Math.round(ventasA*0.15);
+        const facA=ventasA*r.precioA;
+        const facB=ventasB*r.precioB;
+        const facTotal=facA+facB;
+        const gastos=facTotal*(r.gastosOp/100)+r.presupuesto;
+        const utilidad=facTotal-gastos;
+        const roi=r.presupuesto>0?((utilidad/r.presupuesto)*100):0;
+        const estado=roi>50?'🚀 ESCALAR YA':roi>0?'⚠️ REVISAR':'🔴 NEGATIVO';
+        const estadoColor=roi>50?'#16a34a':roi>0?'#d97706':'#dc2626';
+        const peq=r.precioA>0?Math.ceil(r.presupuesto/r.precioA):0;
+        return{clics,ventasA,ventasB,facA,facB,facTotal,utilidad,roi,estado,estadoColor,peq};
+    };
+    const update=(i,k,v)=>{const n=[...rows];n[i]={...n[i],[k]:parseFloat(v)||0};setRows(n);};
+    const totales=rows.map(calc);
+    const totalFac=totales.reduce((s,r)=>s+r.facTotal,0);
+    const totalUtil=totales.reduce((s,r)=>s+r.utilidad,0);
+    const [objUtilidad,setObjUtilidad]=useState(10000000);
+    const avgTdc=rows.reduce((s,r)=>s+r.tdc,0)/rows.length;
+    const avgPrecio=rows.reduce((s,r)=>s+r.precioA,0)/rows.length;
+    const avgCpc=rows.reduce((s,r)=>s+r.cpc,0)/rows.length;
+    const invNec=avgPrecio>0&&avgTdc>0&&avgCpc>0?Math.round((objUtilidad/0.8)/(avgPrecio*(avgTdc/100))*avgCpc):0;
+    const ventNec=avgPrecio>0?Math.ceil(objUtilidad/0.8/avgPrecio):0;
+    const clicsNec=avgTdc>0&&avgCpc>0?Math.ceil(ventNec/(avgTdc/100)):0;
+    const inputStyle={width:'100%',padding:'4px 6px',background:'rgba(255,255,255,0.08)',border:'1px solid rgba(255,255,255,0.15)',borderRadius:'4px',color:'white',fontSize:'12px',fontFamily:'inherit',textAlign:'right'};
+    const thStyle={padding:'8px 10px',fontSize:'10px',fontWeight:'700',color:'#94a3b8',textTransform:'uppercase',letterSpacing:'0.5px',textAlign:'center',borderBottom:'1px solid rgba(255,255,255,0.1)',whiteSpace:'nowrap'};
+    const tdStyle={padding:'7px 8px',fontSize:'12px',textAlign:'right',borderBottom:'1px solid rgba(255,255,255,0.06)',color:'#e2e8f0'};
+    const lblStyle={padding:'7px 8px',fontSize:'12px',textAlign:'left',borderBottom:'1px solid rgba(255,255,255,0.06)',color:'#94a3b8',fontWeight:'600',whiteSpace:'nowrap'};
     return(
         <div className="sim-widget">
-            <div className="sim-widget-title"><span>📊</span>Simulador de Escalamiento</div>
-            <div className="sim-widget-sub">Calculá tu ROI estimado antes de generar la landing</div>
-            <div className="sim-widget-inputs">
-                <div className="sim-widget-field"><label>Inversión diaria (ARS)</label><input type="number" value={data.inversion} onChange={e=>setData({...data,inversion:e.target.value})}/></div>
-                <div className="sim-widget-field"><label>CPL — Costo por Lead</label><input type="number" value={data.cpl} onChange={e=>setData({...data,cpl:e.target.value})}/></div>
-                <div className="sim-widget-field"><label>Conversión (%)</label><input type="number" value={data.conv} onChange={e=>setData({...data,conv:e.target.value})}/></div>
-                <div className="sim-widget-field"><label>Ticket promedio (ARS)</label><input type="number" value={data.ticket} onChange={e=>setData({...data,ticket:e.target.value})}/></div>
+            <div className="sim-widget-title"><span>📊</span>Simulador de Certeza Financiera</div>
+            <div className="sim-widget-sub">Simulá 6 meses de campañas — editá cualquier celda</div>
+            <div style={{display:'flex',alignItems:'center',gap:'12px',marginBottom:'16px',padding:'10px 14px',background:'rgba(99,102,241,0.1)',borderRadius:'8px',border:'1px solid rgba(99,102,241,0.2)'}}>
+                <span style={{fontSize:'11px',color:'#94a3b8',fontWeight:'700',textTransform:'uppercase',letterSpacing:'0.5px'}}>USD/ARS</span>
+                <input type="number" value={usd} onChange={e=>setUsd(Number(e.target.value)||1480)} style={{...inputStyle,width:'90px'}}/>
+                <span style={{fontSize:'11px',color:'#64748b'}}>Tipo de cambio (referencia)</span>
+                <span style={{marginLeft:'auto',fontSize:'11px',color:'#6ee7b7',fontWeight:'700'}}>US$0.50 = ${fmt(usd*0.5)}</span>
             </div>
-            <div className="sim-widget-results">
-                <div className="sim-res-card"><div className="sim-res-card-label">Leads / Mes</div><div className="sim-res-card-value">{fmt(leads)}</div></div>
-                <div className="sim-res-card"><div className="sim-res-card-label">Ventas Est.</div><div className="sim-res-card-value">{fmt(ventas)}</div></div>
-                <div className="sim-res-card"><div className="sim-res-card-label">Facturación</div><div className="sim-res-card-value">${fmt(ingresos)}</div></div>
-                <div className="sim-res-card profit"><div className="sim-res-card-label">Ganancia Neta</div><div className="sim-res-card-value" style={{color:roi>=0?'#10b981':'#ef4444'}}>{roi>=0?'+':''}{fmt(roi)}</div></div>
+            <div style={{overflowX:'auto',marginBottom:'16px'}}>
+            <table style={{width:'100%',borderCollapse:'collapse',minWidth:'700px'}}>
+                <thead>
+                    <tr style={{background:'rgba(255,255,255,0.04)'}}>
+                        <th style={{...thStyle,textAlign:'left'}}>Concepto</th>
+                        {meses.map(m=><th key={m} style={thStyle}>{m}</th>)}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td colSpan={7} style={{...tdStyle,color:'#6366f1',fontWeight:'800',fontSize:'10px',textTransform:'uppercase',letterSpacing:'1px',paddingTop:'12px'}}>INVERSIÓN (ADS)</td></tr>
+                    <tr><td style={lblStyle}>Presupuesto ($)</td>{rows.map((r,i)=><td key={i} style={{...tdStyle,padding:'4px 6px'}}><input type="number" value={r.presupuesto} onChange={e=>update(i,'presupuesto',e.target.value)} style={inputStyle}/></td>)}</tr>
+                    <tr><td style={lblStyle}>CPC ($)</td>{rows.map((r,i)=><td key={i} style={{...tdStyle,padding:'4px 6px'}}><input type="number" value={r.cpc} step="0.1" onChange={e=>update(i,'cpc',e.target.value)} style={inputStyle}/></td>)}</tr>
+                    <tr><td style={lblStyle}>Clics totales</td>{totales.map((c,i)=><td key={i} style={tdStyle}>{fmt(c.clics)}</td>)}</tr>
+                    <tr><td colSpan={7} style={{...tdStyle,color:'#06b6d4',fontWeight:'800',fontSize:'10px',textTransform:'uppercase',letterSpacing:'1px',paddingTop:'12px'}}>CONVERSIÓN</td></tr>
+                    <tr><td style={lblStyle}>Tasa conv. (%)</td>{rows.map((r,i)=><td key={i} style={{...tdStyle,padding:'4px 6px'}}><input type="number" value={r.tdc} step="0.1" onChange={e=>update(i,'tdc',e.target.value)} style={inputStyle}/></td>)}</tr>
+                    <tr><td style={lblStyle}>Ventas Prod A</td>{totales.map((c,i)=><td key={i} style={tdStyle}>{fmt(c.ventasA)}</td>)}</tr>
+                    <tr><td style={lblStyle}>Precio Prod A ($)</td>{rows.map((r,i)=><td key={i} style={{...tdStyle,padding:'4px 6px'}}><input type="number" value={r.precioA} onChange={e=>update(i,'precioA',e.target.value)} style={inputStyle}/></td>)}</tr>
+                    <tr><td style={lblStyle}>Facturación A</td>{totales.map((c,i)=><td key={i} style={tdStyle}>${fmt(c.facA)}</td>)}</tr>
+                    <tr><td colSpan={7} style={{...tdStyle,color:'#10b981',fontWeight:'800',fontSize:'10px',textTransform:'uppercase',letterSpacing:'1px',paddingTop:'12px'}}>UP-SELL (15% de compradores)</td></tr>
+                    <tr><td style={lblStyle}>Precio Prod B ($)</td>{rows.map((r,i)=><td key={i} style={{...tdStyle,padding:'4px 6px'}}><input type="number" value={r.precioB} onChange={e=>update(i,'precioB',e.target.value)} style={inputStyle}/></td>)}</tr>
+                    <tr><td style={lblStyle}>Facturación B</td>{totales.map((c,i)=><td key={i} style={tdStyle}>${fmt(c.facB)}</td>)}</tr>
+                    <tr><td colSpan={7} style={{...tdStyle,color:'#f59e0b',fontWeight:'800',fontSize:'10px',textTransform:'uppercase',letterSpacing:'1px',paddingTop:'12px'}}>RESULTADOS</td></tr>
+                    <tr><td style={lblStyle}>Facturación Total</td>{totales.map((c,i)=><td key={i} style={{...tdStyle,fontWeight:'700'}}>${fmt(c.facTotal)}</td>)}</tr>
+                    <tr><td style={lblStyle}>Gastos Op (%)</td>{rows.map((r,i)=><td key={i} style={{...tdStyle,padding:'4px 6px'}}><input type="number" value={r.gastosOp} step="1" onChange={e=>update(i,'gastosOp',e.target.value)} style={inputStyle}/></td>)}</tr>
+                    <tr style={{background:'rgba(16,185,129,0.08)'}}><td style={{...lblStyle,color:'#6ee7b7',fontWeight:'800'}}>UTILIDAD NETA</td>{totales.map((c,i)=><td key={i} style={{...tdStyle,fontWeight:'900',color:c.utilidad>=0?'#6ee7b7':'#fca5a5'}}>${fmt(c.utilidad)}</td>)}</tr>
+                    <tr><td style={lblStyle}>ROI</td>{totales.map((c,i)=><td key={i} style={{...tdStyle,color:c.roi>=0?'#6ee7b7':'#fca5a5',fontWeight:'700'}}>{fmtPct(c.roi)}</td>)}</tr>
+                    <tr><td style={lblStyle}>Estado</td>{totales.map((c,i)=><td key={i} style={{...tdStyle,fontSize:'11px',fontWeight:'700',color:c.estadoColor}}>{c.estado}</td>)}</tr>
+                    <tr><td style={lblStyle}>Punto de equilibrio</td>{totales.map((c,i)=><td key={i} style={{...tdStyle,color:'#94a3b8'}}>{fmt(c.peq)} ventas</td>)}</tr>
+                </tbody>
+            </table>
+            </div>
+            <div style={{display:'flex',gap:'12px',marginBottom:'8px',padding:'14px',background:'rgba(255,255,255,0.03)',borderRadius:'10px',border:'1px solid rgba(255,255,255,0.08)'}}>
+                <div style={{flex:1,textAlign:'center'}}><div style={{fontSize:'10px',color:'#64748b',textTransform:'uppercase',letterSpacing:'0.5px',marginBottom:'4px'}}>Facturación Total 6M</div><div style={{fontSize:'18px',fontWeight:'900',color:'#e2e8f0'}}>${fmt(totalFac)}</div></div>
+                <div style={{width:'1px',background:'rgba(255,255,255,0.1)'}}></div>
+                <div style={{flex:1,textAlign:'center'}}><div style={{fontSize:'10px',color:'#64748b',textTransform:'uppercase',letterSpacing:'0.5px',marginBottom:'4px'}}>Utilidad Neta Total</div><div style={{fontSize:'18px',fontWeight:'900',color:totalUtil>=0?'#6ee7b7':'#fca5a5'}}>{totalUtil>=0?'+':''}{fmt(totalUtil)}</div></div>
+            </div>
+            <div style={{padding:'14px',background:'linear-gradient(135deg,rgba(99,102,241,0.1),rgba(139,92,246,0.1))',borderRadius:'10px',border:'1px solid rgba(99,102,241,0.2)'}}>
+                <div style={{fontSize:'11px',fontWeight:'700',color:'#a5b4fc',textTransform:'uppercase',letterSpacing:'0.8px',marginBottom:'12px'}}>🎯 Calculadora de Objetivos Inversa</div>
+                <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'10px',flexWrap:'wrap'}}>
+                    <span style={{fontSize:'12px',color:'#94a3b8',whiteSpace:'nowrap'}}>Quiero ganar $</span>
+                    <input type="number" value={objUtilidad} onChange={e=>setObjUtilidad(Number(e.target.value)||0)} style={{...inputStyle,width:'140px',fontSize:'13px',fontWeight:'700'}}/>
+                    <span style={{fontSize:'12px',color:'#94a3b8',whiteSpace:'nowrap'}}>por mes</span>
+                </div>
+                <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'8px'}}>
+                    <div style={{background:'rgba(255,255,255,0.05)',borderRadius:'8px',padding:'10px',textAlign:'center'}}><div style={{fontSize:'10px',color:'#64748b',marginBottom:'4px',textTransform:'uppercase',letterSpacing:'0.5px'}}>Inversión necesaria</div><div style={{fontSize:'14px',fontWeight:'800',color:'#c7d2fe'}}>${fmt(invNec)}</div></div>
+                    <div style={{background:'rgba(255,255,255,0.05)',borderRadius:'8px',padding:'10px',textAlign:'center'}}><div style={{fontSize:'10px',color:'#64748b',marginBottom:'4px',textTransform:'uppercase',letterSpacing:'0.5px'}}>Ventas necesarias</div><div style={{fontSize:'14px',fontWeight:'800',color:'#c7d2fe'}}>{fmt(ventNec)}</div></div>
+                    <div style={{background:'rgba(255,255,255,0.05)',borderRadius:'8px',padding:'10px',textAlign:'center'}}><div style={{fontSize:'10px',color:'#64748b',marginBottom:'4px',textTransform:'uppercase',letterSpacing:'0.5px'}}>Clics en ads</div><div style={{fontSize:'14px',fontWeight:'800',color:'#c7d2fe'}}>{fmt(clicsNec)}</div></div>
+                </div>
             </div>
         </div>
     );
 }
+
 function App(){
     const [tabActiva,setTabActiva]=useState('generador');
     const [modoIA,setModoIA]=useState('cliente');
