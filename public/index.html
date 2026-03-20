@@ -322,19 +322,6 @@
         .modal-add-cancel{padding:12px 20px;background:white;border:1px solid var(--gray-200);border-radius:10px;color:var(--gray-600);font-size:14px;font-weight:600;cursor:pointer}
         .crm-datos-cell{font-size:12px;color:var(--gray-600);max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         
-        .sim-widget{background:linear-gradient(135deg,#1e293b 0%,#0f172a 100%);border:1px solid rgba(99,102,241,0.3);border-radius:20px;padding:28px;margin-top:24px;}
-        .sim-widget-title{font-size:16px;font-weight:800;color:white;margin-bottom:4px;display:flex;align-items:center;gap:10px;}
-        .sim-widget-sub{font-size:12px;color:#94a3b8;margin-bottom:20px;}
-        .sim-widget-inputs{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px;}
-        .sim-widget-field label{display:block;font-size:10px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:5px;}
-        .sim-widget-field input{width:100%;padding:10px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:white;font-size:14px;font-weight:600;font-family:inherit;transition:all 0.2s;}
-        .sim-widget-field input:focus{outline:none;border-color:#6366f1;background:rgba(99,102,241,0.1);}
-        .sim-widget-results{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
-        .sim-res-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px;border-left:3px solid #6366f1;}
-        .sim-res-card.profit{border-left-color:#10b981;background:rgba(16,185,129,0.08);}
-        .sim-res-card-label{font-size:10px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:5px;}
-        .sim-res-card-value{font-size:20px;font-weight:900;color:white;}
-        .sim-res-card.profit .sim-res-card-value{color:#10b981;}
         @media(max-width:1200px){.content-grid{grid-template-columns:1fr}.crm-stats{grid-template-columns:repeat(2,1fr)}}
         @media(max-width:768px){.app-container{flex-direction:column}.sidebar{width:100%}.crm-stats{grid-template-columns:repeat(2,1fr)}}
     </style>
@@ -668,7 +655,7 @@ ${modalHTML}${waFloatHTML}
 <script>${submitScript}${multiStepScript}${contadorScript}(function(){function fixAnchors(){document.querySelectorAll('a[href^="#"]').forEach(function(a){if(a._anchorFixed)return;a._anchorFixed=true;a.addEventListener('click',function(e){var t=a.getAttribute('href');if(!t||t==='#'||t==='javascript:void(0)'){e.preventDefault();return;}var el=document.querySelector(t);if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}});});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fixAnchors);}else{fixAnchors();}})();<\/script></body></html>`;
     }
 
-    return `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${titulo}</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{${t.body} min-height:100vh;}html{scroll-behavior:smooth;}.container{max-width:900px;margin:0 auto;padding:0 24px;}.nav{${t.header} padding:16px 0;position:sticky;top:0;z-index:100;}.nav-inner{display:flex;align-items:center;justify-content:space-between;}.nav-logo{font-size:20px;font-weight:800;color:${t.logo_text};text-decoration:none;}.nav-cta{padding:10px 22px;background:${t.accent};color:white;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;transition:opacity 0.2s;}.nav-cta:hover{opacity:0.85;}.hero{padding:80px 0 60px;${heroBg}}.hero-eyebrow{display:inline-block;background:${heroSrc?'rgba(255,255,255,0.2)':t.accent+'20'};color:${heroSrc?'white':t.accent};padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:24px;}.hero h1{${t.h1} ${heroTextOverride} margin-bottom:20px;max-width:820px;}.hero h2{${t.h2} ${heroH2Override} margin-bottom:32px;max-width:680px;}.hero-desc{${t.desc} ${heroDescOverride} max-width:620px;margin-bottom:40px;}.cta-hero-btn{display:inline-block;padding:18px 40px;background:${t.accent};color:white;border-radius:12px;font-size:16px;font-weight:800;text-decoration:none;transition:all 0.25s;box-shadow:0 8px 24px ${t.accent}40;}.cta-hero-btn:hover{transform:translateY(-2px);}.pago-direct-btn{display:inline-block;padding:12px 28px;background:rgba(255,255,255,0.15);color:white;border:2px solid rgba(255,255,255,0.5);border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;transition:all 0.25s;margin-top:16px;}.pago-direct-btn:hover{background:rgba(255,255,255,0.25);transform:translateY(-1px);}.problema-section{padding:40px 0;background-color:#fff1f2;}.problema-card{background:white;border-radius:16px;padding:30px;display:flex;align-items:flex-start;gap:24px;border:1px solid #fecdd3;box-shadow:0 4px 15px rgba(0,0,0,0.05);}.problema-icon{font-size:42px;background:#ffe4e6;width:72px;height:72px;min-width:72px;display:flex;align-items:center;justify-content:center;border-radius:50%;}.problema-content h3{color:#9f1239;font-size:1.3rem;font-weight:800;margin-bottom:10px;line-height:1.3;}.problema-content p{color:#4c0519;font-size:1rem;line-height:1.7;margin-bottom:16px;}.problema-cta{display:inline-block;padding:10px 22px;background:#ef4444;color:white;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;transition:all 0.2s;}.problema-cta:hover{background:#dc2626;transform:translateY(-1px);}.cajas-section{padding:60px 0;}.cajas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}.caja{${t.cajas_bg} border-radius:14px;padding:28px;transition:transform 0.2s;}.caja:hover{transform:translateY(-3px);}.caja-num{width:36px;height:36px;background:${t.accent};color:white;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;margin-bottom:14px;}.caja-titulo{font-size:17px;font-weight:700;${t.cajas_title} margin-bottom:8px;}.caja-desc{font-size:14px;line-height:1.65;${t.cajas_text}}.beneficios-section{padding:50px 0;}.beneficios-title{font-size:22px;font-weight:800;margin-bottom:24px;${t.h1.split(';')[0]};}.beneficios-list{list-style:none;display:flex;flex-direction:column;gap:12px;}.beneficio-item{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.5;}.beneficio-check{width:24px;height:24px;background:${t.accent};color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;}.form-section{padding:60px 0 80px;}.form-box{${t.form_bg} border-radius:20px;padding:40px;}.form-title{font-size:24px;font-weight:800;margin-bottom:8px;${t.h1.split(';')[0]};}.form-sub{font-size:14px;${t.desc} margin-bottom:32px;}.landing-form{display:flex;flex-direction:column;gap:18px;}.campo{display:flex;flex-direction:column;gap:6px;}.campo label{font-size:13px;font-weight:700;${t.form_label} text-transform:uppercase;letter-spacing:0.5px;}.campo input[type="text"],.campo textarea,.campo select{${t.form_input} padding:12px 16px;border-radius:10px;font-size:14px;font-family:inherit;transition:all 0.2s;width:100%;}.campo textarea{min-height:100px;resize:vertical;}.campo input:focus,.campo textarea:focus,.campo select:focus{outline:none;border-color:${t.accent};box-shadow:0 0 0 3px ${t.accent}20;}.radio-group,.check-group{display:flex;flex-direction:column;gap:8px;}.radio-opt,.check-opt{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;cursor:pointer;${t.form_input} transition:all 0.15s;}.radio-opt:hover,.check-opt:hover{border-color:${t.accent};}.radio-opt input,.check-opt input{accent-color:${t.accent};}.submit-btn{padding:16px 32px;background:${t.accent};color:white;border:none;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;transition:all 0.25s;margin-top:8px;box-shadow:0 6px 20px ${t.accent}40;font-family:inherit;}.submit-btn:hover{transform:translateY(-2px);opacity:0.92;}.footer{padding:32px 0;border-top:1px solid ${t.accent}20;text-align:center;font-size:13px;opacity:0.5;}.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;align-items:center;justify-content:center;}.modal-overlay.show{display:flex;}.modal{background:white;border-radius:20px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,0.3);}.modal-icon{font-size:48px;margin-bottom:16px;}.modal-title{font-size:22px;font-weight:800;color:#0f172a;margin-bottom:8px;}.modal-sub{font-size:14px;color:#64748b;margin-bottom:24px;line-height:1.6;display:flex;flex-direction:column;gap:10px;align-items:center;}${waModalCSS}${multiStepCSS}${waFloatCSS}${faqCSS}${contadorCSS}@media(max-width:768px){.container{padding:0 16px;}.nav-inner{gap:8px;}.nav-logo{font-size:16px;max-width:55%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}.nav-cta{padding:8px 14px;font-size:12px;white-space:nowrap;}.hero{padding:48px 0 36px;background-attachment:scroll;}.hero h1{font-size:clamp(1.6rem,7vw,2.4rem) !important;}.hero h2{font-size:clamp(1rem,4vw,1.2rem) !important;}.hero-desc{font-size:0.95rem !important;}.cta-hero-btn{padding:14px 28px;font-size:15px;display:block;text-align:center;}.pago-direct-btn{display:block;text-align:center;margin-top:12px;}.cajas-section{padding:40px 0;}.cajas-grid{grid-template-columns:1fr;gap:14px;}.caja{padding:20px;}.beneficios-section{padding:36px 0;}.beneficio-item{font-size:14px;}.form-section{padding:40px 0 60px;}.form-box{padding:24px 20px;border-radius:16px;}.form-title{font-size:20px !important;}.campo input[type="text"],.campo input[type="tel"],.campo textarea,.campo select{font-size:16px !important;}.submit-btn{width:100%;font-size:15px;}.ms-btn-next{font-size:14px;}.problema-card{flex-direction:column;align-items:center;text-align:center;padding:20px;}.problema-icon{margin-bottom:12px;}.urgency-bar{gap:8px;padding:8px 14px;}.urgency-timer{font-size:16px;}.urgency-cta{font-size:11px;padding:5px 10px;}.modal{padding:28px 20px;margin:16px;}.faq-q{padding:14px 16px;font-size:14px;}.faq-a{font-size:13px;}.wa-float{bottom:16px;right:16px;width:52px;height:52px;}.footer{padding:24px 0;}}</style></head><body><nav class="nav"><div class="container"><div class="nav-inner"><a href="javascript:void(0)" class="nav-logo">${nicho?nicho.charAt(0).toUpperCase()+nicho.slice(1):'Mi Negocio'}</a><a href="#form" class="nav-cta">${cta}</a></div></div></nav>${contadorHTML}<section class="hero"><div class="container"><div class="hero-eyebrow">${publico||'Para vos'}</div><h1>${titulo}</h1><h2>${subtitulo}</h2><p class="hero-desc">${descripcion}</p><a href="#form" class="cta-hero-btn">${cta} →</a>${pagoLink?'<br><a href="'+(pagoLink)+'" target="_top" class="pago-direct-btn">💳 '+(pagoTexto)+' →</a>':''}</div></section>${problemaHTML}${cajasHTML}${beneficiosHTML}${faqHTML}${formHTML}<footer class="footer"><div class="container"><p>© ${new Date().getFullYear()} ${nicho?nicho.charAt(0).toUpperCase()+nicho.slice(1):'Mi Negocio'} · Todos los derechos reservados</p></div></footer>${modalHTML}${waFloatHTML}<script>${submitScript}${multiStepScript}${contadorScript}
+    return `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>${nicho?nicho.charAt(0).toUpperCase():'🚀'}</text></svg>"><title>${titulo}</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{${t.body} min-height:100vh;}html{scroll-behavior:smooth;}.container{max-width:900px;margin:0 auto;padding:0 24px;}.nav{${t.header} padding:16px 0;position:sticky;top:0;z-index:100;}.nav-inner{display:flex;align-items:center;justify-content:space-between;}.nav-logo{font-size:20px;font-weight:800;color:${t.logo_text};text-decoration:none;}.nav-cta{padding:10px 22px;background:${t.accent};color:white;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;transition:opacity 0.2s;}.nav-cta:hover{opacity:0.85;}.hero{padding:80px 0 60px;${heroBg}contain:layout;}.hero-eyebrow{display:inline-block;background:${heroSrc?'rgba(255,255,255,0.2)':t.accent+'20'};color:${heroSrc?'white':t.accent};padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:24px;}.hero h1{${t.h1} ${heroTextOverride} margin-bottom:20px;max-width:min(820px,100%);}.hero h2{${t.h2} ${heroH2Override} margin-bottom:32px;max-width:min(680px,100%);}.hero-desc{${t.desc} ${heroDescOverride} max-width:min(620px,100%);margin-bottom:40px;}.cta-hero-btn{display:inline-block;padding:18px 40px;background:${t.accent};color:white;border-radius:12px;font-size:16px;font-weight:800;text-decoration:none;transition:transform 0.2s ease,box-shadow 0.2s ease;box-shadow:0 8px 24px ${t.accent}40;will-change:transform;}.cta-hero-btn:hover{transform:translateY(-2px);}.pago-direct-btn{display:inline-block;padding:12px 28px;background:rgba(255,255,255,0.15);color:white;border:2px solid rgba(255,255,255,0.5);border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;transition:transform 0.2s ease,background 0.2s ease;margin-top:16px;}.pago-direct-btn:hover{background:rgba(255,255,255,0.25);transform:translateY(-1px);}.problema-section{padding:40px 0;background-color:#fff1f2;}.problema-card{background:white;border-radius:16px;padding:30px;display:flex;align-items:flex-start;gap:24px;border:1px solid #fecdd3;box-shadow:0 4px 15px rgba(0,0,0,0.05);}.problema-icon{font-size:42px;background:#ffe4e6;width:72px;height:72px;min-width:72px;display:flex;align-items:center;justify-content:center;border-radius:50%;}.problema-content h3{color:#9f1239;font-size:1.3rem;font-weight:800;margin-bottom:10px;line-height:1.3;}.problema-content p{color:#4c0519;font-size:1rem;line-height:1.7;margin-bottom:16px;}.problema-cta{display:inline-block;padding:10px 22px;background:#ef4444;color:white;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;transition:background 0.2s ease,transform 0.2s ease;}.problema-cta:hover{background:#dc2626;transform:translateY(-1px);}.cajas-section{padding:60px 0;}.cajas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}.caja{${t.cajas_bg} border-radius:14px;padding:28px;transition:transform 0.2s;}.caja:hover{transform:translateY(-3px);}.caja-num{width:36px;height:36px;background:${t.accent};color:white;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;margin-bottom:14px;}.caja-titulo{font-size:17px;font-weight:700;${t.cajas_title} margin-bottom:8px;}.caja-desc{font-size:14px;line-height:1.65;${t.cajas_text}}.beneficios-section{padding:50px 0;}.beneficios-title{font-size:22px;font-weight:800;margin-bottom:24px;${t.h1.split(';')[0]};}.beneficios-list{list-style:none;display:flex;flex-direction:column;gap:12px;}.beneficio-item{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.5;}.beneficio-check{width:24px;height:24px;background:${t.accent};color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;}.form-section{padding:60px 0 80px;}.form-box{${t.form_bg} border-radius:20px;padding:40px;}.form-title{font-size:24px;font-weight:800;margin-bottom:8px;${t.h1.split(';')[0]};}.form-sub{font-size:14px;${t.desc} margin-bottom:32px;}.landing-form{display:flex;flex-direction:column;gap:18px;}.campo{display:flex;flex-direction:column;gap:6px;}.campo label{font-size:13px;font-weight:700;${t.form_label} text-transform:uppercase;letter-spacing:0.5px;}.campo input[type="text"],.campo textarea,.campo select{${t.form_input} padding:12px 16px;border-radius:10px;font-size:16px;font-family:inherit;transition:border-color 0.2s ease,box-shadow 0.2s ease;width:100%;-webkit-appearance:none;}.campo textarea{min-height:100px;resize:vertical;}.campo input:focus,.campo textarea:focus,.campo select:focus{outline:none;border-color:${t.accent};box-shadow:0 0 0 3px ${t.accent}20;}.radio-group,.check-group{display:flex;flex-direction:column;gap:8px;}.radio-opt,.check-opt{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;cursor:pointer;${t.form_input} transition:border-color 0.15s ease;}.radio-opt:hover,.check-opt:hover{border-color:${t.accent};}.radio-opt input,.check-opt input{accent-color:${t.accent};}.submit-btn{padding:16px 32px;background:${t.accent};color:white;border:none;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;transition:transform 0.2s ease,opacity 0.2s ease;margin-top:8px;box-shadow:0 6px 20px ${t.accent}40;font-family:inherit;will-change:transform;}.submit-btn:hover{transform:translateY(-2px);opacity:0.92;}.footer{padding:32px 0;border-top:1px solid ${t.accent}20;text-align:center;font-size:13px;opacity:0.5;}.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;align-items:center;justify-content:center;}.modal-overlay.show{display:flex;}.modal{background:white;border-radius:20px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,0.3);}.modal-icon{font-size:48px;margin-bottom:16px;}.modal-title{font-size:22px;font-weight:800;color:#0f172a;margin-bottom:8px;}.modal-sub{font-size:14px;color:#64748b;margin-bottom:24px;line-height:1.6;display:flex;flex-direction:column;gap:10px;align-items:center;}${waModalCSS}${multiStepCSS}${waFloatCSS}${faqCSS}${contadorCSS}@media(max-width:768px){.container{padding:0 16px;}.nav-inner{gap:8px;}.nav-logo{font-size:16px;max-width:55%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}.nav-cta{padding:8px 14px;font-size:12px;white-space:nowrap;}.hero{padding:48px 0 36px;background-attachment:scroll;}.hero h1{font-size:clamp(1.6rem,7vw,2.4rem) !important;}.hero h2{font-size:clamp(1rem,4vw,1.2rem) !important;}.hero-desc{font-size:0.95rem !important;}.cta-hero-btn{padding:14px 28px;font-size:15px;display:block;text-align:center;}.pago-direct-btn{display:block;text-align:center;margin-top:12px;}.cajas-section{padding:40px 0;}.cajas-grid{grid-template-columns:1fr;gap:14px;}.caja{padding:20px;}.beneficios-section{padding:36px 0;}.beneficio-item{font-size:14px;}.form-section{padding:40px 0 60px;}.form-box{padding:24px 20px;border-radius:16px;}.form-title{font-size:20px !important;}.campo input[type="text"],.campo input[type="tel"],.campo textarea,.campo select{font-size:16px !important;}.submit-btn{width:100%;font-size:15px;}.ms-btn-next{font-size:14px;}.problema-card{flex-direction:column;align-items:center;text-align:center;padding:20px;}.problema-icon{margin-bottom:12px;}.urgency-bar{gap:8px;padding:8px 14px;}.urgency-timer{font-size:16px;}.urgency-cta{font-size:11px;padding:5px 10px;}.modal{padding:28px 20px;margin:16px;}.faq-q{padding:14px 16px;font-size:14px;}.faq-a{font-size:13px;}.wa-float{bottom:16px;right:16px;width:52px;height:52px;}.footer{padding:24px 0;}}</style></head><body><nav class="nav"><div class="container"><div class="nav-inner"><a href="javascript:void(0)" class="nav-logo">${nicho?nicho.charAt(0).toUpperCase()+nicho.slice(1):'Mi Negocio'}</a><a href="#form" class="nav-cta">${cta}</a></div></div></nav>${contadorHTML}<section class="hero"><div class="container"><div class="hero-eyebrow">${publico||'Para vos'}</div><h1>${titulo}</h1><h2>${subtitulo}</h2><p class="hero-desc">${descripcion}</p><a href="#form" class="cta-hero-btn">${cta} →</a>${pagoLink?'<br><a href="'+(pagoLink)+'" target="_top" class="pago-direct-btn">💳 '+(pagoTexto)+' →</a>':''}</div></section>${problemaHTML}${cajasHTML}${beneficiosHTML}${faqHTML}${formHTML}<footer class="footer"><div class="container"><p>© ${new Date().getFullYear()} ${nicho?nicho.charAt(0).toUpperCase()+nicho.slice(1):'Mi Negocio'} · Todos los derechos reservados</p></div></footer>${modalHTML}${waFloatHTML}<script>${submitScript}${multiStepScript}${contadorScript}
 (function(){function fixAnchors(){document.querySelectorAll('a[href^="#"]').forEach(function(a){if(a._anchorFixed)return;a._anchorFixed=true;a.addEventListener('click',function(e){var t=a.getAttribute('href');if(!t||t==='#'||t==='javascript:void(0)'){e.preventDefault();return;}var el=document.querySelector(t);if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}});});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fixAnchors);}else{fixAnchors();}})();<\/script></body></html>`;
 }
 
@@ -802,177 +789,6 @@ function PreviewModal({html,temaActual,nicho,onClose,onDescargar}){
     return(<div className="preview-overlay"><div className="preview-bar"><div className="preview-bar-left"><span style={{fontSize:'20px',flexShrink:0}}>👁️</span><span className="preview-bar-title">{nicho||'Mi Landing'}</span><span className="preview-bar-badge">{temaActual.icon} {temaActual.name}</span></div><div className="preview-devices">{[{id:'desktop',label:'🖥️ Desktop'},{id:'tablet',label:'📱 Tablet'},{id:'mobile',label:'📲 Mobile'}].map(d=>(<button key={d.id} className={`preview-device-btn ${device===d.id?'active':''}`} onClick={()=>setDevice(d.id)}>{d.label}</button>))}</div><div className="preview-bar-right"><button className="preview-dl-btn" onClick={onDescargar}>⬇️ Descargar HTML</button><button className="preview-close" onClick={onClose} title="Esc">✕</button></div></div><div className="preview-stage"><div className={`preview-frame-wrap ${device}`}><iframe ref={iframeRef} className="preview-iframe" title="Preview" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-top-navigation-by-user-activation"/></div></div></div>);
 }
 
-
-function SimuladorEscalamiento(){
-    const meses=['MES 1','MES 2','MES 3','MES 4','MES 5','MES 6'];
-    const initRow=(i)=>({
-        presupuesto:i<2?40000:500,
-        cpc:i===0?740:i===1?0.5:i===2?1:0.5,
-        tdc:i===0?2:1,
-        precioA:i===0?20000:i===1?35000:i===2?10000:47,
-        precioB:i<2?0:97,
-        gastosOp:20,
-        clicsOvr:null,ventasAOvr:null,facAOvr:null,facBOvr:null,
-    });
-    const [rows,setRows]=useState(()=>meses.map((_,i)=>initRow(i)));
-    const [objUtilidad,setObjUtilidad]=useState('10000000');
-    const [usd,setUsd]=useState(1480);
-
-    const parse=(v)=>{if(v===null||v===''||v===undefined)return null;const n=Number(String(v).replace(/\./g,'').replace(',','.'));return isNaN(n)?null:n;};
-    const fmt=(n,dec=0)=>n===null||n===undefined?'—':Number(n).toLocaleString('es-AR',{minimumFractionDigits:dec,maximumFractionDigits:dec});
-    const fmtPct=(n)=>Number(n).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2})+'%';
-
-    const calc=(r)=>{
-        const pres=Number(r.presupuesto)||0;
-        const cpc=Number(r.cpc)||0;
-        const tdc=Number(r.tdc)||0;
-        const clics=r.clicsOvr!==null?r.clicsOvr:(cpc>0?Math.round(pres/cpc):0);
-        const ventasA=r.ventasAOvr!==null?r.ventasAOvr:Math.round(clics*(tdc/100));
-        const ventasB=Math.round(ventasA*0.15);
-        const precA=Number(r.precioA)||0;
-        const precB=Number(r.precioB)||0;
-        const facA=r.facAOvr!==null?r.facAOvr:ventasA*precA;
-        const facB=r.facBOvr!==null?r.facBOvr:ventasB*precB;
-        const facTotal=facA+facB;
-        const gastos=facTotal*(Number(r.gastosOp)||0)/100+pres;
-        const utilidad=facTotal-gastos;
-        const roi=pres>0?((utilidad/pres)*100):0;
-        const estado=roi>50?'🚀 ESCALAR YA':roi>0?'⚠️ REVISAR':'🔴 NEGATIVO';
-        const estadoColor=roi>50?'#16a34a':roi>0?'#d97706':'#dc2626';
-        const peq=precA>0?Math.ceil(pres/precA):0;
-        return{clics,ventasA,ventasB,facA,facB,facTotal,utilidad,roi,estado,estadoColor,peq};
-    };
-    const upd=(i,k,v)=>setRows(prev=>{const n=prev.map((r,j)=>j===i?{...r,[k]:v}:r);return n;});
-    const totales=rows.map(calc);
-    const totalFac=totales.reduce((s,r)=>s+r.facTotal,0);
-    const totalUtil=totales.reduce((s,r)=>s+r.utilidad,0);
-    const objNum=Number(String(objUtilidad).replace(/\./g,'').replace(',','.'))||0;
-    const avgTdc=rows.reduce((s,r)=>s+Number(r.tdc),0)/rows.length;
-    const avgPrecio=rows.reduce((s,r)=>s+Number(r.precioA),0)/rows.length;
-    const avgCpc=rows.reduce((s,r)=>s+Number(r.cpc),0)/rows.length;
-    const invNec=avgPrecio>0&&avgTdc>0&&avgCpc>0?Math.round((objNum/0.8)/(avgPrecio*(avgTdc/100))*avgCpc):0;
-    const ventNec=avgPrecio>0?Math.ceil(objNum/0.8/avgPrecio):0;
-    const clicsNec=avgTdc>0&&avgCpc>0?Math.ceil(ventNec/(avgTdc/100)):0;
-
-    const noSpin={WebkitAppearance:'none',MozAppearance:'textfield'};
-    const inpBase={width:'100%',padding:'5px 6px',background:'rgba(255,255,255,0.08)',border:'1px solid rgba(255,255,255,0.15)',borderRadius:'5px',color:'white',fontSize:'12px',fontFamily:'inherit',textAlign:'center',...noSpin};
-    const inpOvr={...inpBase,background:'rgba(99,102,241,0.15)',border:'1px solid rgba(99,102,241,0.4)',color:'#c7d2fe'};
-    const thS={padding:'8px 10px',fontSize:'10px',fontWeight:'700',color:'#94a3b8',textTransform:'uppercase',letterSpacing:'0.5px',textAlign:'center',borderBottom:'1px solid rgba(255,255,255,0.1)',whiteSpace:'nowrap'};
-    const tdS={padding:'6px 8px',fontSize:'12px',textAlign:'center',borderBottom:'1px solid rgba(255,255,255,0.06)',color:'#e2e8f0'};
-    const lbS={padding:'6px 8px',fontSize:'12px',textAlign:'left',borderBottom:'1px solid rgba(255,255,255,0.06)',color:'#94a3b8',fontWeight:'600',whiteSpace:'nowrap'};
-
-    // Input with formatted display + tab/enter navigation
-    const Inp=({val,onChange,ovr,fmtVal})=>{
-        const ref=React.useRef(null);
-        const isFocused=React.useRef(false);
-        const localVal=React.useRef('');
-        const [display,setDisplay]=React.useState(fmtVal!==undefined?String(fmtVal):fmt(val));
-        // Sync display when not focused and val changes from outside
-        React.useEffect(()=>{
-            if(!isFocused.current){setDisplay(fmtVal!==undefined?String(fmtVal):fmt(val));}
-        },[val,fmtVal]);
-        const commit=()=>{
-            const raw=localVal.current.replace(/\./g,'').replace(',','.');
-            const n=parseFloat(raw);
-            const result=isNaN(n)?null:n;
-            onChange(result);
-            isFocused.current=false;
-            setDisplay(fmtVal!==undefined?String(fmtVal):fmt(result??val));
-        };
-        return(<input
-            ref={ref}
-            className="sim-inp"
-            type="text"
-            inputMode="decimal"
-            autoComplete="off"
-            autoCorrect="off"
-            spellCheck={false}
-            value={display}
-            style={ovr?inpOvr:inpBase}
-            onFocus={e=>{
-                isFocused.current=true;
-                const raw=val===null||val===undefined?'':String(val);
-                localVal.current=raw;
-                setDisplay(raw);
-                setTimeout(()=>e.target.select(),0);
-            }}
-            onBlur={()=>commit()}
-            onChange={e=>{localVal.current=e.target.value;setDisplay(e.target.value);}}
-            onKeyDown={e=>{
-                if(e.key==='Enter'||e.key==='Tab'){
-                    e.preventDefault();
-                    const raw=localVal.current.replace(/\./g,'').replace(',','.');
-                    const n=parseFloat(raw);
-                    const result=isNaN(n)?null:n;
-                    onChange(result);
-                    isFocused.current=false;
-                    const all=Array.from(document.querySelectorAll('.sim-inp'));
-                    const idx=all.indexOf(e.target);
-                    const next=all[idx+(e.shiftKey&&e.key==='Tab'?-1:1)];
-                    if(next)next.focus();
-                }
-            }}
-        />);
-    };
-
-    return(
-        <div className="sim-widget">
-            <div className="sim-widget-title"><span>📊</span>Simulador de Certeza Financiera</div>
-            <div className="sim-widget-sub">Editá cualquier celda · <span style={{color:'#a5b4fc'}}>Azul</span> = calculado (sobreescribible) · Tab/Enter avanza · los valores muestran separador de miles</div>
-            <style>{`.sim-inp::-webkit-outer-spin-button,.sim-inp::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}`}</style>
-            <div style={{display:'flex',alignItems:'center',gap:'12px',marginBottom:'16px',padding:'10px 14px',background:'rgba(99,102,241,0.1)',borderRadius:'8px',border:'1px solid rgba(99,102,241,0.2)'}}>
-                <span style={{fontSize:'11px',color:'#94a3b8',fontWeight:'700',textTransform:'uppercase',letterSpacing:'0.5px'}}>USD/ARS</span>
-                <Inp val={usd} onChange={v=>setUsd(v||1480)} fmtVal={fmt(usd)}/>
-                <span style={{fontSize:'11px',color:'#64748b'}}>Tipo de cambio</span>
-                <span style={{marginLeft:'auto',fontSize:'11px',color:'#6ee7b7',fontWeight:'700'}}>US$0.50 = ${fmt(usd*0.5)}</span>
-            </div>
-            <div style={{overflowX:'auto',marginBottom:'16px'}}>
-            <table style={{width:'100%',borderCollapse:'collapse',minWidth:'700px'}}>
-                <thead><tr style={{background:'rgba(255,255,255,0.04)'}}><th style={{...thS,textAlign:'left'}}>Concepto</th>{meses.map(m=><th key={m} style={thS}>{m}</th>)}</tr></thead>
-                <tbody>
-                    <tr><td colSpan={7} style={{...tdS,color:'#6366f1',fontWeight:'800',fontSize:'10px',textTransform:'uppercase',letterSpacing:'1px',paddingTop:'12px'}}>INVERSIÓN (ADS)</td></tr>
-                    <tr><td style={lbS}>Presupuesto ($)</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={r.presupuesto} onChange={v=>upd(i,'presupuesto',v??0)} fmtVal={fmt(r.presupuesto)}/></td>)}</tr>
-                    <tr><td style={lbS}>CPC ($)</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={r.cpc} onChange={v=>upd(i,'cpc',v??0)} fmtVal={fmt(r.cpc,2)}/></td>)}</tr>
-                    <tr><td style={lbS}>Clics totales</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={r.clicsOvr!==null?r.clicsOvr:totales[i].clics} onChange={v=>upd(i,'clicsOvr',v)} fmtVal={fmt(r.clicsOvr!==null?r.clicsOvr:totales[i].clics)} ovr/></td>)}</tr>
-                    <tr><td colSpan={7} style={{...tdS,color:'#06b6d4',fontWeight:'800',fontSize:'10px',textTransform:'uppercase',letterSpacing:'1px',paddingTop:'12px'}}>CONVERSIÓN</td></tr>
-                    <tr><td style={lbS}>Tasa conv. (%)</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={r.tdc} onChange={v=>upd(i,'tdc',v??0)} fmtVal={fmtPct(r.tdc)}/></td>)}</tr>
-                    <tr><td style={lbS}>Ventas Prod A</td>{rows.map((r,i)=>{const val=r.ventasAOvr!==null?r.ventasAOvr:totales[i].ventasA;return(<td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={val} onChange={v=>upd(i,'ventasAOvr',v)} fmtVal={fmt(val)} ovr/></td>);})}</tr>
-                    <tr><td style={lbS}>Precio Prod A ($)</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={r.precioA} onChange={v=>upd(i,'precioA',v??0)} fmtVal={fmt(r.precioA)}/></td>)}</tr>
-                    <tr><td style={lbS}>Facturación A</td>{rows.map((r,i)=>{const val=r.facAOvr!==null?r.facAOvr:totales[i].facA;return(<td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={val} onChange={v=>upd(i,'facAOvr',v)} fmtVal={'$'+fmt(val)} ovr/></td>);})}</tr>
-                    <tr><td colSpan={7} style={{...tdS,color:'#10b981',fontWeight:'800',fontSize:'10px',textTransform:'uppercase',letterSpacing:'1px',paddingTop:'12px'}}>UP-SELL (15% de compradores)</td></tr>
-                    <tr><td style={lbS}>Precio Prod B ($)</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={r.precioB} onChange={v=>upd(i,'precioB',v??0)} fmtVal={fmt(r.precioB)}/></td>)}</tr>
-                    <tr><td style={lbS}>Facturación B</td>{rows.map((r,i)=>{const val=r.facBOvr!==null?r.facBOvr:totales[i].facB;return(<td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={val} onChange={v=>upd(i,'facBOvr',v)} fmtVal={'$'+fmt(val)} ovr/></td>);})}</tr>
-                    <tr><td colSpan={7} style={{...tdS,color:'#f59e0b',fontWeight:'800',fontSize:'10px',textTransform:'uppercase',letterSpacing:'1px',paddingTop:'12px'}}>RESULTADOS</td></tr>
-                    <tr><td style={lbS}>Facturación Total</td>{totales.map((c,i)=><td key={i} style={{...tdS,fontWeight:'700'}}>${fmt(c.facTotal)}</td>)}</tr>
-                    <tr><td style={lbS}>Gastos Op (%)</td>{rows.map((r,i)=><td key={i} style={{...tdS,padding:'4px 5px'}}><Inp val={r.gastosOp} onChange={v=>upd(i,'gastosOp',v??20)} fmtVal={fmtPct(r.gastosOp)}/></td>)}</tr>
-                    <tr style={{background:'rgba(16,185,129,0.08)'}}><td style={{...lbS,color:'#6ee7b7',fontWeight:'800'}}>UTILIDAD NETA</td>{totales.map((c,i)=><td key={i} style={{...tdS,fontWeight:'900',color:c.utilidad>=0?'#6ee7b7':'#fca5a5'}}>${fmt(c.utilidad)}</td>)}</tr>
-                    <tr><td style={lbS}>ROI</td>{totales.map((c,i)=><td key={i} style={{...tdS,color:c.roi>=0?'#6ee7b7':'#fca5a5',fontWeight:'700'}}>{fmtPct(c.roi)}</td>)}</tr>
-                    <tr><td style={lbS}>Estado</td>{totales.map((c,i)=><td key={i} style={{...tdS,fontSize:'11px',fontWeight:'700',color:c.estadoColor}}>{c.estado}</td>)}</tr>
-                    <tr><td style={lbS}>Punto de equilibrio</td>{totales.map((c,i)=><td key={i} style={tdS}>{fmt(c.peq)} ventas</td>)}</tr>
-                </tbody>
-            </table>
-            </div>
-            <div style={{display:'flex',gap:'12px',marginBottom:'12px',padding:'14px',background:'rgba(255,255,255,0.03)',borderRadius:'10px',border:'1px solid rgba(255,255,255,0.08)'}}>
-                <div style={{flex:1,textAlign:'center'}}><div style={{fontSize:'10px',color:'#64748b',textTransform:'uppercase',letterSpacing:'0.5px',marginBottom:'4px'}}>Facturación Total 6M</div><div style={{fontSize:'20px',fontWeight:'900',color:'#e2e8f0'}}>${fmt(totalFac)}</div></div>
-                <div style={{width:'1px',background:'rgba(255,255,255,0.1)'}}></div>
-                <div style={{flex:1,textAlign:'center'}}><div style={{fontSize:'10px',color:'#64748b',textTransform:'uppercase',letterSpacing:'0.5px',marginBottom:'4px'}}>Utilidad Neta Total</div><div style={{fontSize:'20px',fontWeight:'900',color:totalUtil>=0?'#6ee7b7':'#fca5a5'}}>{totalUtil>=0?'+':''}{fmt(totalUtil)}</div></div>
-            </div>
-            <div style={{padding:'14px',background:'linear-gradient(135deg,rgba(99,102,241,0.1),rgba(139,92,246,0.1))',borderRadius:'10px',border:'1px solid rgba(99,102,241,0.2)'}}>
-                <div style={{fontSize:'11px',fontWeight:'700',color:'#a5b4fc',textTransform:'uppercase',letterSpacing:'0.8px',marginBottom:'12px'}}>🎯 Calculadora de Objetivos Inversa</div>
-                <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'10px',flexWrap:'wrap'}}>
-                    <span style={{fontSize:'12px',color:'#94a3b8',whiteSpace:'nowrap'}}>Quiero ganar $</span>
-                    <Inp val={objNum} onChange={v=>setObjUtilidad(String(v??0))} fmtVal={fmt(objNum)}/>
-                    <span style={{fontSize:'12px',color:'#94a3b8',whiteSpace:'nowrap'}}>por mes</span>
-                </div>
-                <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'8px'}}>
-                    <div style={{background:'rgba(255,255,255,0.05)',borderRadius:'8px',padding:'10px',textAlign:'center'}}><div style={{fontSize:'10px',color:'#64748b',marginBottom:'4px',textTransform:'uppercase',letterSpacing:'0.5px'}}>Inversión necesaria</div><div style={{fontSize:'14px',fontWeight:'800',color:'#c7d2fe'}}>${fmt(invNec)}</div></div>
-                    <div style={{background:'rgba(255,255,255,0.05)',borderRadius:'8px',padding:'10px',textAlign:'center'}}><div style={{fontSize:'10px',color:'#64748b',marginBottom:'4px',textTransform:'uppercase',letterSpacing:'0.5px'}}>Ventas necesarias</div><div style={{fontSize:'14px',fontWeight:'800',color:'#c7d2fe'}}>{fmt(ventNec)}</div></div>
-                    <div style={{background:'rgba(255,255,255,0.05)',borderRadius:'8px',padding:'10px',textAlign:'center'}}><div style={{fontSize:'10px',color:'#64748b',marginBottom:'4px',textTransform:'uppercase',letterSpacing:'0.5px'}}>Clics en ads</div><div style={{fontSize:'14px',fontWeight:'800',color:'#c7d2fe'}}>{fmt(clicsNec)}</div></div>
-                </div>
-            </div>
-        </div>
-    );
-}
 
 function App(){
     const [tabActiva,setTabActiva]=useState('generador');
@@ -1269,7 +1085,6 @@ function App(){
                 {sec.data.map((texto,i)=>(<div key={i} className={`variant-item ${varSel[sec.key]===i?'selected':''}`} onClick={()=>selVar(sec.key,i)}><span className="variant-number">#{i+1}</span><span className="variant-text">{texto}</span>{varSel[sec.key]===i?<span className="variant-selected-badge">✓ ELEGIDA</span>:<button className="variant-copy-btn" onClick={e=>{e.stopPropagation();copiarTexto(texto);}}>📋</button>}<button style={{flexShrink:0,background:'none',border:'none',cursor:'pointer',opacity:0.5,fontSize:'12px',padding:'2px 6px',marginLeft:'4px'}} onClick={e=>{e.stopPropagation();const v=prompt('Editar texto:',texto);if(v&&v.trim())editarTexto(sec.key,i,v.trim());}} title="Editar">✏️</button></div>))}
             </div>))}
         </div>)}
-        <SimuladorEscalamiento/>
     </div></div>)}
     {toast&&(<div className="toast"><span className="toast-icon">{toast.icono}</span><span className="toast-message">{toast.mensaje}</span></div>)}
     </>);
