@@ -322,6 +322,28 @@
         .modal-add-cancel{padding:12px 20px;background:white;border:1px solid var(--gray-200);border-radius:10px;color:var(--gray-600);font-size:14px;font-weight:600;cursor:pointer}
         .crm-datos-cell{font-size:12px;color:var(--gray-600);max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         
+
+        .proj-widget{background:white;border-radius:20px;padding:28px;margin-top:24px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border:1px solid var(--gray-200);}
+        .proj-widget-title{font-size:16px;font-weight:800;color:var(--gray-900);margin-bottom:4px;display:flex;align-items:center;gap:10px;}
+        .proj-widget-sub{font-size:12px;color:var(--gray-500);margin-bottom:20px;}
+        .proj-inputs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;}
+        .proj-field label{display:block;font-size:11px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;}
+        .proj-field input{width:100%;padding:10px 12px;background:var(--gray-50);border:1.5px solid var(--gray-200);border-radius:9px;color:var(--gray-900);font-size:14px;font-weight:600;font-family:inherit;transition:border-color 0.2s;-webkit-appearance:none;}
+        .proj-field input:focus{outline:none;border-color:var(--primary);background:white;box-shadow:0 0 0 3px rgba(99,102,241,0.08);}
+        .proj-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--primary),var(--secondary));border:none;border-radius:12px;color:white;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:20px;transition:all 0.2s;box-shadow:0 4px 14px rgba(99,102,241,0.35);}
+        .proj-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(99,102,241,0.45);}
+        .proj-results{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+        .proj-res{border-radius:14px;padding:18px 20px;border:1px solid var(--gray-200);}
+        .proj-res.accent{background:linear-gradient(135deg,var(--primary),var(--secondary));border:none;color:white;}
+        .proj-res.green{background:linear-gradient(135deg,#10b981,#059669);border:none;color:white;}
+        .proj-res.blue{background:var(--gray-50);}
+        .proj-res.yellow{background:#fffbeb;border-color:#fde68a;}
+        .proj-res-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;opacity:0.75;}
+        .proj-res-value{font-size:22px;font-weight:900;line-height:1.2;}
+        .proj-res-sub{font-size:11px;margin-top:4px;opacity:0.7;}
+        .proj-disclaimer{font-size:10px;color:var(--gray-400);text-align:center;margin-top:14px;font-style:italic;}
+        @media(max-width:900px){.proj-inputs{grid-template-columns:repeat(2,1fr);}.proj-results{grid-template-columns:1fr;}}
+
         @media(max-width:1200px){.content-grid{grid-template-columns:1fr}.crm-stats{grid-template-columns:repeat(2,1fr)}}
         @media(max-width:768px){.app-container{flex-direction:column}.sidebar{width:100%}.crm-stats{grid-template-columns:repeat(2,1fr)}}
     </style>
@@ -790,6 +812,66 @@ function PreviewModal({html,temaActual,nicho,onClose,onDescargar}){
 }
 
 
+
+function ProyeccionWidget(){
+    const [inputs,setInputs]=useState({moneda:'$',invDiaria:4000,cpl:100,tasa:2,ticket:4500000});
+    const [result,setResult]=useState(null);
+    const upd=(k,v)=>setInputs(p=>({...p,[k]:v}));
+    const calcular=()=>{
+        const inv=Number(inputs.invDiaria)||0;
+        const cpl=Number(inputs.cpl)||1;
+        const tasa=Number(inputs.tasa)||0;
+        const ticket=Number(inputs.ticket)||0;
+        const m=inputs.moneda||'$';
+        const invMes=inv*30;
+        const leads=cpl>0?Math.round(invMes/cpl):0;
+        const ventas=Math.round(leads*(tasa/100));
+        const ingresos=ventas*ticket;
+        const rentabilidad=ingresos-invMes;
+        setResult({invMes,leads,ventas,ingresos,rentabilidad,m});
+    };
+    const fmt=(n)=>Math.round(n).toLocaleString('es-AR');
+    return(
+        <div className="proj-widget">
+            <div className="proj-widget-title"><span>🎯</span>Calculadora de Proyección de Inversión</div>
+            <div className="proj-widget-sub">Estimá el retorno de tu campaña publicitaria antes de invertir</div>
+            <div className="proj-inputs">
+                <div className="proj-field"><label>Moneda (símbolo)</label><input type="text" value={inputs.moneda} onChange={e=>upd('moneda',e.target.value)} placeholder="$, USD, €"/></div>
+                <div className="proj-field"><label>Inversión diaria</label><input type="number" value={inputs.invDiaria} onChange={e=>upd('invDiaria',e.target.value)} placeholder="4000"/></div>
+                <div className="proj-field"><label>CPL — Costo por Lead</label><input type="number" value={inputs.cpl} onChange={e=>upd('cpl',e.target.value)} placeholder="100"/></div>
+                <div className="proj-field"><label>Tasa de conversión (%)</label><input type="number" value={inputs.tasa} onChange={e=>upd('tasa',e.target.value)} placeholder="2"/></div>
+                <div className="proj-field"><label>Ticket promedio de venta</label><input type="number" value={inputs.ticket} onChange={e=>upd('ticket',e.target.value)} placeholder="4500000"/></div>
+            </div>
+            <button className="proj-btn" onClick={calcular}>📊 Calcular Proyección</button>
+            {result&&(<>
+                <div className="proj-results">
+                    <div className="proj-res blue">
+                        <div className="proj-res-label" style={{color:'var(--gray-500)'}}>Inversión mensual</div>
+                        <div className="proj-res-value" style={{color:'var(--gray-900)'}}>{result.m}{fmt(result.invMes)}</div>
+                        <div className="proj-res-sub" style={{color:'var(--gray-500)'}}>{result.m}{fmt(Number(inputs.invDiaria))} / día × 30 días</div>
+                    </div>
+                    <div className="proj-res yellow">
+                        <div className="proj-res-label" style={{color:'#92400e'}}>Leads estimados / mes</div>
+                        <div className="proj-res-value" style={{color:'#92400e'}}>{fmt(result.leads)} leads</div>
+                        <div className="proj-res-sub" style={{color:'#b45309'}}>Con CPL de {result.m}{fmt(Number(inputs.cpl))}</div>
+                    </div>
+                    <div className="proj-res accent">
+                        <div className="proj-res-label">Ventas estimadas</div>
+                        <div className="proj-res-value">{fmt(result.ventas)} ventas</div>
+                        <div className="proj-res-sub">Con {inputs.tasa}% de conversión</div>
+                    </div>
+                    <div className="proj-res green">
+                        <div className="proj-res-label">Rentabilidad estimada</div>
+                        <div className="proj-res-value">{result.m}{fmt(result.rentabilidad)}</div>
+                        <div className="proj-res-sub">Ingresos {result.m}{fmt(result.ingresos)} − publicidad</div>
+                    </div>
+                </div>
+                <div className="proj-disclaimer">* Proyección basada en datos estimados. No constituye garantía de facturación.</div>
+            </>)}
+        </div>
+    );
+}
+
 function App(){
     const [tabActiva,setTabActiva]=useState('generador');
     const [modoIA,setModoIA]=useState('cliente');
@@ -1085,6 +1167,7 @@ function App(){
                 {sec.data.map((texto,i)=>(<div key={i} className={`variant-item ${varSel[sec.key]===i?'selected':''}`} onClick={()=>selVar(sec.key,i)}><span className="variant-number">#{i+1}</span><span className="variant-text">{texto}</span>{varSel[sec.key]===i?<span className="variant-selected-badge">✓ ELEGIDA</span>:<button className="variant-copy-btn" onClick={e=>{e.stopPropagation();copiarTexto(texto);}}>📋</button>}<button style={{flexShrink:0,background:'none',border:'none',cursor:'pointer',opacity:0.5,fontSize:'12px',padding:'2px 6px',marginLeft:'4px'}} onClick={e=>{e.stopPropagation();const v=prompt('Editar texto:',texto);if(v&&v.trim())editarTexto(sec.key,i,v.trim());}} title="Editar">✏️</button></div>))}
             </div>))}
         </div>)}
+        <ProyeccionWidget/>
     </div></div>)}
     {toast&&(<div className="toast"><span className="toast-icon">{toast.icono}</span><span className="toast-message">{toast.mensaje}</span></div>)}
     </>);
