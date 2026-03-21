@@ -894,6 +894,7 @@ function App(){
     const [pagoTexto,setPagoTexto]=useState('Pagar directo con MercadoPago');
     const [heroImgUrl,setHeroImgUrl]=useState('');
     const [heroImgBase64,setHeroImgBase64]=useState('');
+    const [imgFileSize,setImgFileSize]=useState(0);
     const [heroImgMode,setHeroImgMode]=useState('url');// 'url' | 'upload'
     const [heroOverlay,setHeroOverlay]=useState('0.5');
     const [mostrarProblema,setMostrarProblema]=useState(false);
@@ -1088,13 +1089,21 @@ function App(){
                   <label style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'8px',padding:'20px',border:'2px dashed var(--border)',borderRadius:'10px',cursor:'pointer',background:'var(--surface-2)',transition:'all 0.2s'}}
                     onDragOver={e=>{e.preventDefault();e.currentTarget.style.borderColor='var(--accent)';}}
                     onDragLeave={e=>{e.currentTarget.style.borderColor='var(--border)';}}
-                    onDrop={e=>{e.preventDefault();e.currentTarget.style.borderColor='var(--border)';const f=e.dataTransfer.files[0];if(f&&f.type.startsWith('image/')){const r=new FileReader();r.onload=ev=>setHeroImgBase64(ev.target.result);r.readAsDataURL(f);}}}>
+                    onDrop={e=>{e.preventDefault();e.currentTarget.style.borderColor='var(--border)';const f=e.dataTransfer.files[0];if(f&&f.type.startsWith('image/')){const r=new FileReader();r.onload=ev=>setHeroImgBase64(ev.target.result);setImgFileSize(f.size);r.readAsDataURL(f);}}}>
                     {heroImgBase64
                       ?<img src={heroImgBase64} style={{width:'100%',maxHeight:'120px',objectFit:'cover',borderRadius:'8px'}} alt="preview"/>
                       :<><span style={{fontSize:'28px'}}>📷</span><span style={{fontSize:'12px',color:'var(--gray-400)',textAlign:'center'}}>Hacé clic o arrastrá una imagen aquí<br/><span style={{fontSize:'10px',opacity:0.7}}>JPG, PNG, WEBP — se embebe en el HTML</span></span></>}
-                    <input type="file" accept="image/*" style={{display:'none'}} onChange={e=>{const f=e.target.files[0];if(f){const r=new FileReader();r.onload=ev=>setHeroImgBase64(ev.target.result);r.readAsDataURL(f);}}}/>
+                    <input type="file" accept="image/*" style={{display:'none'}} onChange={e=>{const f=e.target.files[0];if(f){const r=new FileReader();r.onload=ev=>setHeroImgBase64(ev.target.result);setImgFileSize(f.size);r.readAsDataURL(f);}}}/>
                   </label>
-                  {heroImgBase64&&<button onClick={()=>setHeroImgBase64('')} style={{marginTop:'6px',fontSize:'11px',padding:'5px 10px',background:'transparent',border:'1px solid var(--border)',borderRadius:'6px',color:'var(--gray-400)',cursor:'pointer'}}>✕ Quitar imagen</button>}
+                  {heroImgBase64&&<button onClick={()=>{setHeroImgBase64('');setImgFileSize(0);}} style={{marginTop:'6px',fontSize:'11px',padding:'5px 10px',background:'transparent',border:'1px solid var(--border)',borderRadius:'6px',color:'var(--gray-400)',cursor:'pointer'}}>✕ Quitar imagen</button>}
+                  {imgFileSize>300000&&(<div style={{marginTop:'8px',padding:'10px 12px',background:'rgba(245,158,11,0.12)',border:'1px solid rgba(245,158,11,0.4)',borderRadius:'8px',fontSize:'11px',color:'#fbbf24',lineHeight:'1.6'}}>
+                    ⚠️ <strong>Imagen pesada: {(imgFileSize/1024/1024).toFixed(1)} MB</strong><br/>
+                    Esto hace la landing más lenta en mobile. Antes de subir, comprimila gratis en{' '}
+                    <a href="https://squoosh.app" target="_blank" rel="noopener" style={{color:'#fbbf24',fontWeight:'700'}}>squoosh.app</a> — de {(imgFileSize/1024/1024).toFixed(1)}MB podés bajarla a menos de 200KB sin perder calidad.
+                  </div>)}
+                  {imgFileSize>0&&imgFileSize<=300000&&(<div style={{marginTop:'8px',padding:'8px 12px',background:'rgba(16,185,129,0.1)',border:'1px solid rgba(16,185,129,0.3)',borderRadius:'8px',fontSize:'11px',color:'#6ee7b7'}}>
+                    ✅ Imagen optimizada ({(imgFileSize/1024).toFixed(0)} KB) — liviana para mobile.
+                  </div>)}
                   <div style={{fontSize:'10px',color:'var(--gray-500)',marginTop:'6px'}}>La imagen se convierte a base64 y queda embebida en el HTML — funciona sin internet.</div>
                 </>)}
                 {(heroImgUrl||heroImgBase64)&&(<div className="hero-overlay-row"><span className="hero-overlay-label">Opacidad del overlay oscuro</span><input className="hero-overlay-input" type="number" min="0" max="1" step="0.05" value={heroOverlay} onChange={e=>setHeroOverlay(e.target.value)}/></div>)}
