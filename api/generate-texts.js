@@ -12,49 +12,73 @@ export default async function handler(req, res) {
 
   const ctxAgencia = modoIA === 'agencia' && nombreInterno ? `Proyecto: "${nombreInterno}". ` : '';
 
-  const prompt = `Sos un copywriter de respuesta directa de élite. Tus textos generan conversiones reales, no suenan a IA genérica.
-
-${ctxAgencia}DATOS DEL NEGOCIO:
-- Nicho: ${nicho}
-- Público objetivo: ${publico}
+  const prompt = `Sos un copywriter de respuesta directa de élite. ${ctxAgencia}
+DATOS:
+- Producto/Servicio: ${nicho}
+- Audiencia: ${publico}
 - Beneficio clave: ${beneficio}
+- Idioma: Español rioplatense argentino. Sin "usted". Sin jerga corporativa. Informal y directo.
 
-TU TAREA: 4 variantes RADICALMENTE DISTINTAS entre sí. Cada una ataca desde un ángulo completamente diferente. Si dos variantes se parecen aunque sea un poco, fallaste.
+Vas a generar 4 secciones de copy. Cada una con una metodología diferente. Seguí las instrucciones al pie de la letra.
 
-ÁNGULOS OBLIGATORIOS — uno por variante, en este orden:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECCIÓN 1 — TÍTULOS H1 (Método Eugene Schwartz)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Actuá como Eugene Schwartz. Escribí 4 títulos para la landing de "${nicho}".
+NO uses beneficios genéricos. Identificá el Deseo de Masa dominante de ${publico} y construí una Promesa de Mecanismo Único.
+Cada título debe ser una afirmación tan audaz que sea imposible de ignorar.
+Atacá desde uno de estos ángulos (uno diferente por título):
+- Curiosidad negativa: lo que están perdiendo por no saber esto
+- Beneficio contraintuitivo: el resultado que van contra la lógica común
+- Resultado específico con número o dato concreto
+- Mecanismo secreto o nuevo camino que otros no conocen
+Máx 10 palabras por título. Sin signos de admiración al inicio. Sin adjetivos vacíos.
 
-VARIANTE 1 — DOLOR ESPECÍFICO
-Nombrá el problema más concreto que vive ${publico} todos los días. Metete en su cabeza. Usá situaciones reales del nicho ${nicho}. Que duela.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECCIÓN 2 — SUBTÍTULOS H2 (Método Dan Kennedy)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Actuá como Dan Kennedy. Escribí 4 subtítulos que agiten el dolor específico de ${publico}.
+Describí la frustración actual del usuario mejor de lo que ellos mismos pueden hacerlo.
+Sé directo, empático y brutalmente honesto. Que el usuario piense: "esto me está leyendo la mente".
+Podés usar estructuras como "Mientras otros [error común], vos [resultado extraordinario]" pero no es obligatorio — priorizá que duela y resuene.
+Máx 18 palabras. Sin exclamaciones. Sin frases corporativas.
 
-VARIANTE 2 — RESULTADO TRANSFORMADOR
-Pintá el "después". Cómo es la vida de ${publico} cuando logra el resultado. Cinematográfico. Sin mencionar el producto, solo la transformación. Que se vean ahí.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECCIÓN 3 — DESCRIPCIONES (Método Russell Brunson — Bridge Script)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Actuá como Russell Brunson. Escribí 4 descripciones de 2-3 oraciones cortas usando el Bridge Script:
+- Oración 1 (El Muro): el problema concreto que frena a ${publico} hoy
+- Oración 2 (La Epifanía): el descubrimiento del nuevo camino — "${nicho}" como revelación
+- Oración 3 (El Vehículo): cómo "${nicho}" es el puente más rápido al resultado final
+Usá palabras de poder. Sin adverbios débiles (muy, bastante, realmente). 100% enfocado en la transformación del Estado A al Estado B.
+Máx 40 palabras por descripción. Lectura fluida y cargada de autoridad.
 
-VARIANTE 3 — AUTORIDAD + PRUEBA
-Posicioná ${nicho} como la referencia. Datos concretos, resultados específicos, método probado. Que piensen "estos saben de qué hablan".
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECCIÓN 4 — CTAs (Método Direct Response)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Actuá como un Copywriter de Respuesta Directa de élite. Escribí 4 Call to Actions.
+PROHIBIDO usar: "Enviar", "Comprar", "Contactar", "Consultar".
+Deben ser Comandos de Resultado — el usuario se imagina el resultado al leerlos.
+Atacá la objeción del riesgo con garantía implícita y reforzá la gratificación instantánea.
+Ejemplos de estructura (no copiar, inspirarse): "Quiero [resultado] ahora", "Dame acceso al [mecanismo]", "Empezá hoy mismo".
+Máx 5 palabras por CTA.
 
-VARIANTE 4 — URGENCIA + COSTO DE INACCIÓN
-Qué pierde ${publico} cada día que no actúa. FOMO creíble y específico para su situación. No genérico.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TAMBIÉN GENERÁ:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BLOQUE PROBLEMA: Un título corto (máx 10 palabras) que nombre el dolor principal de ${publico} en ${nicho}. Que duela. Y un texto de 2 oraciones que describa ese dolor con detalles específicos del nicho — lo que SIENTEN, no lo que hacen. Sin ofrecer solución todavía.
 
-REGLAS (no negociables):
-- H1: Máx 10 palabras. Para el scroll. Sin signos de admiración al inicio.
-- H2: Complementa el H1. Máx 15 palabras.
-- Descripción: 2-3 oraciones. Gancho → profundidad → consecuencia. Máx 40 palabras.
-- CTA: Máx 4 palabras. Primera persona. Verbo concreto. Ej: "Quiero mis resultados", "Reservá mi lugar".
-- Español rioplatense argentino. Sin "usted". Sin jerga corporativa.
-- PROHIBIDO: "potencial", "solución", "experto", "profesional", "calidad", "excelencia", "innovador".
-
-BLOQUE PROBLEMA:
-- Título: Pregunta o afirmación que duela. Máx 10 palabras.
-- Texto: 2 oraciones con detalles específicos de ${nicho}. Lo que SIENTEN, no lo que hacen. Sin ofrecer solución.
-
-JSON válido únicamente, sin markdown:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FORMATO DE RESPUESTA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Respondé ÚNICAMENTE con JSON válido, sin markdown, sin explicaciones, sin texto antes o después:
 {
-  "titulos": ["h1_1", "h1_2", "h1_3", "h1_4"],
-  "subtitulos": ["h2_1", "h2_2", "h2_3", "h2_4"],
-  "descripciones": ["desc_1", "desc_2", "desc_3", "desc_4"],
-  "ctas": ["cta_1", "cta_2", "cta_3", "cta_4"],
+  "titulos": ["título 1", "título 2", "título 3", "título 4"],
+  "subtitulos": ["subtítulo 1", "subtítulo 2", "subtítulo 3", "subtítulo 4"],
+  "descripciones": ["descripción 1", "descripción 2", "descripción 3", "descripción 4"],
+  "ctas": ["cta 1", "cta 2", "cta 3", "cta 4"],
   "problemaTitle": "título del bloque problema",
-  "problemaText": "texto agitación 2 oraciones específicas para ${nicho}"
+  "problemaText": "texto de agitación 2 oraciones específicas"
 }`;
 
   try {
@@ -67,7 +91,7 @@ JSON válido únicamente, sin markdown:
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 2500,
+        max_tokens: 3000,
         messages: [{ role: 'user', content: prompt }]
       })
     });
