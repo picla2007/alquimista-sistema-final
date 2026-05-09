@@ -1242,6 +1242,7 @@ function App(){
                   💡 <strong>Cómo funciona:</strong> Muestra ventas en vivo, barra de progreso hacia el próximo precio, escalera de precios y un toast de social proof ("Alguien acaba de comprar desde...") con nombres aleatorios. Todo en el cliente, sin backend.
                 </div>
               </div>)}
+            </div>
         </div>
 
         <div className="config-section"><div className="config-title">💎 Beneficios Adicionales</div>{beneficios.map((b,i)=>(<div key={i} className="beneficio-item"><input type="text" className="beneficio-input" placeholder={`Beneficio ${i+1}`} value={b} onChange={e=>actualizarBeneficio(i,e.target.value)}/><button className="btn-remove" onClick={()=>eliminarBeneficio(i)}>✕</button></div>))}<button className="btn-add" onClick={agregarBeneficio}>+ Agregar Beneficio</button></div>
