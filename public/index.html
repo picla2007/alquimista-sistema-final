@@ -1051,7 +1051,7 @@ function App(){
         return()=>clearTimeout(timerGuardado.current);
     },[modoIA,nicho,publico,beneficio,nombreInterno,cliente,marcaBlanca,estado,dominio,slug,todasObligatorias,multiStep,waNumero,heroImgUrl,heroOverlay,mostrarProblema,problemaTitle,problemaText,temaSeleccionado,mostrarCajas,JSON.stringify(beneficios),JSON.stringify(preguntas),JSON.stringify(outputs),JSON.stringify(cajas),JSON.stringify(faqs)]);
 
-    const restaurarSesion=()=>{const s=sessionGuardada;if(!s)return;setModoIA(s.modoIA||'cliente');setNicho(s.nicho||'');setPublico(s.publico||'');setBeneficio(s.beneficio||'');setNombreInterno(s.nombreInterno||'');setCliente(s.cliente||'agencia');setMarcaBlanca(s.marcaBlanca||false);setEstado(s.estado||'activa');setDominio(s.dominio||'');setSlug(s.slug||'');setBeneficios(s.beneficios||[]);setPreguntas(s.preguntas||[]);setTodasObligatorias(s.todasObligatorias||false);if(s.multiStep!==undefined)setMultiStep(s.multiStep);if(s.waNumero)setWaNumero(s.waNumero);if(s.emailNotif)setEmailNotif(s.emailNotif);if(s.pagoLink)setPagoLink(s.pagoLink);if(s.pagoTexto)setPagoTexto(s.pagoTexto);if(s.vslUrl)setVslUrl(s.vslUrl);if(s.mostrarVsl!==undefined)setMostrarVsl(s.mostrarVsl);if(s.heroImgUrl)setHeroImgUrl(s.heroImgUrl);if(s.heroOverlay)setHeroOverlay(s.heroOverlay);if(s.mostrarProblema!==undefined)setMostrarProblema(s.mostrarProblema);if(s.problemaTitle)setProblemaTitle(s.problemaTitle);if(s.problemaText)setProblemaText(s.problemaText);if(s.temaSeleccionado)setTemaSeleccionado(s.temaSeleccionado);if(s.accentCustom!==undefined)setAccentCustom(s.accentCustom||'');if(s.mostrarCajas!==undefined)setMostrarCajas(s.mostrarCajas);if(s.cajas)setCajas(s.cajas);if(s.mostrarFaq!==undefined)setMostrarFaq(s.mostrarFaq);if(s.faqs)setFaqs(s.faqs);if(s.mostrarContador!==undefined)setMostrarContador(s.mostrarContador);if(s.contadorHoras)setContadorHoras(s.contadorHoras);if(s.mostrarPrecioDinamico!==undefined)setMostrarPrecioDinamico(s.mostrarPrecioDinamico);if(s.pdConfig)setPdConfig(s.pdConfig);if(s.outputs&&s.outputs.titulos&&s.outputs.titulos.length>0){setOutputs(s.outputs);setFiltroAntiCuriosos(true);}setMostrarBanner(false);mostrarToast('✅ Sesión restaurada','success');};
+    const restaurarSesion=()=>{const s=sessionGuardada;if(!s)return;setModoIA(s.modoIA||'cliente');setNicho(s.nicho||'');setPublico(s.publico||'');setBeneficio(s.beneficio||'');setNombreInterno(s.nombreInterno||'');setCliente(s.cliente||'agencia');setMarcaBlanca(s.marcaBlanca||false);setEstado(s.estado||'activa');setDominio(s.dominio||'');setSlug(s.slug||'');setBeneficios(s.beneficios||[]);setPreguntas(s.preguntas||[]);setTodasObligatorias(s.todasObligatorias||false);if(s.multiStep!==undefined)setMultiStep(s.multiStep);if(s.waNumero)setWaNumero(s.waNumero);if(s.emailNotif)setEmailNotif(s.emailNotif);if(s.pagoLink)setPagoLink(s.pagoLink);if(s.pagoTexto)setPagoTexto(s.pagoTexto);if(s.vslUrl)setVslUrl(s.vslUrl);if(s.mostrarVsl!==undefined)setMostrarVsl(s.mostrarVsl);if(s.heroImgUrl)setHeroImgUrl(s.heroImgUrl);if(s.heroOverlay)setHeroOverlay(s.heroOverlay);if(s.mostrarProblema!==undefined)setMostrarProblema(s.mostrarProblema);if(s.problemaTitle)setProblemaTitle(s.problemaTitle);if(s.problemaText)setProblemaText(s.problemaText);if(s.temaSeleccionado)setTemaSeleccionado(s.temaSeleccionado);if(s.accentCustom!==undefined)setAccentCustom(s.accentCustom||'');if(s.mostrarCajas!==undefined)setMostrarCajas(s.mostrarCajas);if(s.cajas)setCajas(s.cajas);if(s.mostrarFaq!==undefined)setMostrarFaq(s.mostrarFaq);if(s.faqs)setFaqs(s.faqs);if(s.mostrarContador!==undefined)setMostrarContador(s.mostrarContador);if(s.contadorHoras)setContadorHoras(s.contadorHoras);if(s.mostrarPrecioDinamico!==undefined)setMostrarPrecioDinamico(s.mostrarPrecioDinamico);if(s.pdConfig)setPdConfig(p=>({...p,...s.pdConfig}));if(s.outputs&&s.outputs.titulos&&s.outputs.titulos.length>0){setOutputs(s.outputs);setFiltroAntiCuriosos(true);}setMostrarBanner(false);mostrarToast('✅ Sesión restaurada','success');};
 
     const actualizarCaja=(i,campo,valor)=>{const n=[...cajas];n[i]={...n[i],[campo]:valor};setCajas(n);};
     const agregarPregunta=(tipo='texto')=>setPreguntas([...preguntas,{pregunta:'',tipo,opciones:''}]);
@@ -1206,7 +1206,6 @@ function App(){
                 </>)}
                 {(heroImgUrl||heroImgBase64)&&(<div className="hero-overlay-row"><span className="hero-overlay-label">Opacidad del overlay oscuro</span><input className="hero-overlay-input" type="number" min="0" max="1" step="0.05" value={heroOverlay} onChange={e=>setHeroOverlay(e.target.value)}/></div>)}
             </div>
-        </div>
 
             <div className="problema-section-sidebar">
                 <div className="problema-toggle-row"><span className="problema-toggle-label">💸 Bloque "Problema/Urgencia"</span><label className="toggle-switch" onClick={()=>setMostrarProblema(!mostrarProblema)}><div className={`toggle-track ${mostrarProblema?'on':''}`} style={mostrarProblema?{background:'#ef4444'}:{}}></div><div className={`toggle-thumb ${mostrarProblema?'on':''}`}></div></label></div>
@@ -1229,7 +1228,7 @@ function App(){
             <div className="cajas-section"><div className="cajas-toggle-row"><span className="cajas-toggle-label"><span>⏱️</span> Contador de urgencia</span><label className="toggle-switch" onClick={()=>setMostrarContador(!mostrarContador)}><div className={`toggle-track ${mostrarContador?"on":""}`}></div><div className={`toggle-thumb ${mostrarContador?"on":""}`}></div></label></div>{mostrarContador&&(<div style={{padding:"8px 0 4px"}}><div className="problema-field-label">Duración en horas</div><input type="number" className="problema-input" min="1" max="720" value={contadorHoras} onChange={e=>setContadorHoras(Number(e.target.value)||24)} style={{width:"120px"}}/><div style={{fontSize:"11px",color:"var(--gray-400)",marginTop:"4px"}}>El contador se reinicia al expirar. Máx 720hs (30 días).</div></div>)}</div>
             <div className="cajas-section" style={{background:'linear-gradient(135deg,rgba(6,182,212,0.08),rgba(99,102,241,0.08))',border:'1px solid rgba(6,182,212,0.2)',borderRadius:'12px',padding:'14px',marginTop:'8px'}}>
               <div className="cajas-toggle-row"><span className="cajas-toggle-label" style={{color:'#67e8f9'}}><span>📈</span> Precio dinámico por ventas</span><label className="toggle-switch" onClick={()=>setMostrarPrecioDinamico(!mostrarPrecioDinamico)}><div className={`toggle-track ${mostrarPrecioDinamico?"on":""}`} style={mostrarPrecioDinamico?{background:'#06b6d4'}:{}}></div><div className={`toggle-thumb ${mostrarPrecioDinamico?"on":""}`}></div></label></div>
-              {mostrarPrecioDinamico&&(<div style={{display:'flex',flexDirection:'column',gap:'8px',marginTop:'10px'}}>
+              {mostrarPrecioDinamico&&pdConfig&&(<div style={{display:'flex',flexDirection:'column',gap:'8px',marginTop:'10px'}}>
                 <div style={{fontSize:'10px',fontWeight:'700',color:'#67e8f9',textTransform:'uppercase',letterSpacing:'0.5px',marginBottom:'2px'}}>📊 Configuración del widget</div>
                 <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'6px'}}>
                   <div><div className="problema-field-label">Ventas actuales</div><input type="number" className="problema-input" value={pdConfig.ventasBase} onChange={e=>setPdConfig(p=>({...p,ventasBase:Number(e.target.value)||0}))} placeholder="287"/></div>
@@ -1241,11 +1240,10 @@ function App(){
                 </div>
                 <div><div className="problema-field-label">URL del botón de compra</div><input type="text" className="problema-input" value={pdConfig.ctaUrl} onChange={e=>setPdConfig(p=>({...p,ctaUrl:e.target.value}))} placeholder="https://mpago.la/..."/></div>
                 <div style={{padding:'8px 10px',background:'rgba(6,182,212,0.08)',borderRadius:'8px',fontSize:'10px',color:'#a5f3fc',lineHeight:'1.7'}}>
-                  💡 <strong>Cómo funciona:</strong> Muestra ventas en vivo, barra de progreso hacia el próximo precio, escalera de precios y un toast de social proof ("Alguien acaba de comprar desde...") con nombres aleatorios. Todo en el cliente, sin backend.
+                  💡 <strong>Cómo funciona:</strong> Ventas en vivo, barra de progreso, escalera de precios y toast de social proof. Sin backend.
                 </div>
               </div>)}
             </div>
-        </div>
 
         <div className="config-section"><div className="config-title">💎 Beneficios Adicionales</div>{beneficios.map((b,i)=>(<div key={i} className="beneficio-item"><input type="text" className="beneficio-input" placeholder={`Beneficio ${i+1}`} value={b} onChange={e=>actualizarBeneficio(i,e.target.value)}/><button className="btn-remove" onClick={()=>eliminarBeneficio(i)}>✕</button></div>))}<button className="btn-add" onClick={agregarBeneficio}>+ Agregar Beneficio</button></div>
 
@@ -1272,7 +1270,7 @@ function App(){
                     {label:'Hotmart',emoji:'🔥',url:'https://pay.hotmart.com/'},
                     {label:'Gumroad',emoji:'🩷',url:'https://gumroad.com/l/'},
                     {label:'Stripe',emoji:'🔷',url:'https://buy.stripe.com/'},
-                    {label:'TiendaNube',emoji:'☁️',url:'https://'},
+                    {label:'TiendaNube',emoji:'☁️',url:'https://tiendanube.com/'},
                     {label:'PayPal',emoji:'🅿️',url:'https://paypal.me/'},
                   ].map(p=>(
                     <button key={p.label} onClick={()=>{setPagoLink(p.url);setPagoTexto('Comprar ahora');}}
