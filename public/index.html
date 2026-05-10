@@ -1206,6 +1206,8 @@ function App(){
                 </>)}
                 {(heroImgUrl||heroImgBase64)&&(<div className="hero-overlay-row"><span className="hero-overlay-label">Opacidad del overlay oscuro</span><input className="hero-overlay-input" type="number" min="0" max="1" step="0.05" value={heroOverlay} onChange={e=>setHeroOverlay(e.target.value)}/></div>)}
             </div>
+        </div>
+
             <div className="problema-section-sidebar">
                 <div className="problema-toggle-row"><span className="problema-toggle-label">💸 Bloque "Problema/Urgencia"</span><label className="toggle-switch" onClick={()=>setMostrarProblema(!mostrarProblema)}><div className={`toggle-track ${mostrarProblema?'on':''}`} style={mostrarProblema?{background:'#ef4444'}:{}}></div><div className={`toggle-thumb ${mostrarProblema?'on':''}`}></div></label></div>
                 {mostrarProblema&&(<div className="problema-fields"><div><div className="problema-field-label">Título del bloque</div><input className="problema-input" placeholder="Cada día que esperás, perdés dinero real." value={problemaTitle} onChange={e=>setProblemaTitle(e.target.value)}/></div><div><div className="problema-field-label">Texto de agitación</div><textarea className="problema-textarea" placeholder="Los gastos fijos no se detienen mientras mirás cómo otras propiedades se llenan..." value={problemaText} onChange={e=>setProblemaText(e.target.value)}/></div></div>)}
@@ -1263,10 +1265,25 @@ function App(){
                 <div className="wa-hint">{emailNotif?'✅ Recibirás un email por cada lead via Formspree (gratis hasta 50/mes).':'Recibí un email por cada lead. Usa Formspree — no requiere backend. Opcional.'}</div>
               </div>
               <div style={{marginTop:'14px',paddingTop:'14px',borderTop:'1px solid rgba(37,211,102,0.15)'}}>
-                <div className="wa-section-title">&#128179; Link de pago directo</div>
-                <input className="wa-input" type="url" placeholder="https://mpago.la/..." value={pagoLink} onChange={e=>setPagoLink(e.target.value)} style={{paddingLeft:'12px'}}/>
-                {pagoLink&&<input className="wa-input" type="text" placeholder="Texto del botón" value={pagoTexto} onChange={e=>setPagoTexto(e.target.value)} style={{paddingLeft:'12px',marginTop:'8px'}}/>}
-                <div className="wa-hint">{pagoLink?'Se muestra un boton secundario bajo el CTA principal.':'Opcional. MercadoPago, Gumroad, etc. Aparece como boton secundario en la landing.'}</div>
+                <div className="wa-section-title">💳 Link de pago directo</div>
+                <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'5px',marginBottom:'8px'}}>
+                  {[
+                    {label:'MercadoPago',emoji:'🟢',url:'https://mpago.la/'},
+                    {label:'Hotmart',emoji:'🔥',url:'https://pay.hotmart.com/'},
+                    {label:'Gumroad',emoji:'🩷',url:'https://gumroad.com/l/'},
+                    {label:'Stripe',emoji:'🔷',url:'https://buy.stripe.com/'},
+                    {label:'TiendaNube',emoji:'☁️',url:'https://'},
+                    {label:'PayPal',emoji:'🅿️',url:'https://paypal.me/'},
+                  ].map(p=>(
+                    <button key={p.label} onClick={()=>{setPagoLink(p.url);setPagoTexto('Comprar ahora');}}
+                      style={{padding:'5px 4px',background:pagoLink.startsWith(p.url)?'rgba(37,211,102,0.2)':'rgba(255,255,255,0.04)',border:`1px solid ${pagoLink.startsWith(p.url)?'rgba(37,211,102,0.5)':'rgba(255,255,255,0.1)'}`,borderRadius:'7px',color:pagoLink.startsWith(p.url)?'#6ee7b7':'var(--gray-400)',fontSize:'10px',fontWeight:'600',cursor:'pointer',textAlign:'center',lineHeight:'1.4'}}>
+                      <div style={{fontSize:'14px'}}>{p.emoji}</div>{p.label}
+                    </button>
+                  ))}
+                </div>
+                <input className="wa-input" type="url" placeholder="Pegá tu link de pago..." value={pagoLink} onChange={e=>setPagoLink(e.target.value)} style={{paddingLeft:'12px'}}/>
+                {pagoLink&&<input className="wa-input" type="text" placeholder="Texto del botón (ej: Comprar ahora)" value={pagoTexto} onChange={e=>setPagoTexto(e.target.value)} style={{paddingLeft:'12px',marginTop:'6px'}}/>}
+                <div className="wa-hint">{pagoLink?'✅ Aparece como botón de compra bajo el CTA principal.':'Seleccioná una plataforma o pegá tu link. Opcional.'}</div>
               </div>
             </div>
         </div>
