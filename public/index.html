@@ -551,7 +551,7 @@ function handleSubmit(e){
         +'var faltan=Math.max(0,ventasSig-ventas);'
         +'var felEl=document.getElementById("pd-faltan");if(felEl)felEl.textContent=faltan;'
         +'var cuposEl=document.getElementById("pd-cupos-label");if(cuposEl)cuposEl.textContent=faltan+" cupos al precio actual";'
-        +'var pct=Math.min(100,Math.round((ventas-escala[0].ventas)/(ventasSig-escala[0].ventas)*100));'
+        +'var basePct=escala[0].ventas;for(var ti=escala.length-1;ti>=0;ti--){if(ventas>=escala[ti].ventas){basePct=escala[ti].ventas;break;}}var pct=ventasSig>basePct?Math.min(100,Math.round((ventas-basePct)/(ventasSig-basePct)*100)):0;'
         +'var fillEl=document.getElementById("pd-fill");if(fillEl)fillEl.style.width=pct+"%";'
         +'var pctEl=document.getElementById("pd-pct");if(pctEl)pctEl.textContent=pct+"%";'
         +'}'
