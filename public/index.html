@@ -533,7 +533,7 @@ function handleSubmit(e){
         +'</div>'
         +'<div class="pd-progress-wrap"><div class="pd-progress-header"><span>Progreso hacia el próximo precio</span><span id="pd-pct">0%</span></div><div class="pd-progress-track"><div class="pd-progress-fill" id="pd-fill" style="width:0%"></div></div><div class="pd-progress-labels"><span>'+pd.moneda+pd.precioActual+' '+pd.monedaLabel+'</span><span>'+pd.moneda+pd.precioSiguiente+' '+pd.monedaLabel+'</span></div></div>'
         +'<div class="pd-escala">'+escalaHTML+'</div>'
-        +'<div class="pd-cta-row"><a href="'+(pd.ctaUrl||'#form')+'" class="pd-btn" target="'+(pd.ctaUrl?'_top':'_self')+'">&#9889; ACCEDER POR '+pd.moneda+pd.precioActual+' '+pd.monedaLabel+' AHORA</a><div class="pd-cupos"><div class="pd-cupos-dot"></div><span id="pd-cupos-label">'+(pd.ventasSiguiente-pd.ventasBase)+' cupos al precio actual</span></div></div>'
+        +'<div class="pd-cta-row"><a href="'+(pd.ctaUrl||'#form')+'"class="pd-btn" target="'+(pd.ctaUrl?'_blank':'_self')+'">&#9889; ACCEDER POR '+pd.moneda+pd.precioActual+' '+pd.monedaLabel+' AHORA</a><div class="pd-cupos"><div class="pd-cupos-dot"></div><span id="pd-cupos-label">'+(pd.ventasSiguiente-pd.ventasBase)+' cupos al precio actual</span></div></div>'
         +'</div></div>'
         +'<div class="pd-toast" id="pd-toast"><div class="pd-toast-icon">&#128293;</div><div class="pd-toast-body"><div class="pd-toast-name" id="pd-toast-name">—</div><div class="pd-toast-detail" id="pd-toast-detail">—</div><div class="pd-toast-num" id="pd-toast-num">—</div></div></div>'
         +'</section>'):'';
