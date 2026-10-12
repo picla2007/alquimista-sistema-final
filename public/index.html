@@ -368,6 +368,7 @@ const TEMAS = [
     {id:'natural',name:'Organic',icon:'🌿',preview:{bg:'linear-gradient(135deg,#f0f4f0,#d9e4d9)',bar:'#166534',bar2:'#4ade80'}},
     {id:'lateral',name:'Lateral',icon:'🖼️',preview:{bg:'linear-gradient(135deg,#0f172a,#1e1b4b)',bar:'#818cf8',bar2:'#c7d2fe'}},
     {id:'periodico',name:'Periódico',icon:'🗞️',preview:{bg:'linear-gradient(135deg,#1e293b,#0f172a)',bar:'#38bdf8',bar2:'#7dd3fc'}},
+    {id:'asesor',name:'Asesor',icon:'📞',preview:{bg:'linear-gradient(135deg,#f8fafc,#ede9fe)',bar:'#4f46e5',bar2:'#a3e635'}},
 ];
 const TIPOS_CAMPO=[{value:'texto',label:'Texto corto'},{value:'parrafo',label:'Párrafo'},{value:'opciones',label:'Selección única'},{value:'multiple',label:'Múltiple opción'},{value:'select',label:'Desplegable'}];
 const TEMA_CSS={
@@ -383,6 +384,7 @@ const TEMA_CSS={
     natural:{body:'background:#f8faf8;color:#166534;font-family:"Segoe UI",sans-serif;',header:'background:#ffffff;border-bottom:2px solid #86efac;',h1:'color:#14532d;font-size:clamp(2.2rem,5vw,3.2rem);font-weight:700;',h2:'color:#16a34a;font-size:1.3rem;font-weight:500;',desc:'color:#374151;font-size:1.1rem;line-height:1.7;',cajas_bg:'background:#ecfdf5;border-radius:30px;border:none;box-shadow:0 4px 20px rgba(22,101,52,0.05);',cajas_title:'color:#059669;font-weight:700;',cajas_text:'color:#065f46;',form_bg:'background:#ffffff;border-radius:40px;padding:35px;border:2px solid #dcfce7;',form_input:'background:#f0fdf4;border:1px solid #dcfce7;color:#166534;border-radius:15px;',form_label:'color:#166534;font-weight:700;',accent:'#10b981',logo_text:'#059669'},
     lateral:{body:'background:#0f172a;color:#e2e8f0;font-family:"Inter",sans-serif;',header:'background:linear-gradient(135deg,#1e293b,#0f172a);border-bottom:1px solid rgba(99,102,241,0.3);',h1:'color:#ffffff;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;line-height:1.15;',h2:'color:#c7d2fe;font-size:clamp(1rem,2vw,1.35rem);font-weight:400;opacity:0.9;',desc:'color:#94a3b8;font-size:1rem;line-height:1.75;',cajas_bg:'background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.25);',cajas_title:'color:#a5b4fc;',cajas_text:'color:#94a3b8;',form_bg:'background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);',form_input:'background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);color:white;',form_label:'color:#cbd5e1;',accent:'#6366f1',logo_text:'#ffffff'},
     periodico:{body:'background:#f9fafb;color:#111827;font-family:"Georgia",serif;',header:'background:#111827;border-bottom:4px solid #0ea5e9;',h1:'color:#111827;font-size:clamp(2rem,5vw,3.2rem);font-weight:900;line-height:1.1;font-family:"Georgia",serif;letter-spacing:-0.5px;',h2:'color:#374151;font-size:clamp(1rem,2vw,1.25rem);font-weight:400;font-style:italic;',desc:'color:#4b5563;font-size:1.05rem;line-height:1.85;',cajas_bg:'background:white;border:1px solid #e5e7eb;border-left:4px solid #0ea5e9;',cajas_title:'color:#0369a1;font-weight:700;',cajas_text:'color:#374151;',form_bg:'background:white;border:2px solid #bae6fd;box-shadow:0 4px 16px rgba(0,0,0,0.06);',form_input:'background:#f9fafb;border:1px solid #d1d5db;color:#111827;',form_label:'color:#374151;font-weight:700;',accent:'#0ea5e9',logo_text:'#ffffff'},
+    asesor:{body:'background:#f8fafc;color:#1e293b;font-family:"Inter",sans-serif;',header:'background:white;',h1:'color:#0f172a;',h2:'color:#475569;',desc:'color:#475569;',cajas_bg:'background:white;border:1px solid #e2e8f0;',cajas_title:'color:#0f172a;',cajas_text:'color:#64748b;',form_bg:'background:white;',form_input:'background:#f8fafc;border:1px solid #e2e8f0;color:#1e293b;',form_label:'color:#475569;',accent:'#4f46e5',logo_text:'#0f172a'},
 };
 
 function formatFecha(iso){if(!iso)return '';return new Date(iso).toLocaleString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});}
@@ -423,7 +425,7 @@ function handleSubmit(e){
   e.preventDefault();
   var form=e.target;
   var datos={};
-  form.querySelectorAll('input[type=text],textarea,select').forEach(function(el){if(el.value)datos[el.name]=el.value;});
+  form.querySelectorAll('input[type=text],input[type=tel],textarea,select').forEach(function(el){if(el.value)datos[el.name]=el.value;});
   form.querySelectorAll('input[type=radio]:checked').forEach(function(el){datos[el.name]=el.value;});
   var checks=[];form.querySelectorAll('input[type=checkbox]:checked').forEach(function(el){checks.push(el.value);});
   if(checks.length)datos['seleccionados']=checks.join(', ');
@@ -447,6 +449,72 @@ function handleSubmit(e){
     const waFloatHTML=waLimpio
         ?`<a href="${waFloatURL}" target="_top" class="wa-float" aria-label="Contactar por WhatsApp"><div class="wa-float-tooltip">💬 Escribinos por WhatsApp</div><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>`
         :'';
+
+    // ── UPSELL ──
+    const upsellCSS=upsellActivo?`
+.upsell-section{padding:48px 0;background:linear-gradient(135deg,#fffbeb 0%,#fef3c7 100%);border-top:3px solid #f59e0b;border-bottom:3px solid #f59e0b;}
+.upsell-badge{display:inline-block;background:#f59e0b;color:white;font-size:11px;font-weight:800;padding:5px 14px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;}
+.upsell-title{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:900;color:#78350f;margin-bottom:12px;line-height:1.2;}
+.upsell-desc{font-size:1.05rem;color:#92400e;line-height:1.7;margin-bottom:24px;max-width:600px;}
+.upsell-price-wrap{display:flex;align-items:center;gap:16px;margin-bottom:28px;flex-wrap:wrap;}
+.upsell-price-orig{font-size:1.1rem;color:#b45309;text-decoration:line-through;opacity:0.7;}
+.upsell-price{font-size:2rem;font-weight:900;color:#78350f;}
+.upsell-save{background:#ef4444;color:white;font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px;}
+.upsell-cta{display:inline-block;padding:16px 36px;background:linear-gradient(135deg,#f59e0b,#d97706);color:white;border-radius:12px;font-size:16px;font-weight:800;text-decoration:none;box-shadow:0 8px 24px rgba(245,158,11,0.4);transition:transform 0.2s ease,box-shadow 0.2s ease;}
+.upsell-cta:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(245,158,11,0.5);}
+.upsell-cta:active{transform:scale(0.97);}
+.order-bump{background:linear-gradient(135deg,#fffbeb,#fef9c3);border:2.5px dashed #f59e0b;border-radius:12px;padding:18px 20px;margin:16px 0 20px;display:flex;align-items:flex-start;gap:14px;cursor:pointer;}
+.order-bump input[type=checkbox]{width:20px;height:20px;min-width:20px;accent-color:#f59e0b;cursor:pointer;margin-top:2px;}
+.order-bump-label{flex:1;}
+.order-bump-title{font-size:14px;font-weight:800;color:#78350f;margin-bottom:4px;}
+.order-bump-desc{font-size:12px;color:#92400e;line-height:1.5;}
+.order-bump-price{font-size:13px;font-weight:700;color:#d97706;margin-top:4px;}
+.upsell-modal-box{background:linear-gradient(135deg,#fffbeb,#fef3c7);border-radius:16px;padding:24px;margin-top:16px;border:2px solid #f59e0b;text-align:center;}
+.upsell-modal-title{font-size:17px;font-weight:800;color:#78350f;margin-bottom:8px;}
+.upsell-modal-desc{font-size:13px;color:#92400e;margin-bottom:14px;line-height:1.6;}
+.upsell-modal-price{font-size:18px;font-weight:900;color:#d97706;margin-bottom:14px;}
+.upsell-modal-cta{display:block;padding:13px 24px;background:linear-gradient(135deg,#f59e0b,#d97706);color:white;border-radius:10px;font-size:14px;font-weight:800;text-decoration:none;text-align:center;margin-bottom:8px;}
+.upsell-modal-skip{font-size:11px;color:#b45309;cursor:pointer;text-decoration:underline;opacity:0.7;}
+@media(max-width:768px){.upsell-section{padding:32px 0;}.upsell-price{font-size:1.6rem;}.upsell-cta{padding:14px 28px;font-size:15px;display:block;text-align:center;}}
+`:'';
+
+    const upsellSeccionHTML=upsellActivo&&upsellSeccion&&upsellTitulo?`
+<section class="upsell-section">
+  <div class="container">
+    <div class="upsell-badge">🔥 Oferta especial — Solo por hoy</div>
+    <h2 class="upsell-title">${upsellTitulo}</h2>
+    <p class="upsell-desc">${upsellDesc}</p>
+    <div class="upsell-price-wrap">
+      ${upsellPrecioOrig?`<span class="upsell-price-orig">Antes ${upsellPrecioOrig}</span>`:''}
+      <span class="upsell-price">${upsellPrecio}</span>
+      ${upsellPrecioOrig?`<span class="upsell-save">¡AHORRÁS!</span>`:''}
+    </div>
+    <a href="${upsellLink||'#form'}" target="${upsellLink?'_top':'_self'}" class="upsell-cta" onclick="if(typeof fbq!=='undefined'){fbq('track','AddToCart',{content_name:'${upsellTitulo}',currency:'ARS'});}">
+      ${upsellCta} →
+    </a>
+  </div>
+</section>`:'';
+
+    const orderBumpHTML=upsellActivo&&upsellBump&&upsellTitulo?`
+<div class="order-bump" onclick="this.querySelector('input').click()">
+  <input type="checkbox" id="order_bump" name="order_bump" value="si">
+  <div class="order-bump-label">
+    <div class="order-bump-title">🔥 Sí, quiero agregar: ${upsellTitulo}</div>
+    <div class="order-bump-desc">${upsellDesc}</div>
+    <div class="order-bump-price">+ Solo ${upsellPrecio}</div>
+  </div>
+</div>`:'';
+
+    const upsellModalHTML=upsellActivo&&upsellModal&&upsellTitulo?`
+<div class="upsell-modal-box" id="upsell_modal_box">
+  <div class="upsell-modal-title">🎁 Espera — tenemos algo especial para vos</div>
+  <p class="upsell-modal-desc">${upsellDesc}</p>
+  <div class="upsell-modal-price">${upsellPrecio}</div>
+  <a href="${upsellLink||'#'}" target="${upsellLink?'_top':'_self'}" class="upsell-modal-cta" onclick="if(typeof fbq!=='undefined'){fbq('track','Purchase',{content_name:'${upsellTitulo}',currency:'ARS'});}">
+    ${upsellCta} →
+  </a>
+  <div class="upsell-modal-skip" onclick="document.getElementById('upsell_modal_box').style.display='none'">No gracias, no quiero el beneficio extra</div>
+</div>`:'';
 
     const modalHTML=waLimpio
         ?`<div class="modal-overlay" id="successModal"><div class="modal"><div class="modal-icon">🎉</div><div class="modal-title">¡Recibimos tu consulta!</div><div class="modal-sub">Gracias por escribirnos. Hacé clic abajo para contactarnos por WhatsApp y te respondemos al toque.</div><a id="waLink" href="#" target="_top" class="wa-modal-btn">💬 Ir a WhatsApp</a><button class="modal-btn-sec" onclick="document.getElementById('successModal').classList.remove('show')">${upsellModalHTML}Cerrar</button></div></div>`
@@ -517,72 +585,6 @@ fbq('track', 'ViewContent', {content_name: '${titulo}', content_category: '${nic
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1"/></noscript>
 <!-- End Meta Pixel Code -->`:'';
-
-    // ── UPSELL ──
-    const upsellCSS=upsellActivo?`
-.upsell-section{padding:48px 0;background:linear-gradient(135deg,#fffbeb 0%,#fef3c7 100%);border-top:3px solid #f59e0b;border-bottom:3px solid #f59e0b;}
-.upsell-badge{display:inline-block;background:#f59e0b;color:white;font-size:11px;font-weight:800;padding:5px 14px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;}
-.upsell-title{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:900;color:#78350f;margin-bottom:12px;line-height:1.2;}
-.upsell-desc{font-size:1.05rem;color:#92400e;line-height:1.7;margin-bottom:24px;max-width:600px;}
-.upsell-price-wrap{display:flex;align-items:center;gap:16px;margin-bottom:28px;flex-wrap:wrap;}
-.upsell-price-orig{font-size:1.1rem;color:#b45309;text-decoration:line-through;opacity:0.7;}
-.upsell-price{font-size:2rem;font-weight:900;color:#78350f;}
-.upsell-save{background:#ef4444;color:white;font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px;}
-.upsell-cta{display:inline-block;padding:16px 36px;background:linear-gradient(135deg,#f59e0b,#d97706);color:white;border-radius:12px;font-size:16px;font-weight:800;text-decoration:none;box-shadow:0 8px 24px rgba(245,158,11,0.4);transition:transform 0.2s ease,box-shadow 0.2s ease;}
-.upsell-cta:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(245,158,11,0.5);}
-.upsell-cta:active{transform:scale(0.97);}
-.order-bump{background:linear-gradient(135deg,#fffbeb,#fef9c3);border:2.5px dashed #f59e0b;border-radius:12px;padding:18px 20px;margin:16px 0 20px;display:flex;align-items:flex-start;gap:14px;cursor:pointer;}
-.order-bump input[type=checkbox]{width:20px;height:20px;min-width:20px;accent-color:#f59e0b;cursor:pointer;margin-top:2px;}
-.order-bump-label{flex:1;}
-.order-bump-title{font-size:14px;font-weight:800;color:#78350f;margin-bottom:4px;}
-.order-bump-desc{font-size:12px;color:#92400e;line-height:1.5;}
-.order-bump-price{font-size:13px;font-weight:700;color:#d97706;margin-top:4px;}
-.upsell-modal-box{background:linear-gradient(135deg,#fffbeb,#fef3c7);border-radius:16px;padding:24px;margin-top:16px;border:2px solid #f59e0b;text-align:center;}
-.upsell-modal-title{font-size:17px;font-weight:800;color:#78350f;margin-bottom:8px;}
-.upsell-modal-desc{font-size:13px;color:#92400e;margin-bottom:14px;line-height:1.6;}
-.upsell-modal-price{font-size:18px;font-weight:900;color:#d97706;margin-bottom:14px;}
-.upsell-modal-cta{display:block;padding:13px 24px;background:linear-gradient(135deg,#f59e0b,#d97706);color:white;border-radius:10px;font-size:14px;font-weight:800;text-decoration:none;text-align:center;margin-bottom:8px;}
-.upsell-modal-skip{font-size:11px;color:#b45309;cursor:pointer;text-decoration:underline;opacity:0.7;}
-@media(max-width:768px){.upsell-section{padding:32px 0;}.upsell-price{font-size:1.6rem;}.upsell-cta{padding:14px 28px;font-size:15px;display:block;text-align:center;}}
-`:'';
-
-    const upsellSeccionHTML=upsellActivo&&upsellSeccion&&upsellTitulo?`
-<section class="upsell-section">
-  <div class="container">
-    <div class="upsell-badge">🔥 Oferta especial — Solo por hoy</div>
-    <h2 class="upsell-title">${upsellTitulo}</h2>
-    <p class="upsell-desc">${upsellDesc}</p>
-    <div class="upsell-price-wrap">
-      ${upsellPrecioOrig?`<span class="upsell-price-orig">Antes ${upsellPrecioOrig}</span>`:''}
-      <span class="upsell-price">${upsellPrecio}</span>
-      ${upsellPrecioOrig?`<span class="upsell-save">¡AHORRÁS!</span>`:''}
-    </div>
-    <a href="${upsellLink||'#form'}" target="${upsellLink?'_top':'_self'}" class="upsell-cta" onclick="if(typeof fbq!=='undefined'){fbq('track','AddToCart',{content_name:'${upsellTitulo}',currency:'ARS'});}">
-      ${upsellCta} →
-    </a>
-  </div>
-</section>`:'';
-
-    const orderBumpHTML=upsellActivo&&upsellBump&&upsellTitulo?`
-<div class="order-bump" onclick="this.querySelector('input').click()">
-  <input type="checkbox" id="order_bump" name="order_bump" value="si">
-  <div class="order-bump-label">
-    <div class="order-bump-title">🔥 Sí, quiero agregar: ${upsellTitulo}</div>
-    <div class="order-bump-desc">${upsellDesc}</div>
-    <div class="order-bump-price">+ Solo ${upsellPrecio}</div>
-  </div>
-</div>`:'';
-
-    const upsellModalHTML=upsellActivo&&upsellModal&&upsellTitulo?`
-<div class="upsell-modal-box" id="upsell_modal_box">
-  <div class="upsell-modal-title">🎁 Espera — tenemos algo especial para vos</div>
-  <p class="upsell-modal-desc">${upsellDesc}</p>
-  <div class="upsell-modal-price">${upsellPrecio}</div>
-  <a href="${upsellLink||'#'}" target="${upsellLink?'_top':'_self'}" class="upsell-modal-cta" onclick="if(typeof fbq!=='undefined'){fbq('track','Purchase',{content_name:'${upsellTitulo}',currency:'ARS'});}">
-    ${upsellCta} →
-  </a>
-  <div class="upsell-modal-skip" onclick="document.getElementById('upsell_modal_box').style.display='none'">No gracias, no quiero el beneficio extra</div>
-</div>`:'';
 
     // ── LAYOUT LATERAL ──
     if(tema==='lateral'){
@@ -669,6 +671,107 @@ ${modalHTML}${waFloatHTML}
 <script>${submitScript}${multiStepScript}${contadorScript}(function(){function fixAnchors(){document.querySelectorAll('a[href^="#"]').forEach(function(a){if(a._anchorFixed)return;a._anchorFixed=true;a.addEventListener('click',function(e){var t=a.getAttribute('href');if(!t||t==='#'||t==='javascript:void(0)'){e.preventDefault();return;}var el=document.querySelector(t);if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}});});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fixAnchors);}else{fixAnchors();}})();<\/script></body></html>`;
     }
 
+    // ── LAYOUT ASESOR (estilo QBi Media) ──
+    if(tema==='asesor'){
+        const imgSrc=heroImgBase64||heroImgUrl;
+        const marca=nicho?nicho.charAt(0).toUpperCase()+nicho.slice(1):'Mi Negocio';
+        const tagline='GENERACIÓN DE CLIENTES POTENCIALES CALIFICADOS';
+        const ac=t.accent||'#4f46e5';
+        // **texto** => violeta/negrita ; ==texto== => resaltado verde
+        const inline=(s)=>(s||'').replace(/\*\*(.+?)\*\*/g,'<strong class="pp">$1</strong>').replace(/==(.+?)==/g,'<span class="hl">$1</span>');
+        // Descripción: líneas "**Título**" => h4 violeta, "- x" => viñetas, resto => párrafos
+        const fmtDesc=(txt)=>{
+            const lines=(txt||'').split(/\n/);let out='';let ul=false;
+            lines.forEach(l=>{
+                const s=l.trim();
+                if(s.startsWith('- ')){if(!ul){out+='<ul class="a-ul">';ul=true;}out+='<li>'+inline(s.slice(2))+'</li>';return;}
+                if(ul){out+='</ul>';ul=false;}
+                if(!s){return;}
+                if(/^\*\*[^*]+\*\*$/.test(s)){out+='<h4 class="a-h4">'+s.replace(/\*\*/g,'')+'</h4>';return;}
+                out+='<p class="a-p">'+inline(s)+'</p>';
+            });
+            if(ul)out+='</ul>';
+            return out;
+        };
+        const mediaHTML=(mostrarVsl&&vslId)
+            ?`<div class="a-video"><iframe src="https://www.youtube.com/embed/${vslId}?rel=0&modestbranding=1" frameborder="0" allow="autoplay;encrypted-media;picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`
+            :(imgSrc?`<img class="a-img" src="${imgSrc}" alt="${marca}">`:'');
+        const cajasA=mostrarCajas&&cajas.length>0?`<div class="a-cajas">${cajas.map((c,i)=>`<div class="a-caja"><div class="a-caja-t"><span class="a-caja-n">${i+1}</span>${c.titulo}</div><div class="a-caja-d">${c.descripcion}</div></div>`).join('')}</div>`:'';
+        const beneA=beneficios&&beneficios.filter(Boolean).length>0?`<ul class="a-ul">${beneficios.filter(Boolean).map(b=>`<li>${b}</li>`).join('')}</ul>`:'';
+        const faqA=mostrarFaq&&faqs&&faqs.filter(f=>f.pregunta&&f.respuesta).length>0?`<div class="a-faq"><h4 class="a-h4">Preguntas frecuentes</h4>${faqs.filter(f=>f.pregunta&&f.respuesta).map(f=>`<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q"><span>${f.pregunta}</span><span class="faq-icon">+</span></div><div class="faq-a">${f.respuesta}</div></div>`).join('')}</div>`:'';
+        const camposA=preguntas&&preguntas.length>0
+            ?preguntas.map((p,i)=>campoHTML(p,i)).join('')
+            :`<div class="campo"><label>Tu nombre *</label><input type="text" name="campo_0" required></div><div class="campo"><label>Teléfono / WhatsApp *</label><input type="tel" name="campo_1" required placeholder="9 11 2345-6789"></div>`;
+        return `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"><title>${titulo}</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><style>
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:"Inter",sans-serif;background:#f8fafc;color:#1e293b;min-height:100vh}
+.a-top{background:white;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:100;padding:10px 24px}
+.a-top-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.a-logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,${ac},#8b5cf6);color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;flex-shrink:0}
+.a-brand{font-size:15px;font-weight:800;color:#0f172a;line-height:1.1}.a-tag{font-size:9px;font-weight:700;letter-spacing:.8px;color:#64748b;margin-top:2px}
+.a-wrap{max-width:1180px;margin:0 auto;padding:40px 24px 60px;display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:48px;align-items:start}
+.a-h1{font-size:clamp(2rem,4.2vw,3.2rem);font-weight:900;line-height:1.08;letter-spacing:-1.2px;color:#0f172a;margin-bottom:18px}
+.a-sub{display:inline;font-size:1.05rem;font-weight:500;line-height:1.9;color:#1e293b;background:#e4f57a;padding:2px 6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.a-sub-wrap{margin-bottom:28px}
+.hl{background:#e4f57a}.pp{color:#9333ea;font-weight:700}
+.a-video{width:100%;max-width:340px;aspect-ratio:9/16;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 14px 40px rgba(0,0,0,.25);margin:0 0 32px}
+.a-video iframe{width:100%;height:100%;border:none}
+.a-img{width:100%;max-width:460px;border-radius:18px;box-shadow:0 14px 40px rgba(0,0,0,.18);margin:0 0 32px;display:block}
+.a-h4{font-size:1rem;font-weight:800;color:#7c3aed;margin:26px 0 12px}
+.a-p{font-size:.98rem;line-height:1.75;color:#475569;margin-bottom:14px}
+.a-ul{list-style:none;margin:0 0 16px;display:flex;flex-direction:column;gap:6px}
+.a-ul li{font-size:.98rem;line-height:1.6;color:#475569;padding-left:16px;position:relative}.a-ul li:before{content:"-";position:absolute;left:0;color:#94a3b8}
+.a-cajas{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}
+.a-caja{background:white;border:1px solid #e2e8f0;border-radius:12px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.a-caja-t{font-size:13px;font-weight:800;color:#0f172a;display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.a-caja-n{width:20px;height:20px;border-radius:5px;background:#ede9fe;color:${ac};display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800}
+.a-caja-d{font-size:12px;color:#64748b;line-height:1.5}
+.a-form{position:sticky;top:76px;background:white;border-radius:20px;padding:26px 22px;box-shadow:0 10px 40px rgba(15,23,42,.12);border:1px solid #eef2f7}
+.a-form-t{font-size:1.15rem;font-weight:800;text-align:center;color:#0f172a;margin-bottom:20px}
+.campo{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.campo>label{font-size:11px;font-weight:700;color:#475569}
+.campo input[type=text],.campo input[type=tel],.campo textarea,.campo select{width:100%;padding:11px 13px;border:1px solid #e2e8f0;border-radius:10px;background:white;font-size:14px;font-family:inherit;color:#1e293b}
+.campo textarea{min-height:76px;resize:vertical}
+.campo input:focus,.campo textarea:focus,.campo select:focus{outline:none;border-color:${ac};box-shadow:0 0 0 3px ${ac}22}
+.radio-group,.check-group{display:flex;flex-direction:column;gap:7px}
+.radio-opt,.check-opt{display:flex;align-items:center;gap:9px;padding:9px 12px;border:1px solid #e2e8f0;border-radius:9px;font-size:12px;font-weight:600;cursor:pointer;background:white;transition:border-color .15s}
+.radio-opt:hover,.check-opt:hover{border-color:${ac}}.radio-opt input,.check-opt input{accent-color:${ac}}
+.submit-btn{width:100%;margin-top:6px;padding:15px;border:none;border-radius:12px;background:linear-gradient(135deg,${ac},#7c3aed);color:white;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer;box-shadow:0 8px 22px ${ac}55;transition:transform .2s}.submit-btn:hover{transform:translateY(-2px)}
+.a-safe{text-align:center;font-size:10px;color:#94a3b8;margin-top:12px}
+.a-pago{display:block;text-align:center;margin-top:12px;padding:11px;border:2px solid ${ac}55;border-radius:10px;color:${ac};font-size:13px;font-weight:700;text-decoration:none}
+.faq-item{border:1px solid #e2e8f0;border-radius:10px;margin-bottom:8px;background:white;cursor:pointer;overflow:hidden}
+.faq-q{display:flex;justify-content:space-between;gap:10px;padding:13px 16px;font-size:14px;font-weight:700}.faq-icon{color:${ac};font-size:18px;transition:transform .3s}.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s,padding .3s;font-size:13px;line-height:1.7;color:#64748b;padding:0 16px}.faq-item.open .faq-a{max-height:300px;padding:0 16px 14px}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;align-items:center;justify-content:center}.modal-overlay.show{display:flex}
+.modal{background:white;border-radius:20px;padding:36px;max-width:420px;width:90%;text-align:center}.modal-icon{font-size:46px;margin-bottom:12px}.modal-title{font-size:21px;font-weight:800;color:#0f172a;margin-bottom:8px}.modal-sub{font-size:14px;color:#64748b;margin-bottom:22px;line-height:1.6;display:flex;flex-direction:column;gap:10px;align-items:center}
+${waModalCSS}${waFloatCSS}${contadorCSS}
+@media(max-width:900px){.a-wrap{grid-template-columns:1fr;gap:28px;padding:24px 16px 48px}.a-form{position:static}.a-cajas{grid-template-columns:1fr}.a-video{max-width:100%}}
+</style></head><body>
+<header class="a-top"><div class="a-top-in"><div class="a-logo">${marca.charAt(0)}</div><div><div class="a-brand">${marca}</div><div class="a-tag">${tagline}</div></div></div></header>
+${contadorHTML}
+<main class="a-wrap">
+  <section>
+    <h1 class="a-h1">${titulo}</h1>
+    <div class="a-sub-wrap"><span class="a-sub">${inline(subtitulo)}</span></div>
+    ${mediaHTML}
+    ${fmtDesc(descripcion)}
+    ${beneA}
+    ${mostrarProblema&&problemaText?`<h4 class="a-h4">${problemaTitle||''}</h4><p class="a-p">${problemaText}</p>`:''}
+    ${cajasA}
+    ${faqA}
+  </section>
+  <aside class="a-form" id="form">
+    <div class="a-form-t">Reserva una llamada:</div>
+    <form onsubmit="handleSubmit(event)">
+      ${camposA}
+      <button type="submit" class="submit-btn">${cta}</button>
+      ${pagoLink?`<a href="${pagoLink}" target="_top" class="a-pago">💳 ${pagoTexto||'Pagar ahora'}</a>`:''}
+    </form>
+    <div class="a-safe">Datos seguros con política Anti-Spam.</div>
+  </aside>
+</main>
+${modalHTML}${waFloatHTML}
+<script>${submitScript}${contadorScript}<\/script></body></html>`;
+    }
     // ── LAYOUT PERIÓDICO ──
     if(tema==='periodico'){
         const imgSrc=heroImgBase64||heroImgUrl;
