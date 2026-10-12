@@ -681,7 +681,7 @@ ${modalHTML}${waFloatHTML}
         const inline=(s)=>(s||'').replace(/\*\*(.+?)\*\*/g,'<strong class="pp">$1</strong>').replace(/==(.+?)==/g,'<span class="hl">$1</span>');
         // Descripción: líneas "**Título**" => h4 violeta, "- x" => viñetas, resto => párrafos
         const fmtDesc=(txt)=>{
-            const lines=(txt||'').split(/\n/);let out='';let ul=false;
+            const lines=(txt||'').split(/\r?\n|\\n/);let out='';let ul=false;
             lines.forEach(l=>{
                 const s=l.trim();
                 if(s.startsWith('- ')){if(!ul){out+='<ul class="a-ul">';ul=true;}out+='<li>'+inline(s.slice(2))+'</li>';return;}
